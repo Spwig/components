@@ -1,0 +1,2 @@
+# Currencylayer Provider Dependencies
+requests>=2.28.0

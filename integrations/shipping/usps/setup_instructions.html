@@ -1,0 +1,239 @@
+{% load i18n static %}
+
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <h3>{% trans "USPS API Setup Guide" %}</h3>
+        <p class="instruction-subtitle">
+            {% trans "Follow these steps to get your USPS API credentials for rate calculation, label generation, and tracking." %}
+        </p>
+    </div>
+
+    <!-- Step 1: Create Developer Account -->
+    <div class="instruction-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            <h4>{% trans "Create a USPS Developer Portal Account" %}</h4>
+            <p>
+                {% trans "Register for a free USPS Developer Portal account to access the API." %}
+            </p>
+            <ol>
+                <li>{% trans "Visit the USPS Developer Portal" %}</li>
+                <li>{% trans "Click 'Sign Up' in the top right corner" %}</li>
+                <li>{% trans "Complete the registration form with your email and business information" %}</li>
+                <li>{% trans "Verify your email address by clicking the link sent to your inbox" %}</li>
+                <li>{% trans "Log in to the Developer Portal" %}</li>
+            </ol>
+            <a href="https://developers.usps.com/" target="_blank" rel="noopener noreferrer" class="btn-external">
+                <i class="fas fa-external-link-alt"></i>
+                {% trans "Open USPS Developer Portal" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Step 2: Register Application -->
+    <div class="instruction-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <h4>{% trans "Register Your Application" %}</h4>
+            <p>
+                {% trans "Create an application in the Developer Portal to get your API credentials." %}
+            </p>
+            <ol>
+                <li>{% trans "Log in to the Developer Portal" %}</li>
+                <li>{% trans "Navigate to 'Apps' in the main menu" %}</li>
+                <li>{% trans "Click 'Register App' or 'Create New App'" %}</li>
+                <li>{% trans "Fill in application details:" %}
+                    <ul>
+                        <li>{% trans "App Name: Your store/business name" %}</li>
+                        <li>{% trans "Description: Brief description of your shipping integration" %}</li>
+                        <li>{% trans "Redirect URI: Leave default if not using OAuth authorization code flow" %}</li>
+                    </ul>
+                </li>
+                <li>{% trans "Submit the application registration" %}</li>
+            </ol>
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <span>{% trans "You may need to wait for approval before your app can access production APIs. Test environment is usually available immediately." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3: Get API Credentials -->
+    <div class="instruction-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            <h4>{% trans "Get Your Consumer Key and Consumer Secret" %}</h4>
+            <p>
+                {% trans "After registering your app, you'll receive OAuth 2.0 credentials." %}
+            </p>
+            <ol>
+                <li>{% trans "Go to 'Apps' section in the Developer Portal" %}</li>
+                <li>{% trans "Click on your registered application" %}</li>
+                <li>{% trans "Find the 'Credentials' or 'Keys' section" %}</li>
+                <li>{% trans "Copy the following values:" %}
+                    <ul>
+                        <li><strong>{% trans "Consumer Key" %}</strong> {% trans "(also called Client ID)" %}</li>
+                        <li><strong>{% trans "Consumer Secret" %}</strong> {% trans "(also called Client Secret)" %}</li>
+                    </ul>
+                </li>
+            </ol>
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>{% trans "Keep your Consumer Secret secure and never share it publicly. Treat it like a password." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 4: Payment Account Setup (Optional) -->
+    <div class="instruction-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+            <h4>{% trans "Set Up Payment Account (Required for Label Generation)" %}</h4>
+            <p>
+                {% trans "To generate shipping labels, you need a USPS payment account. This is optional if you only need rate calculation and tracking." %}
+            </p>
+            <ol>
+                <li>{% trans "Choose your payment account type:" %}
+                    <ul>
+                        <li><strong>{% trans "Enterprise Payment System (EPS)" %}</strong> - {% trans "For high-volume shippers" %}</li>
+                        <li><strong>{% trans "Permit Account" %}</strong> - {% trans "For bulk mail" %}</li>
+                        <li><strong>{% trans "Postage Meter" %}</strong> - {% trans "For PC Postage meters" %}</li>
+                    </ul>
+                </li>
+                <li>{% trans "Contact USPS Business Customer Support to set up your payment account" %}</li>
+                <li>{% trans "Once approved, you'll receive a 10-digit account number" %}</li>
+                <li>{% trans "Use the Payments API to generate a payment authorization token (valid 60 days)" %}</li>
+            </ol>
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <span>{% trans "If you only need rate quotes and tracking, you can skip this step. Labels require a valid payment account." %}</span>
+            </div>
+            <a href="https://postalpro.usps.com/EPS" target="_blank" rel="noopener noreferrer" class="btn-external">
+                <i class="fas fa-external-link-alt"></i>
+                {% trans "Learn About Enterprise Payment" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Step 5: Choose Environment -->
+    <div class="instruction-step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+            <h4>{% trans "Choose Your Environment" %}</h4>
+            <p>
+                {% trans "USPS provides separate test and production environments." %}
+            </p>
+            <div class="environment-options">
+                <div class="environment-option">
+                    <h5><i class="fas fa-flask"></i> {% trans "Test Environment (TEM)" %}</h5>
+                    <ul>
+                        <li>{% trans "Use for development and testing" %}</li>
+                        <li>{% trans "No real shipments or charges" %}</li>
+                        <li>{% trans "Test tracking numbers available" %}</li>
+                        <li>{% trans "Base URL: apis-tem.usps.com" %}</li>
+                    </ul>
+                    <div class="info-box success">
+                        <i class="fas fa-check-circle"></i>
+                        <span>{% trans "Recommended for initial setup and testing" %}</span>
+                    </div>
+                </div>
+                <div class="environment-option">
+                    <h5><i class="fas fa-globe"></i> {% trans "Production Environment" %}</h5>
+                    <ul>
+                        <li>{% trans "Use for live shipments" %}</li>
+                        <li>{% trans "Real postage charges apply" %}</li>
+                        <li>{% trans "Requires approved developer account" %}</li>
+                        <li>{% trans "Base URL: apis.usps.com" %}</li>
+                    </ul>
+                    <div class="info-box warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>{% trans "Only use after thorough testing in Test environment" %}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 6: Test Connection -->
+    <div class="instruction-step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+            <h4>{% trans "Test Your Connection" %}</h4>
+            <p>
+                {% trans "After entering your credentials in the next step, test the connection to verify everything is set up correctly." %}
+            </p>
+            <ol>
+                <li>{% trans "Enter your Consumer Key and Consumer Secret" %}</li>
+                <li>{% trans "Optionally enter your Payment Account Number" %}</li>
+                <li>{% trans "Select your environment (Test or Production)" %}</li>
+                <li>{% trans "Click 'Test Connection' to verify" %}</li>
+            </ol>
+            <div class="info-box success">
+                <i class="fas fa-check-circle"></i>
+                <span>{% trans "A successful test means your credentials are valid and you can proceed with configuration." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Resources -->
+    <div class="instruction-resources">
+        <h4><i class="fas fa-book"></i> {% trans "Additional Resources" %}</h4>
+        <div class="resource-links">
+            <a href="https://developers.usps.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-home"></i>
+                <span>{% trans "USPS Developer Portal" %}</span>
+            </a>
+            <a href="https://developers.usps.com/apis" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-book-open"></i>
+                <span>{% trans "API Documentation" %}</span>
+            </a>
+            <a href="https://developers.usps.com/getting-started" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-rocket"></i>
+                <span>{% trans "Getting Started Guide" %}</span>
+            </a>
+            <a href="https://emailus.usps.com/s/web-tools-inquiry" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-life-ring"></i>
+                <span>{% trans "API Support" %}</span>
+            </a>
+            <a href="https://pe.usps.com/DMM300" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-file-alt"></i>
+                <span>{% trans "Domestic Mail Manual (DMM)" %}</span>
+            </a>
+            <a href="https://postalpro.usps.com/pub199" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-barcode"></i>
+                <span>{% trans "Publication 199 - IMpb Specifications" %}</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="instruction-troubleshooting">
+        <h4><i class="fas fa-wrench"></i> {% trans "Common Issues" %}</h4>
+        <div class="troubleshooting-item">
+            <h5>{% trans "401 Unauthorized Error" %}</h5>
+            <p>{% trans "Check that your Consumer Key and Consumer Secret are correct and have not expired. Ensure you're using the correct environment (Test vs Production)." %}</p>
+        </div>
+        <div class="troubleshooting-item">
+            <h5>{% trans "Payment Authorization Required" %}</h5>
+            <p>{% trans "Label generation requires a payment account and authorization token. Complete Step 4 to set up your payment account." %}</p>
+        </div>
+        <div class="troubleshooting-item">
+            <h5>{% trans "Service Not Available" %}</h5>
+            <p>{% trans "Some services may not be available in the Test environment or require specific account permissions. Contact USPS support if issues persist." %}</p>
+        </div>
+        <div class="troubleshooting-item">
+            <h5>{% trans "Rate Calculation Returns No Results" %}</h5>
+            <p>{% trans "Verify that the origin and destination ZIP codes are valid. Ensure package dimensions and weight are within USPS limits." %}</p>
+        </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="instruction-footer">
+        <div class="info-box info">
+            <i class="fas fa-arrow-right"></i>
+            <span>{% trans "Ready to continue? Click 'Next' to enter your credentials and test the connection." %}</span>
+        </div>
+    </div>
+</div>
+
+

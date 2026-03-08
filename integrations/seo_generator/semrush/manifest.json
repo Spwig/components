@@ -1,0 +1,141 @@
+{
+    "component_type": "seo_generator_provider",
+    "slug": "semrush",
+    "name": "SEMrush",
+    "version": "1.0.0",
+    "description": "SEO content generation powered by SEMrush keyword intelligence. Extracts high-value keywords from SEMrush's research API and uses them to build optimized meta titles and descriptions with strategic keyword placement.",
+    "author": "Spwig",
+    "author_details": {
+        "name": "Spwig",
+        "email": "support@spwig.com",
+        "website": "https://spwig.com"
+    },
+    "license": "Proprietary",
+    "provider_key": "semrush",
+    "class_name": "SEMrushSEOProvider",
+    "entry_point": "provider.py",
+    "min_platform_version": "2.0.0",
+    "homepage_url": "https://www.semrush.com",
+    "support_url": "https://www.semrush.com/kb",
+    "api_docs_url": "https://developer.semrush.com/api",
+    "signup_url": "https://www.semrush.com/signup",
+    "capabilities": {
+        "meta_title": true,
+        "meta_description": true,
+        "keywords": true,
+        "multi_language": false,
+        "bulk_generation": true
+    },
+    "credential_schema": {
+        "api_key": {
+            "type": "password",
+            "label": "API Key",
+            "help_text": "Your SEMrush API key. Found in your account under Subscription Info > API units.",
+            "required": true,
+            "secret": true,
+            "placeholder": "e.g., a1b2c3d4e5f6g7h8i9j0...",
+            "min_length": 10
+        },
+        "database": {
+            "type": "select",
+            "label": "Regional Database",
+            "help_text": "Select the regional database that best matches your target market. This determines which keyword data is used for SEO optimization.",
+            "required": true,
+            "default": "us",
+            "choices": [
+                {"value": "us", "label": "United States"},
+                {"value": "uk", "label": "United Kingdom"},
+                {"value": "ca", "label": "Canada"},
+                {"value": "au", "label": "Australia"},
+                {"value": "de", "label": "Germany"},
+                {"value": "fr", "label": "France"},
+                {"value": "es", "label": "Spain"},
+                {"value": "it", "label": "Italy"},
+                {"value": "br", "label": "Brazil"},
+                {"value": "nl", "label": "Netherlands"},
+                {"value": "se", "label": "Sweden"},
+                {"value": "pl", "label": "Poland"},
+                {"value": "tr", "label": "Turkey"},
+                {"value": "jp", "label": "Japan"},
+                {"value": "kr", "label": "South Korea"},
+                {"value": "in", "label": "India"},
+                {"value": "mx", "label": "Mexico"},
+                {"value": "sg", "label": "Singapore"},
+                {"value": "ie", "label": "Ireland"},
+                {"value": "nz", "label": "New Zealand"}
+            ]
+        }
+    },
+    "setup_wizard": {
+        "has_setup_instructions": true,
+        "supports_test_connection": true,
+        "estimated_setup_time": "5-10 minutes"
+    },
+    "pricing": {
+        "model": "unit_based",
+        "note": "SEMrush uses API units. Each keyword request consumes units based on the report type and data volume. 10,000 units included by default."
+    },
+    "rate_limits": {
+        "requests_per_second": 10,
+        "concurrent_requests": 10
+    },
+    "dependencies": {
+        "python": ">=3.10",
+        "django": ">=4.2",
+        "requests": ">=2.28.0"
+    },
+    "default_language": "en",
+    "translations": {
+        "es": {
+            "meta.name": "SEMrush",
+            "meta.description": "Generacion SEO con inteligencia de palabras clave de SEMrush",
+            "setup.title": "Configurar SEMrush",
+            "setup.step1_title": "Crear una cuenta SEMrush",
+            "setup.step1_desc": "Registrese en SEMrush para obtener acceso a la API.",
+            "setup.step2_title": "Obtener clave API",
+            "setup.step2_desc": "En su cuenta, vaya a Informacion de suscripcion > Unidades API.",
+            "setup.step3_title": "Seleccionar base de datos regional",
+            "setup.step3_desc": "Elija la base de datos que mejor se ajuste a su mercado objetivo."
+        },
+        "fr": {
+            "meta.name": "SEMrush",
+            "meta.description": "Generation SEO avec l'intelligence de mots-cles SEMrush",
+            "setup.title": "Configurer SEMrush",
+            "setup.step1_title": "Creer un compte SEMrush",
+            "setup.step1_desc": "Inscrivez-vous sur SEMrush pour acceder a l'API.",
+            "setup.step2_title": "Obtenir la cle API",
+            "setup.step2_desc": "Dans votre compte, allez dans Infos d'abonnement > Unites API.",
+            "setup.step3_title": "Selectionner la base de donnees regionale",
+            "setup.step3_desc": "Choisissez la base de donnees correspondant a votre marche cible."
+        },
+        "de": {
+            "meta.name": "SEMrush",
+            "meta.description": "SEO-Generierung mit SEMrush Keyword-Intelligence",
+            "setup.title": "SEMrush einrichten",
+            "setup.step1_title": "SEMrush-Konto erstellen",
+            "setup.step1_desc": "Registrieren Sie sich bei SEMrush fur den API-Zugang.",
+            "setup.step2_title": "API-Schlussel erhalten",
+            "setup.step2_desc": "In Ihrem Konto unter Abo-Informationen > API-Einheiten.",
+            "setup.step3_title": "Regionale Datenbank wahlen",
+            "setup.step3_desc": "Wahlen Sie die Datenbank, die am besten zu Ihrem Zielmarkt passt."
+        }
+    },
+    "changelog": [
+        {
+            "version": "1.0.0",
+            "date": "2026-03-01",
+            "changes": [
+                "Initial release",
+                "Keyword research via SEMrush Related Keywords API",
+                "Keyword-driven meta title and description templates",
+                "30+ regional database support",
+                "Instance-level keyword caching for efficiency",
+                "Fallback local keyword extraction"
+            ]
+        }
+    ],
+    "logo": {
+        "file": "logo.svg",
+        "mime_type": "image/svg+xml"
+    }
+}

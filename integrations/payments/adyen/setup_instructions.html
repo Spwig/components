@@ -1,0 +1,124 @@
+<div class="setup-instructions">
+    <h2>Adyen Payment Setup</h2>
+
+    <div class="intro-section">
+        <p class="highlight">
+            <strong>Why Choose Adyen?</strong> Enterprise-grade payment processing with 250+ payment methods
+            across 40+ countries. Industry-leading authorization rates, unified commerce capabilities,
+            and comprehensive fraud protection powered by RevenueProtect.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>Step 1: Create Your Adyen Account</h3>
+        <ol>
+            <li>Visit <a href="https://www.adyen.com/signup" target="_blank">adyen.com/signup</a></li>
+            <li>Click <strong>"Get started"</strong> and complete the registration</li>
+            <li>You will receive access to the <strong>Adyen Customer Area</strong> (test environment)</li>
+            <li>Complete your business verification for live processing</li>
+        </ol>
+        <div class="note info">
+            <strong>Tip:</strong> Adyen provides a test environment immediately upon signup. You can start integrating right away while your live account is being verified.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Get Your API Key</h3>
+        <ol>
+            <li>Log into your <a href="https://ca-test.adyen.com" target="_blank">Adyen Customer Area</a></li>
+            <li>Navigate to <strong>Developers &rarr; API credentials</strong></li>
+            <li>Click on your API credential (or create a new one)</li>
+            <li>Under <strong>Authentication</strong>, click <strong>"Generate API key"</strong></li>
+            <li>Copy and securely store the API key</li>
+        </ol>
+        <div class="note warning">
+            <strong>Security:</strong> The API key is only shown once. Copy it immediately and store it securely. Never share it or commit it to version control.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Get Your Client Key</h3>
+        <ol>
+            <li>On the same API credential page, scroll to <strong>Client settings</strong></li>
+            <li>Copy your <strong>Client key</strong> (starts with <code>test_</code> or <code>live_</code>)</li>
+            <li>Add your website domain under <strong>Allowed origins</strong></li>
+            <li>The client key is used for the frontend Drop-in/Components integration</li>
+        </ol>
+        <div class="note info">
+            <strong>Tip:</strong> For testing, add <code>http://localhost:8000</code> to allowed origins. For production, add your actual domain.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Configure Webhooks</h3>
+        <ol>
+            <li>In the Customer Area, go to <strong>Developers &rarr; Webhooks</strong></li>
+            <li>Click <strong>"+ Webhook"</strong> and select <strong>"Standard webhook"</strong></li>
+            <li>Enter your webhook URL: <code id="webhook-url" data-webhook-path="/payment-providers/webhook/adyen/"></code>
+                <button data-action="copy-to-clipboard" data-copy-id="webhook-url" class="btn-sm">Copy</button>
+            </li>
+            <li>Under <strong>Additional settings</strong>, enable <strong>HMAC verification</strong></li>
+            <li>Copy the generated <strong>HMAC key</strong> and save it</li>
+            <li>Select the following events:
+                <ul>
+                    <li>AUTHORISATION</li>
+                    <li>CAPTURE</li>
+                    <li>CANCELLATION</li>
+                    <li>REFUND</li>
+                    <li>REFUND_FAILED</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Save configuration"</strong></li>
+        </ol>
+        <div class="note info">
+            <strong>Why Webhooks?</strong> Adyen delivers payment results asynchronously via webhooks. This ensures reliable payment status updates even when customers close their browser during 3DS authentication.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Live Environment Setup</h3>
+        <ol>
+            <li>Once your live account is approved, go to <strong>Settings &rarr; API URLs</strong></li>
+            <li>Copy your <strong>Live endpoint prefix</strong> (e.g., <code>1797a841fbb37ca7-YourCompany</code>)</li>
+            <li>This prefix is required for live API calls</li>
+            <li>Generate new live API credentials (do not reuse test credentials)</li>
+            <li>Update your configuration with the live endpoint prefix and new credentials</li>
+        </ol>
+        <div class="note warning">
+            <strong>Important:</strong> The live endpoint prefix is unique to your account. Without it, live API calls will fail. This is not needed for the test environment.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 6: Test Your Integration</h3>
+        <div class="note success">
+            <strong>Testing Mode:</strong> When using the Test environment, you can use Adyen's test card numbers to simulate payments without real money.
+        </div>
+        <p><strong>Test Cards:</strong></p>
+        <ul>
+            <li><strong>Visa (Success):</strong> 4111 1111 1111 1111 (any future expiry, any 3-digit CVC)</li>
+            <li><strong>Visa (Refused):</strong> 4000 0000 0000 0002 (simulates refused payment)</li>
+            <li><strong>Mastercard:</strong> 5500 0000 0000 0004 (any future expiry, any 3-digit CVC)</li>
+            <li><strong>3D Secure:</strong> 4212 3456 7891 0006 (triggers 3DS authentication)</li>
+            <li><strong>iDEAL:</strong> Select iDEAL as payment method in the Drop-in, choose a test bank</li>
+        </ul>
+        <p>Visit <a href="https://docs.adyen.com/development-resources/testing/test-card-numbers" target="_blank">Adyen Test Card Numbers</a> for the complete list of test scenarios.</p>
+    </div>
+
+    <div class="help-section">
+        <h3>Additional Resources</h3>
+        <ul>
+            <li><a href="https://docs.adyen.com" target="_blank">Adyen Documentation</a></li>
+            <li><a href="https://docs.adyen.com/api-explorer/" target="_blank">API Explorer</a></li>
+            <li><a href="https://docs.adyen.com/online-payments/build-your-integration/" target="_blank">Integration Guide</a></li>
+            <li><a href="https://docs.adyen.com/development-resources/testing/test-card-numbers" target="_blank">Test Card Numbers</a></li>
+            <li><a href="https://docs.adyen.com/development-resources/webhooks" target="_blank">Webhook Documentation</a></li>
+            <li><strong>Support:</strong> <a href="https://help.adyen.com" target="_blank">Adyen Help Center</a></li>
+        </ul>
+    </div>
+
+    <div class="note info">
+        <strong>Note:</strong> Adyen is a full-stack payment platform used by major global brands. Their Drop-in integration provides a pre-built, optimized checkout experience with support for 250+ payment methods.
+    </div>
+</div>
+

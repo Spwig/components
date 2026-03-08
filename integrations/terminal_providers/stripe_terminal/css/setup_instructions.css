@@ -1,0 +1,87 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Terminal Providers - Stripe Terminal
+ *
+ * Description: Frontend styles for setup_instructions.html
+ * Template: components/integrations/terminal_providers/stripe_terminal/v1.0.0/setup_instructions.html
+ * Extracted: 2026-02-14
+ *
+ * Dependencies:
+ * - Theme CSS variables (loaded via page_builder/base.html or admin base)
+ *
+ * Notes:
+ * - Extracted during CSP hardening migration
+ * - Uses theme CSS variables for consistent theming
+ */
+
+.setup-instructions {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.setup-instructions h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.setup-section {
+    margin-bottom: 24px;
+}
+.setup-section h4 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--body-fg, #1a1a2e);
+}
+.setup-section ol,
+.setup-section ul {
+    margin: 0 0 12px;
+    padding-left: 24px;
+}
+.setup-section li {
+    margin-bottom: 8px;
+}
+.setup-section code {
+    background: var(--darkened-bg, #f5f5f5);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.setup-tip,
+.setup-warning {
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+.setup-tip {
+    background: color-mix(in srgb, var(--primary, #4f46e5) 10%, white);
+    border: 1px solid color-mix(in srgb, var(--primary, #4f46e5) 30%, white);
+}
+.setup-tip i {
+    color: var(--primary, #4f46e5);
+}
+.setup-warning {
+    background: color-mix(in srgb, var(--warning-fg, #f59e0b) 10%, white);
+    border: 1px solid color-mix(in srgb, var(--warning-fg, #f59e0b) 30%, white);
+}
+.setup-warning i {
+    color: var(--warning-fg, #f59e0b);
+}
+.setup-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+}
+.setup-table th,
+.setup-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color, #e5e5e5);
+}
+.setup-table th {
+    background: var(--darkened-bg, #f5f5f5);
+    font-weight: 600;
+}

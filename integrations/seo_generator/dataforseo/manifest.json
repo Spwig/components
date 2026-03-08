@@ -1,0 +1,119 @@
+{
+    "component_type": "seo_generator_provider",
+    "slug": "dataforseo",
+    "name": "DataForSEO",
+    "version": "1.0.0",
+    "description": "Professional SEO content generation powered by DataForSEO's Content Generation API. Generates optimized meta titles, descriptions, and extracts keywords using data-driven analysis. Pay-as-you-go pricing with generous rate limits.",
+    "author": "Spwig",
+    "author_details": {
+        "name": "Spwig",
+        "email": "support@spwig.com",
+        "website": "https://spwig.com"
+    },
+    "license": "Proprietary",
+    "provider_key": "dataforseo",
+    "class_name": "DataForSEOProvider",
+    "entry_point": "provider.py",
+    "min_platform_version": "2.0.0",
+    "homepage_url": "https://dataforseo.com",
+    "support_url": "https://dataforseo.com/support",
+    "api_docs_url": "https://docs.dataforseo.com/v3",
+    "signup_url": "https://app.dataforseo.com/register",
+    "capabilities": {
+        "meta_title": true,
+        "meta_description": true,
+        "keywords": true,
+        "multi_language": true,
+        "bulk_generation": true
+    },
+    "credential_schema": {
+        "login": {
+            "type": "text",
+            "label": "Login Email",
+            "help_text": "Your DataForSEO account email or username used for API authentication",
+            "required": true,
+            "placeholder": "e.g., your-email@example.com"
+        },
+        "password": {
+            "type": "password",
+            "label": "API Password",
+            "help_text": "Your DataForSEO API password (not your account password). Found in your DataForSEO Dashboard under API Access.",
+            "required": true,
+            "secret": true,
+            "placeholder": "e.g., abc123def456...",
+            "min_length": 8
+        }
+    },
+    "setup_wizard": {
+        "has_setup_instructions": true,
+        "supports_test_connection": true,
+        "estimated_setup_time": "5-10 minutes"
+    },
+    "pricing": {
+        "model": "per_request",
+        "note": "Pay-as-you-go: ~$0.0006-$0.002 per request depending on endpoint used"
+    },
+    "rate_limits": {
+        "requests_per_minute": 2000,
+        "has_burst_limit": false
+    },
+    "dependencies": {
+        "python": ">=3.10",
+        "django": ">=4.2",
+        "requests": ">=2.28.0"
+    },
+    "default_language": "en",
+    "translations": {
+        "es": {
+            "meta.name": "DataForSEO",
+            "meta.description": "Generacion de contenido SEO profesional con la API de DataForSEO",
+            "setup.title": "Configurar DataForSEO",
+            "setup.step1_title": "Crear una cuenta",
+            "setup.step1_desc": "Registrese en DataForSEO para obtener acceso a la API.",
+            "setup.step2_title": "Obtener credenciales API",
+            "setup.step2_desc": "En su panel, vaya a Acceso API y copie su email y contrasena API.",
+            "setup.step3_title": "Ingresar credenciales",
+            "setup.step3_desc": "Ingrese su email y contrasena API en el siguiente paso."
+        },
+        "fr": {
+            "meta.name": "DataForSEO",
+            "meta.description": "Generation de contenu SEO professionnelle avec l'API DataForSEO",
+            "setup.title": "Configurer DataForSEO",
+            "setup.step1_title": "Creer un compte",
+            "setup.step1_desc": "Inscrivez-vous sur DataForSEO pour acceder a l'API.",
+            "setup.step2_title": "Obtenir les identifiants API",
+            "setup.step2_desc": "Dans votre tableau de bord, accedez a Acces API et copiez votre email et mot de passe API.",
+            "setup.step3_title": "Saisir les identifiants",
+            "setup.step3_desc": "Entrez votre email et mot de passe API dans l'etape suivante."
+        },
+        "de": {
+            "meta.name": "DataForSEO",
+            "meta.description": "Professionelle SEO-Inhaltsgenerierung mit der DataForSEO-API",
+            "setup.title": "DataForSEO einrichten",
+            "setup.step1_title": "Konto erstellen",
+            "setup.step1_desc": "Registrieren Sie sich bei DataForSEO fur den API-Zugang.",
+            "setup.step2_title": "API-Zugangsdaten erhalten",
+            "setup.step2_desc": "Navigieren Sie in Ihrem Dashboard zu API-Zugang und kopieren Sie Ihre E-Mail und Ihr API-Passwort.",
+            "setup.step3_title": "Zugangsdaten eingeben",
+            "setup.step3_desc": "Geben Sie Ihre E-Mail und Ihr API-Passwort im nachsten Schritt ein."
+        }
+    },
+    "changelog": [
+        {
+            "version": "1.0.0",
+            "date": "2026-03-01",
+            "changes": [
+                "Initial release",
+                "Meta title and description generation via Content Generation API",
+                "Keyword extraction via text summary analysis",
+                "Multi-language support",
+                "Single-call optimization for title + description",
+                "Fallback keyword extraction for unsupported scenarios"
+            ]
+        }
+    ],
+    "logo": {
+        "file": "logo.svg",
+        "mime_type": "image/svg+xml"
+    }
+}

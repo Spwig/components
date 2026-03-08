@@ -1,0 +1,56 @@
+<div class="setup-instructions">
+    <h3>Prerequisites</h3>
+    <ol>
+        <li>A <strong>Facebook Page</strong> that you manage (not a personal profile)</li>
+        <li>A <strong>Facebook Developer Account</strong> at <a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a></li>
+        <li>A registered <strong>Facebook App</strong> with Pages API access</li>
+    </ol>
+
+    <h3>Step 1: Create a Facebook App</h3>
+    <ol>
+        <li>Go to <a href="https://developers.facebook.com/apps" target="_blank">Facebook Developer Apps</a></li>
+        <li>Click <strong>"Create App"</strong></li>
+        <li>Select <strong>"Business"</strong> as the app type</li>
+        <li>Enter your app name and contact email</li>
+        <li>Complete the app creation process</li>
+    </ol>
+
+    <h3>Step 2: Configure OAuth Settings</h3>
+    <ol>
+        <li>In your app dashboard, go to <strong>App Settings &gt; Basic</strong></li>
+        <li>Note your <strong>App ID</strong> and <strong>App Secret</strong></li>
+        <li>Add your store domain to <strong>App Domains</strong></li>
+        <li>Go to <strong>Facebook Login &gt; Settings</strong></li>
+        <li>Add your OAuth redirect URI: <code>{redirect_uri}</code></li>
+        <li>Enable <strong>"Login with the JavaScript SDK"</strong> and <strong>"Web OAuth Login"</strong></li>
+    </ol>
+
+    <h3>Step 3: Request Required Permissions</h3>
+    <p>Your app needs these permissions approved:</p>
+    <ul>
+        <li><strong>pages_manage_posts</strong> - To create and publish posts to your Page</li>
+        <li><strong>pages_read_engagement</strong> - To read Page insights and engagement data</li>
+        <li><strong>pages_show_list</strong> - To list Pages you manage</li>
+    </ul>
+    <p class="text-muted">Note: For development, you can use these permissions in Development Mode with your own Page. For production use with other users, submit for App Review.</p>
+
+    <h3>Step 4: Get a Page Access Token</h3>
+    <ol>
+        <li>Go to <a href="https://developers.facebook.com/tools/explorer" target="_blank">Graph API Explorer</a></li>
+        <li>Select your app from the dropdown</li>
+        <li>Click <strong>"Generate Access Token"</strong></li>
+        <li>Grant the required permissions when prompted</li>
+        <li>Use the <strong>Access Token Debugger</strong> to exchange for a long-lived token</li>
+    </ol>
+
+    <h3>Step 5: Enter Credentials</h3>
+    <p>In the next step, you'll need to enter:</p>
+    <ul>
+        <li><strong>Page Access Token</strong> - The long-lived token from Step 4</li>
+        <li><strong>Page ID</strong> - Your Facebook Page's numeric ID (found in Page Settings &gt; About)</li>
+    </ul>
+
+    <div class="alert alert-info">
+        <strong>Tip:</strong> Page Access Tokens expire after ~60 days. Enable automatic token refresh in your account settings to maintain connectivity.
+    </div>
+</div>

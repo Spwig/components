@@ -1,0 +1,189 @@
+{% load i18n static %}
+{# Setup instructions fragment for Gmail API provider #}
+{# Injected inside .setup-instructions in the wizard template #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<div class="intro-section">
+    <p>{% trans "This guide will walk you through setting up the Gmail API provider to send transactional emails via your Gmail or Google Workspace account." %}</p>
+
+    <div class="note info">
+        <strong>{% trans "Time Required:" %}</strong> {% trans "10-15 minutes" %}<br>
+        <strong>{% trans "Prerequisites:" %}</strong> {% trans "Google account (Gmail or Google Workspace)" %}
+    </div>
+</div>
+
+<h3>{% trans "Overview" %}</h3>
+<p>{% trans "To use the Gmail API, you'll need to:" %}</p>
+<ol>
+    <li>{% trans "Create a Google Cloud Console project" %}</li>
+    <li>{% trans "Enable the Gmail API" %}</li>
+    <li>{% trans "Create OAuth 2.0 credentials" %}</li>
+    <li>{% trans "Configure the OAuth consent screen" %}</li>
+    <li>{% trans "Connect your account in the platform" %}</li>
+</ol>
+
+<h3>{% trans "Detailed Setup Steps" %}</h3>
+
+<div class="step">
+    <h4><span class="si-step-number">1</span> {% trans "Create Google Cloud Project" %}</h4>
+    <ol>
+        <li>{% trans "Go to" %} <a href="https://console.cloud.google.com" target="_blank" rel="noopener" class="si-button-link">Google Cloud Console</a></li>
+        <li>{% trans "Click the project dropdown in the top navigation bar" %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "New Project" %}"</strong></li>
+        <li>{% trans 'Enter a project name (e.g., "My Store Emails")' %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create" %}"</strong></li>
+        <li>{% trans "Wait for the project to be created, then select it" %}</li>
+    </ol>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">2</span> {% trans "Enable Gmail API" %}</h4>
+    <ol>
+        <li>{% trans "In the Google Cloud Console, make sure your project is selected" %}</li>
+        <li>{% trans "Go to" %} <strong>"APIs & Services"</strong> &rarr; <strong>"Library"</strong></li>
+        <li>{% trans "Search for" %} <strong>"Gmail API"</strong></li>
+        <li>{% trans 'Click on "Gmail API" in the results' %}</li>
+        <li>{% trans "Click the" %} <strong>"{% trans "Enable" %}"</strong> {% trans "button" %}</li>
+    </ol>
+    <div class="note info">
+        <strong>{% trans "Note:" %}</strong> {% trans "It may take a few minutes for the API to be enabled." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">3</span> {% trans "Configure OAuth Consent Screen" %}</h4>
+    <p>{% trans "Before creating credentials, you must configure the OAuth consent screen:" %}</p>
+    <ol>
+        <li>{% trans "Go to" %} <strong>"APIs & Services"</strong> &rarr; <strong>"OAuth consent screen"</strong></li>
+        <li>{% trans "Select" %} <strong>"Internal"</strong> {% trans "(for Google Workspace) or" %} <strong>"External"</strong> {% trans "(for regular Gmail)" %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create" %}"</strong></li>
+        <li>{% trans "Fill in the required fields:" %}
+            <ul>
+                <li><strong>{% trans "App name:" %}</strong> {% trans "Your store name" %}</li>
+                <li><strong>{% trans "User support email:" %}</strong> {% trans "Your email address" %}</li>
+                <li><strong>{% trans "Developer contact email:" %}</strong> {% trans "Your email address" %}</li>
+            </ul>
+        </li>
+        <li>{% trans "Click" %} <strong>"{% trans "Save and Continue" %}"</strong></li>
+        <li>{% trans 'On the "Scopes" page, click' %} <strong>"{% trans "Add or Remove Scopes" %}"</strong></li>
+        <li>{% trans "Search for and select:" %} <code>https://www.googleapis.com/auth/gmail.send</code></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Update" %}"</strong>{% trans ", then" %} <strong>"{% trans "Save and Continue" %}"</strong></li>
+        <li>{% trans 'On the "Test users" page (for External apps), add your Gmail address' %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "Save and Continue" %}"</strong>{% trans ", then" %} <strong>"{% trans "Back to Dashboard" %}"</strong></li>
+    </ol>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">4</span> {% trans "Create OAuth 2.0 Credentials" %}</h4>
+    <ol>
+        <li>{% trans "Go to" %} <strong>"APIs & Services"</strong> &rarr; <strong>"Credentials"</strong></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create Credentials" %}"</strong> &rarr; <strong>"OAuth client ID"</strong></li>
+        <li>{% trans 'For "Application type", select' %} <strong>"{% trans "Web application" %}"</strong></li>
+        <li>{% trans 'Enter a name (e.g., "Email System")' %}</li>
+        <li>{% trans 'Under "Authorized redirect URIs", click' %} <strong>"{% trans "Add URI" %}"</strong></li>
+        <li>{% trans "Enter your redirect URI:" %}
+            <pre><code>https://yourdomain.com/admin/email_system/oauth/callback/gmail_api/</code></pre>
+            <div class="note warning">
+                <strong>{% trans "Important:" %}</strong> {% trans "Replace" %} <code>yourdomain.com</code> {% trans "with your actual domain. The trailing slash is required!" %}
+            </div>
+        </li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create" %}"</strong></li>
+        <li>{% trans "A dialog will appear with your" %} <strong>{% trans "Client ID" %}</strong> {% trans "and" %} <strong>{% trans "Client Secret" %}</strong></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Download JSON" %}"</strong> {% trans "to save your credentials (optional)" %}</li>
+        <li>{% trans "Keep this window open - you'll need these credentials in the next step" %}</li>
+    </ol>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">5</span> {% trans "Connect in Platform" %}</h4>
+    <ol>
+        <li>{% trans "In your platform admin, go to" %} <strong>"{% trans "Email System" %}"</strong> &rarr; <strong>"{% trans "Email Accounts" %}"</strong></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Add Email Account" %}"</strong></li>
+        <li>{% trans "Select" %} <strong>"Gmail API"</strong> {% trans "as the provider" %}</li>
+        <li>{% trans "You'll be redirected to Google's OAuth authorization page" %}</li>
+        <li>{% trans "Sign in with the Gmail account you want to use for sending emails" %}</li>
+        <li>{% trans "Review the permissions and click" %} <strong>"{% trans "Allow" %}"</strong></li>
+        <li>{% trans "You'll be redirected back to the platform" %}</li>
+        <li>{% trans "Configure your sender settings:" %}
+            <ul>
+                <li><strong>{% trans "From Email:" %}</strong> {% trans "Your Gmail address" %}</li>
+                <li><strong>{% trans "From Name:" %}</strong> {% trans "Your store name" %}</li>
+                <li><strong>{% trans "Reply-To:" %}</strong> {% trans "(Optional) Alternative reply address" %}</li>
+            </ul>
+        </li>
+        <li>{% trans "Click" %} <strong>"{% trans "Test Connection" %}"</strong> {% trans "to verify everything works" %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "Save" %}"</strong></li>
+    </ol>
+</div>
+
+<div class="note success">
+    <strong>{% trans "Setup Complete!" %}</strong> {% trans "You can now send transactional emails via Gmail API." %}
+</div>
+
+<h3>{% trans "Sending Limits" %}</h3>
+<p>{% trans "Gmail imposes sending limits based on your account type:" %}</p>
+<ul>
+    <li><strong>{% trans "Standard Gmail:" %}</strong> {% trans "500 emails per day" %}</li>
+    <li><strong>Google Workspace:</strong> {% trans "2,000 emails per day" %}</li>
+    <li><strong>{% trans "Rate Limit:" %}</strong> {% trans "15 emails per second (burst)" %}</li>
+</ul>
+
+<div class="note warning">
+    <strong>{% trans "Important:" %}</strong> {% trans "These limits are per Gmail account, not per project. If you exceed these limits, you'll receive a 429 error and need to wait until the next day." %}
+</div>
+
+<h3>{% trans "OAuth Scope" %}</h3>
+<p>{% trans "This provider only requests the minimal scope required:" %}</p>
+<pre><code>https://www.googleapis.com/auth/gmail.send</code></pre>
+<p>{% trans "This scope only allows sending emails and does not grant any read access to your inbox or other Gmail data." %}</p>
+
+<h3>{% trans "Best Practices" %}</h3>
+<ul>
+    <li><strong>{% trans "Use a dedicated Gmail account" %}</strong> {% trans "for transactional emails, not your personal account" %}</li>
+    <li><strong>{% trans "Use Google Workspace" %}</strong> {% trans "if you need higher sending limits (2,000/day vs 500/day)" %}</li>
+    <li><strong>{% trans "Monitor your daily usage" %}</strong> {% trans "to avoid hitting limits" %}</li>
+    <li><strong>{% trans "Configure SPF and DKIM" %}</strong> {% trans "records for your domain to improve deliverability" %}</li>
+    <li><strong>{% trans "Test thoroughly" %}</strong> {% trans "before going to production" %}</li>
+</ul>
+
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans 'Error: "Access blocked: This app\'s request is invalid"' %}</h4>
+    <ul>
+        <li>{% trans "Make sure you've configured the OAuth consent screen" %}</li>
+        <li>{% trans "Verify the OAuth scope" %} <code>gmail.send</code> {% trans "is added" %}</li>
+        <li>{% trans "For external apps, add yourself as a test user" %}</li>
+    </ul>
+
+    <h4>{% trans 'Error: "Redirect URI mismatch"' %}</h4>
+    <ul>
+        <li>{% trans "Check that the redirect URI in Google Cloud Console exactly matches your platform URL" %}</li>
+        <li>{% trans "Make sure the trailing slash is included" %}</li>
+        <li>{% trans "Use HTTPS, not HTTP (required for production)" %}</li>
+    </ul>
+
+    <h4>{% trans 'Error: "Invalid grant" or "Token expired"' %}</h4>
+    <ul>
+        <li>{% trans "The provider will automatically refresh expired tokens" %}</li>
+        <li>{% trans "If the problem persists, reconnect your account" %}</li>
+    </ul>
+
+    <h4>{% trans 'Error: "Insufficient permissions"' %}</h4>
+    <ul>
+        <li>{% trans "Make sure the Gmail API is enabled in your Google Cloud project" %}</li>
+        <li>{% trans "Verify the" %} <code>gmail.send</code> {% trans "scope is included" %}</li>
+        <li>{% trans "Try disconnecting and reconnecting your account" %}</li>
+    </ul>
+
+    <h4>{% trans "Security Considerations" %}</h4>
+    <ul>
+        <li><strong>{% trans "OAuth tokens are encrypted" %}</strong> {% trans "in the database using Fernet symmetric encryption" %}</li>
+        <li><strong>{% trans "Minimal scope:" %}</strong> {% trans "Only the send permission is requested" %}</li>
+        <li><strong>{% trans "Automatic token refresh:" %}</strong> {% trans "Expired tokens are refreshed automatically" %}</li>
+        <li><strong>{% trans "Secure storage:" %}</strong> {% trans "Credentials are never logged in plain text" %}</li>
+        <li><strong>{% trans "HTTPS required:" %}</strong> {% trans "All API calls are made over HTTPS" %}</li>
+    </ul>
+</div>
+
+<script src="{% static 'email_system/js/component-tabs.js' %}"></script>

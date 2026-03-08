@@ -1,0 +1,142 @@
+{
+  "component_type": "terminal_provider",
+  "slug": "stripe_terminal",
+  "name": "Stripe Terminal",
+  "version": "1.0.0",
+  "description": "Accept card payments at the point of sale using Stripe Terminal readers. Unified payments across online and in-person sales.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://stripe.com/terminal",
+  "support_url": "https://docs.stripe.com/terminal",
+  "license": "Proprietary",
+  "min_platform_version": "2.0.0",
+  "requires_platform": "2.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "stripe>=11.0.0"
+  ],
+  "platform_components": {
+    "pos_app": ">=1.0.0"
+  },
+  "provider_key": "stripe_terminal",
+  "entry_point": "provider",
+  "class_name": "StripeTerminalProvider",
+  "capabilities": {
+    "connection_tokens": true,
+    "reader_discovery": true,
+    "locations": true,
+    "refunds": true,
+    "payment_methods": ["card_present", "contactless"],
+    "reader_actions": ["collect_payment", "cancel_payment", "set_reader_display"],
+    "features": {
+      "simulated_readers": true,
+      "smart_readers": true,
+      "internet_readers": true,
+      "tap_to_pay": false
+    }
+  },
+  "supported_readers": [
+    {
+      "type": "bbpos_wisepos_e",
+      "name": "WisePOS E",
+      "category": "smart_reader",
+      "connection": "internet",
+      "description": "Countertop smart reader with touchscreen"
+    },
+    {
+      "type": "stripe_s700",
+      "name": "Stripe Reader S700",
+      "category": "smart_reader",
+      "connection": "internet",
+      "description": "Premium smart reader with large touchscreen"
+    },
+    {
+      "type": "stripe_m2",
+      "name": "Stripe Reader M2",
+      "category": "mobile_reader",
+      "connection": "bluetooth",
+      "description": "Compact mobile card reader"
+    },
+    {
+      "type": "bbpos_chipper2x",
+      "name": "BBPOS Chipper 2X BT",
+      "category": "mobile_reader",
+      "connection": "bluetooth",
+      "description": "Bluetooth mobile card reader"
+    },
+    {
+      "type": "simulated",
+      "name": "Simulated Reader",
+      "category": "simulated",
+      "connection": "simulated",
+      "description": "For testing in development environment"
+    }
+  ],
+  "credential_schema": {
+    "secret_key": {
+      "type": "password",
+      "label": "Stripe Secret Key",
+      "help_text": "Your Stripe secret key (sk_live_... or sk_test_...). Find this in your Stripe Dashboard under Developers > API keys.",
+      "required": true,
+      "placeholder": "sk_live_..."
+    }
+  },
+  "settings_schema": {
+    "location_id": {
+      "type": "text",
+      "label": "Location ID",
+      "help_text": "Stripe Terminal Location ID (tml_...). Leave blank to create automatically based on your store location.",
+      "required": false,
+      "placeholder": "tml_..."
+    },
+    "use_simulated_reader": {
+      "type": "boolean",
+      "label": "Enable Simulated Reader",
+      "help_text": "Allow connecting to simulated readers for testing. Disable in production.",
+      "required": false,
+      "default": false
+    }
+  },
+  "signup_url": "https://dashboard.stripe.com/register",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-02-06",
+      "changes": [
+        "Initial release with Stripe Terminal SDK support",
+        "Support for WisePOS E, S700, and M2 readers",
+        "Connection token generation for SDK authentication",
+        "Reader discovery and location management",
+        "Payment collection and cancellation",
+        "Simulated reader support for development"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Stripe Terminal fees: 2.7% + 5¢ per successful card-present transaction. Custom pricing available for high-volume merchants."
+  },
+  "regions": {
+    "supported": ["US", "CA", "GB", "IE", "AU", "NZ", "SG", "FR", "DE", "NL", "AT", "BE", "DK", "FI", "IT", "LU", "NO", "PT", "ES", "SE", "CH"],
+    "restricted": [],
+    "notes": "Available in 20+ countries. Readers ship to most regions."
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": ["PCI DSS Level 1", "EMV"],
+    "data_residency": ["multi_region"]
+  }
+}

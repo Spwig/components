@@ -1,0 +1,153 @@
+{
+  "component_type": "social_connector_provider",
+  "slug": "linkedin_company",
+  "name": "LinkedIn Company Page",
+  "version": "1.1.0",
+  "description": "Share blog posts to your LinkedIn Company Page with rich article previews",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "linkedin_company",
+  "class_name": "LinkedInCompanyConnector",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://developer.linkedin.com",
+  "support_url": "https://developer.linkedin.com/support",
+  "api_docs_url": "https://learn.microsoft.com/en-us/linkedin/marketing/",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "text_posts": true,
+    "image_posts": true,
+    "video_posts": false,
+    "carousel_posts": false,
+    "stories": false,
+    "reels": false,
+    "scheduling": false,
+    "link_preview": true,
+    "hashtags": true,
+    "mentions": true,
+    "analytics": false,
+    "comments": false,
+    "token_refresh": true
+  },
+  "character_limit": 3000,
+  "oauth_config": {
+    "authorize_url": "https://www.linkedin.com/oauth/v2/authorization",
+    "token_url": "https://www.linkedin.com/oauth/v2/accessToken",
+    "scope": [
+      "r_organization_social",
+      "w_organization_social",
+      "rw_organization_admin"
+    ],
+    "response_type": "code",
+    "token_expiry_days": 60
+  },
+  "account_selection": {
+    "required": true,
+    "type": "organization",
+    "template": "select_account.html",
+    "id_field": "organization_id",
+    "name_field": "organization_name",
+    "token_field": "access_token"
+  },
+  "credential_schema": {
+    "access_token": {
+      "type": "text",
+      "label": "Access Token",
+      "required": true,
+      "secret": true,
+      "help_text": "OAuth 2.0 access token from LinkedIn authentication"
+    },
+    "refresh_token": {
+      "type": "text",
+      "label": "Refresh Token",
+      "required": false,
+      "secret": true,
+      "help_text": "Token used to refresh access token (if available)"
+    },
+    "organization_id": {
+      "type": "text",
+      "label": "Organization ID",
+      "required": true,
+      "help_text": "LinkedIn Organization/Company ID (URN format: urn:li:organization:XXXXX)"
+    },
+    "organization_name": {
+      "type": "text",
+      "label": "Organization Name",
+      "required": false,
+      "help_text": "Display name of the company page (auto-populated)"
+    }
+  },
+  "settings_schema": {
+    "default_hashtags": {
+      "type": "text",
+      "label": "Default Hashtags",
+      "required": false,
+      "help_text": "Comma-separated hashtags to add to posts (e.g., #mybrand, #blog)"
+    },
+    "post_template": {
+      "type": "textarea",
+      "label": "Post Template",
+      "required": false,
+      "help_text": "Custom template for posts. Use {title}, {excerpt}, {url}, {hashtags}",
+      "placeholder": "{title}\n\n{excerpt}\n\n{hashtags}"
+    },
+    "visibility": {
+      "type": "select",
+      "label": "Post Visibility",
+      "required": false,
+      "default": "PUBLIC",
+      "options": [
+        {
+          "value": "PUBLIC",
+          "label": "Public"
+        },
+        {
+          "value": "CONNECTIONS",
+          "label": "Connections Only"
+        }
+      ],
+      "help_text": "Who can see posts shared to LinkedIn"
+    }
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2025-12-18",
+      "changes": [
+        "Added bundled account selection template for self-contained provider packages",
+        "Added account_selection manifest configuration for dynamic organization selection",
+        "Added setup instructions HTML for OAuth configuration guide",
+        "Providers can now be updated independently without backend changes"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-12-02",
+      "changes": [
+        "Initial release",
+        "Support for text posts up to 3000 characters",
+        "Image attachment support",
+        "Rich article link preview",
+        "OAuth 2.0 authentication flow",
+        "Token refresh capability",
+        "Organization page posting"
+      ]
+    }
+  ],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "total_size_bytes": 27298,
+  "file_count": 2,
+  "checksum": "sha256:21cd3f565a194e7e6f16fe414c39f3e60c344b464f203e9ee4681fe8f8be3fa8"
+}

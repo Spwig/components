@@ -1,0 +1,137 @@
+{% load i18n static %}
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>{% trans "Getting Your ExchangeRate-API Key" %}</h3>
+    </div>
+
+    <div class="instruction-steps">
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>{% trans "Create a Free Account" %}</h4>
+                <p>{% trans "Sign up for a free account at ExchangeRate-API. The free tier includes an impressive 30,000 requests per month with 99.99% uptime." %}</p>
+                <a href="https://www.exchangerate-api.com" class="btn-external" target="_blank" rel="noopener">
+                    <i class="fas fa-external-link-alt"></i>
+                    {% trans "Open Signup Page" %}
+                </a>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>{% trans "Get Your API Key" %}</h4>
+                <p>{% trans "Click 'Get Free API Key' on the homepage. Enter your email address and click 'Get Free Key'. You'll receive your API key immediately." %}</p>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "No credit card required for the free tier!" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>{% trans "Verify Your Email" %}</h4>
+                <p>{% trans "Check your email inbox for a verification email from ExchangeRate-API. Click the verification link to activate your account and access your dashboard." %}</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>{% trans "Copy Your API Key" %}</h4>
+                <p>{% trans "Your API Key is displayed on your dashboard. It's a 24-character alphanumeric string." %}</p>
+                <div class="code-block">
+                    <code>{% trans "Example:" %} 1137a55f91aad6c1244b0ac4</code>
+                </div>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    {% trans "Keep your API Key secure. Never share it publicly or commit it to version control." %}
+                </div>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h4>{% trans "Paste Your API Key Below" %}</h4>
+                <p>{% trans "Enter your API Key in the credential form below and click 'Test Connection' to verify it works correctly." %}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <div class="important-notes">
+            <h4><i class="fas fa-info-circle"></i> {% trans "Important Information" %}</h4>
+            <ul>
+                <li>
+                    <strong>{% trans "Free Tier Limits:" %}</strong>
+                    {% trans "30,000 requests per month - one of the most generous free tiers available" %}
+                </li>
+                <li>
+                    <strong>{% trans "Rate Updates:" %}</strong>
+                    {% trans "Daily updates on free plan, hourly or real-time on Pro plans" %}
+                </li>
+                <li>
+                    <strong>{% trans "Supported Currencies:" %}</strong>
+                    {% trans "160+ world currencies including all major currencies" %}
+                </li>
+                <li>
+                    <strong>{% trans "Base Currency:" %}</strong>
+                    {% trans "Any base currency supported (not limited to USD)" %}
+                </li>
+                <li>
+                    <strong>{% trans "Uptime:" %}</strong>
+                    {% trans "99.99% uptime in 2024 - highly reliable service" %}
+                </li>
+                <li>
+                    <strong>{% trans "HTTPS:" %}</strong>
+                    {% trans "All requests use secure HTTPS connections" %}
+                </li>
+            </ul>
+        </div>
+
+        <div class="helpful-links">
+            <h4>{% trans "Helpful Resources" %}</h4>
+            <ul>
+                <li>
+                    <a href="https://www.exchangerate-api.com/docs" target="_blank" rel="noopener">
+                        <i class="fas fa-book"></i> {% trans "API Documentation" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.exchangerate-api.com/#pricing_table" target="_blank" rel="noopener">
+                        <i class="fas fa-dollar-sign"></i> {% trans "Pricing & Plans" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.exchangerate-api.com/#faq" target="_blank" rel="noopener">
+                        <i class="fas fa-question-circle"></i> {% trans "FAQ" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.exchangerate-api.com/docs/support" target="_blank" rel="noopener">
+                        <i class="fas fa-life-ring"></i> {% trans "Support" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="upgrade-info">
+            <h4><i class="fas fa-arrow-up"></i> {% trans "Need More Requests?" %}</h4>
+            <p>{% trans "Pro plans start at $9.99/month and include:" %}</p>
+            <ul>
+                <li>{% trans "50,000 to 1M+ requests per month" %}</li>
+                <li>{% trans "Hourly or real-time rate updates" %}</li>
+                <li>{% trans "Historical data (select plans)" %}</li>
+                <li>{% trans "Priority support" %}</li>
+            </ul>
+            <a href="https://www.exchangerate-api.com/#pricing_table" class="btn-external" target="_blank" rel="noopener">
+                <i class="fas fa-external-link-alt"></i>
+                {% trans "View Pricing Plans" %}
+            </a>
+        </div>
+    </div>
+</div>

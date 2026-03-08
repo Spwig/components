@@ -1,0 +1,29 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Elegant Shop Theme - Critical CSS for Home Page
+ * Contains above-the-fold styles for faster initial render
+ */
+
+/* Hero section critical styles */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--theme-color-background-secondary);
+}
+
+/* Featured products grid critical styles */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--theme-space-6);
+}
+
+/* Product card skeleton */
+.product-card {
+  background-color: var(--theme-color-surface);
+  border-radius: var(--theme-radius-lg);
+  overflow: hidden;
+}

@@ -1,0 +1,155 @@
+{
+  "component_type": "payout_provider",
+  "slug": "paypal",
+  "name": "PayPal Payouts",
+  "version": "1.0.0",
+  "description": "Send affiliate commission payouts via PayPal's batch Payouts API. Supports up to 15,000 payments per batch with instant delivery to PayPal accounts worldwide.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "paypal",
+  "class_name": "PayPalPayoutProvider",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://developer.paypal.com/docs/api/payments.payouts-batch/v1/",
+  "support_url": "https://developer.paypal.com/support/",
+  "api_docs_url": "https://developer.paypal.com/docs/api/payments.payouts-batch/v1/",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "batch_payouts": true,
+    "single_payouts": true,
+    "cancel_pending": true,
+    "webhooks": true,
+    "fee_estimation": true,
+    "sandbox_mode": true
+  },
+  "payout_methods": ["paypal"],
+  "supported_currencies": [
+    "AUD", "BRL", "CAD", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD",
+    "HUF", "ILS", "JPY", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN",
+    "SEK", "SGD", "CHF", "THB", "TWD", "USD"
+  ],
+  "currency_restrictions": {
+    "in_country_only": ["BRL", "CNY", "MYR"],
+    "note": "BRL, CNY, and MYR are only supported for in-country PayPal accounts"
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "client_id": {
+      "type": "text",
+      "label": "Client ID",
+      "help_text": "Your PayPal REST API Client ID from the Developer Dashboard",
+      "required": true,
+      "placeholder": "e.g., AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8a..."
+    },
+    "client_secret": {
+      "type": "password",
+      "label": "Client Secret",
+      "help_text": "Your PayPal REST API Client Secret (keep this secure)",
+      "required": true,
+      "sensitive": true,
+      "placeholder": "Your client secret..."
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use Sandbox for testing, Production for live payouts",
+      "required": true,
+      "default": "sandbox",
+      "options": [
+        {"value": "sandbox", "label": "Sandbox (Testing)"},
+        {"value": "production", "label": "Production (Live)"}
+      ]
+    },
+    "webhook_id": {
+      "type": "text",
+      "label": "Webhook ID",
+      "help_text": "Optional: PayPal Webhook ID for signature verification",
+      "required": false,
+      "placeholder": "e.g., 5GP028NN4V676430J"
+    }
+  },
+  "fee_structure": {
+    "type": "percentage_capped",
+    "rate": "2%",
+    "caps": {
+      "USD": "20.00",
+      "EUR": "18.00",
+      "GBP": "15.00",
+      "CAD": "25.00",
+      "AUD": "25.00"
+    },
+    "note": "Fees may vary based on your PayPal account agreement"
+  },
+  "signup_url": "https://developer.paypal.com/",
+  "api_info": {
+    "base_url_sandbox": "https://api-m.sandbox.paypal.com",
+    "base_url_production": "https://api-m.paypal.com",
+    "auth_type": "oauth2",
+    "batch_limit": 15000
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-11-24",
+      "changes": [
+        "Initial release",
+        "Batch payouts API support (up to 15,000 per batch)",
+        "OAuth 2.0 authentication with token caching",
+        "Webhook signature verification",
+        "Fee estimation",
+        "Sandbox and Production environment support"
+      ]
+    }
+  ],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "webhooks": {
+    "supported_events": [
+      "PAYMENT.PAYOUTSBATCH.SUCCESS",
+      "PAYMENT.PAYOUTSBATCH.DENIED",
+      "PAYMENT.PAYOUTS-ITEM.SUCCEEDED",
+      "PAYMENT.PAYOUTS-ITEM.FAILED",
+      "PAYMENT.PAYOUTS-ITEM.UNCLAIMED",
+      "PAYMENT.PAYOUTS-ITEM.RETURNED",
+      "PAYMENT.PAYOUTS-ITEM.CANCELED"
+    ],
+    "verification_method": "paypal_signature",
+    "required_headers": ["paypal-transmission-id", "paypal-transmission-time", "paypal-cert-url", "paypal-auth-algo", "paypal-transmission-sig"]
+  },
+  "pricing_info": {
+    "model": "percentage_capped",
+    "fee_rate": "2%",
+    "caps": {
+      "USD": "$20.00",
+      "EUR": "€18.00",
+      "GBP": "£15.00",
+      "CAD": "$25.00 CAD",
+      "AUD": "$25.00 AUD"
+    },
+    "notes": "Fees charged per payout. Final fees may vary based on your PayPal Business account agreement."
+  },
+  "regions": {
+    "supported": ["global"],
+    "restricted": [],
+    "notes": "Available in 200+ markets. Recipients must have PayPal accounts."
+  },
+  "compliance": {
+    "pci_dss": false,
+    "certifications": ["PayPal Business Verified"],
+    "data_residency": ["multi_region"],
+    "notes": "PayPal handles all payment data. No card data stored."
+  },
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "setup_instructions": "setup_instructions.html"
+}

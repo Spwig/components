@@ -1,0 +1,157 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "display_name": "Starter Theme",
+  "description": "A clean, fast, and responsive default theme for Spwig e-commerce stores. Performance-first design with semantic CSS and mobile-first approach.",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "max_platform_version": "2.0.0",
+  "categories": [
+    "general",
+    "fashion",
+    "electronics"
+  ],
+  "tags": [
+    "minimal",
+    "fast",
+    "responsive",
+    "mobile-first",
+    "semantic-css"
+  ],
+  "preview_image": "preview.webp",
+  "design_tokens": "tokens.json",
+  "assets": {
+    "css": [
+      "css/reset.css",
+      "css/tokens.css",
+      "css/components.css",
+      "css/theme.css"
+    ],
+    "js": [
+      "js/theme.js"
+    ],
+    "critical_css": {
+      "home": "css/critical/home.css",
+      "collection": "css/critical/collection.css",
+      "product": "css/critical/product.css",
+      "cart": "css/critical/cart.css"
+    }
+  },
+  "bundled_components": [
+    {
+      "type": "header",
+      "name": "header_standard",
+      "path": "components/headers/header_standard"
+    },
+    {
+      "type": "footer",
+      "name": "footer_standard",
+      "path": "components/footers/footer_standard"
+    },
+    {
+      "type": "section",
+      "name": "hero_banner",
+      "path": "components/sections/hero_banner"
+    },
+    {
+      "type": "section",
+      "name": "product_grid",
+      "path": "components/sections/product_grid"
+    },
+    {
+      "type": "section",
+      "name": "featured_products",
+      "path": "components/sections/featured_products"
+    },
+    {
+      "type": "section",
+      "name": "newsletter",
+      "path": "components/sections/newsletter"
+    }
+  ],
+  "page_schemas": [
+    "page_schemas/home.json",
+    "page_schemas/product.json",
+    "page_schemas/collection.json",
+    "page_schemas/cart.json",
+    "page_schemas/checkout.json",
+    "page_schemas/account.json",
+    "page_schemas/faq.json",
+    "page_schemas/privacy.json",
+    "page_schemas/returns.json",
+    "page_schemas/404.json"
+  ],
+  "external_dependencies": {
+    "font_awesome": {
+      "version": "6.4.0",
+      "cdn": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "integrity": "sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    }
+  },
+  "features": {
+    "responsive": true,
+    "mobile_first": true,
+    "dark_mode": true,
+    "rtl_support": false,
+    "accessibility": "WCAG 2.1 AA"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-12-01",
+      "changes": [
+        "Initial release",
+        "Performance-first semantic CSS architecture",
+        "10 page templates",
+        "6 bundled components",
+        "Font Awesome icon integration"
+      ]
+    }
+  ],
+  "deprecated": true,
+  "deprecation_message": "This theme version uses legacy CSS variable naming. Please upgrade to version 1.1.0 or later.",
+  "screenshots": [
+    {
+      "file": "screenshots/home.webp",
+      "title": "Home"
+    },
+    {
+      "file": "screenshots/home-below-fold.webp",
+      "title": "Home \u2014 Below the Fold"
+    },
+    {
+      "file": "screenshots/category.webp",
+      "title": "Category"
+    },
+    {
+      "file": "screenshots/product.webp",
+      "title": "Product Detail"
+    },
+    {
+      "file": "screenshots/blog.webp",
+      "title": "Blog"
+    },
+    {
+      "file": "screenshots/blog-post.webp",
+      "title": "Blog Post"
+    },
+    {
+      "file": "screenshots/mobile-home.webp",
+      "title": "Mobile \u2014 Home"
+    },
+    {
+      "file": "screenshots/mobile-category.webp",
+      "title": "Mobile \u2014 Category"
+    },
+    {
+      "file": "screenshots/mobile-product.webp",
+      "title": "Mobile \u2014 Product"
+    },
+    {
+      "file": "screenshots/mobile-menu.webp",
+      "title": "Mobile \u2014 Navigation"
+    }
+  ]
+}

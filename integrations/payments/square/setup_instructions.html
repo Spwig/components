@@ -1,0 +1,148 @@
+<div class="setup-instructions">
+    <h2>Square Payment Setup</h2>
+
+    <div class="intro-section">
+        <p class="highlight">
+            <strong>Why Choose Square?</strong> Accept payments online and in-person with one unified platform.
+            Square supports credit/debit cards, Apple Pay, Google Pay, Cash App Pay, and Afterpay/Clearpay
+            with transparent, competitive pricing and no monthly fees.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>Step 1: Create Your Square Account</h3>
+        <ol>
+            <li>Visit <a href="https://squareup.com/signup" target="_blank">squareup.com/signup</a></li>
+            <li>Click <strong>"Get Started"</strong> and follow the registration process</li>
+            <li>Complete your business profile and identity verification</li>
+            <li>Verify your email address</li>
+        </ol>
+        <div class="note info">
+            <strong>Tip:</strong> Square offers a free account with no monthly fees. You only pay per-transaction processing fees.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Create a Square Application</h3>
+        <ol>
+            <li>Go to the <a href="https://developer.squareup.com/apps" target="_blank">Square Developer Dashboard</a></li>
+            <li>Click the <strong>"+"</strong> button to create a new application</li>
+            <li>Give your application a name (e.g., "My Online Store")</li>
+            <li>Once created, navigate to the <strong>"Credentials"</strong> tab</li>
+            <li>Copy your <strong>Application ID</strong> (starts with <code>sq0idp-</code> for sandbox)</li>
+            <li>Under <strong>"Access token"</strong>, copy your <strong>Access Token</strong></li>
+        </ol>
+        <div class="note warning">
+            <strong>Security:</strong> Keep your Access Token secure. Never share it publicly or commit it to version control. Treat it like a password.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Get Your Location ID</h3>
+        <ol>
+            <li>In the Square Developer Dashboard, go to your application</li>
+            <li>Navigate to the <strong>"Locations"</strong> section</li>
+            <li>Copy the <strong>Location ID</strong> for the location you want to process payments for</li>
+            <li>Alternatively, find your Location ID in the <a href="https://squareup.com/dashboard/locations" target="_blank">Square Dashboard</a> under <strong>Account &amp; Settings &gt; Locations</strong></li>
+        </ol>
+        <div class="note info">
+            <strong>Tip:</strong> Each Square account has at least one location. For online-only stores, use your default location.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 3a: Understanding Sandbox vs Production Credentials</h3>
+        <p>You will need to provide both sandbox and production credentials:</p>
+        <ul>
+            <li><strong>Sandbox Credentials:</strong> For testing without real charges
+                <ul>
+                    <li>Use these to test your integration with Square's test payment nonces</li>
+                    <li>No real money is charged</li>
+                    <li>Available in your application's Credentials tab (Sandbox mode toggle)</li>
+                    <li>Application IDs start with <code>sandbox-sq0idp-</code></li>
+                </ul>
+            </li>
+            <li><strong>Production Credentials:</strong> For live transactions
+                <ul>
+                    <li>Use these to process real payments from customers</li>
+                    <li>Real money is charged to real payment methods</li>
+                    <li>Requires completing account verification</li>
+                    <li>Application IDs start with <code>sq0idp-</code> (no sandbox prefix)</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="note info">
+            <strong>💡 Getting Started:</strong> You can initially set up with only sandbox credentials and add production credentials later when you're ready to go live. The wizard will collect both sets of keys, allowing you to easily switch between sandbox and production mode.
+        </div>
+        <div class="note warning">
+            <strong>⚠️ Never Mix Keys!</strong> Always keep sandbox and production credentials separate. Using the wrong credentials can result in test transactions appearing in production reports or real charges being processed in sandbox mode.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Configure Webhooks (Recommended)</h3>
+        <ol>
+            <li>In the Square Developer Dashboard, go to your application</li>
+            <li>Navigate to the <strong>"Webhooks"</strong> tab</li>
+            <li>Click <strong>"Add Endpoint"</strong></li>
+            <li>Enter your webhook URL: <code id="webhook-url" data-webhook-path="/payment-providers/webhook/square/"></code>
+                <button data-action="copy-to-clipboard" data-copy-id="webhook-url" class="btn-sm">Copy</button>
+            </li>
+            <li>Select the following events:
+                <ul>
+                    <li>payment.completed</li>
+                    <li>payment.updated</li>
+                    <li>refund.created</li>
+                    <li>refund.updated</li>
+                </ul>
+            </li>
+            <li>Copy the <strong>Signature Key</strong> displayed after saving</li>
+            <li>Click <strong>"Save"</strong></li>
+        </ol>
+        <div class="note info">
+            <strong>Why Webhooks?</strong> Webhooks provide real-time payment notifications, ensuring your orders are updated immediately when payments succeed, fail, or are refunded.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Test with Sandbox</h3>
+        <div class="note success">
+            <strong>Testing Mode:</strong> Use Sandbox environment credentials to test payments without processing real money. Square provides test payment tokens for this purpose.
+        </div>
+        <p><strong>Sandbox Test Values:</strong></p>
+        <ul>
+            <li><strong>Success nonce:</strong> <code>cnon:card-nonce-ok</code> - Simulates a successful card payment</li>
+            <li><strong>Declined nonce:</strong> <code>cnon:card-nonce-declined</code> - Simulates a declined card</li>
+            <li><strong>CVV failure:</strong> <code>cnon:card-nonce-rejected-cvv-failure</code> - Simulates CVV check failure</li>
+            <li><strong>Address mismatch:</strong> <code>cnon:card-nonce-rejected-postalcode-failure</code> - Simulates address verification failure</li>
+            <li><strong>Expiry failure:</strong> <code>cnon:card-nonce-rejected-expiration-failure</code> - Simulates expired card</li>
+        </ul>
+        <p>Visit <a href="https://developer.squareup.com/docs/testing/test-values" target="_blank">Square Test Values Documentation</a> for more test scenarios.</p>
+    </div>
+
+    <div class="step">
+        <h3>Step 6: Go Live with Production</h3>
+        <ol>
+            <li>Complete all Square account verification requirements</li>
+            <li>Thoroughly test all payment flows in Sandbox mode</li>
+            <li>When ready, switch <strong>Environment</strong> to <strong>Production</strong></li>
+            <li>Use your <strong>Production</strong> Access Token and Application ID (found in the Credentials tab with "Production" selected)</li>
+            <li>Update the Location ID if it differs between sandbox and production</li>
+            <li>Process a small live test transaction to verify everything works</li>
+            <li>You are ready to accept live payments!</li>
+        </ol>
+    </div>
+
+    <div class="help-section">
+        <h3>Additional Resources</h3>
+        <ul>
+            <li><a href="https://developer.squareup.com/docs" target="_blank">Square Developer Documentation</a></li>
+            <li><a href="https://developer.squareup.com/docs/checkout-api" target="_blank">Square Checkout API Guide</a></li>
+            <li><a href="https://developer.squareup.com/docs/payments-api/overview" target="_blank">Payments API Overview</a></li>
+            <li><a href="https://developer.squareup.com/docs/webhooks/overview" target="_blank">Webhooks Guide</a></li>
+            <li><a href="https://squareup.com/pricing" target="_blank">Square Pricing</a></li>
+            <li><strong>Support:</strong> <a href="https://squareup.com/help" target="_blank">Square Help Center</a></li>
+        </ul>
+    </div>
+</div>
+

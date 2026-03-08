@@ -1,0 +1,190 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Product Feeds - Google Merchant
+ *
+ * Description: Frontend styles for setup_instructions.html
+ * Template: components/integrations/product_feeds/google_merchant/v1.0.0/setup_instructions.html
+ * Extracted: 2026-02-14
+ *
+ * Dependencies:
+ * - Theme CSS variables (loaded via page_builder/base.html or admin base)
+ *
+ * Notes:
+ * - Extracted during CSP hardening migration
+ * - Uses theme CSS variables for consistent theming
+ */
+
+.setup-instructions {
+    max-width: 800px;
+}
+
+.instruction-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--admin-primary, #007bff);
+}
+
+.instruction-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--admin-text-primary, #212529);
+}
+
+.instruction-header h3 i {
+    margin-right: 0.5rem;
+    color: #4285f4;
+}
+
+.instruction-subtitle {
+    margin: 0.5rem 0 0;
+    color: var(--admin-text-secondary, #6c757d);
+}
+
+.instruction-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.instruction-step {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--admin-bg-secondary, #f8f9fa);
+    border-radius: 8px;
+    border-left: 4px solid var(--admin-primary, #007bff);
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--admin-primary, #007bff);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    color: var(--admin-text-primary, #212529);
+}
+
+.step-content p {
+    margin: 0 0 0.75rem;
+    color: var(--admin-text-secondary, #6c757d);
+}
+
+.step-content ol, .step-content ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.step-content li {
+    margin-bottom: 0.5rem;
+    color: var(--admin-text-primary, #212529);
+}
+
+.step-content a {
+    color: var(--admin-primary, #007bff);
+    text-decoration: none;
+}
+
+.step-content a:hover {
+    text-decoration: underline;
+}
+
+.tip-box, .warning-box {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.tip-box {
+    background: #e7f3ff;
+    border: 1px solid #b3d7ff;
+}
+
+.tip-box i {
+    color: #007bff;
+    margin-top: 2px;
+}
+
+.warning-box {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.warning-box i {
+    color: #856404;
+    margin-top: 2px;
+}
+
+.credentials-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.credentials-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--admin-border-color, #dee2e6);
+}
+
+.credentials-list li:last-child {
+    border-bottom: none;
+}
+
+.instruction-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--admin-border-color, #dee2e6);
+}
+
+.instruction-footer h4 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    color: var(--admin-text-primary, #212529);
+}
+
+.resource-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.resource-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--admin-bg-secondary, #f8f9fa);
+    border: 1px solid var(--admin-border-color, #dee2e6);
+    border-radius: 4px;
+    color: var(--admin-text-primary, #212529);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.resource-links a:hover {
+    background: var(--admin-primary, #007bff);
+    color: white;
+    border-color: var(--admin-primary, #007bff);
+}

@@ -1,0 +1,183 @@
+{
+  "component_type": "exchange_rate_provider",
+  "slug": "fixer",
+  "name": "Fixer.io",
+  "version": "1.0.1",
+  "description": "Real-time exchange rates for 170+ currencies powered by Fixer.io API (APILayer)",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "fixer",
+  "class_name": "FixerProvider",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://fixer.io",
+  "support_url": "https://apilayer.com/marketplace/fixer-api#support-tab",
+  "api_docs_url": "https://apilayer.com/marketplace/fixer-api#documentation-tab",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "live_rates": true,
+    "historical": false,
+    "crypto": false,
+    "commodities": false,
+    "base_currency_selection": false,
+    "batch_requests": false
+  },
+  "rate_limits": {
+    "requests_per_month": 100,
+    "requests_per_minute": null,
+    "has_burst_limit": false
+  },
+  "supported_currencies": [
+    "EUR",
+    "USD",
+    "GBP",
+    "JPY",
+    "CHF",
+    "CAD",
+    "AUD",
+    "NZD",
+    "CNY",
+    "INR",
+    "BRL",
+    "ZAR",
+    "SEK",
+    "NOK",
+    "DKK",
+    "PLN",
+    "CZK",
+    "HUF",
+    "RON",
+    "BGN",
+    "HRK",
+    "RUB",
+    "TRY",
+    "MXN",
+    "ARS",
+    "CLP",
+    "COP",
+    "PEN",
+    "KRW",
+    "TWD",
+    "HKD",
+    "SGD",
+    "MYR",
+    "THB",
+    "IDR",
+    "PHP",
+    "VND",
+    "ILS",
+    "SAR",
+    "AED",
+    "KWD",
+    "QAR",
+    "BHD",
+    "OMR",
+    "JOD",
+    "EGP",
+    "MAD",
+    "NGN",
+    "KES",
+    "GHS"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "access_key": {
+      "type": "text",
+      "label": "Access Key",
+      "help_text": "Your Fixer.io Access Key from the APILayer dashboard",
+      "required": true,
+      "placeholder": "e.g., abc123def456..."
+    }
+  },
+  "pricing": {
+    "free_tier": {
+      "requests_per_month": 100,
+      "features": [
+        "Latest rates (hourly updates)",
+        "EUR base currency only",
+        "JSON API access",
+        "170+ currencies"
+      ]
+    },
+    "paid_tiers": [
+      {
+        "name": "Basic",
+        "price": "$9.99/month",
+        "requests_per_month": 5000,
+        "features": [
+          "Latest rates (every 60 seconds)",
+          "Historical data back to 1999",
+          "EUR base currency only",
+          "HTTPS support",
+          "170+ currencies"
+        ]
+      },
+      {
+        "name": "Professional",
+        "price": "$49.99/month",
+        "requests_per_month": 50000,
+        "features": [
+          "All Basic features",
+          "Any base currency",
+          "Time-series data",
+          "Currency conversion endpoint",
+          "Priority support"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "$299.99/month",
+        "requests_per_month": 1000000,
+        "features": [
+          "All Professional features",
+          "Minute-by-minute updates",
+          "Currency fluctuation data",
+          "Dedicated support",
+          "SLA guarantee"
+        ]
+      }
+    ]
+  },
+  "signup_url": "https://apilayer.com?fpr=spwig",
+  "api_info": {
+    "base_url": "https://data.fixer.io/api",
+    "latest_endpoint": "/latest",
+    "symbols_endpoint": "/symbols",
+    "documentation_url": "https://apilayer.com/marketplace/fixer-api#documentation-tab"
+  },
+  "changelog": [
+    {
+      "version": "1.0.1",
+      "date": "2025-10-25",
+      "changes": [
+        "Updated provider logo to PNG format for better compatibility and display"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-10-24",
+      "changes": [
+        "Initial release",
+        "Support for 170+ currencies via Fixer.io API",
+        "Real-time exchange rates with hourly updates",
+        "Automatic conversion for non-EUR base currencies",
+        "Free tier support (100 requests/month)",
+        "Encrypted credential storage (Fernet encryption)",
+        "Comprehensive error handling (401, 403, 429, 601, 602, timeout)",
+        "Rate sanity checking and validation",
+        "Test connection via symbols endpoint",
+        "Full unit and integration test coverage",
+        "EUR base currency for free tier (automatic conversion for other bases)"
+      ]
+    }
+  ],
+  "logo": "logo.png"
+}

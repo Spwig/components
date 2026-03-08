@@ -1,0 +1,282 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Tech Theme Theme - Design Tokens as CSS Custom Properties
+ * Generated from tokens.json on 2026-02-25 11:47:50
+ * DO NOT EDIT MANUALLY - Edit tokens.json instead and regenerate
+ */
+
+:root {
+  /* ==========================================================================
+     Colors
+     ========================================================================== */
+
+  /* Primary */
+  --theme-color-primary: #06b6d4;
+  --theme-color-primary-hover: #0891b2;
+  --theme-color-primary-light: #cffafe;
+
+  /* Secondary */
+  --theme-color-secondary: #a78bfa;
+  --theme-color-secondary-hover: #8b5cf6;
+
+  /* Accent */
+  --theme-color-accent: #f97316;
+  --theme-color-accent-hover: #ea580c;
+
+  /* Text */
+  --theme-color-text: #f1f5f9;
+  --theme-color-text-light: #e2e8f0;
+  --theme-color-text-muted: #94a3b8;
+  --theme-color-text-inverse: #0f172a;
+
+  /* Background */
+  --theme-color-background: #0f172a;
+  --theme-color-background-alt: #1e293b;
+
+  /* Surface */
+  --theme-color-surface: #1e293b;
+  --theme-color-surface-hover: #334155;
+
+  /* Border */
+  --theme-color-border: #334155;
+  --theme-color-border-light: #475569;
+  --theme-color-border-dark: #1e293b;
+
+  /* Status */
+  --theme-color-success: #10b981;
+  --theme-color-success-light: #064e3b;
+  --theme-color-error: #ef4444;
+  --theme-color-error-light: #7f1d1d;
+  --theme-color-warning: #fbbf24;
+  --theme-color-warning-light: #78350f;
+  --theme-color-info: #06b6d4;
+  --theme-color-info-light: #164e63;
+
+  /* Overlay */
+  --theme-color-overlay: rgba(0, 0, 0, 0.7);
+
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+
+  /* Font Families */
+  --theme-font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --theme-font-serif: Georgia, 'Times New Roman', serif;
+  --theme-font-mono: Rajdhani, ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Font Sizes */
+  --theme-font-size-xs: 0.75rem;
+  --theme-font-size-sm: 0.875rem;
+  --theme-font-size-base: 1rem;
+  --theme-font-size-lg: 1.125rem;
+  --theme-font-size-xl: 1.25rem;
+  --theme-font-size-2xl: 1.5rem;
+  --theme-font-size-3xl: 2rem;
+  --theme-font-size-4xl: 2.5rem;
+  --theme-font-size-5xl: 3rem;
+
+  /* Font Weights */
+  --theme-font-weight-normal: 400;
+  --theme-font-weight-medium: 500;
+  --theme-font-weight-semibold: 600;
+  --theme-font-weight-bold: 700;
+
+  /* Line Heights */
+  --theme-line-height-tight: 1.2;
+  --theme-line-height-normal: 1.5;
+  --theme-line-height-relaxed: 1.625;
+
+  /* Letter Spacing */
+  --theme-letter-spacing-tight: -0.025em;
+  --theme-letter-spacing-normal: 0;
+  --theme-letter-spacing-wide: 0.05em;
+
+  /* ==========================================================================
+     Spacing
+     ========================================================================== */
+  --theme-space-0: 0;
+  --theme-space-1: 0.25rem;
+  --theme-space-2: 0.5rem;
+  --theme-space-3: 0.75rem;
+  --theme-space-4: 1rem;
+  --theme-space-5: 1.25rem;
+  --theme-space-6: 1.5rem;
+  --theme-space-8: 2rem;
+  --theme-space-10: 2.5rem;
+  --theme-space-12: 3rem;
+  --theme-space-16: 4rem;
+  --theme-space-20: 5rem;
+  --theme-space-24: 6rem;
+
+  /* ==========================================================================
+     Borders
+     ========================================================================== */
+
+  /* Border Widths */
+  --theme-border-width-0: 0;
+  --theme-border-width-1: 1px;
+  --theme-border-width-2: 2px;
+
+  /* Border Radius */
+  --theme-radius-none: 0;
+  --theme-radius-sm: 0.125rem;
+  --theme-radius-base: 0.25rem;
+  --theme-radius-md: 0.375rem;
+  --theme-radius-lg: 0.5rem;
+  --theme-radius-xl: 0.75rem;
+  --theme-radius-full: 9999px;
+
+  /* ==========================================================================
+     Shadows
+     ========================================================================== */
+  --theme-shadow-none: none;
+  --theme-shadow-sm: 0 0 4px 0 rgba(6, 182, 212, 0.2);
+  --theme-shadow-base: 0 0 8px 0 rgba(6, 182, 212, 0.3);
+  --theme-shadow-md: 0 0 12px 0 rgba(6, 182, 212, 0.4);
+  --theme-shadow-lg: 0 0 20px 0 rgba(6, 182, 212, 0.5);
+  --theme-shadow-xl: 0 0 30px 0 rgba(6, 182, 212, 0.6);
+
+  /* ==========================================================================
+     Transitions
+     ========================================================================== */
+  --theme-transition-duration-fast: 150ms;
+  --theme-transition-duration-base: 300ms;
+  --theme-transition-duration-slow: 500ms;
+  --theme-transition-easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --theme-transition-easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --theme-transition-easing-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ==========================================================================
+     Breakpoints
+     ========================================================================== */
+  --theme-breakpoint-sm: 640px;
+  --theme-breakpoint-md: 768px;
+  --theme-breakpoint-lg: 1024px;
+  --theme-breakpoint-xl: 1280px;
+  --theme-breakpoint-2xl: 1536px;
+
+  /* ==========================================================================
+     Z-Index
+     ========================================================================== */
+  --theme-z-dropdown: 1000;
+  --theme-z-sticky: 1020;
+  --theme-z-fixed: 1030;
+  --theme-z-modal-backdrop: 1040;
+  --theme-z-modal: 1050;
+  --theme-z-popover: 1060;
+  --theme-z-tooltip: 1070;
+
+  /* ==========================================================================
+     Container
+     ========================================================================== */
+  --theme-container-max-width: 1400px;
+  --theme-container-padding: 1rem;
+
+  /* ==========================================================================
+     Menu
+     ========================================================================== */
+  --theme-menu-text-color: var(--theme-color-text);
+  --theme-menu-text-hover-color: var(--theme-color-text-inverse);
+  --theme-menu-background: transparent;
+  --theme-menu-background-hover: var(--theme-color-primary);
+  --theme-menu-dropdown-background: var(--theme-color-surface);
+  --theme-menu-dropdown-shadow: var(--theme-shadow-lg);
+  --theme-menu-border-color: var(--theme-color-border);
+  --theme-menu-active-indicator-color: var(--theme-color-primary);
+  --theme-menu-item-gap: 0;
+  --theme-menu-link-padding-x: var(--theme-space-3);
+  --theme-menu-link-padding-y: var(--theme-space-2);
+  --theme-menu-dropdown-padding: var(--theme-space-2);
+  --theme-menu-dropdown-offset: var(--theme-space-2);
+  --theme-menu-font-size: var(--theme-font-size-sm);
+  --theme-menu-font-weight: var(--theme-font-weight-medium);
+  --theme-menu-font-weight-active: var(--theme-font-weight-semibold);
+  --theme-menu-border-radius: var(--theme-radius-md);
+  --theme-menu-dropdown-border-radius: var(--theme-radius-lg);
+  --theme-menu-animation-duration: var(--theme-transition-duration-fast);
+  --theme-menu-animation-timing: var(--theme-transition-easing-default);
+  --theme-menu-slide-duration: var(--theme-transition-duration-slow);
+
+  /* ==========================================================================
+     Element Tokens (Page Builder)
+     ========================================================================== */
+
+  /* Form */
+  --theme-element-form-input-bg: var(--theme-color-surface);
+  --theme-element-form-input-border: var(--theme-color-border);
+  --theme-element-form-input-focus-border: var(--theme-color-primary);
+  --theme-element-form-input-radius: var(--theme-radius-md);
+  --theme-element-form-input-padding: var(--theme-space-3);
+  --theme-element-form-input-disabled-bg: var(--theme-color-background-alt);
+  --theme-element-form-input-placeholder-color: var(--theme-color-text-muted);
+  --theme-element-form-label-color: var(--theme-color-text);
+  --theme-element-form-label-size: var(--theme-font-size-sm);
+  --theme-element-form-error-color: var(--theme-color-error);
+  --theme-element-form-help-color: var(--theme-color-text-muted);
+  --theme-element-form-primary-color: var(--theme-color-primary);
+  --theme-element-form-primary-hover: var(--theme-color-primary-hover);
+  --theme-element-form-success-color: var(--theme-color-success);
+  --theme-element-form-warning-color: var(--theme-color-warning);
+  --theme-element-form-text-color: var(--theme-color-text);
+  --theme-element-form-text-muted: var(--theme-color-text-muted);
+  --theme-element-form-bg-color: var(--theme-color-surface);
+  --theme-element-form-bg-light: var(--theme-color-background-alt);
+  --theme-element-form-border-color: var(--theme-color-border);
+  --theme-element-form-focus-shadow: 0 0 0 3px var(--theme-color-primary-light);
+  --theme-element-form-title-size: var(--theme-font-size-xl);
+  --theme-element-form-heading-size: var(--theme-font-size-lg);
+  --theme-element-form-base-size: var(--theme-font-size-base);
+  --theme-element-form-small-size: var(--theme-font-size-sm);
+  --theme-element-form-tiny-size: var(--theme-font-size-xs);
+  --theme-element-form-font-weight-bold: var(--theme-font-weight-semibold);
+  --theme-element-form-font-weight-medium: var(--theme-font-weight-medium);
+  --theme-element-form-line-height-relaxed: var(--theme-line-height-relaxed);
+  --theme-element-form-spacing-lg: var(--theme-space-6);
+  --theme-element-form-spacing-md: var(--theme-space-4);
+  --theme-element-form-spacing-sm: var(--theme-space-3);
+  --theme-element-form-spacing-xs: var(--theme-space-2);
+  --theme-element-form-container-max-width: 720px;
+  --theme-element-form-container-padding: var(--theme-space-6);
+  --theme-element-form-shadow: var(--theme-shadow-sm);
+  --theme-element-form-transition: all 0.2s ease;
+  --theme-element-form-button-padding-x: var(--theme-space-6);
+  --theme-element-form-button-padding-y: var(--theme-space-3);
+  --theme-element-form-button-radius: var(--theme-radius-md);
+  --theme-element-form-checkbox-size: 1.25rem;
+  --theme-element-form-checkbox-radius: var(--theme-radius-sm);
+  --theme-element-form-radio-size: 1.25rem;
+  --theme-element-form-star-empty-color: var(--theme-color-border);
+  --theme-element-form-star-filled-color: #fbbf24;
+  --theme-element-form-nps-button-height: 48px;
+  --theme-element-form-likert-min-width: 80px;
+  --theme-element-form-progress-height: 8px;
+  --theme-element-form-step-circle-size: 36px;
+  --theme-element-form-step-circle-size-mobile: 32px;
+
+}
+
+/* Responsive container padding */
+@media (min-width: 640px) {
+  :root {
+    --theme-container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --theme-container-padding: 2rem;
+  }
+}
+
+/* ==========================================================================
+   Responsive Token Overrides
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  :root {
+    --theme-menu-item-gap: var(--theme-space-1);
+    --theme-menu-link-padding-x: var(--theme-space-4);
+    --theme-menu-font-size: var(--theme-font-size-base);
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "component_type": "terminal_provider",
+  "slug": "square_terminal",
+  "name": "Square Terminal",
+  "version": "1.0.0",
+  "description": "Accept card-present payments using Square Terminal readers via cloud API. Push payments to Square hardware from your POS.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://squareup.com/terminal",
+  "support_url": "https://developer.squareup.com/docs/terminal-api/overview",
+  "license": "Proprietary",
+  "min_platform_version": "2.0.0",
+  "requires_platform": "2.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "pos_app": ">=1.0.0"
+  },
+  "provider_key": "square_terminal",
+  "entry_point": "provider",
+  "class_name": "SquareTerminalProvider",
+  "capabilities": {
+    "connection_tokens": false,
+    "reader_discovery": true,
+    "locations": true,
+    "refunds": true,
+    "integration_mode": "cloud",
+    "payment_methods": ["card_present", "contactless"],
+    "reader_actions": ["collect_payment", "cancel_payment"],
+    "features": {
+      "cloud_communication": true,
+      "local_communication": false,
+      "tap_to_pay": true,
+      "smart_readers": true,
+      "tipping": true
+    }
+  },
+  "supported_readers": [
+    {
+      "type": "T2",
+      "name": "Square Terminal",
+      "category": "smart_reader",
+      "connection": "cloud",
+      "description": "All-in-one countertop terminal with touchscreen and receipt printer"
+    },
+    {
+      "type": "R12",
+      "name": "Square Reader",
+      "category": "card_reader",
+      "connection": "cloud",
+      "description": "Compact contactless and chip card reader"
+    }
+  ],
+  "credential_schema": {
+    "access_token": {
+      "type": "password",
+      "label": "Access Token",
+      "help_text": "Your Square access token. Generate in the Square Developer Dashboard under OAuth or API keys.",
+      "required": true,
+      "placeholder": "EAAAl..."
+    }
+  },
+  "settings_schema": {
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use 'sandbox' for development, 'production' for live payments.",
+      "required": true,
+      "default": "sandbox",
+      "options": ["sandbox", "production"]
+    },
+    "location_id": {
+      "type": "text",
+      "label": "Location ID",
+      "help_text": "Your Square location ID. Required to associate terminals with a location.",
+      "required": true,
+      "placeholder": "LXXX..."
+    }
+  },
+  "signup_url": "https://squareup.com/signup",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with Square Terminal API cloud support",
+        "Cloud-based payment initiation via Terminal Checkouts API",
+        "Status polling for payment completion",
+        "Reader discovery via Devices API",
+        "Payment cancellation support",
+        "Support for Square Terminal and Square Reader hardware"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Square charges 2.6% + $0.10 per card-present transaction. No monthly fees."
+  },
+  "regions": {
+    "supported": ["US", "CA", "GB", "IE", "AU", "JP", "FR", "ES"],
+    "restricted": [],
+    "notes": "Available in US, Canada, UK, Ireland, Australia, Japan, France, and Spain."
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": ["PCI DSS Level 1", "EMV"],
+    "data_residency": ["multi_region"]
+  }
+}

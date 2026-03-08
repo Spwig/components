@@ -1,0 +1,95 @@
+<div class="setup-instructions">
+    <h2>Revolut Terminal Setup</h2>
+
+    <div class="intro-section">
+        <p class="highlight">
+            <strong>Revolut Terminal</strong> is a pure server-to-server integration. Push payment requests
+            directly to Revolut Terminal and Revolut Reader devices — no terminal SDKs, drivers, or cables required.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>Step 1: Get Your Revolut API Key</h3>
+        <ol>
+            <li>Log into your <a href="https://business.revolut.com" target="_blank">Revolut Business Dashboard</a></li>
+            <li>Navigate to <strong>Developer &rarr; API Keys</strong></li>
+            <li>Copy your <strong>Secret Key</strong> (starts with <code>sk_live_</code> or <code>sk_test_</code>)</li>
+        </ol>
+        <div class="note info">
+            <strong>Note:</strong> This is the same secret key used for online payments. If you already have the Revolut payment provider configured, use the same key.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Set Up a Location</h3>
+        <ol>
+            <li>In Revolut Business, go to <strong>Merchant &rarr; Locations</strong></li>
+            <li>Create a location for your physical store</li>
+            <li>Copy the <strong>Location ID</strong> (format: <code>loc_...</code>)</li>
+            <li>Enter it in the Location ID field below</li>
+        </ol>
+        <div class="note warning">
+            <strong>Important:</strong> Orders and terminals must be linked to the same location. The Location ID is required for terminal payments to work.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Set Up Your Terminal Hardware</h3>
+        <p>Revolut offers two hardware options:</p>
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+            <thead>
+                <tr style="border-bottom: 2px solid var(--border-color, #ddd);">
+                    <th style="text-align: left; padding: 0.5rem;">Device</th>
+                    <th style="text-align: left; padding: 0.5rem;">Best For</th>
+                    <th style="text-align: left; padding: 0.5rem;">Connection</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid var(--border-color, #eee);">
+                    <td style="padding: 0.5rem;"><strong>Revolut Terminal</strong></td>
+                    <td style="padding: 0.5rem;">Counter-top retail, restaurants</td>
+                    <td style="padding: 0.5rem;">WiFi / Ethernet</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.5rem;"><strong>Revolut Reader</strong></td>
+                    <td style="padding: 0.5rem;">Mobile/portable, markets, pop-ups</td>
+                    <td style="padding: 0.5rem;">WiFi / Bluetooth</td>
+                </tr>
+            </tbody>
+        </table>
+        <ol>
+            <li>Order your hardware from the <a href="https://www.revolut.com/business/accept-payments/" target="_blank">Revolut Business store</a></li>
+            <li>Power on the device and connect to WiFi</li>
+            <li>Sign in with your Revolut Business credentials</li>
+            <li>Set the terminal to <strong>Pay at Counter</strong> mode</li>
+            <li>Assign it to the same location as configured above</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Enter Your Credentials Below</h3>
+        <ol>
+            <li>Paste your <strong>Secret Key</strong></li>
+            <li>Select your <strong>Environment</strong> (Sandbox or Production)</li>
+            <li>Enter your <strong>Location ID</strong></li>
+            <li>Click <strong>"Test Connection"</strong> to verify</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Testing Without Hardware</h3>
+        <div class="note success">
+            <strong>Sandbox Testing:</strong> Use the Sandbox environment to test the integration without physical hardware. Revolut provides simulated terminals in sandbox mode.
+        </div>
+    </div>
+
+    <div class="help-section">
+        <h3>Additional Resources</h3>
+        <ul>
+            <li><a href="https://developer.revolut.com/docs/guides/in-person-payments/revolut-terminal/push-payments" target="_blank">Push Payments Guide</a></li>
+            <li><a href="https://developer.revolut.com/docs/guides/in-person-payments/revolut-terminal/introduction" target="_blank">Terminal Introduction</a></li>
+            <li><a href="https://developer.revolut.com/docs/merchant/merchant-api" target="_blank">Merchant API Reference</a></li>
+            <li><strong>Support:</strong> Contact Revolut Business support through your dashboard</li>
+        </ul>
+    </div>
+</div>

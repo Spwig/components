@@ -1,0 +1,122 @@
+<div class="setup-instructions">
+    <h2>Revolut Payment Setup</h2>
+
+    <div class="intro-section">
+        <p class="highlight">
+            <strong>Why Choose Revolut?</strong> Accept card payments, Revolut Pay, Apple Pay, Google Pay,
+            and Pay by Bank with competitive rates. No monthly fees, fast settlement, and a seamless checkout experience.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>Step 1: Create Your Revolut Business Account</h3>
+        <ol>
+            <li>Visit <a href="https://business.revolut.com/signup" target="_blank">business.revolut.com/signup</a></li>
+            <li>Sign up for a Revolut Business account (Grow plan or above)</li>
+            <li>Complete the registration and identity verification</li>
+            <li>Enable <strong>Merchant</strong> functionality in your business account settings</li>
+        </ol>
+        <div class="note info">
+            <strong>Note:</strong> You need a Revolut Business account with Merchant access enabled. Personal accounts cannot accept payments.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Generate API Keys</h3>
+        <ol>
+            <li>Log into your <a href="https://business.revolut.com" target="_blank">Revolut Business Dashboard</a></li>
+            <li>Navigate to <strong>Developer &rarr; API Keys</strong></li>
+            <li>Click <strong>"Generate API Keys"</strong></li>
+            <li>Copy your <strong>Secret Key</strong> (starts with <code>sk_live_</code> or <code>sk_test_</code>)</li>
+            <li>Copy your <strong>Public Key</strong> (starts with <code>pk_live_</code> or <code>pk_test_</code>)</li>
+        </ol>
+        <div class="note warning">
+            <strong>Security:</strong> Never share your Secret Key. Keep it secure and don't commit it to version control.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Configure Webhook (Recommended)</h3>
+        <ol>
+            <li>In the Revolut Business Dashboard, go to <strong>Developer &rarr; Webhooks</strong></li>
+            <li>Click <strong>"Add Webhook"</strong></li>
+            <li>Enter your webhook URL: <code id="webhook-url" data-webhook-path="/payment-providers/webhook/revolut/"></code>
+                <button data-action="copy-to-clipboard" data-copy-id="webhook-url" class="btn-sm">Copy</button>
+            </li>
+            <li>Select the following events:
+                <ul>
+                    <li>ORDER_COMPLETED</li>
+                    <li>ORDER_AUTHORISED</li>
+                    <li>ORDER_CANCELLED</li>
+                    <li>ORDER_FAILED</li>
+                    <li>ORDER_PAYMENT_AUTHENTICATED</li>
+                    <li>ORDER_PAYMENT_DECLINED</li>
+                    <li>ORDER_PAYMENT_FAILED</li>
+                </ul>
+            </li>
+            <li>Save and copy the <strong>Signing Secret</strong> provided</li>
+        </ol>
+        <div class="note info">
+            <strong>Why Webhooks?</strong> Webhooks ensure your orders are updated in real-time when payments are completed, cancelled, or fail.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Enter Your Credentials Below</h3>
+        <ol>
+            <li>Paste your <strong>Secret Key</strong></li>
+            <li>Paste your <strong>Public Key</strong> (optional, for embedded checkout)</li>
+            <li>Paste the <strong>Webhook Signing Secret</strong> (if configured)</li>
+            <li>Choose your <strong>Environment</strong>:
+                <ul>
+                    <li><strong>Sandbox:</strong> For testing with simulated payments</li>
+                    <li><strong>Production:</strong> For real transactions</li>
+                </ul>
+            </li>
+            <li>Select your preferred <strong>Capture Mode</strong>:
+                <ul>
+                    <li><strong>Automatic:</strong> Payments captured immediately</li>
+                    <li><strong>Manual:</strong> You capture payments later (useful for physical goods)</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Test Connection"</strong> to verify</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Test Your Integration</h3>
+        <div class="note success">
+            <strong>Testing Mode:</strong> Use the Sandbox environment to test payments without real money.
+        </div>
+        <p><strong>Test Cards:</strong></p>
+        <ul>
+            <li><strong>Success:</strong> 4929 4212 3445 1236 (any future expiry, CVV: 123)</li>
+            <li><strong>3D Secure:</strong> 2720 9933 2245 6015 (triggers 3DS challenge)</li>
+            <li><strong>Declined:</strong> 5431 3002 0042 2415 (simulates declined payment)</li>
+        </ul>
+        <p>Visit <a href="https://developer.revolut.com/docs/guides/accept-payments/get-started/test-implementation" target="_blank">Revolut Testing Guide</a> for more test scenarios.</p>
+    </div>
+
+    <div class="step">
+        <h3>Step 6: Go Live</h3>
+        <ol>
+            <li>Complete all Revolut KYC and business verification</li>
+            <li>Test thoroughly in Sandbox mode first</li>
+            <li>Switch <strong>Environment</strong> to <strong>Production</strong></li>
+            <li>Generate production API keys and update your configuration</li>
+            <li>Process a small test transaction to verify</li>
+        </ol>
+    </div>
+
+    <div class="help-section">
+        <h3>Additional Resources</h3>
+        <ul>
+            <li><a href="https://developer.revolut.com/docs/accept-payments" target="_blank">Merchant API Documentation</a></li>
+            <li><a href="https://developer.revolut.com/docs/merchant/merchant-api" target="_blank">API Reference</a></li>
+            <li><a href="https://developer.revolut.com/docs/guides/accept-payments/get-started/test-implementation" target="_blank">Testing Guide</a></li>
+            <li><a href="https://www.revolut.com/business/payment-gateway/" target="_blank">Pricing Information</a></li>
+            <li><strong>Support:</strong> Contact Revolut Business support through your dashboard</li>
+        </ul>
+    </div>
+</div>
+

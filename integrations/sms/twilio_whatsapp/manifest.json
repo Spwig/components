@@ -1,0 +1,97 @@
+{
+  "component_type": "sms_provider",
+  "slug": "twilio_whatsapp",
+  "name": "Twilio WhatsApp",
+  "description": "Send WhatsApp messages via Twilio's WhatsApp Business API. Reach customers on their preferred messaging platform.",
+  "version": "1.0.0",
+  "provider_key": "twilio_whatsapp",
+  "entry_point": "provider",
+  "class_name": "TwilioWhatsAppProvider",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://spwig.com/sms-providers/twilio-whatsapp",
+  "support_url": "https://support.spwig.com",
+  "api_docs_url": "https://www.twilio.com/docs/whatsapp",
+  "logo": "logo.svg",
+  "min_platform_version": "2.0.0",
+  "license": "Proprietary",
+
+  "capabilities": {
+    "sms": false,
+    "mms": false,
+    "whatsapp": true,
+    "unicode": true,
+    "delivery_reports": true,
+    "two_way": true,
+    "templates": true,
+    "bulk_send": true,
+    "rich_media": true
+  },
+
+  "credential_schema": {
+    "type": "object",
+    "required": ["account_sid", "auth_token", "whatsapp_number"],
+    "properties": {
+      "account_sid": {
+        "type": "string",
+        "title": "Account SID",
+        "description": "Your Twilio Account SID from the Console Dashboard",
+        "example": "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "secret": false,
+        "order": 1
+      },
+      "auth_token": {
+        "type": "string",
+        "title": "Auth Token",
+        "description": "Your Twilio Auth Token from the Console Dashboard",
+        "secret": true,
+        "order": 2
+      },
+      "whatsapp_number": {
+        "type": "string",
+        "title": "WhatsApp Number",
+        "description": "Your Twilio WhatsApp-enabled number in E.164 format",
+        "example": "+15551234567",
+        "pattern": "^\\+[1-9]\\d{1,14}$",
+        "secret": false,
+        "order": 3
+      }
+    }
+  },
+
+  "setup_wizard": {
+    "has_setup_instructions": true,
+    "has_dns_requirements": false,
+    "supports_test_connection": true,
+    "estimated_setup_time": "10-15 minutes"
+  },
+
+  "pricing": {
+    "model": "per_conversation",
+    "note": "WhatsApp uses conversation-based pricing. See Twilio WhatsApp pricing for details."
+  },
+
+  "requirements": {
+    "python": ">=3.10",
+    "dependencies": ["twilio>=8.0.0"]
+  },
+
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-01-15",
+      "changes": [
+        "Initial release",
+        "WhatsApp template message support",
+        "Free-form message support (within 24hr window)",
+        "Rich media support (images, documents)",
+        "Delivery status webhooks",
+        "Connection testing"
+      ]
+    }
+  ]
+}

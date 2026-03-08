@@ -1,0 +1,162 @@
+<div class="setup-instructions">
+    <h3>Setting Up Stripe Terminal</h3>
+
+    <div class="setup-section">
+        <h4>1. Get Your Stripe API Keys</h4>
+        <ol>
+            <li>Log in to your <a href="https://dashboard.stripe.com" target="_blank" rel="noopener">Stripe Dashboard</a></li>
+            <li>Navigate to <strong>Developers &rarr; API keys</strong></li>
+            <li>Copy your <strong>Secret key</strong> (starts with <code>sk_live_</code> for production or <code>sk_test_</code> for testing)</li>
+        </ol>
+        <div class="setup-tip">
+            <i class="fas fa-lightbulb"></i>
+            <span>Use test mode keys (<code>sk_test_...</code>) during initial setup. You can switch to live keys when ready for production.</span>
+        </div>
+    </div>
+
+    <div class="setup-section">
+        <h4>2. Enable Stripe Terminal</h4>
+        <ol>
+            <li>In your Stripe Dashboard, go to <strong>Terminal &rarr; Overview</strong></li>
+            <li>If prompted, accept the Terminal terms of service</li>
+            <li>Stripe Terminal is now enabled on your account</li>
+        </ol>
+    </div>
+
+    <div class="setup-section">
+        <h4>3. Create a Location (Optional)</h4>
+        <p>Locations help organize your readers by physical store. You can:</p>
+        <ul>
+            <li><strong>Let Spwig create it automatically</strong> &ndash; Leave the Location ID field blank and we'll create one based on your store settings</li>
+            <li><strong>Use an existing location</strong> &ndash; Find your Location ID in <strong>Terminal &rarr; Locations</strong> (starts with <code>tml_</code>)</li>
+        </ul>
+    </div>
+
+    <div class="setup-section">
+        <h4>4. Order a Card Reader</h4>
+        <p>Stripe offers several reader options for different use cases:</p>
+        <table class="setup-table">
+            <thead>
+                <tr>
+                    <th>Reader</th>
+                    <th>Best For</th>
+                    <th>Connection</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Stripe Reader S700</strong></td>
+                    <td>Counter-top retail</td>
+                    <td>WiFi/Ethernet</td>
+                </tr>
+                <tr>
+                    <td><strong>WisePOS E</strong></td>
+                    <td>Counter-top retail</td>
+                    <td>WiFi/Ethernet</td>
+                </tr>
+                <tr>
+                    <td><strong>Stripe Reader M2</strong></td>
+                    <td>Mobile/portable</td>
+                    <td>Bluetooth</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a href="https://stripe.com/terminal#hardware" target="_blank" rel="noopener">View all Stripe Terminal hardware &rarr;</a></p>
+    </div>
+
+    <div class="setup-section">
+        <h4>5. Testing Without Hardware</h4>
+        <p>You can test the integration using simulated readers:</p>
+        <ol>
+            <li>Enable "Simulated Reader" in the provider settings</li>
+            <li>In the POS app, discover and connect to a simulated reader</li>
+            <li>Use Stripe's <a href="https://docs.stripe.com/terminal/references/testing" target="_blank" rel="noopener">test cards</a> to simulate payments</li>
+        </ol>
+        <div class="setup-warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Disable simulated readers before going live to prevent accidental test transactions.</span>
+        </div>
+    </div>
+
+    <div class="setup-section">
+        <h4>Need Help?</h4>
+        <ul>
+            <li><a href="https://docs.stripe.com/terminal" target="_blank" rel="noopener">Stripe Terminal Documentation</a></li>
+            <li><a href="https://docs.stripe.com/terminal/fleet/register-readers" target="_blank" rel="noopener">Registering Readers Guide</a></li>
+            <li><a href="https://support.stripe.com" target="_blank" rel="noopener">Stripe Support</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.setup-instructions {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.setup-instructions h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.setup-section {
+    margin-bottom: 24px;
+}
+.setup-section h4 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--body-fg, #1a1a2e);
+}
+.setup-section ol,
+.setup-section ul {
+    margin: 0 0 12px;
+    padding-left: 24px;
+}
+.setup-section li {
+    margin-bottom: 8px;
+}
+.setup-section code {
+    background: var(--darkened-bg, #f5f5f5);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.setup-tip,
+.setup-warning {
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+.setup-tip {
+    background: color-mix(in srgb, var(--primary, #4f46e5) 10%, white);
+    border: 1px solid color-mix(in srgb, var(--primary, #4f46e5) 30%, white);
+}
+.setup-tip i {
+    color: var(--primary, #4f46e5);
+}
+.setup-warning {
+    background: color-mix(in srgb, var(--warning-fg, #f59e0b) 10%, white);
+    border: 1px solid color-mix(in srgb, var(--warning-fg, #f59e0b) 30%, white);
+}
+.setup-warning i {
+    color: var(--warning-fg, #f59e0b);
+}
+.setup-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+}
+.setup-table th,
+.setup-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color, #e5e5e5);
+}
+.setup-table th {
+    background: var(--darkened-bg, #f5f5f5);
+    font-weight: 600;
+}
+</style>

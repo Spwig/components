@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <style>
+      .fixer-blue { fill: #2E5BFF; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="200" fill="white"/>
+
+  <!-- Fixer.io logo - blue pyramid/triangle pattern -->
+  <g transform="translate(100, 100) scale(2.5)">
+    <!-- Top triangle -->
+    <path class="fixer-blue" d="M 0,-20 L -8,-8 L 8,-8 Z"/>
+
+    <!-- Middle left trapezoid -->
+    <path class="fixer-blue" d="M -16,4 L -8,-8 L 0,-8 L -8,4 Z"/>
+
+    <!-- Middle center trapezoid -->
+    <path class="fixer-blue" d="M -8,4 L 0,-8 L 8,-8 L 0,4 Z"/>
+
+    <!-- Middle right trapezoid -->
+    <path class="fixer-blue" d="M 0,4 L 8,-8 L 16,-8 L 8,4 Z"/>
+
+    <!-- Bottom left trapezoid -->
+    <path class="fixer-blue" d="M -24,16 L -16,4 L -8,4 L -16,16 Z"/>
+
+    <!-- Bottom center-left trapezoid -->
+    <path class="fixer-blue" d="M -16,16 L -8,4 L 0,4 L -8,16 Z"/>
+
+    <!-- Bottom center-right trapezoid -->
+    <path class="fixer-blue" d="M -8,16 L 0,4 L 8,4 L 0,16 Z"/>
+
+    <!-- Bottom right trapezoid -->
+    <path class="fixer-blue" d="M 0,16 L 8,4 L 16,4 L 8,16 Z"/>
+
+    <!-- Bottom far-right trapezoid -->
+    <path class="fixer-blue" d="M 8,16 L 16,4 L 24,4 L 16,16 Z"/>
+  </g>
+</svg>

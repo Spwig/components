@@ -1,0 +1,271 @@
+{
+  "component_type": "payment_provider",
+  "slug": "revolut",
+  "name": "Revolut",
+  "version": "1.1.1",
+  "description": "Accept online payments with Revolut's Merchant API. Support for cards, Revolut Pay, Apple Pay, Google Pay, and Pay by Bank across 30+ currencies.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.revolut.com/business/payment-gateway/",
+  "support_url": "https://developer.revolut.com/docs/accept-payments",
+  "license": "Proprietary",
+  "min_platform_version": "2.0.0",
+  "requires_platform": "2.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "payment_providers": ">=1.0.0"
+  },
+  "provider_key": "revolut",
+  "entry_point": "provider",
+  "class_name": "RevolutProvider",
+  "frontend": {
+    "checkout_handler": "checkout-handler.js",
+    "sdk_dependencies": [
+      "https://{{environment_host}}/embed.js"
+    ],
+    "sdk_variable_map": {
+      "environment_host": {
+        "_source": "environment",
+        "sandbox": "sandbox-merchant.revolut.com",
+        "production": "merchant.revolut.com"
+      }
+    }
+  },
+  "capabilities": {
+    "payment_methods": ["card", "digital_wallet", "revolut_pay", "pay_by_bank"],
+    "supported_currencies": [
+      "AUD", "CAD", "CHF", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF",
+      "ILS", "JPY", "MXN", "NOK", "NZD", "PLN", "RON", "SEK", "SGD",
+      "TRY", "USD", "ZAR"
+    ],
+    "features": {
+      "capture": true,
+      "authorize": true,
+      "refund": true,
+      "partial_refund": true,
+      "webhooks": true,
+      "recurring": false,
+      "3d_secure": true,
+      "multi_currency": true
+    },
+    "checkout_modes": ["hosted", "integrated"],
+    "integration_types": ["api"]
+  },
+  "payment_methods": {
+    "cards": [
+      {
+        "slug": "visa",
+        "name": "Visa",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all"
+      },
+      {
+        "slug": "mastercard",
+        "name": "Mastercard",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all"
+      },
+      {
+        "slug": "amex",
+        "name": "American Express",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all",
+        "notes": "Higher processing fees typically apply"
+      },
+      {
+        "slug": "discover",
+        "name": "Discover",
+        "category": "card",
+        "regions": ["US", "CA"],
+        "currencies": ["USD", "CAD"]
+      },
+      {
+        "slug": "diners",
+        "name": "Diners Club",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all"
+      },
+      {
+        "slug": "jcb",
+        "name": "JCB",
+        "category": "card",
+        "regions": ["JP", "US", "GB"],
+        "currencies": ["JPY", "USD", "GBP"]
+      }
+    ],
+    "digital_wallets": [
+      {
+        "slug": "apple_pay",
+        "name": "Apple Pay",
+        "category": "digital_wallet",
+        "regions": ["global"],
+        "currencies": ["AUD", "CAD", "CHF", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "ILS", "JPY", "MXN", "NOK", "NZD", "PLN", "RON", "SEK", "SGD", "TRY", "USD", "ZAR"],
+        "notes": "Requires iOS/macOS device"
+      },
+      {
+        "slug": "google_pay",
+        "name": "Google Pay",
+        "category": "digital_wallet",
+        "regions": ["global"],
+        "currencies": ["AUD", "CAD", "CHF", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "ILS", "JPY", "MXN", "NOK", "NZD", "PLN", "RON", "SEK", "SGD", "TRY", "USD", "ZAR"],
+        "notes": "Requires Android device or Chrome browser"
+      },
+      {
+        "slug": "revolut_pay",
+        "name": "Revolut Pay",
+        "category": "digital_wallet",
+        "regions": ["global"],
+        "currencies": ["AED", "AUD", "CAD", "CHF", "CLP", "COP", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "ILS", "INR", "ISK", "JPY", "KRW", "MXN", "NOK", "NZD", "PHP", "PLN", "QAR", "RON", "RSD", "SAR", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"],
+        "notes": "Fast checkout for Revolut users"
+      }
+    ],
+    "bank_transfers": [
+      {
+        "slug": "pay_by_bank",
+        "name": "Pay by Bank",
+        "category": "bank_transfer",
+        "regions": ["GB", "EU"],
+        "currencies": ["GBP", "EUR"],
+        "notes": "Open Banking instant bank transfer"
+      }
+    ]
+  },
+  "credential_schema": {
+    "secret_key": {
+      "type": "password",
+      "label": "Secret API Key",
+      "help_text": "Your Revolut Merchant API secret key. Found in Revolut Business → Developer → API Keys.",
+      "required": true,
+      "placeholder": "sk_live_..."
+    },
+    "public_key": {
+      "type": "text",
+      "label": "Public API Key",
+      "help_text": "Your Revolut public key for the Checkout Widget. Found alongside your secret key.",
+      "required": false,
+      "placeholder": "pk_live_..."
+    },
+    "webhook_secret": {
+      "type": "password",
+      "label": "Webhook Signing Secret",
+      "help_text": "Generated when you create a webhook endpoint in Revolut. Used to verify webhook signatures.",
+      "required": false,
+      "placeholder": "Enter webhook signing secret"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use Sandbox for testing, Production for live transactions.",
+      "required": true,
+      "default": "sandbox",
+      "options": [
+        {"value": "sandbox", "label": "Sandbox"},
+        {"value": "production", "label": "Production"}
+      ]
+    },
+    "capture_mode": {
+      "type": "select",
+      "label": "Capture Mode",
+      "help_text": "AUTOMATIC captures payments immediately. MANUAL requires a separate capture step.",
+      "required": false,
+      "default": "AUTOMATIC",
+      "options": [
+        {"value": "AUTOMATIC", "label": "Automatic Capture"},
+        {"value": "MANUAL", "label": "Manual Capture"}
+      ]
+    }
+  },
+  "webhooks": {
+    "supported_events": [
+      "ORDER_COMPLETED",
+      "ORDER_AUTHORISED",
+      "ORDER_CANCELLED",
+      "ORDER_FAILED",
+      "ORDER_PAYMENT_AUTHENTICATED",
+      "ORDER_PAYMENT_DECLINED",
+      "ORDER_PAYMENT_FAILED"
+    ],
+    "verification_method": "hmac_sha256",
+    "headers": ["Revolut-Signature"]
+  },
+  "signup_url": "https://business.revolut.com/signup",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.1.1",
+      "date": "2026-03-01",
+      "changes": [
+        "Fixed webhook verification to fail-secure when signing secret is not configured",
+        "Fixed partial capture silently proceeding with full amount when order fetch fails",
+        "Fixed partial refund silently proceeding with full amount when order fetch fails",
+        "Added idempotency keys (Revolut-Request-Id) to capture and refund requests",
+        "Added safe JSON parsing for non-JSON error responses from API",
+        "Fixed unsafe order_amount null access in capture response handling",
+        "Updated redact_credentials to use pattern-matching for robustness",
+        "Added ORDER_REFUNDED webhook event handler and status mapping",
+        "Fixed __init__.py version (was stuck at 1.0.0)"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-02-17",
+      "changes": [
+        "Added plugin architecture with checkout-handler.js for embedded card form",
+        "RevolutCheckout card field renders inline on merchant checkout page",
+        "Includes cardholder name input field with validation",
+        "Dynamic SDK loading based on environment (sandbox/production)",
+        "Backend returns handler_config for frontend initialization",
+        "Full backward compatibility with hosted checkout mode"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with Revolut Merchant API support",
+        "Card payments (Visa, Mastercard, Amex, Discover, Diners, JCB)",
+        "Digital wallet support (Apple Pay, Google Pay, Revolut Pay)",
+        "Pay by Bank via Open Banking",
+        "Hosted checkout page and integrated checkout widget",
+        "Manual and automatic capture modes",
+        "Full and partial refund support",
+        "Webhook integration with HMAC-SHA256 verification",
+        "3D Secure authentication",
+        "Multi-currency support (21 currencies)"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Revolut charges 1% + £0.20 for UK cards, 2.8% + £0.20 for non-UK cards. No monthly fees."
+  },
+  "regions": {
+    "supported": ["GB", "IE", "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IT", "LV", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "CH", "US", "AU", "CA", "SG", "JP", "NZ", "HK", "MX", "ZA"],
+    "restricted": [],
+    "notes": "Available to Revolut Business customers in supported markets"
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": ["PCI DSS Level 1"],
+    "data_residency": ["EU", "GB"]
+  }
+}

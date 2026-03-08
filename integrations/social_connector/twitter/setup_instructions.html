@@ -1,0 +1,190 @@
+<div class="setup-instructions">
+    <h3>X (Twitter) Setup Instructions</h3>
+
+    <div class="instruction-section">
+        <h4>Prerequisites</h4>
+        <ul>
+            <li>An X (Twitter) account</li>
+            <li>Access to the X Developer Portal</li>
+            <li>A project with OAuth 2.0 enabled</li>
+        </ul>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 1: Create an X Developer Account</h4>
+        <ol>
+            <li>Go to <a href="https://developer.twitter.com" target="_blank">developer.twitter.com</a></li>
+            <li>Sign up for a developer account if you don't have one</li>
+            <li>Complete the application process describing your use case</li>
+            <li>Wait for approval (usually instant for basic access)</li>
+        </ol>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 2: Create a Project and App</h4>
+        <ol>
+            <li>In the Developer Portal, go to "Projects & Apps"</li>
+            <li>Click "Create Project"</li>
+            <li>Name your project and describe its use</li>
+            <li>Create an app within the project</li>
+            <li>Select the appropriate environment (Production for live use)</li>
+        </ol>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 3: Configure OAuth 2.0</h4>
+        <ol>
+            <li>Go to your app's "Settings" tab</li>
+            <li>Under "User authentication settings", click "Set up"</li>
+            <li>Enable OAuth 2.0</li>
+            <li>Set the App type to "Web App, Automated App or Bot"</li>
+            <li>Add the following Callback URL:</li>
+        </ol>
+        <div class="code-block">
+            <code>{redirect_uri}</code>
+            <button type="button" class="copy-btn" data-action="copy-text" data-copy-value="{redirect_uri}">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+        <p>Also add a Website URL (your store's domain).</p>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 4: Configure App Permissions</h4>
+        <p>Set the following permissions in your app settings:</p>
+        <ul>
+            <li><strong>Read and write</strong> - Required for posting tweets</li>
+        </ul>
+        <p>Required OAuth 2.0 scopes:</p>
+        <ul>
+            <li><strong>tweet.read</strong> - Read tweets</li>
+            <li><strong>tweet.write</strong> - Post tweets</li>
+            <li><strong>users.read</strong> - Read user profile</li>
+            <li><strong>offline.access</strong> - Refresh tokens</li>
+        </ul>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 5: Get Your App Credentials</h4>
+        <ol>
+            <li>Go to the "Keys and tokens" tab</li>
+            <li>Under "OAuth 2.0 Client ID and Client Secret", generate credentials</li>
+            <li>Copy your <strong>Client ID</strong> and <strong>Client Secret</strong></li>
+            <li>Add these to your platform's environment variables:
+                <ul>
+                    <li><code>TWITTER_CLIENT_ID</code></li>
+                    <li><code>TWITTER_CLIENT_SECRET</code></li>
+                </ul>
+            </li>
+        </ol>
+        <p class="warning">Important: Keep your Client Secret secure and never expose it publicly.</p>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 6: Connect Your Account</h4>
+        <ol>
+            <li>Click "Authorize" below to start the OAuth flow</li>
+            <li>Log in with your X account</li>
+            <li>Grant the requested permissions</li>
+            <li>You'll be redirected back to configure your account</li>
+        </ol>
+        <p class="note">Note: X posts will be published directly to the account that authorizes the app.</p>
+    </div>
+
+    <div class="help-section">
+        <h4>Need Help?</h4>
+        <ul>
+            <li><a href="https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api" target="_blank">Getting Access to X API</a></li>
+            <li><a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0" target="_blank">OAuth 2.0 Documentation</a></li>
+            <li><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/introduction" target="_blank">Manage Tweets API</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.setup-instructions {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.instruction-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+.instruction-section:last-child {
+    border-bottom: none;
+}
+.instruction-section h4 {
+    color: #333;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+.instruction-section ol, .instruction-section ul {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.instruction-section li {
+    margin-bottom: 0.5rem;
+}
+.code-block {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.75rem 0;
+}
+.code-block code {
+    font-family: monospace;
+    font-size: 13px;
+    word-break: break-all;
+    flex: 1;
+}
+.copy-btn {
+    background: #000;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+.copy-btn:hover {
+    background: #333;
+}
+.note {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    font-size: 13px;
+}
+.warning {
+    background: #ffebee;
+    border: 1px solid #f44336;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    font-size: 13px;
+}
+.help-section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+}
+.help-section h4 {
+    margin-bottom: 0.5rem;
+}
+.help-section ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+.help-section a {
+    color: #1da1f2;
+}
+</style>
+

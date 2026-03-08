@@ -1,0 +1,129 @@
+{% load i18n %}
+{# Facebook Page Selection Template - Bundled with Provider #}
+
+<style>
+    .account-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    .account-card {
+        background: var(--card-bg, #fff);
+        border: 2px solid var(--border-color, #e0e0e0);
+        border-radius: 12px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .account-card:hover {
+        border-color: var(--primary-color, #1877f2);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .account-card.selected {
+        border-color: var(--primary-color, #1877f2);
+        background: var(--selected-bg, #f0f7ff);
+    }
+    .account-card input[type="radio"] {
+        display: none;
+    }
+    .account-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #f5f5f5;
+    }
+    .account-info {
+        flex: 1;
+    }
+    .account-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--text-primary, #333);
+        margin-bottom: 0.25rem;
+    }
+    .account-category {
+        font-size: 0.875rem;
+        color: var(--text-secondary, #666);
+    }
+    .account-id {
+        font-size: 0.75rem;
+        color: var(--text-muted, #999);
+        font-family: monospace;
+    }
+    .check-indicator {
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--border-color, #ccc);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.2s;
+    }
+    .account-card.selected .check-indicator {
+        background: var(--primary-color, #1877f2);
+        border-color: var(--primary-color, #1877f2);
+    }
+    .no-accounts-message {
+        text-align: center;
+        padding: 3rem;
+        background: var(--warning-bg, #fff8e1);
+        border-radius: 12px;
+        border: 1px solid var(--warning-border, #ffe082);
+    }
+    .no-accounts-message i {
+        font-size: 3rem;
+        color: var(--warning-color, #ffa000);
+        margin-bottom: 1rem;
+    }
+</style>
+
+{% if accounts %}
+<p class="form-intro">{% trans "We found the following Facebook Pages you manage. Select the one you want to connect:" %}</p>
+
+<div class="account-grid">
+    {% for account in accounts %}
+    <label class="account-card" data-account-id="{{ account.id }}">
+        <input type="radio" name="account_id" value="{{ account.id }}" required>
+        <input type="hidden" name="account_name_{{ account.id }}" value="{{ account.name }}">
+        <input type="hidden" name="account_token_{{ account.id }}" value="{{ account.access_token }}">
+        {% if account.picture.url %}
+        <img src="{{ account.picture.url }}" alt="{{ account.name }}" class="account-image">
+        {% else %}
+        <div class="account-image" style="display: flex; align-items: center; justify-content: center;">
+            <i class="fab fa-facebook" style="font-size: 2rem; color: #1877f2;"></i>
+        </div>
+        {% endif %}
+        <div class="account-info">
+            <div class="account-name">{{ account.name }}</div>
+            {% if account.category %}
+            <div class="account-category">{{ account.category }}</div>
+            {% endif %}
+            <div class="account-id">ID: {{ account.id }}</div>
+        </div>
+        <div class="check-indicator">
+            <i class="fas fa-check"></i>
+        </div>
+    </label>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="no-accounts-message">
+    <i class="fas fa-exclamation-triangle"></i>
+    <h3>{% trans "No Pages Found" %}</h3>
+    <p>{% trans "We couldn't find any Facebook Pages that you manage." %}</p>
+    <p>{% trans "Make sure you:" %}</p>
+    <ul style="text-align: left; display: inline-block;">
+        <li>{% trans "Have admin access to at least one Facebook Page" %}</li>
+        <li>{% trans "Granted all the requested permissions during authorization" %}</li>
+        <li>{% trans "Your Facebook app has the pages_show_list permission" %}</li>
+    </ul>
+</div>
+{% endif %}

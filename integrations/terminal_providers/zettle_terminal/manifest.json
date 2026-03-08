@@ -1,0 +1,111 @@
+{
+  "component_type": "terminal_provider",
+  "slug": "zettle_terminal",
+  "name": "Zettle (PayPal) Terminal",
+  "version": "1.0.0",
+  "description": "Accept card-present payments using PayPal Reader hardware via Zettle Reader Connect API. Cloud-based integration for WiFi-connected readers.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.zettle.com/",
+  "support_url": "https://developer.zettle.com/docs/payment-integrations/reader-connect/overview",
+  "license": "Proprietary",
+  "min_platform_version": "2.0.0",
+  "requires_platform": "2.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0",
+    "websockets>=12.0"
+  ],
+  "platform_components": {
+    "pos_app": ">=1.0.0"
+  },
+  "provider_key": "zettle_terminal",
+  "entry_point": "provider",
+  "class_name": "ZettleTerminalProvider",
+  "capabilities": {
+    "connection_tokens": false,
+    "reader_discovery": true,
+    "locations": false,
+    "refunds": false,
+    "integration_mode": "cloud",
+    "payment_methods": ["card_present", "contactless"],
+    "reader_actions": ["collect_payment", "cancel_payment"],
+    "features": {
+      "cloud_communication": true,
+      "local_communication": false,
+      "tap_to_pay": true,
+      "smart_readers": true,
+      "websocket_realtime": true,
+      "tipping": true
+    }
+  },
+  "supported_readers": [
+    {
+      "type": "paypal_reader",
+      "name": "PayPal Reader",
+      "category": "smart_reader",
+      "connection": "cloud",
+      "description": "WiFi-connected card reader for chip, contactless, and magstripe payments"
+    }
+  ],
+  "credential_schema": {
+    "client_id": {
+      "type": "text",
+      "label": "Client ID",
+      "help_text": "Your Zettle/PayPal application client ID. Created in the Zettle Developer Portal.",
+      "required": true,
+      "placeholder": ""
+    },
+    "api_key": {
+      "type": "password",
+      "label": "API Key (JWT Assertion)",
+      "help_text": "Your Zettle API key for assertion-based auth. Created at my.zettle.com under API integrations. Used to obtain access tokens.",
+      "required": true,
+      "placeholder": ""
+    }
+  },
+  "settings_schema": {},
+  "signup_url": "https://www.zettle.com/",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with Zettle Reader Connect API support",
+        "Cloud-based payment initiation via WebSocket sessions",
+        "Reader linking and discovery",
+        "Real-time payment progress via WebSocket events",
+        "Payment cancellation support",
+        "OAuth 2.0 assertion grant authentication",
+        "Support for PayPal Reader hardware"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Zettle charges 1.75% per card-present transaction in UK/EU, or 2.29% + $0.09 in the US."
+  },
+  "regions": {
+    "supported": ["US", "GB", "IE", "SE", "NO", "DK", "FI", "DE", "FR", "ES", "IT", "NL", "MX", "BR"],
+    "restricted": [],
+    "notes": "Available in 13+ countries across Europe, the Americas, and Brazil."
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": ["PCI DSS Level 1", "EMV"],
+    "data_residency": ["multi_region"]
+  }
+}

@@ -1,0 +1,420 @@
+{
+  "component_type": "payment_provider",
+  "slug": "square",
+  "name": "Square",
+  "version": "1.1.1",
+  "description": "Accept payments in-person and online with Square. Supports credit cards, digital wallets (Apple Pay, Google Pay, Cash App Pay), and Afterpay/Clearpay.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://squareup.com",
+  "support_url": "https://developer.squareup.com/docs",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "squareup>=38.0.0"
+  ],
+  "platform_components": {
+    "payment_providers": ">=1.0.0"
+  },
+  "provider_key": "square",
+  "entry_point": "provider",
+  "class_name": "SquareProvider",
+  "frontend": {
+    "checkout_handler": "checkout-handler.js",
+    "sdk_dependencies": [
+      "https://web.squarecdn.com/v1/square.js"
+    ]
+  },
+  "capabilities": {
+    "payment_methods": [
+      "card",
+      "digital_wallet"
+    ],
+    "supported_currencies": [
+      "USD",
+      "CAD",
+      "GBP",
+      "AUD",
+      "JPY",
+      "EUR"
+    ],
+    "features": {
+      "capture": true,
+      "authorize": true,
+      "refund": true,
+      "partial_refund": true,
+      "webhooks": true,
+      "recurring": true,
+      "multi_currency": true
+    },
+    "checkout_modes": {
+      "hosted": {
+        "label": "Hosted Checkout (Payment Links)",
+        "description": "Redirect customers to Square's hosted payment page"
+      },
+      "embedded": {
+        "label": "Embedded Checkout",
+        "description": "Collect payments directly on your checkout page"
+      }
+    },
+    "integration_types": [
+      "api"
+    ]
+  },
+  "payment_methods": {
+    "cards": [
+      {
+        "slug": "visa",
+        "name": "Visa",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "mastercard",
+        "name": "Mastercard",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "amex",
+        "name": "American Express",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all",
+        "notes": "Higher processing fees typically apply"
+      },
+      {
+        "slug": "discover",
+        "name": "Discover",
+        "category": "card",
+        "regions": [
+          "US",
+          "CA"
+        ],
+        "currencies": [
+          "USD",
+          "CAD"
+        ]
+      },
+      {
+        "slug": "jcb",
+        "name": "JCB",
+        "category": "card",
+        "regions": [
+          "JP",
+          "US"
+        ],
+        "currencies": [
+          "JPY",
+          "USD"
+        ]
+      },
+      {
+        "slug": "diners",
+        "name": "Diners Club",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      }
+    ],
+    "digital_wallets": [
+      {
+        "slug": "apple_pay",
+        "name": "Apple Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "US",
+          "CA",
+          "GB",
+          "AU",
+          "JP",
+          "IE",
+          "FR",
+          "ES"
+        ],
+        "currencies": [
+          "USD",
+          "CAD",
+          "GBP",
+          "AUD",
+          "JPY",
+          "EUR"
+        ],
+        "notes": "Requires iOS/macOS device or Safari browser"
+      },
+      {
+        "slug": "google_pay",
+        "name": "Google Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "US",
+          "CA",
+          "GB",
+          "AU",
+          "JP",
+          "IE",
+          "FR",
+          "ES"
+        ],
+        "currencies": [
+          "USD",
+          "CAD",
+          "GBP",
+          "AUD",
+          "JPY",
+          "EUR"
+        ],
+        "notes": "Requires Android device or Chrome browser"
+      },
+      {
+        "slug": "cash_app_pay",
+        "name": "Cash App Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "US",
+          "GB"
+        ],
+        "currencies": [
+          "USD",
+          "GBP"
+        ],
+        "notes": "Requires Cash App account"
+      },
+      {
+        "slug": "afterpay_clearpay",
+        "name": "Afterpay / Clearpay",
+        "category": "digital_wallet",
+        "regions": [
+          "US",
+          "CA",
+          "GB",
+          "AU"
+        ],
+        "currencies": [
+          "USD",
+          "CAD",
+          "GBP",
+          "AUD"
+        ],
+        "notes": "Buy now, pay later in 4 installments"
+      },
+      {
+        "slug": "square_gift_card",
+        "name": "Square Gift Card",
+        "category": "digital_wallet",
+        "regions": [
+          "US",
+          "CA",
+          "GB",
+          "AU",
+          "JP"
+        ],
+        "currencies": [
+          "USD",
+          "CAD",
+          "GBP",
+          "AUD",
+          "JPY"
+        ],
+        "notes": "Square-issued gift cards"
+      }
+    ]
+  },
+  "credential_schema": {
+    "test_mode": {
+      "type": "boolean",
+      "label": "Test Mode",
+      "help_text": "Use sandbox credentials for testing. Automatically enforced in sandbox environments.",
+      "required": true,
+      "default": true
+    },
+    "test_access_token": {
+      "type": "password",
+      "label": "Sandbox Access Token",
+      "help_text": "Your Square Sandbox Access Token from Developer Dashboard",
+      "required": true,
+      "secret": true,
+      "placeholder": "Enter your Sandbox Access Token",
+      "group": "test_credentials"
+    },
+    "test_application_id": {
+      "type": "text",
+      "label": "Sandbox Application ID",
+      "help_text": "Your Square Sandbox Application ID",
+      "required": true,
+      "placeholder": "e.g., sandbox-sq0idp-XXXXXXXXXXXXXXXX",
+      "group": "test_credentials"
+    },
+    "test_location_id": {
+      "type": "text",
+      "label": "Sandbox Location ID",
+      "help_text": "Your Square Sandbox Location ID",
+      "required": true,
+      "placeholder": "e.g., sandbox-LXXXXXXXXXXXXXXXXX",
+      "group": "test_credentials"
+    },
+    "live_access_token": {
+      "type": "password",
+      "label": "Production Access Token",
+      "help_text": "Your Square Production Access Token. Optional - can be added later.",
+      "required": false,
+      "secret": true,
+      "placeholder": "Enter your Production Access Token",
+      "group": "live_credentials"
+    },
+    "live_application_id": {
+      "type": "text",
+      "label": "Production Application ID",
+      "help_text": "Your Square Production Application ID. Optional - can be added later.",
+      "required": false,
+      "placeholder": "e.g., sq0idp-XXXXXXXXXXXXXXXX",
+      "group": "live_credentials"
+    },
+    "live_location_id": {
+      "type": "text",
+      "label": "Production Location ID",
+      "help_text": "Your Square Production Location ID. Optional - can be added later.",
+      "required": false,
+      "placeholder": "e.g., LXXXXXXXXXXXXXXXXX",
+      "group": "live_credentials"
+    },
+    "webhook_signature_key": {
+      "type": "password",
+      "label": "Webhook Signature Key",
+      "help_text": "Optional: Signature key for webhook verification. Can be same for both environments.",
+      "required": false,
+      "secret": true,
+      "placeholder": "Enter webhook signature key (optional)"
+    },
+    "checkout_mode": {
+      "type": "select",
+      "label": "Checkout Mode",
+      "help_text": "Choose how customers complete payment: hosted redirect or embedded on your site",
+      "required": true,
+      "default": "embedded",
+      "options": [
+        {
+          "value": "hosted",
+          "label": "Hosted Checkout"
+        },
+        {
+          "value": "embedded",
+          "label": "Embedded Checkout"
+        }
+      ]
+    }
+  },
+  "webhooks": {
+    "supported_events": [
+      "payment.completed",
+      "payment.updated",
+      "refund.created",
+      "refund.updated",
+      "subscription.created",
+      "subscription.updated"
+    ],
+    "verification_method": "hmac_sha256",
+    "headers": [
+      "x-square-hmacsha256-signature"
+    ]
+  },
+  "signup_url": "https://squareup.com/signup",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.1.1",
+      "date": "2026-03-01",
+      "changes": [
+        "CRITICAL: Fixed undefined get_setting() method causing AttributeError on checkout",
+        "CRITICAL: Fixed webhook signature verification using wrong hash algorithm (SHA1 -> SHA256)",
+        "Security: Webhook verification now returns False when signature key is not configured (fail-secure)",
+        "Security: redact_credentials now handles dual-credential prefixed keys",
+        "Simplified __init__ to use base class credential selection (removed redundant workaround)",
+        "Removed stale 'environment' field from credential_schema property",
+        "Restored subscription_provider.py with updated SDK and zero-decimal currency support",
+        "Added null safety for order.total_money in process_payment_with_nonce"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-02-17",
+      "changes": [
+        "Added embedded checkout mode with Square Web Payments SDK",
+        "Implemented Orders API integration for embedded payments",
+        "Added frontend checkout handler for on-site payment collection",
+        "Maintained backward compatibility with hosted Payment Links mode",
+        "Added checkout_mode setting for merchants to choose preferred method"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with full payment processing support",
+        "Credit and debit card processing (Visa, Mastercard, Amex, Discover, JCB, Diners)",
+        "Digital wallet support (Apple Pay, Google Pay, Cash App Pay, Afterpay/Clearpay)",
+        "Square Gift Card support",
+        "Hosted checkout via Square Payment Links",
+        "Full and partial refund capabilities",
+        "Webhook integration for real-time payment notifications",
+        "Multi-currency support (USD, CAD, GBP, AUD, JPY, EUR)",
+        "Authorize and capture workflow support"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "2.6% + 10c for in-person, 2.9% + 30c for online. No monthly fees. See squareup.com/pricing for details."
+  },
+  "regions": {
+    "supported": [
+      "US",
+      "CA",
+      "GB",
+      "AU",
+      "JP",
+      "IE",
+      "FR",
+      "ES"
+    ],
+    "restricted": [],
+    "notes": "Available in the United States, Canada, United Kingdom, Australia, Japan, Ireland, France, and Spain"
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": [
+      "PCI DSS Level 1"
+    ],
+    "data_residency": [
+      "US",
+      "CA",
+      "EU",
+      "AU",
+      "JP"
+    ]
+  }
+}

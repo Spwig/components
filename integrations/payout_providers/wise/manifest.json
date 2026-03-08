@@ -1,0 +1,142 @@
+{
+  "component_type": "payout_provider",
+  "slug": "wise",
+  "name": "Wise Payouts",
+  "version": "1.0.0",
+  "description": "Send affiliate commission payouts via Wise (formerly TransferWise). Low-cost international transfers to 170+ countries with real exchange rates and transparent fees.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "wise",
+  "class_name": "WisePayoutProvider",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://wise.com/business/api",
+  "support_url": "https://wise.com/help/",
+  "api_docs_url": "https://docs.wise.com/api-docs/api-reference",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "batch_payouts": false,
+    "single_payouts": true,
+    "cancel_pending": true,
+    "webhooks": true,
+    "fee_estimation": true,
+    "sandbox_mode": true
+  },
+  "payout_methods": ["bank_transfer"],
+  "supported_currencies": [
+    "AED", "ARS", "AUD", "BDT", "BGN", "BRL", "CAD", "CHF", "CLP",
+    "CNY", "COP", "CRC", "CZK", "DKK", "EGP", "EUR", "GBP", "GEL",
+    "GHS", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KES", "KRW",
+    "LKR", "MAD", "MXN", "MYR", "NGN", "NOK", "NPR", "NZD", "PHP",
+    "PKR", "PLN", "RON", "SEK", "SGD", "THB", "TRY", "TZS", "UAH",
+    "UGX", "USD", "UYU", "VND", "ZAR"
+  ],
+  "currency_note": "49 currencies supported. Some currencies are send-only (cannot receive).",
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "api_token": {
+      "type": "password",
+      "label": "API Token",
+      "help_text": "Your Wise API token with Full Access permissions",
+      "required": true,
+      "sensitive": true,
+      "placeholder": "Your API token..."
+    },
+    "profile_id": {
+      "type": "text",
+      "label": "Profile ID",
+      "help_text": "Your Wise Business profile ID (numeric). Leave blank to auto-detect.",
+      "required": false,
+      "placeholder": "e.g., 12345678"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use Sandbox for testing, Production for live transfers",
+      "required": true,
+      "default": "sandbox",
+      "options": [
+        {"value": "sandbox", "label": "Sandbox (Testing)"},
+        {"value": "production", "label": "Production (Live)"}
+      ]
+    },
+    "webhook_secret": {
+      "type": "password",
+      "label": "Webhook Public Key",
+      "help_text": "Optional: Public key for verifying webhook signatures",
+      "required": false,
+      "sensitive": false,
+      "placeholder": "-----BEGIN PUBLIC KEY-----..."
+    }
+  },
+  "fee_structure": {
+    "type": "variable",
+    "description": "Wise uses the mid-market exchange rate with a small transparent fee",
+    "fee_calculation": "Varies by currency corridor, typically 0.3% - 2%",
+    "note": "Fees displayed upfront before each transfer. No hidden markups on exchange rate."
+  },
+  "signup_url": "https://wise.com/business/",
+  "api_info": {
+    "base_url_sandbox": "https://api.sandbox.transferwise.tech",
+    "base_url_production": "https://api.transferwise.com",
+    "auth_type": "bearer_token",
+    "api_version": "v1"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-11-24",
+      "changes": [
+        "Initial release",
+        "Single transfer support via Wise API",
+        "Bearer token authentication",
+        "Quote-based transfers with real exchange rates",
+        "Webhook signature verification",
+        "Sandbox and Production environment support"
+      ]
+    }
+  ],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "webhooks": {
+    "supported_events": [
+      "transfers#state-change",
+      "transfers#active-cases",
+      "balances#credit",
+      "balances#update"
+    ],
+    "verification_method": "rsa_signature",
+    "required_headers": ["x-signature-sha256"]
+  },
+  "pricing_info": {
+    "model": "variable",
+    "fee_rate": "0.3% - 2%",
+    "exchange_rate": "Mid-market rate (no markup)",
+    "notes": "Fees vary by currency corridor. Exact fee shown before each transfer. Wise uses real exchange rates with no hidden fees."
+  },
+  "regions": {
+    "supported": ["global"],
+    "country_count": "170+",
+    "restricted": ["AF", "KP", "IR", "SD", "SY", "CU"],
+    "notes": "Available in 170+ countries. Some countries have restrictions. Recipients receive funds to local bank accounts."
+  },
+  "compliance": {
+    "pci_dss": false,
+    "certifications": ["FCA", "FinCEN", "ASIC", "MAS"],
+    "data_residency": ["multi_region"],
+    "notes": "Wise is regulated in multiple jurisdictions including UK (FCA), US (FinCEN), Australia (ASIC), and Singapore (MAS)."
+  },
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "setup_instructions": "setup_instructions.html"
+}

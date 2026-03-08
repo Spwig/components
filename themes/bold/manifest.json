@@ -1,0 +1,60 @@
+{
+  "name": "Bold",
+  "slug": "bold",
+  "version": "1.0.0",
+  "description": "High-contrast, action-oriented theme with electric orange and sharp edges. Perfect for sporting goods, gym equipment, outdoor gear, fitness supplements, and activewear.",
+  "author": "Spwig",
+  "author_email": "themes@spwig.com",
+  "license": "MIT",
+  "engine": {
+    "min": "1.0.0"
+  },
+  "assets": {
+    "css": [
+      "css/theme.css"
+    ]
+  },
+  "preview_image": "preview.webp",
+  "screenshots": [
+    {
+      "file": "screenshots/home.webp",
+      "title": "Home"
+    },
+    {
+      "file": "screenshots/home-below-fold.webp",
+      "title": "Home \u2014 Below the Fold"
+    },
+    {
+      "file": "screenshots/category.webp",
+      "title": "Category"
+    },
+    {
+      "file": "screenshots/product.webp",
+      "title": "Product Detail"
+    },
+    {
+      "file": "screenshots/blog.webp",
+      "title": "Blog"
+    },
+    {
+      "file": "screenshots/blog-post.webp",
+      "title": "Blog Post"
+    },
+    {
+      "file": "screenshots/mobile-home.webp",
+      "title": "Mobile \u2014 Home"
+    },
+    {
+      "file": "screenshots/mobile-category.webp",
+      "title": "Mobile \u2014 Category"
+    },
+    {
+      "file": "screenshots/mobile-product.webp",
+      "title": "Mobile \u2014 Product"
+    },
+    {
+      "file": "screenshots/mobile-menu.webp",
+      "title": "Mobile \u2014 Navigation"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{% load i18n %}
+
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <i class="fas fa-box"></i>
+        <h3>{% trans "Getting Your Australia Post API Credentials" %}</h3>
+        <p class="header-subtitle">
+            {% trans "Follow these steps to set up your Australia Post account and obtain API credentials for shipping integration" %}
+        </p>
+    </div>
+
+    <div class="info-box">
+        <i class="fas fa-info-circle"></i>
+        <div>
+            <strong>{% trans "Important:" %}</strong>
+            <p>{% trans "Australia Post uses API Keys in UUID format (e.g., 601a4032-6dbd-46aa-9c6c-8c6dacca5e61), NOT traditional usernames." %}</p>
+            <p>{% trans "This integration supports:" %}</p>
+            <ul>
+                <li>{% trans "Australia Post services (10-digit account numbers)" %}</li>
+                <li>{% trans "StarTrack services (8-digit account numbers)" %}</li>
+                <li>{% trans "Domestic and international shipping" %}</li>
+                <li>{% trans "Real-time rate calculation" %}</li>
+                <li>{% trans "Label generation with PDF output" %}</li>
+                <li>{% trans "Package tracking (rate limited: 10 requests/60 seconds)" %}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="instruction-steps">
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>{% trans "Create Australia Post Developer Account" %}</h4>
+                <p>{% trans "Visit the Australia Post Developer Portal and log in with your Australia Post business account." %}</p>
+                <a href="https://developers.auspost.com.au/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-external">
+                    <i class="fas fa-external-link-alt"></i>
+                    {% trans "Open Australia Post Developer Portal" %}
+                </a>
+                <p class="step-note">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "You'll need an active Australia Post business account to access the developer portal." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>{% trans "Generate API Key in Developer Portal" %}</h4>
+                <p>{% trans "After logging in to your developer account:" %}</p>
+                <ul>
+                    <li>{% trans "Navigate to API Keys section" %}</li>
+                    <li>{% trans "Click 'Generate New API Key'" %}</li>
+                    <li>{% trans "Set a secure password (you'll need this for authentication)" %}</li>
+                    <li>{% trans "Save the generated API Key (UUID format)" %}</li>
+                </ul>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <strong>{% trans "Warning!" %}</strong>
+                        <p>{% trans "Save your API Key and password securely. The API Key cannot be retrieved later." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>{% trans "Understanding API Key Format" %}</h4>
+                <p>{% trans "Your API Key will look like this:" %}</p>
+                <div class="code-box">
+                    <strong>{% trans "API Key:" %}</strong> 601a4032-6dbd-46aa-9c6c-8c6dacca5e61<br>
+                    <strong>{% trans "Password:" %}</strong> your_secure_password
+                </div>
+                <p class="step-note">
+                    <i class="fas fa-lightbulb"></i>
+                    {% trans "The API Key is a UUID (Universally Unique Identifier) with the format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, where x represents hexadecimal digits (0-9, a-f)." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>{% trans "Understanding Account Numbers" %}</h4>
+                <p>{% trans "Australia Post and StarTrack use different account number formats:" %}</p>
+
+                <div class="info-box">
+                    <i class="fas fa-building"></i>
+                    <div>
+                        <strong>{% trans "Australia Post" %}</strong>
+                        <p><strong>{% trans "Format:" %}</strong> 10 digits (left-padded with zeros)</p>
+                        <p><strong>{% trans "Example:" %}</strong> <code>0000123456</code></p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fas fa-truck"></i>
+                    <div>
+                        <strong>{% trans "StarTrack" %}</strong>
+                        <p><strong>{% trans "Format:" %}</strong> 8 digits (no padding needed)</p>
+                        <p><strong>{% trans "Example:" %}</strong> <code>12345678</code></p>
+                    </div>
+                </div>
+
+                <p class="step-note">
+                    <i class="fas fa-magic"></i>
+                    {% trans "The system automatically detects your service type based on account number length and format." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h4>{% trans "Locate Your Account Number" %}</h4>
+                <p>{% trans "You can find your charge account number:" %}</p>
+                <ul>
+                    <li>{% trans "On your Australia Post invoices" %}</li>
+                    <li>{% trans "In your Australia Post account dashboard" %}</li>
+                    <li>{% trans "By contacting Australia Post customer service" %}</li>
+                </ul>
+                <div class="security-notice">
+                    <i class="fas fa-shield-alt"></i>
+                    {% trans "These credentials grant access to your Australia Post account. Keep them secure and never share them." %}
+                </div>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h4>{% trans "Available Shipping Services" %}</h4>
+                <p>{% trans "After setup, you'll be able to configure these services:" %}</p>
+
+                <h5><i class="fas fa-map-marker-alt"></i> {% trans "Domestic Services" %}</h5>
+                <ul>
+                    <li><strong>{% trans "Regular Parcel" %}</strong> - {% trans "Standard delivery" %}</li>
+                    <li><strong>{% trans "Express Post" %}</strong> - {% trans "Fast delivery" %}</li>
+                    <li><strong>{% trans "Courier Post" %}</strong> - {% trans "Premium courier service" %}</li>
+                </ul>
+
+                <h5><i class="fas fa-globe"></i> {% trans "International Services" %}</h5>
+                <ul>
+                    <li><strong>{% trans "International Standard" %}</strong> - {% trans "Economical international shipping" %}</li>
+                    <li><strong>{% trans "International Express" %}</strong> - {% trans "Fast international delivery" %}</li>
+                </ul>
+
+                <p class="step-note">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "Available services depend on your account type and contract. Not all services may be available." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">7</div>
+            <div class="step-content">
+                <h4>{% trans "Technical Details" %}</h4>
+                <p>{% trans "Understanding Australia Post API requirements:" %}</p>
+                <ul>
+                    <li><strong>{% trans "Rate Limiting:" %}</strong> {% trans "Tracking API has a limit of 10 requests per 60 seconds (automatically handled)" %}</li>
+                    <li><strong>{% trans "Label Generation:" %}</strong> {% trans "Two-step process - create shipment, then create labels" %}</li>
+                    <li><strong>{% trans "Retry Logic:" %}</strong> {% trans "Automatic retry with exponential backoff (max 3 attempts)" %}</li>
+                </ul>
+                <div class="code-box">
+<strong>{% trans "Required Headers:" %}</strong>
+Authorization: Basic {base64(api_key:password)}
+Account-Number: {10-digit or 8-digit}
+Content-Type: application/json
+Accept: application/json
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <div class="help-box">
+            <i class="fas fa-question-circle"></i>
+            <strong>{% trans "Need Help?" %}</strong>
+            <p>{% trans "If you encounter any issues during setup:" %}</p>
+            <ul>
+                <li>
+                    {% trans "Visit the" %}
+                    <a href="https://developers.auspost.com.au/" target="_blank" rel="noopener noreferrer">
+                        {% trans "Australia Post Developer Portal" %}
+                    </a>
+                    {% trans "for detailed documentation" %}
+                </li>
+                <li>{% trans "Contact Australia Post API Support for assistance with API-related issues" %}</li>
+            </ul>
+        </div>
+
+        <div class="checklist-box">
+            <strong>{% trans "Before Proceeding, Make Sure You Have:" %}</strong>
+            <ul class="checklist">
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Australia Post business account" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Developer account created" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "API Key (UUID format) copied and ready" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "API Password copied and ready" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Account number available (10-digit for Australia Post, 8-digit for StarTrack)" %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

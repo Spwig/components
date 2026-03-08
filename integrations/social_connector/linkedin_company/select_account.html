@@ -1,0 +1,149 @@
+{% load i18n %}
+{# LinkedIn Company Organization Selection Template - Bundled with Provider #}
+
+<style>
+    .account-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    .account-card {
+        background: var(--card-bg, #fff);
+        border: 2px solid var(--border-color, #e0e0e0);
+        border-radius: 12px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .account-card:hover {
+        border-color: #0077b5;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .account-card.selected {
+        border-color: #0077b5;
+        background: #f0f7ff;
+    }
+    .account-card input[type="radio"] {
+        display: none;
+    }
+    .account-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        object-fit: cover;
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .account-image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+    .account-info {
+        flex: 1;
+    }
+    .account-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--text-primary, #333);
+        margin-bottom: 0.25rem;
+    }
+    .account-vanity {
+        font-size: 0.875rem;
+        color: var(--text-secondary, #666);
+    }
+    .account-id {
+        font-size: 0.75rem;
+        color: var(--text-muted, #999);
+        font-family: monospace;
+    }
+    .role-badge {
+        display: inline-block;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        background: #e8f5e9;
+        color: #388e3c;
+        margin-top: 0.25rem;
+    }
+    .check-indicator {
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--border-color, #ccc);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.2s;
+    }
+    .account-card.selected .check-indicator {
+        background: #0077b5;
+        border-color: #0077b5;
+    }
+    .no-accounts-message {
+        text-align: center;
+        padding: 3rem;
+        background: var(--warning-bg, #fff8e1);
+        border-radius: 12px;
+        border: 1px solid var(--warning-border, #ffe082);
+    }
+    .no-accounts-message i {
+        font-size: 3rem;
+        color: var(--warning-color, #ffa000);
+        margin-bottom: 1rem;
+    }
+</style>
+
+{% if accounts %}
+<p class="form-intro">{% trans "We found the following LinkedIn Organizations you can manage. Select the one you want to connect:" %}</p>
+
+<div class="account-grid">
+    {% for account in accounts %}
+    <label class="account-card" data-account-id="{{ account.id }}">
+        <input type="radio" name="account_id" value="{{ account.id }}" required>
+        <input type="hidden" name="account_name_{{ account.id }}" value="{{ account.name }}">
+        <div class="account-image">
+            {% if account.logo_url %}
+            <img src="{{ account.logo_url }}" alt="{{ account.name }}">
+            {% else %}
+            <i class="fab fa-linkedin" style="font-size: 2rem; color: #0077b5;"></i>
+            {% endif %}
+        </div>
+        <div class="account-info">
+            <div class="account-name">{{ account.name }}</div>
+            {% if account.vanity_name %}
+            <div class="account-vanity">linkedin.com/company/{{ account.vanity_name }}</div>
+            {% endif %}
+            <span class="role-badge">Administrator</span>
+            <div class="account-id">ID: {{ account.id }}</div>
+        </div>
+        <div class="check-indicator">
+            <i class="fas fa-check"></i>
+        </div>
+    </label>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="no-accounts-message">
+    <i class="fab fa-linkedin"></i>
+    <h3>{% trans "No Organizations Found" %}</h3>
+    <p>{% trans "We couldn't find any LinkedIn Organizations that you can manage." %}</p>
+    <p>{% trans "Make sure you:" %}</p>
+    <ul style="text-align: left; display: inline-block;">
+        <li>{% trans "Are an admin of at least one LinkedIn Company Page" %}</li>
+        <li>{% trans "Granted all the requested permissions during authorization" %}</li>
+        <li>{% trans "Your LinkedIn app has the w_organization_social permission" %}</li>
+    </ul>
+</div>
+{% endif %}

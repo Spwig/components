@@ -1,0 +1,992 @@
+{
+  "component_type": "payment_provider",
+  "slug": "adyen",
+  "name": "Adyen",
+  "version": "1.0.0",
+  "description": "Enterprise-grade payment processing with 250+ payment methods across 40+ countries. Industry-leading authorization rates with unified commerce capabilities.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.adyen.com",
+  "support_url": "https://docs.adyen.com",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.31.0"
+  ],
+  "platform_components": {
+    "payment_providers": ">=1.0.0"
+  },
+  "provider_key": "adyen",
+  "entry_point": "provider",
+  "class_name": "AdyenProvider",
+  "capabilities": {
+    "payment_methods": [
+      "card",
+      "bank_transfer",
+      "digital_wallet",
+      "local_methods"
+    ],
+    "supported_currencies": [
+      "USD",
+      "EUR",
+      "GBP",
+      "AUD",
+      "CAD",
+      "SGD",
+      "HKD",
+      "CNY",
+      "JPY",
+      "NZD",
+      "CHF",
+      "SEK",
+      "DKK",
+      "NOK",
+      "PLN",
+      "CZK",
+      "HUF",
+      "RON",
+      "BGN",
+      "HRK",
+      "THB",
+      "MYR",
+      "PHP",
+      "IDR",
+      "VND",
+      "KRW",
+      "TWD",
+      "INR",
+      "BRL",
+      "MXN",
+      "CLP",
+      "COP",
+      "PEN",
+      "ARS",
+      "ZAR",
+      "AED",
+      "SAR",
+      "QAR",
+      "KWD",
+      "BHD",
+      "OMR",
+      "JOD",
+      "ILS",
+      "EGP",
+      "TRY",
+      "RUB",
+      "UAH",
+      "KZT",
+      "NGN",
+      "KES",
+      "GHS",
+      "MAD",
+      "TND",
+      "XOF",
+      "XAF",
+      "BWP",
+      "MUR",
+      "SCR",
+      "MVR",
+      "LKR",
+      "PKR",
+      "BDT",
+      "NPR",
+      "MMK",
+      "LAK",
+      "KHR",
+      "BND",
+      "FJD",
+      "PGK",
+      "WST",
+      "TOP",
+      "VUV",
+      "SBD",
+      "TTD",
+      "JMD",
+      "BBD",
+      "BZD",
+      "GYD",
+      "SRD",
+      "AWG",
+      "ANG",
+      "BMD",
+      "KYD",
+      "BSD",
+      "HTG",
+      "DOP",
+      "CRC",
+      "GTQ",
+      "HNL",
+      "NIO",
+      "PAB",
+      "PYG",
+      "UYU",
+      "BOB",
+      "VES",
+      "ISK",
+      "GEL",
+      "AMD",
+      "AZN",
+      "MDL",
+      "ALL",
+      "MKD",
+      "BAM",
+      "RSD",
+      "BYN"
+    ],
+    "features": {
+      "capture": true,
+      "authorize": true,
+      "refund": true,
+      "partial_refund": true,
+      "webhooks": true,
+      "recurring": true,
+      "3d_secure": true,
+      "multi_currency": true
+    },
+    "checkout_modes": [
+      "hosted",
+      "redirect",
+      "integrated"
+    ],
+    "integration_types": [
+      "api"
+    ]
+  },
+  "payment_methods": {
+    "cards": [
+      {
+        "slug": "visa",
+        "name": "Visa",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "mastercard",
+        "name": "Mastercard",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "amex",
+        "name": "American Express",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all",
+        "notes": "Higher processing fees typically apply"
+      },
+      {
+        "slug": "discover",
+        "name": "Discover",
+        "category": "card",
+        "regions": [
+          "US",
+          "CA"
+        ],
+        "currencies": [
+          "USD",
+          "CAD"
+        ]
+      },
+      {
+        "slug": "jcb",
+        "name": "JCB",
+        "category": "card",
+        "regions": [
+          "JP",
+          "CN",
+          "TW",
+          "KR",
+          "TH",
+          "SG",
+          "HK",
+          "US"
+        ],
+        "currencies": [
+          "JPY",
+          "CNY",
+          "TWD",
+          "KRW",
+          "THB",
+          "SGD",
+          "HKD",
+          "USD"
+        ]
+      },
+      {
+        "slug": "unionpay",
+        "name": "UnionPay",
+        "category": "card",
+        "regions": [
+          "CN",
+          "HK",
+          "TW",
+          "SG",
+          "MY",
+          "TH",
+          "JP",
+          "KR"
+        ],
+        "currencies": [
+          "CNY",
+          "HKD",
+          "TWD",
+          "SGD",
+          "MYR",
+          "THB",
+          "JPY",
+          "KRW",
+          "USD"
+        ]
+      },
+      {
+        "slug": "diners",
+        "name": "Diners Club",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "maestro",
+        "name": "Maestro",
+        "category": "card",
+        "regions": [
+          "EU",
+          "GB",
+          "CH"
+        ],
+        "currencies": [
+          "EUR",
+          "GBP",
+          "CHF"
+        ]
+      },
+      {
+        "slug": "cartes_bancaires",
+        "name": "Cartes Bancaires",
+        "category": "card",
+        "regions": [
+          "FR"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "dankort",
+        "name": "Dankort",
+        "category": "card",
+        "regions": [
+          "DK"
+        ],
+        "currencies": [
+          "DKK",
+          "EUR"
+        ]
+      },
+      {
+        "slug": "elo",
+        "name": "Elo",
+        "category": "card",
+        "regions": [
+          "BR"
+        ],
+        "currencies": [
+          "BRL"
+        ]
+      },
+      {
+        "slug": "hipercard",
+        "name": "Hipercard",
+        "category": "card",
+        "regions": [
+          "BR"
+        ],
+        "currencies": [
+          "BRL"
+        ]
+      }
+    ],
+    "digital_wallets": [
+      {
+        "slug": "apple_pay",
+        "name": "Apple Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all",
+        "notes": "Requires iOS/macOS device"
+      },
+      {
+        "slug": "google_pay",
+        "name": "Google Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all",
+        "notes": "Requires Android device or Chrome browser"
+      },
+      {
+        "slug": "samsung_pay",
+        "name": "Samsung Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "KR",
+          "US",
+          "CN",
+          "SG",
+          "AU",
+          "ES",
+          "GB",
+          "FR",
+          "IT",
+          "BR",
+          "RU",
+          "TH",
+          "VN"
+        ],
+        "currencies": [
+          "KRW",
+          "USD",
+          "CNY",
+          "SGD",
+          "AUD",
+          "EUR",
+          "GBP",
+          "BRL",
+          "RUB",
+          "THB",
+          "VND"
+        ]
+      },
+      {
+        "slug": "amazon_pay",
+        "name": "Amazon Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "US",
+          "GB",
+          "DE",
+          "FR",
+          "IT",
+          "ES",
+          "JP",
+          "IN"
+        ],
+        "currencies": [
+          "USD",
+          "GBP",
+          "EUR",
+          "JPY",
+          "INR"
+        ]
+      },
+      {
+        "slug": "alipay",
+        "name": "Alipay",
+        "category": "digital_wallet",
+        "regions": [
+          "CN",
+          "HK",
+          "SG",
+          "MY",
+          "TH",
+          "PH",
+          "ID",
+          "KR",
+          "JP"
+        ],
+        "currencies": [
+          "CNY",
+          "HKD",
+          "SGD",
+          "MYR",
+          "THB",
+          "PHP",
+          "IDR",
+          "KRW",
+          "JPY",
+          "USD",
+          "EUR"
+        ]
+      },
+      {
+        "slug": "wechat_pay",
+        "name": "WeChat Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "CN",
+          "HK",
+          "SG",
+          "MY",
+          "TH",
+          "JP",
+          "KR"
+        ],
+        "currencies": [
+          "CNY",
+          "HKD",
+          "SGD",
+          "MYR",
+          "THB",
+          "JPY",
+          "KRW",
+          "USD",
+          "EUR"
+        ]
+      },
+      {
+        "slug": "paypal",
+        "name": "PayPal",
+        "category": "digital_wallet",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "swish",
+        "name": "Swish",
+        "category": "digital_wallet",
+        "regions": [
+          "SE"
+        ],
+        "currencies": [
+          "SEK"
+        ]
+      },
+      {
+        "slug": "mobilepay",
+        "name": "MobilePay",
+        "category": "digital_wallet",
+        "regions": [
+          "DK",
+          "FI"
+        ],
+        "currencies": [
+          "DKK",
+          "EUR"
+        ]
+      },
+      {
+        "slug": "vipps",
+        "name": "Vipps",
+        "category": "digital_wallet",
+        "regions": [
+          "NO"
+        ],
+        "currencies": [
+          "NOK"
+        ]
+      },
+      {
+        "slug": "twint",
+        "name": "TWINT",
+        "category": "digital_wallet",
+        "regions": [
+          "CH"
+        ],
+        "currencies": [
+          "CHF"
+        ]
+      }
+    ],
+    "buy_now_pay_later": [
+      {
+        "slug": "klarna",
+        "name": "Klarna",
+        "category": "bnpl",
+        "regions": [
+          "US",
+          "GB",
+          "DE",
+          "AT",
+          "NL",
+          "SE",
+          "NO",
+          "FI",
+          "DK",
+          "BE",
+          "ES",
+          "FR",
+          "IT",
+          "PL",
+          "CH",
+          "IE",
+          "AU",
+          "NZ"
+        ],
+        "currencies": [
+          "USD",
+          "GBP",
+          "EUR",
+          "SEK",
+          "NOK",
+          "DKK",
+          "CHF",
+          "AUD",
+          "NZD",
+          "PLN"
+        ]
+      },
+      {
+        "slug": "affirm",
+        "name": "Affirm",
+        "category": "bnpl",
+        "regions": [
+          "US",
+          "CA"
+        ],
+        "currencies": [
+          "USD",
+          "CAD"
+        ]
+      },
+      {
+        "slug": "afterpay",
+        "name": "Afterpay",
+        "category": "bnpl",
+        "regions": [
+          "AU",
+          "NZ",
+          "US",
+          "GB"
+        ],
+        "currencies": [
+          "AUD",
+          "NZD",
+          "USD",
+          "GBP"
+        ]
+      },
+      {
+        "slug": "clearpay",
+        "name": "Clearpay",
+        "category": "bnpl",
+        "regions": [
+          "GB",
+          "ES",
+          "FR",
+          "IT"
+        ],
+        "currencies": [
+          "GBP",
+          "EUR"
+        ]
+      },
+      {
+        "slug": "zip",
+        "name": "Zip",
+        "category": "bnpl",
+        "regions": [
+          "AU",
+          "NZ",
+          "US",
+          "GB"
+        ],
+        "currencies": [
+          "AUD",
+          "NZD",
+          "USD",
+          "GBP"
+        ]
+      },
+      {
+        "slug": "atome",
+        "name": "Atome",
+        "category": "bnpl",
+        "regions": [
+          "SG",
+          "MY",
+          "HK",
+          "TH",
+          "PH",
+          "ID",
+          "VN",
+          "TW",
+          "JP"
+        ],
+        "currencies": [
+          "SGD",
+          "MYR",
+          "HKD",
+          "THB",
+          "PHP",
+          "IDR",
+          "VND",
+          "TWD",
+          "JPY"
+        ]
+      },
+      {
+        "slug": "grabpay_paylater",
+        "name": "GrabPay PayLater",
+        "category": "bnpl",
+        "regions": [
+          "SG",
+          "MY"
+        ],
+        "currencies": [
+          "SGD",
+          "MYR"
+        ]
+      }
+    ],
+    "bank_transfers": [
+      {
+        "slug": "ideal",
+        "name": "iDEAL",
+        "category": "bank_transfer",
+        "regions": [
+          "NL"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "bancontact",
+        "name": "Bancontact",
+        "category": "bank_transfer",
+        "regions": [
+          "BE"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "giropay",
+        "name": "Giropay",
+        "category": "bank_transfer",
+        "regions": [
+          "DE"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "eps",
+        "name": "EPS",
+        "category": "bank_transfer",
+        "regions": [
+          "AT"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "sepa",
+        "name": "SEPA Direct Debit",
+        "category": "bank_transfer",
+        "regions": [
+          "EU"
+        ],
+        "currencies": [
+          "EUR"
+        ],
+        "notes": "Available across SEPA zone (36 European countries)"
+      },
+      {
+        "slug": "sofort",
+        "name": "Sofort",
+        "category": "bank_transfer",
+        "regions": [
+          "DE",
+          "AT",
+          "CH",
+          "BE",
+          "NL",
+          "IT",
+          "ES",
+          "FR",
+          "PL"
+        ],
+        "currencies": [
+          "EUR",
+          "CHF",
+          "PLN"
+        ]
+      },
+      {
+        "slug": "przelewy24",
+        "name": "Przelewy24",
+        "category": "bank_transfer",
+        "regions": [
+          "PL"
+        ],
+        "currencies": [
+          "PLN",
+          "EUR"
+        ]
+      },
+      {
+        "slug": "blik",
+        "name": "BLIK",
+        "category": "bank_transfer",
+        "regions": [
+          "PL"
+        ],
+        "currencies": [
+          "PLN"
+        ]
+      },
+      {
+        "slug": "multibanco",
+        "name": "Multibanco",
+        "category": "bank_transfer",
+        "regions": [
+          "PT"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "mb_way",
+        "name": "MB WAY",
+        "category": "bank_transfer",
+        "regions": [
+          "PT"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "pix",
+        "name": "Pix",
+        "category": "bank_transfer",
+        "regions": [
+          "BR"
+        ],
+        "currencies": [
+          "BRL"
+        ]
+      },
+      {
+        "slug": "boleto",
+        "name": "Boleto Bancario",
+        "category": "bank_transfer",
+        "regions": [
+          "BR"
+        ],
+        "currencies": [
+          "BRL"
+        ]
+      },
+      {
+        "slug": "oxxo",
+        "name": "OXXO",
+        "category": "bank_transfer",
+        "regions": [
+          "MX"
+        ],
+        "currencies": [
+          "MXN"
+        ]
+      },
+      {
+        "slug": "konbini",
+        "name": "Konbini",
+        "category": "bank_transfer",
+        "regions": [
+          "JP"
+        ],
+        "currencies": [
+          "JPY"
+        ]
+      },
+      {
+        "slug": "paynow",
+        "name": "PayNow",
+        "category": "bank_transfer",
+        "regions": [
+          "SG"
+        ],
+        "currencies": [
+          "SGD"
+        ]
+      },
+      {
+        "slug": "promptpay",
+        "name": "PromptPay",
+        "category": "bank_transfer",
+        "regions": [
+          "TH"
+        ],
+        "currencies": [
+          "THB"
+        ]
+      },
+      {
+        "slug": "dana",
+        "name": "DANA",
+        "category": "bank_transfer",
+        "regions": [
+          "ID"
+        ],
+        "currencies": [
+          "IDR"
+        ]
+      },
+      {
+        "slug": "ovo",
+        "name": "OVO",
+        "category": "bank_transfer",
+        "regions": [
+          "ID"
+        ],
+        "currencies": [
+          "IDR"
+        ]
+      },
+      {
+        "slug": "gopay",
+        "name": "GoPay",
+        "category": "bank_transfer",
+        "regions": [
+          "ID"
+        ],
+        "currencies": [
+          "IDR"
+        ]
+      }
+    ]
+  },
+  "credential_schema": {
+    "api_key": {
+      "type": "password",
+      "label": "API Key",
+      "help_text": "Your Adyen API key from Customer Area -> Developers -> API credentials",
+      "required": true,
+      "secret": true,
+      "placeholder": "Enter your API Key"
+    },
+    "merchant_account": {
+      "type": "text",
+      "label": "Merchant Account",
+      "help_text": "Your Adyen merchant account name from the Customer Area",
+      "required": true,
+      "placeholder": "e.g., YourCompanyECOM"
+    },
+    "client_key": {
+      "type": "text",
+      "label": "Client Key",
+      "help_text": "Client-side key for the Adyen Drop-in/Components (from API credentials page)",
+      "required": true,
+      "placeholder": "e.g., live_XXXXXXXXXXXXXXXX"
+    },
+    "hmac_key": {
+      "type": "password",
+      "label": "HMAC Key",
+      "help_text": "Optional: HMAC key for webhook signature verification. Found in Developers -> Webhooks -> HMAC Key",
+      "required": false,
+      "secret": true,
+      "placeholder": "Enter HMAC key for webhook verification (optional)"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use Test for development, Live for real transactions",
+      "required": true,
+      "default": "test",
+      "options": [
+        {
+          "value": "test",
+          "label": "Test/Sandbox"
+        },
+        {
+          "value": "live",
+          "label": "Live/Production"
+        }
+      ]
+    },
+    "live_endpoint_prefix": {
+      "type": "text",
+      "label": "Live Endpoint Prefix",
+      "help_text": "Required for live environment. Found in Customer Area -> Settings -> API URLs. This is the prefix before '-checkout-live.adyenpayments.com'",
+      "required": false,
+      "placeholder": "e.g., 1797a841fbb37ca7-YourCompany"
+    }
+  },
+  "webhooks": {
+    "supported_events": [
+      "AUTHORISATION",
+      "CAPTURE",
+      "CANCELLATION",
+      "REFUND",
+      "REFUND_FAILED"
+    ],
+    "verification_method": "hmac_sha256",
+    "headers": [
+      "hmac-signature"
+    ]
+  },
+  "signup_url": "https://www.adyen.com/signup",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with full payment processing support",
+        "Support for 250+ payment methods globally",
+        "Adyen Drop-in and Sessions API integration",
+        "HMAC-SHA256 webhook signature verification",
+        "Full and partial refund capabilities",
+        "3D Secure 2 authentication support",
+        "Multi-currency processing across 150+ currencies",
+        "Authorize and capture workflow support"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Processing fees vary by payment method and region. Volume discounts available. Contact Adyen for pricing details."
+  },
+  "regions": {
+    "supported": [
+      "global"
+    ],
+    "restricted": [],
+    "notes": "Available globally across 40+ countries with 250+ local payment methods"
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": [
+      "PCI DSS Level 1",
+      "SOC 2"
+    ],
+    "data_residency": [
+      "multi_region"
+    ]
+  }
+}

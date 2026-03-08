@@ -1,0 +1,79 @@
+<div class="setup-instructions">
+    <h3>Custom API Setup</h3>
+
+    <p>This option allows you to integrate with your own license server via REST API. Perfect for merchants with existing license management systems.</p>
+
+    <div class="alert alert-warning">
+        <strong>Requirements:</strong> Your license server must implement the required REST API endpoints.
+        <a href="/docs/custom-license-api/" target="_blank">View API specification</a>
+    </div>
+
+    <div class="setup-steps">
+        <ol>
+            <li>Ensure your license server is accessible via HTTPS</li>
+            <li>Prepare your API base URL (e.g., https://licenses.yoursite.com/api)</li>
+            <li>Prepare your authentication credentials (token, API key, or basic auth)</li>
+            <li>Review the required API endpoints:
+                <ul>
+                    <li><code>POST /licenses</code> - Create license</li>
+                    <li><code>GET /licenses/{key}/validate</code> - Validate license</li>
+                    <li><code>POST /licenses/{key}/activate</code> - Activate device</li>
+                    <li><code>POST /licenses/{key}/deactivate</code> - Deactivate device</li>
+                </ul>
+            </li>
+            <li>Optional: Map your custom endpoints if they differ from the defaults</li>
+        </ol>
+    </div>
+
+    <div class="credentials-required">
+        <h4>You'll need:</h4>
+        <ul>
+            <li><strong>API Base URL</strong> - Your license API endpoint</li>
+            <li><strong>Authentication Type</strong> - Bearer Token, API Key, Basic Auth, or Custom</li>
+            <li><strong>Authentication Token/Key</strong> - Your API credentials</li>
+        </ul>
+    </div>
+
+    <div class="api-spec">
+        <h4>API Specification</h4>
+        <p>Your license server must accept the following requests:</p>
+
+        <div class="endpoint">
+            <strong>Create License</strong>
+            <pre><code>POST /licenses
+{
+  "license_key": "XXXXX-XXXXX-XXXXX",
+  "product_id": "123",
+  "product_sku": "PROD-001",
+  "max_activations": 5,
+  "order": {
+    "id": 456,
+    "number": "ORD-001",
+    "customer_email": "customer@example.com"
+  }
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <strong>Validate License</strong>
+            <pre><code>GET /licenses/{key}/validate
+Response: {
+  "valid": true,
+  "license_key": "XXXXX-XXXXX-XXXXX",
+  "status": "active"
+}</code></pre>
+        </div>
+
+        <p><a href="https://spwig.com/docs/custom-license-api/spec" target="_blank">View full API specification →</a></p>
+    </div>
+
+    <div class="features-list">
+        <h4>Benefits</h4>
+        <ul>
+            <li><strong>Full Control:</strong> Use your existing license infrastructure</li>
+            <li><strong>No Third-Party:</strong> No external dependencies</li>
+            <li><strong>Data Privacy:</strong> All data stays on your servers</li>
+            <li><strong>Flexible:</strong> Customize to your specific needs</li>
+        </ul>
+    </div>
+</div>

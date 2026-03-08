@@ -1,0 +1,142 @@
+{
+  "component_type": "social_connector_provider",
+  "slug": "twitter",
+  "name": "X (Twitter)",
+  "version": "1.1.0",
+  "description": "Share blog posts to X (formerly Twitter) with images and link cards",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "twitter",
+  "class_name": "TwitterConnector",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://developer.twitter.com",
+  "support_url": "https://developer.twitter.com/en/support",
+  "api_docs_url": "https://developer.twitter.com/en/docs/twitter-api",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "text_posts": true,
+    "image_posts": true,
+    "video_posts": false,
+    "carousel_posts": true,
+    "stories": false,
+    "reels": false,
+    "scheduling": false,
+    "link_preview": true,
+    "hashtags": true,
+    "mentions": true,
+    "analytics": false,
+    "comments": false,
+    "token_refresh": true
+  },
+  "character_limit": 280,
+  "oauth_config": {
+    "authorize_url": "https://twitter.com/i/oauth2/authorize",
+    "token_url": "https://api.twitter.com/2/oauth2/token",
+    "scope": [
+      "tweet.read",
+      "tweet.write",
+      "users.read",
+      "offline.access"
+    ],
+    "response_type": "code",
+    "pkce_required": true,
+    "token_expiry_hours": 2
+  },
+  "account_selection": {
+    "required": false,
+    "type": "user_account",
+    "note": "Posts directly to authenticated user's account, no selection needed"
+  },
+  "credential_schema": {
+    "access_token": {
+      "type": "text",
+      "label": "Access Token",
+      "required": true,
+      "secret": true,
+      "help_text": "OAuth 2.0 access token from X authentication"
+    },
+    "refresh_token": {
+      "type": "text",
+      "label": "Refresh Token",
+      "required": true,
+      "secret": true,
+      "help_text": "Token used to refresh access token"
+    },
+    "user_id": {
+      "type": "text",
+      "label": "User ID",
+      "required": true,
+      "help_text": "X user ID for the authenticated account"
+    },
+    "username": {
+      "type": "text",
+      "label": "Username",
+      "required": false,
+      "help_text": "X username/handle (auto-populated)"
+    }
+  },
+  "settings_schema": {
+    "default_hashtags": {
+      "type": "text",
+      "label": "Default Hashtags",
+      "required": false,
+      "help_text": "Comma-separated hashtags to add to posts (e.g., #mybrand, #blog)"
+    },
+    "post_template": {
+      "type": "textarea",
+      "label": "Post Template",
+      "required": false,
+      "help_text": "Custom template for posts. Use {title}, {url}, {hashtags}",
+      "placeholder": "{title}\n\n{url}\n\n{hashtags}"
+    },
+    "truncate_title": {
+      "type": "boolean",
+      "label": "Auto-truncate Long Titles",
+      "required": false,
+      "default": true,
+      "help_text": "Automatically shorten titles to fit within character limit"
+    }
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0",
+    "requests-oauthlib": ">=1.3.0"
+  },
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2025-12-18",
+      "changes": [
+        "Added setup instructions HTML for OAuth configuration guide",
+        "Added account_selection manifest configuration for unified wizard flow",
+        "Providers can now be updated independently without backend changes"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-12-02",
+      "changes": [
+        "Initial release",
+        "Support for text posts with 280 character limit",
+        "Image attachment support (up to 4 images)",
+        "OAuth 2.0 with PKCE authentication",
+        "Automatic token refresh",
+        "Link card support",
+        "Hashtag and mention support"
+      ]
+    }
+  ],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "total_size_bytes": 22035,
+  "file_count": 2,
+  "checksum": "sha256:dee492824b0bd5c952287c6b5a4876633b46fd07136a83045017c7666f10fc9d"
+}

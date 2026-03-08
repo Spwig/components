@@ -1,0 +1,146 @@
+{% load i18n %}
+{# Instagram Business Account Selection Template - Bundled with Provider #}
+
+<style>
+    .account-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    .account-card {
+        background: var(--card-bg, #fff);
+        border: 2px solid var(--border-color, #e0e0e0);
+        border-radius: 12px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .account-card:hover {
+        border-color: #e1306c;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .account-card.selected {
+        border-color: #e1306c;
+        background: linear-gradient(135deg, rgba(225,48,108,0.05), rgba(252,175,69,0.05));
+    }
+    .account-card input[type="radio"] {
+        display: none;
+    }
+    .account-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        padding: 2px;
+    }
+    .account-image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #fff;
+    }
+    .account-info {
+        flex: 1;
+    }
+    .account-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--text-primary, #333);
+        margin-bottom: 0.25rem;
+    }
+    .account-username {
+        font-size: 0.875rem;
+        color: var(--text-secondary, #666);
+    }
+    .account-page {
+        font-size: 0.75rem;
+        color: var(--text-muted, #999);
+        margin-top: 0.25rem;
+    }
+    .check-indicator {
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--border-color, #ccc);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.2s;
+    }
+    .account-card.selected .check-indicator {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743);
+        border-color: #e1306c;
+    }
+    .no-accounts-message {
+        text-align: center;
+        padding: 3rem;
+        background: var(--warning-bg, #fff8e1);
+        border-radius: 12px;
+        border: 1px solid var(--warning-border, #ffe082);
+    }
+    .no-accounts-message i {
+        font-size: 3rem;
+        color: var(--warning-color, #ffa000);
+        margin-bottom: 1rem;
+    }
+    .instagram-icon {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+</style>
+
+{% if accounts %}
+<p class="form-intro">{% trans "We found the following Instagram Business accounts connected to your Facebook Pages. Select the one you want to connect:" %}</p>
+
+<div class="account-grid">
+    {% for account in accounts %}
+    {% if account.instagram_business_account %}
+    <label class="account-card" data-account-id="{{ account.instagram_business_account.id }}">
+        <input type="radio" name="account_id" value="{{ account.instagram_business_account.id }}" required>
+        <input type="hidden" name="account_name_{{ account.instagram_business_account.id }}" value="{{ account.instagram_business_account.username }}">
+        <input type="hidden" name="account_token_{{ account.instagram_business_account.id }}" value="{{ account.access_token }}">
+        <input type="hidden" name="page_id_{{ account.instagram_business_account.id }}" value="{{ account.id }}">
+        <div class="account-image">
+            {% if account.instagram_business_account.profile_picture_url %}
+            <img src="{{ account.instagram_business_account.profile_picture_url }}" alt="{{ account.instagram_business_account.username }}">
+            {% else %}
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 50%;">
+                <i class="fab fa-instagram instagram-icon" style="font-size: 1.5rem;"></i>
+            </div>
+            {% endif %}
+        </div>
+        <div class="account-info">
+            <div class="account-name">@{{ account.instagram_business_account.username }}</div>
+            <div class="account-page"><i class="fab fa-facebook" style="color: #1877f2;"></i> {{ account.name }}</div>
+        </div>
+        <div class="check-indicator">
+            <i class="fas fa-check"></i>
+        </div>
+    </label>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="no-accounts-message">
+    <i class="fab fa-instagram"></i>
+    <h3>{% trans "No Instagram Business Accounts Found" %}</h3>
+    <p>{% trans "We couldn't find any Instagram Business accounts connected to your Facebook Pages." %}</p>
+    <p>{% trans "Make sure you:" %}</p>
+    <ul style="text-align: left; display: inline-block;">
+        <li>{% trans "Have an Instagram Business or Creator account" %}</li>
+        <li>{% trans "Connected your Instagram account to a Facebook Page" %}</li>
+        <li>{% trans "Granted all the requested permissions during authorization" %}</li>
+        <li>{% trans "Your Facebook app has instagram_basic and instagram_content_publish permissions" %}</li>
+    </ul>
+</div>
+{% endif %}

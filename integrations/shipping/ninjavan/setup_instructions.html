@@ -1,0 +1,394 @@
+{% load i18n static %}
+
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <i class="fas fa-plug"></i>
+        <h3>{% trans "Setting Up Your NinjaVan Integration" %}</h3>
+        <p class="header-subtitle">
+            {% trans "NinjaVan uses OAuth 2.0 for secure authentication. Follow these steps to connect your NinjaVan account." %}
+        </p>
+    </div>
+
+    <div class="alert alert-info mb-4">
+        <i class="fas fa-info-circle"></i>
+        <strong>{% trans "Important Differences from Traditional Integrations:" %}</strong>
+        <ul class="mb-0 mt-2">
+            <li>{% trans "NinjaVan Plugin APIs use OAuth 2.0 - you'll log into your NinjaVan Dashboard to grant permissions" %}</li>
+            <li>{% trans "No rate calculation - you already have pricing in your NinjaVan account" %}</li>
+            <li>{% trans "Production access requires passing NinjaVan's integration audit" %}</li>
+        </ul>
+    </div>
+
+    <div class="instruction-steps">
+        <!-- Step 1: Introduction -->
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>{% trans "Introduction to NinjaVan Plugin API" %}</h4>
+                <p>{% trans "NinjaVan's Plugin API allows you to create orders, generate shipping labels, and receive real-time tracking updates via webhooks." %}</p>
+                <p><strong>{% trans "Supported Countries:" %}</strong></p>
+                <ul>
+                    <li><img src="{% static 'flags/sg.svg' %}" class="country-flag" alt="SG"> Singapore (SG)</li>
+                    <li><img src="{% static 'flags/my.svg' %}" class="country-flag" alt="MY"> Malaysia (MY)</li>
+                    <li><img src="{% static 'flags/th.svg' %}" class="country-flag" alt="TH"> Thailand (TH)</li>
+                    <li><img src="{% static 'flags/id.svg' %}" class="country-flag" alt="ID"> Indonesia (ID)</li>
+                    <li><img src="{% static 'flags/vn.svg' %}" class="country-flag" alt="VN"> Vietnam (VN)</li>
+                    <li><img src="{% static 'flags/ph.svg' %}" class="country-flag" alt="PH"> Philippines (PH)</li>
+                    <li><img src="{% static 'flags/mm.svg' %}" class="country-flag" alt="MM"> Myanmar (MM)</li>
+                </ul>
+                <a href="https://api-docs.ninjavan.co/en#tag/Plugin-APIs"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-external">
+                    <i class="fas fa-book"></i>
+                    {% trans "View API Documentation" %}
+                </a>
+            </div>
+        </div>
+
+        <!-- Step 2: Prerequisites -->
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>{% trans "Prerequisites" %}</h4>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>{% trans "Required:" %}</strong>
+                    {% trans "You must have a NinjaVan Postpaid Pro account to use the Plugin APIs. Other account types are not supported." %}
+                </div>
+                <p>{% trans "Before continuing, ensure you have:" %}</p>
+                <ul>
+                    <li>{% trans "An active NinjaVan Postpaid Pro account" %}</li>
+                    <li>{% trans "Access to NinjaVan Dashboard" %} (<a href="https://dashboard-sandbox.ninjavan.co" target="_blank">{% trans "Sandbox" %}</a> {% trans "or" %} <a href="https://dashboard.ninjavan.co" target="_blank">{% trans "Production" %}</a>)</li>
+                    <li>{% trans "Your shop domain must use HTTPS (required for OAuth and webhooks)" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 3: Generate Client Credentials -->
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>{% trans "Generate Client ID & Client Secret" %}</h4>
+                <p>{% trans "To obtain your OAuth credentials:" %}</p>
+                <ol>
+                    <li>{% trans "Log into your NinjaVan Dashboard" %}:
+                        <ul>
+                            <li>{% trans "Sandbox:" %} <a href="https://dashboard-sandbox.ninjavan.co" target="_blank">https://dashboard-sandbox.ninjavan.co</a></li>
+                            <li>{% trans "Production:" %} <a href="https://dashboard.ninjavan.co" target="_blank">https://dashboard.ninjavan.co</a></li>
+                        </ul>
+                    </li>
+                    <li>{% trans "Navigate to" %} <strong>{% trans "Settings > IT Settings" %}</strong></li>
+                    <li>{% trans "Click" %} <strong>{% trans "REGENERATE CLIENT ID & KEY" %}</strong></li>
+                    <li>{% trans "Copy the" %} <strong>{% trans "Client ID" %}</strong> {% trans "and" %} <strong>{% trans "Client Secret" %}</strong></li>
+                </ol>
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>{% trans "Save Your Client Secret!" %}</strong><br>
+                    {% trans "NinjaVan will only show the Client Secret once. Save it securely before closing the page." %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Enter Credentials -->
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>{% trans "Enter Your Credentials" %}</h4>
+                <p>{% trans "You'll need to provide these credentials when configuring the provider:" %}</p>
+                <div class="credential-fields">
+                    <div class="field-info">
+                        <strong>{% trans "Client ID" %}:</strong>
+                        <span class="text-muted">{% trans "From NinjaVan Dashboard > Settings > IT Settings" %}</span>
+                    </div>
+                    <div class="field-info">
+                        <strong>{% trans "Client Secret" %}:</strong>
+                        <span class="text-muted">{% trans "Shown only once after generation" %}</span>
+                    </div>
+                    <div class="field-info">
+                        <strong>{% trans "Country Code" %}:</strong>
+                        <span class="text-muted">{% trans "Select the country where your NinjaVan account is registered" %}</span>
+                    </div>
+                    <div class="field-info">
+                        <strong>{% trans "Environment" %}:</strong>
+                        <span class="text-muted">{% trans "Choose Sandbox for testing or Production for live shipments" %}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Register Redirect URI -->
+        <div class="instruction-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h4>{% trans "Register Your Redirect URI with NinjaVan" %}</h4>
+                <p>{% trans "Before you can complete OAuth authorization, you must email NinjaVan to register your redirect URI:" %}</p>
+
+                <div class="uri-display-box">
+                    <strong>{% trans "Your OAuth Redirect URI:" %}</strong>
+                    <code class="redirect-uri">https://<span class="merchant-domain">{merchant-domain}</span>/shipping/ninjavan/oauth/callback/</code>
+                    <button type="button" class="btn btn-sm btn-outline-secondary copy-btn" data-copy-target=".redirect-uri">
+                        <i class="fas fa-copy"></i> {% trans "Copy" %}
+                    </button>
+                </div>
+
+                <p class="mt-3"><strong>{% trans "Email the following information to:" %}</strong> <a href="mailto:devsupport@ninjavan.co">devsupport@ninjavan.co</a></p>
+
+                <div class="email-template">
+                    <p><strong>{% trans "Subject:" %}</strong> Plugin API Integration - OAuth Redirect URI Registration</p>
+                    <p><strong>{% trans "Body:" %}</strong></p>
+                    <pre>{% trans "Hello NinjaVan Team,
+
+I would like to register my OAuth redirect URI for Plugin API integration.
+
+Plugin Name: Spwig Shop Platform
+Country of Integration: [Your Country - e.g., Singapore]
+Environment: [Sandbox or Production]
+Redirect URI: https://{your-domain}/shipping/ninjavan/oauth/callback/
+
+Required Scopes:
+- SHIPPER_PUBLIC_APIS_CREATE_ORDER
+- SHIPPER_PUBLIC_APIS_CANCEL_ORDER
+- SHIPPER_PUBLIC_APIS_GET_AWB
+- SHIPPER_PUBLIC_APIS_GET_SHIPPER_SETTINGS
+- SHIPPER_PUBLIC_APIS_GET_SUBSCRIPTIONS
+- SHIPPER_PUBLIC_APIS_CREATE_SUBSCRIPTIONS
+- SHIPPER_PUBLIC_APIS_DELETE_SUBSCRIPTIONS
+
+Thank you!" %}</pre>
+                </div>
+
+                <p class="step-note mt-3">
+                    <i class="fas fa-clock"></i>
+                    {% trans "NinjaVan typically responds within 1-2 business days with sandbox credentials. Continue to the next step once you receive confirmation." %}
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 6: OAuth Authorization -->
+        <div class="instruction-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h4>{% trans "Connect to NinjaVan via OAuth" %}</h4>
+                <p>{% trans "Once NinjaVan has registered your redirect URI, you can complete the OAuth authorization:" %}</p>
+                <ol>
+                    <li>{% trans "Click the" %} <strong>{% trans "Connect to NinjaVan" %}</strong> {% trans "button (provided after entering credentials)" %}</li>
+                    <li>{% trans "You'll be redirected to the NinjaVan Dashboard login page" %}</li>
+                    <li>{% trans "Log in with your NinjaVan account credentials" %}</li>
+                    <li>{% trans "Review the requested permissions and click" %} <strong>{% trans "Authorize" %}</strong></li>
+                    <li>{% trans "You'll be redirected back to your shop with an authorization code" %}</li>
+                    <li>{% trans "The system will automatically exchange the code for access and refresh tokens" %}</li>
+                </ol>
+
+                <div class="alert alert-success">
+                    <i class="fas fa-shield-alt"></i>
+                    <strong>{% trans "Security Note:" %}</strong>
+                    {% trans "Your tokens are encrypted and stored securely. They are automatically refreshed 5 minutes before expiry." %}
+                </div>
+
+                <p class="step-note">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "Required OAuth Scopes:" %}
+                </p>
+                <ul class="scope-list">
+                    <li><code>SHIPPER_PUBLIC_APIS_CREATE_ORDER</code> - {% trans "Create delivery orders" %}</li>
+                    <li><code>SHIPPER_PUBLIC_APIS_CANCEL_ORDER</code> - {% trans "Cancel pending orders" %}</li>
+                    <li><code>SHIPPER_PUBLIC_APIS_GET_AWB</code> - {% trans "Generate waybill/labels" %}</li>
+                    <li><code>SHIPPER_PUBLIC_APIS_GET_SHIPPER_SETTINGS</code> - {% trans "Fetch service settings" %}</li>
+                    <li><code>SHIPPER_PUBLIC_APIS_GET_SUBSCRIPTIONS</code> - {% trans "List webhook subscriptions" %}</li>
+                    <li><code>SHIPPER_PUBLIC_APIS_CREATE_SUBSCRIPTIONS</code> - {% trans "Create webhook subscriptions" %}</li>
+                    <li><code>SHIPPER_PUBLIC_APIS_DELETE_SUBSCRIPTIONS</code> - {% trans "Remove webhook subscriptions" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 7: Webhook Setup -->
+        <div class="instruction-step">
+            <div class="step-number">7</div>
+            <div class="step-content">
+                <h4>{% trans "Webhook Configuration" %}</h4>
+                <p>{% trans "Webhooks are automatically configured when you connect your NinjaVan account." %}</p>
+
+                <div class="uri-display-box">
+                    <strong>{% trans "Your Webhook Endpoint:" %}</strong>
+                    <code class="webhook-uri">https://<span class="merchant-domain">{merchant-domain}</span>/shipping/ninjavan/webhooks/</code>
+                    <button type="button" class="btn btn-sm btn-outline-secondary copy-btn" data-copy-target=".webhook-uri">
+                        <i class="fas fa-copy"></i> {% trans "Copy" %}
+                    </button>
+                </div>
+
+                <p class="mt-3"><strong>{% trans "Subscribed Events:" %}</strong></p>
+                <ul>
+                    <li><span class="badge badge-info">Pending Pickup</span> - {% trans "Order created and ready for pickup" %}</li>
+                    <li><span class="badge badge-warning">On Hold</span> - {% trans "Shipment temporarily held" %}</li>
+                    <li><span class="badge badge-primary">In Transit</span> - {% trans "Package is in transit" %}</li>
+                    <li><span class="badge badge-info">Out for Delivery</span> - {% trans "Package out for delivery" %}</li>
+                    <li><span class="badge badge-success">Delivered, Received by Customer</span> - {% trans "Successfully delivered" %}</li>
+                    <li><span class="badge badge-danger">Delivery Fail</span> - {% trans "Delivery attempt failed" %}</li>
+                    <li><span class="badge badge-secondary">Cancelled</span> - {% trans "Order cancelled" %}</li>
+                    <li><span class="badge badge-warning">Returned to Sender</span> - {% trans "Package returned" %}</li>
+                </ul>
+
+                <div class="alert alert-info">
+                    <i class="fas fa-lock"></i>
+                    <strong>{% trans "Webhook Security:" %}</strong><br>
+                    {% trans "All webhooks are verified using HMAC-SHA256 signatures. Invalid signatures are automatically rejected." %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 8: Test Connection -->
+        <div class="instruction-step">
+            <div class="step-number">8</div>
+            <div class="step-content">
+                <h4>{% trans "Test Your Connection" %}</h4>
+                <p>{% trans "After OAuth authorization, the system will automatically test your connection by fetching your shipper settings." %}</p>
+
+                <p><strong>{% trans "Connection test will verify:" %}</strong></p>
+                <ul>
+                    <li>{% trans "OAuth tokens are valid" %}</li>
+                    <li>{% trans "API endpoints are accessible" %}</li>
+                    <li>{% trans "Your NinjaVan account settings are retrievable" %}</li>
+                    <li>{% trans "Webhook subscriptions are active" %}</li>
+                </ul>
+
+                <p><strong>{% trans "Information displayed:" %}</strong></p>
+                <ul>
+                    <li>{% trans "Available service types (Standard, Return, Marketplace, etc.)" %}</li>
+                    <li>{% trans "Service levels configured in your account" %}</li>
+                    <li>{% trans "Your tracking prefix(es)" %}</li>
+                    <li>{% trans "Pickup and delivery settings" %}</li>
+                </ul>
+
+                <div class="alert alert-success mt-3">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>{% trans "Success!" %}</strong>
+                    {% trans "If the connection test passes, you're ready to start creating orders in sandbox." %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 9: Integration Audit -->
+        <div class="instruction-step">
+            <div class="step-number">9</div>
+            <div class="step-content">
+                <h4>{% trans "Integration Audit (Required for Production)" %}</h4>
+
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>{% trans "Production Access Requires Audit:" %}</strong><br>
+                    {% trans "Before NinjaVan grants production access, you must pass their integration audit by submitting test orders." %}
+                </div>
+
+                <p><strong>{% trans "Audit Requirements:" %}</strong></p>
+                <ol>
+                    <li>{% trans "Create at least 3 test orders using your integrated UI (not Postman or direct API calls)" %}</li>
+                    <li>{% trans "Test orders must include:" %}
+                        <ul>
+                            <li>{% trans "Accurate addresses with valid postal codes" %}</li>
+                            <li>{% trans "Valid phone numbers and email addresses" %}</li>
+                            <li>{% trans "Proper package dimensions and weight" %}</li>
+                        </ul>
+                    </li>
+                    <li>{% trans "Submit your test orders via the audit link provided by NinjaVan" %}</li>
+                    <li>{% trans "Wait for NinjaVan QA team to review (typically 3-5 business days)" %}</li>
+                </ol>
+
+                <p><strong>{% trans "Audit Focus Areas:" %}</strong></p>
+                <ul>
+                    <li><strong>{% trans "Authentication:" %}</strong> {% trans "OAuth login flow, token handling, and disconnection cleanup" %}</li>
+                    <li><strong>{% trans "Webhook APIs:" %}</strong> {% trans "Subscription timing and webhook event processing" %}</li>
+                    <li><strong>{% trans "Error Handling:" %}</strong> {% trans "Proper handling of success (200) and failure (400, 401, 5xx) responses" %}</li>
+                    <li><strong>{% trans "Token Refresh:" %}</strong> {% trans "Automatic refresh 5 minutes before expiry or on 401 errors" %}</li>
+                </ul>
+
+                <p class="step-note">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "Once approved, you'll need to regenerate your tokens for production and reconfigure the provider with production credentials." %}
+                </p>
+
+                <a href="mailto:devsupport@ninjavan.co"
+                   class="btn-external">
+                    <i class="fas fa-envelope"></i>
+                    {% trans "Contact NinjaVan Support for Audit" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <div class="help-box">
+            <i class="fas fa-question-circle"></i>
+            <div>
+                <strong>{% trans "Need Help?" %}</strong>
+                <p>{% trans "If you encounter issues during setup:" %}</p>
+                <ul>
+                    <li>
+                        {% trans "Read the" %}
+                        <a href="https://api-docs.ninjavan.co/en#tag/Plugin-integration" target="_blank" rel="noopener noreferrer">
+                            {% trans "Plugin Integration Guide" %}
+                        </a>
+                    </li>
+                    <li>
+                        {% trans "Check the" %}
+                        <a href="https://api-docs.ninjavan.co/en#tag/Plugin-APIs" target="_blank" rel="noopener noreferrer">
+                            {% trans "Plugin API Reference" %}
+                        </a>
+                    </li>
+                    <li>
+                        {% trans "Contact NinjaVan Developer Support:" %}
+                        <a href="mailto:devsupport@ninjavan.co">devsupport@ninjavan.co</a>
+                    </li>
+                    <li>
+                        {% trans "View the" %} <a href="./README.md" target="_blank">{% trans "NinjaVan Provider README" %}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="checklist-box">
+            <strong>{% trans "Setup Checklist:" %}</strong>
+            <ul class="checklist">
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "NinjaVan Postpaid Pro account created" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Client ID and Client Secret generated" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Redirect URI emailed to devsupport@ninjavan.co" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Confirmation received from NinjaVan" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Credentials entered in provider configuration" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "OAuth authorization completed" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Webhooks automatically configured" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Connection test passed" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Test orders created for audit (production only)" %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+

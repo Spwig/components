@@ -1,0 +1,40 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Modern Dark Theme - Critical CSS for Product Page
+ * Contains above-the-fold styles for faster initial render
+ */
+
+/* Product layout */
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--theme-space-8);
+}
+
+@media (min-width: 768px) {
+  .product-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Product gallery */
+.product-gallery {
+  background-color: var(--theme-color-surface);
+  border-radius: var(--theme-radius-lg);
+  overflow: hidden;
+}
+
+/* Product info */
+.product-info {
+  padding: var(--theme-space-4);
+}
+
+/* Add to cart button */
+.add-to-cart {
+  width: 100%;
+  padding: var(--theme-space-4);
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-text-inverse);
+  border-radius: var(--theme-radius-base);
+}

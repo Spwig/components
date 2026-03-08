@@ -1,0 +1,385 @@
+{
+  "component_type": "payment_provider",
+  "slug": "paypal_checkout",
+  "name": "PayPal Checkout",
+  "version": "1.1.1",
+  "description": "Accept payments globally with PayPal. Supports PayPal wallet, credit/debit cards, Venmo, Pay Later, and 25+ currencies across 200+ markets.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.paypal.com",
+  "support_url": "https://developer.paypal.com/docs",
+  "signup_url": "https://www.paypal.com/bizsignup",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.31.0"
+  ],
+  "platform_components": {
+    "payment_providers": ">=1.0.0"
+  },
+  "provider_key": "paypal",
+  "entry_point": "provider",
+  "class_name": "PayPalProvider",
+  "frontend": {
+    "checkout_handler": "checkout-handler.js",
+    "sdk_dependencies": [
+      "https://www.paypal.com/sdk/js?client-id={{CLIENT_ID}}"
+    ]
+  },
+  "capabilities": {
+    "payment_methods": [
+      "card",
+      "digital_wallet",
+      "bnpl"
+    ],
+    "supported_currencies": [
+      "USD",
+      "EUR",
+      "GBP",
+      "AUD",
+      "CAD",
+      "JPY",
+      "CHF",
+      "SEK",
+      "DKK",
+      "NOK",
+      "PLN",
+      "CZK",
+      "HUF",
+      "BRL",
+      "MXN",
+      "SGD",
+      "HKD",
+      "NZD",
+      "INR",
+      "THB",
+      "MYR",
+      "PHP",
+      "ILS",
+      "TRY",
+      "ZAR",
+      "TWD",
+      "KRW"
+    ],
+    "features": {
+      "capture": true,
+      "authorize": true,
+      "refund": true,
+      "partial_refund": true,
+      "webhooks": true,
+      "recurring": true,
+      "multi_currency": true
+    },
+    "checkout_modes": [
+      "hosted",
+      "redirect",
+      "integrated"
+    ],
+    "integration_types": [
+      "api"
+    ]
+  },
+  "payment_methods": {
+    "cards": [
+      {
+        "slug": "visa",
+        "name": "Visa",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "mastercard",
+        "name": "Mastercard",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "amex",
+        "name": "American Express",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all",
+        "notes": "Higher processing fees typically apply"
+      },
+      {
+        "slug": "discover",
+        "name": "Discover",
+        "category": "card",
+        "regions": [
+          "US",
+          "CA"
+        ],
+        "currencies": [
+          "USD",
+          "CAD"
+        ]
+      },
+      {
+        "slug": "jcb",
+        "name": "JCB",
+        "category": "card",
+        "regions": [
+          "JP",
+          "US",
+          "GB",
+          "AU"
+        ],
+        "currencies": [
+          "JPY",
+          "USD",
+          "GBP",
+          "AUD"
+        ]
+      }
+    ],
+    "digital_wallets": [
+      {
+        "slug": "paypal",
+        "name": "PayPal",
+        "category": "digital_wallet",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "venmo",
+        "name": "Venmo",
+        "category": "digital_wallet",
+        "regions": [
+          "US"
+        ],
+        "currencies": [
+          "USD"
+        ],
+        "notes": "Available only in the United States"
+      },
+      {
+        "slug": "paypal_credit",
+        "name": "PayPal Credit",
+        "category": "digital_wallet",
+        "regions": [
+          "US",
+          "GB"
+        ],
+        "currencies": [
+          "USD",
+          "GBP"
+        ],
+        "notes": "Subject to credit approval"
+      }
+    ],
+    "buy_now_pay_later": [
+      {
+        "slug": "pay_later_4x",
+        "name": "Pay in 4",
+        "category": "bnpl",
+        "regions": [
+          "US",
+          "GB",
+          "FR",
+          "AU"
+        ],
+        "currencies": [
+          "USD",
+          "GBP",
+          "EUR",
+          "AUD"
+        ],
+        "notes": "Split purchase into 4 interest-free payments"
+      },
+      {
+        "slug": "pay_monthly",
+        "name": "Pay Monthly",
+        "category": "bnpl",
+        "regions": [
+          "US",
+          "GB",
+          "DE"
+        ],
+        "currencies": [
+          "USD",
+          "GBP",
+          "EUR"
+        ],
+        "notes": "Monthly installment plans, subject to credit approval"
+      }
+    ]
+  },
+  "credential_schema": {
+    "client_id": {
+      "type": "text",
+      "label": "Client ID",
+      "help_text": "Your PayPal REST API Client ID from the Developer Dashboard",
+      "required": true,
+      "placeholder": "e.g., AaBbCcDdEeFf..."
+    },
+    "client_secret": {
+      "type": "password",
+      "label": "Client Secret",
+      "help_text": "Your PayPal REST API Secret from the Developer Dashboard",
+      "required": true,
+      "secret": true,
+      "placeholder": "Enter your Client Secret"
+    },
+    "webhook_id": {
+      "type": "text",
+      "label": "Webhook ID",
+      "help_text": "Optional: The Webhook ID from your PayPal webhook configuration. Required for webhook signature verification.",
+      "required": false,
+      "placeholder": "e.g., 5GP028458V749191H"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use Sandbox for testing, Live for real transactions",
+      "required": true,
+      "default": "sandbox",
+      "options": [
+        {
+          "value": "sandbox",
+          "label": "Sandbox (Testing)"
+        },
+        {
+          "value": "live",
+          "label": "Live (Production)"
+        }
+      ]
+    }
+  },
+  "webhooks": {
+    "supported_events": [
+      "PAYMENT.CAPTURE.COMPLETED",
+      "PAYMENT.CAPTURE.DENIED",
+      "PAYMENT.CAPTURE.REFUNDED",
+      "CHECKOUT.ORDER.APPROVED",
+      "CHECKOUT.ORDER.COMPLETED",
+      "BILLING.SUBSCRIPTION.CREATED",
+      "BILLING.SUBSCRIPTION.ACTIVATED",
+      "BILLING.SUBSCRIPTION.CANCELLED",
+      "BILLING.SUBSCRIPTION.EXPIRED",
+      "BILLING.SUBSCRIPTION.SUSPENDED",
+      "BILLING.SUBSCRIPTION.RE-ACTIVATED",
+      "BILLING.SUBSCRIPTION.UPDATED",
+      "BILLING.SUBSCRIPTION.PAYMENT.FAILED",
+      "PAYMENT.SALE.COMPLETED",
+      "PAYMENT.SALE.DENIED"
+    ],
+    "verification_method": "cert_url",
+    "headers": [
+      "paypal-transmission-sig",
+      "paypal-transmission-id",
+      "paypal-transmission-time",
+      "paypal-cert-url"
+    ]
+  },
+  "supported_countries": [
+    "US",
+    "GB",
+    "AU",
+    "CA",
+    "DE",
+    "FR",
+    "IT",
+    "ES",
+    "NL",
+    "BE",
+    "AT",
+    "CH",
+    "JP",
+    "SG",
+    "HK",
+    "BR",
+    "MX",
+    "IN"
+  ],
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.1.1",
+      "date": "2026-03-01",
+      "changes": [
+        "Security: Webhook verification now fails securely when webhook_id is not configured",
+        "Financial integrity: Added idempotency keys (PayPal-Request-Id) to capture, refund, and void requests",
+        "Robustness: Safe JSON parsing in API requests prevents crashes on non-JSON responses",
+        "Robustness: Null-safe nested access patterns prevent crashes when PayPal returns null fields",
+        "Security: Credential redaction now uses pattern-matching and includes webhook_id",
+        "Robustness: Token caching uses timezone-aware UTC datetimes",
+        "Added PAYMENT.AUTHORIZATION.VOIDED webhook event handler",
+        "Added PAYMENT.CAPTURE.REVERSED webhook event handler for chargebacks",
+        "Fixed __init__.py version mismatch (was 1.0.0, now 1.1.1)"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-02-17",
+      "changes": [
+        "Implemented plugin architecture for embedded checkout integration",
+        "Added checkout-handler.js for PayPal Smart Buttons integration",
+        "Added frontend manifest section with checkout_handler and sdk_dependencies",
+        "Enhanced integrated mode to return handler_config for embedded checkout",
+        "Customers stay on merchant site throughout payment (no redirect)",
+        "Automatic SDK loading with dynamic client_id injection",
+        "Smart Button supports cards, PayPal wallet, Venmo, and Pay Later automatically",
+        "Built-in 3D Secure handling via PayPal SDK",
+        "Full backward compatibility - existing hosted/redirect modes continue working"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with full PayPal Orders API v2 integration",
+        "Support for PayPal wallet, Venmo, and PayPal Credit",
+        "Credit and debit card processing (Visa, Mastercard, Amex, Discover, JCB)",
+        "Buy Now Pay Later with Pay in 4 and Pay Monthly",
+        "Full and partial refund capabilities",
+        "Webhook integration with server-side signature verification",
+        "Multi-currency support across 25+ currencies",
+        "Authorize and capture payment flows"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Standard PayPal transaction fees apply. Volume discounts available. Visit paypal.com/business for pricing details."
+  },
+  "regions": {
+    "supported": [
+      "global"
+    ],
+    "restricted": [],
+    "notes": "Available in 200+ markets worldwide with 25+ currencies"
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": [
+      "PCI DSS Level 1"
+    ],
+    "data_residency": [
+      "multi_region"
+    ]
+  }
+}

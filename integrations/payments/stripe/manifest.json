@@ -1,0 +1,759 @@
+{
+  "component_type": "payment_provider",
+  "slug": "stripe",
+  "name": "Stripe",
+  "version": "1.1.1",
+  "description": "Complete payment processing platform supporting cards, digital wallets, BNPL, and 135+ currencies. Industry-leading developer experience with extensive documentation and robust fraud prevention.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://stripe.com",
+  "support_url": "https://stripe.com/docs",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "stripe>=8.0.0"
+  ],
+  "platform_components": {
+    "payment_providers": ">=1.0.0"
+  },
+  "provider_key": "stripe",
+  "entry_point": "provider",
+  "class_name": "StripeProvider",
+  "frontend": {
+    "checkout_handler": "checkout-handler.js",
+    "sdk_dependencies": [
+      "https://js.stripe.com/v3/"
+    ]
+  },
+  "capabilities": {
+    "payment_methods": [
+      "card",
+      "bank_transfer",
+      "digital_wallet",
+      "bnpl"
+    ],
+    "supported_currencies": [
+      "USD",
+      "EUR",
+      "GBP",
+      "AUD",
+      "CAD",
+      "JPY",
+      "CHF",
+      "SEK",
+      "DKK",
+      "NOK",
+      "PLN",
+      "CZK",
+      "HUF",
+      "RON",
+      "BGN",
+      "HRK",
+      "BRL",
+      "MXN",
+      "SGD",
+      "HKD",
+      "NZD",
+      "INR",
+      "THB",
+      "MYR",
+      "PHP",
+      "IDR",
+      "TWD",
+      "KRW",
+      "ZAR",
+      "AED",
+      "SAR",
+      "ILS",
+      "TRY",
+      "CNY",
+      "VND",
+      "CLP",
+      "COP",
+      "PEN",
+      "ARS",
+      "QAR",
+      "KWD",
+      "BHD",
+      "OMR",
+      "JOD",
+      "EGP",
+      "PKR",
+      "BDT",
+      "LKR",
+      "NGN",
+      "KES",
+      "GHS",
+      "TZS",
+      "UGX",
+      "RWF",
+      "MAD",
+      "XOF",
+      "XAF",
+      "ETB",
+      "DZD",
+      "TND",
+      "MUR",
+      "BWP",
+      "GEL",
+      "MDL",
+      "ALL",
+      "MKD",
+      "BAM",
+      "RSD",
+      "ISK",
+      "UAH",
+      "KZT",
+      "UZS",
+      "AZN",
+      "AMD",
+      "GIP",
+      "FKP",
+      "SHP",
+      "BMD",
+      "KYD",
+      "BSD",
+      "BZD",
+      "TTD",
+      "JMD",
+      "BBD",
+      "AWG",
+      "ANG",
+      "SRD",
+      "HTG",
+      "DOP",
+      "CRC",
+      "GTQ",
+      "HNL",
+      "NIO",
+      "PAB",
+      "PYG",
+      "UYU",
+      "BOB",
+      "VES",
+      "GYD",
+      "FJD",
+      "PGK",
+      "SBD",
+      "TOP",
+      "WST",
+      "VUV",
+      "SCR",
+      "GMD",
+      "MWK",
+      "ZMW",
+      "MZN",
+      "SZL",
+      "LSL",
+      "NAD",
+      "MMK",
+      "KHR",
+      "LAK",
+      "BND",
+      "MVR",
+      "NPR",
+      "AFN",
+      "MNT",
+      "KGS",
+      "TJS"
+    ],
+    "features": {
+      "capture": true,
+      "authorize": true,
+      "refund": true,
+      "partial_refund": true,
+      "webhooks": true,
+      "recurring": true,
+      "3d_secure": true,
+      "multi_currency": true
+    },
+    "checkout_modes": [
+      "hosted",
+      "redirect",
+      "integrated"
+    ],
+    "integration_types": [
+      "api"
+    ]
+  },
+  "payment_methods": {
+    "cards": [
+      {
+        "slug": "visa",
+        "name": "Visa",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "mastercard",
+        "name": "Mastercard",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      },
+      {
+        "slug": "amex",
+        "name": "American Express",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all",
+        "notes": "Higher processing fees typically apply"
+      },
+      {
+        "slug": "discover",
+        "name": "Discover",
+        "category": "card",
+        "regions": [
+          "US",
+          "CA"
+        ],
+        "currencies": [
+          "USD",
+          "CAD"
+        ]
+      },
+      {
+        "slug": "jcb",
+        "name": "JCB",
+        "category": "card",
+        "regions": [
+          "JP",
+          "US",
+          "GB",
+          "AU",
+          "SG",
+          "HK"
+        ],
+        "currencies": [
+          "JPY",
+          "USD",
+          "GBP",
+          "AUD",
+          "SGD",
+          "HKD"
+        ]
+      },
+      {
+        "slug": "unionpay",
+        "name": "UnionPay",
+        "category": "card",
+        "regions": [
+          "CN",
+          "HK",
+          "SG",
+          "MY",
+          "TH",
+          "JP",
+          "KR",
+          "US"
+        ],
+        "currencies": [
+          "CNY",
+          "HKD",
+          "SGD",
+          "MYR",
+          "THB",
+          "JPY",
+          "KRW",
+          "USD"
+        ]
+      },
+      {
+        "slug": "diners",
+        "name": "Diners Club",
+        "category": "card",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all"
+      }
+    ],
+    "digital_wallets": [
+      {
+        "slug": "apple_pay",
+        "name": "Apple Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all",
+        "notes": "Requires iOS/macOS device or Safari browser"
+      },
+      {
+        "slug": "google_pay",
+        "name": "Google Pay",
+        "category": "digital_wallet",
+        "regions": [
+          "global"
+        ],
+        "currencies": "all",
+        "notes": "Requires Android device or Chrome browser"
+      },
+      {
+        "slug": "link",
+        "name": "Link (Stripe)",
+        "category": "digital_wallet",
+        "regions": [
+          "US",
+          "CA",
+          "GB",
+          "EU"
+        ],
+        "currencies": [
+          "USD",
+          "CAD",
+          "GBP",
+          "EUR"
+        ],
+        "notes": "Stripe's accelerated checkout - saves payment details for faster checkout"
+      }
+    ],
+    "buy_now_pay_later": [
+      {
+        "slug": "klarna",
+        "name": "Klarna",
+        "category": "bnpl",
+        "regions": [
+          "US",
+          "GB",
+          "DE",
+          "AT",
+          "NL",
+          "SE",
+          "NO",
+          "FI",
+          "DK",
+          "BE",
+          "ES",
+          "FR",
+          "IT",
+          "PL",
+          "CH",
+          "IE",
+          "AU",
+          "NZ"
+        ],
+        "currencies": [
+          "USD",
+          "GBP",
+          "EUR",
+          "SEK",
+          "NOK",
+          "DKK",
+          "CHF",
+          "AUD",
+          "NZD",
+          "PLN"
+        ]
+      },
+      {
+        "slug": "affirm",
+        "name": "Affirm",
+        "category": "bnpl",
+        "regions": [
+          "US",
+          "CA"
+        ],
+        "currencies": [
+          "USD",
+          "CAD"
+        ]
+      },
+      {
+        "slug": "afterpay_clearpay",
+        "name": "Afterpay / Clearpay",
+        "category": "bnpl",
+        "regions": [
+          "US",
+          "CA",
+          "GB",
+          "AU",
+          "NZ"
+        ],
+        "currencies": [
+          "USD",
+          "CAD",
+          "GBP",
+          "AUD",
+          "NZD"
+        ]
+      }
+    ],
+    "bank_transfers": [
+      {
+        "slug": "ideal",
+        "name": "iDEAL",
+        "category": "bank_transfer",
+        "regions": [
+          "NL"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "bancontact",
+        "name": "Bancontact",
+        "category": "bank_transfer",
+        "regions": [
+          "BE"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "giropay",
+        "name": "Giropay",
+        "category": "bank_transfer",
+        "regions": [
+          "DE"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "eps",
+        "name": "EPS",
+        "category": "bank_transfer",
+        "regions": [
+          "AT"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "sepa",
+        "name": "SEPA Direct Debit",
+        "category": "bank_transfer",
+        "regions": [
+          "EU"
+        ],
+        "currencies": [
+          "EUR"
+        ],
+        "notes": "Available across SEPA zone (36 European countries)"
+      },
+      {
+        "slug": "sofort",
+        "name": "Sofort / Klarna Pay Now",
+        "category": "bank_transfer",
+        "regions": [
+          "DE",
+          "AT",
+          "BE",
+          "NL",
+          "ES",
+          "IT"
+        ],
+        "currencies": [
+          "EUR"
+        ]
+      },
+      {
+        "slug": "przelewy24",
+        "name": "Przelewy24",
+        "category": "bank_transfer",
+        "regions": [
+          "PL"
+        ],
+        "currencies": [
+          "PLN",
+          "EUR"
+        ]
+      },
+      {
+        "slug": "blik",
+        "name": "BLIK",
+        "category": "bank_transfer",
+        "regions": [
+          "PL"
+        ],
+        "currencies": [
+          "PLN"
+        ]
+      },
+      {
+        "slug": "fpx",
+        "name": "FPX",
+        "category": "bank_transfer",
+        "regions": [
+          "MY"
+        ],
+        "currencies": [
+          "MYR"
+        ]
+      },
+      {
+        "slug": "grabpay",
+        "name": "GrabPay",
+        "category": "bank_transfer",
+        "regions": [
+          "SG",
+          "MY"
+        ],
+        "currencies": [
+          "SGD",
+          "MYR"
+        ]
+      },
+      {
+        "slug": "alipay",
+        "name": "Alipay",
+        "category": "bank_transfer",
+        "regions": [
+          "CN",
+          "HK",
+          "SG",
+          "MY"
+        ],
+        "currencies": [
+          "CNY",
+          "HKD",
+          "SGD",
+          "MYR",
+          "USD",
+          "EUR"
+        ]
+      },
+      {
+        "slug": "wechat_pay",
+        "name": "WeChat Pay",
+        "category": "bank_transfer",
+        "regions": [
+          "CN",
+          "HK",
+          "SG",
+          "MY",
+          "JP"
+        ],
+        "currencies": [
+          "CNY",
+          "HKD",
+          "SGD",
+          "MYR",
+          "JPY",
+          "USD",
+          "EUR"
+        ]
+      }
+    ]
+  },
+  "credential_schema": {
+    "test_mode": {
+      "type": "boolean",
+      "label": "Test Mode",
+      "help_text": "Use test credentials. Automatically enforced in sandbox environments.",
+      "required": true,
+      "default": true
+    },
+    "test_publishable_key": {
+      "type": "text",
+      "label": "Test Publishable Key",
+      "help_text": "Your Stripe Test Publishable Key (starts with pk_test_)",
+      "required": true,
+      "placeholder": "pk_test_...",
+      "group": "test_credentials"
+    },
+    "test_secret_key": {
+      "type": "password",
+      "label": "Test Secret Key",
+      "help_text": "Your Stripe Test Secret Key (starts with sk_test_)",
+      "required": true,
+      "secret": true,
+      "placeholder": "sk_test_...",
+      "group": "test_credentials"
+    },
+    "test_webhook_secret": {
+      "type": "password",
+      "label": "Test Webhook Secret",
+      "help_text": "Optional: Test webhook signing secret (starts with whsec_)",
+      "required": false,
+      "secret": true,
+      "placeholder": "whsec_...",
+      "group": "test_credentials"
+    },
+    "live_publishable_key": {
+      "type": "text",
+      "label": "Live Publishable Key",
+      "help_text": "Your Stripe Live Publishable Key (starts with pk_live_). Optional - can be added later.",
+      "required": false,
+      "placeholder": "pk_live_...",
+      "group": "live_credentials"
+    },
+    "live_secret_key": {
+      "type": "password",
+      "label": "Live Secret Key",
+      "help_text": "Your Stripe Live Secret Key (starts with sk_live_). Optional - can be added later.",
+      "required": false,
+      "secret": true,
+      "placeholder": "sk_live_...",
+      "group": "live_credentials"
+    },
+    "live_webhook_secret": {
+      "type": "password",
+      "label": "Live Webhook Secret",
+      "help_text": "Optional: Live webhook signing secret (starts with whsec_)",
+      "required": false,
+      "secret": true,
+      "placeholder": "whsec_...",
+      "group": "live_credentials"
+    }
+  },
+  "webhooks": {
+    "supported_events": [
+      "payment_intent.succeeded",
+      "payment_intent.payment_failed",
+      "charge.refunded",
+      "charge.refund.updated",
+      "checkout.session.completed",
+      "customer.subscription.created",
+      "customer.subscription.updated",
+      "customer.subscription.deleted",
+      "customer.subscription.paused",
+      "customer.subscription.resumed",
+      "customer.subscription.trial_will_end",
+      "invoice.payment_succeeded",
+      "invoice.payment_failed",
+      "invoice.upcoming"
+    ],
+    "verification_method": "hmac_sha256",
+    "headers": [
+      "stripe-signature"
+    ]
+  },
+  "signup_url": "https://dashboard.stripe.com/register",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "supported_countries": [
+    "US",
+    "GB",
+    "AU",
+    "CA",
+    "SG",
+    "HK",
+    "JP",
+    "NZ",
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IE",
+    "IT",
+    "LV",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "NO",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE",
+    "CH",
+    "BR",
+    "MX",
+    "IN",
+    "TH",
+    "MY"
+  ],
+  "changelog": [
+    {
+      "version": "1.1.1",
+      "date": "2026-03-01",
+      "changes": [
+        "Fixed critical NameError in integrated checkout (undefined customer_country variable)",
+        "Simplified credential initialization - removed redundant workaround now that base class handles dual-credential selection",
+        "Fixed redact_credentials to handle dual-credential format (test_/live_ prefixed keys)",
+        "Fixed webhook verification to fail-secure when webhook secret is not configured",
+        "Removed stale environment field from credential_schema property",
+        "Restored subscription_provider.py for subscription framework compatibility",
+        "Fixed invoice charge type-checking for safe null handling"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-02-17",
+      "changes": [
+        "Implemented plugin architecture for frontend checkout integration",
+        "Added checkout-handler.js for embedded payment using Stripe Elements Payment Element",
+        "Added frontend manifest section with checkout_handler and sdk_dependencies",
+        "Enhanced integrated mode to return handler_config for embedded checkout",
+        "Customers stay on merchant site throughout payment (no redirect)",
+        "Automatic SDK loading based on configured provider",
+        "Unified Payment Element supports cards, Apple Pay, Google Pay, and BNPL automatically",
+        "Built-in 3D Secure handling and validation",
+        "Full backward compatibility - existing modes continue working"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with full payment processing support",
+        "Support for cards, digital wallets, BNPL, and bank transfers",
+        "135+ currency support with automatic zero-decimal handling",
+        "Stripe Checkout (hosted) and Payment Intents (integrated) support",
+        "Webhook integration with signature verification",
+        "Full and partial refund capabilities",
+        "3D Secure authentication support",
+        "Authorize and capture workflow"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Standard pricing: 2.9% + 30c per successful card charge. International cards +1.5%. Volume discounts available. Visit stripe.com/pricing for details."
+  },
+  "regions": {
+    "supported": [
+      "global"
+    ],
+    "restricted": [],
+    "notes": "Available in 46+ countries with support for 135+ currencies and dozens of local payment methods"
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": [
+      "PCI DSS Level 1",
+      "SOC 2"
+    ],
+    "data_residency": [
+      "multi_region"
+    ]
+  }
+}

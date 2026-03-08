@@ -1,0 +1,158 @@
+{
+  "component_type": "license_server_provider",
+  "slug": "spwig-builtin-license-server",
+  "name": "Spwig Built-in License Server",
+  "version": "1.0.0",
+  "description": "Fully managed license management server by Spwig. No external setup required - the easiest integration with full feature support.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "spwig_server",
+  "class_name": "SpwigLicenseServerAdapter",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://licenses.spwig.com",
+  "support_url": "https://spwig.com/support",
+  "api_docs_url": "https://licenses.spwig.com/docs/api",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "create_license": true,
+    "validate_license": true,
+    "activate_device": true,
+    "deactivate_device": true,
+    "suspend_license": true,
+    "revoke_license": true,
+    "webhooks": true,
+    "offline_validation": true,
+    "analytics": true,
+    "device_management": true,
+    "floating_licenses": true,
+    "usage_tracking": true,
+    "trial_licenses": true
+  },
+  "features": [
+    "Hosted by Spwig - fully managed",
+    "No external API keys needed",
+    "Automatic license sync",
+    "Built-in reporting and analytics",
+    "Full offline validation support",
+    "Advanced device management",
+    "Floating license support",
+    "Usage tracking and metrics",
+    "Trial license management",
+    "Real-time webhooks",
+    "99.9% uptime SLA"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "account_id": {
+      "type": "text",
+      "label": "Spwig License Account ID",
+      "help_text": "Your Spwig Built-in License Server account ID (found in dashboard)",
+      "required": true,
+      "placeholder": "e.g., acc_abc123..."
+    },
+    "api_key": {
+      "type": "password",
+      "label": "API Key",
+      "help_text": "API key from Spwig Built-in License Server dashboard",
+      "required": true,
+      "secret": true,
+      "placeholder": "••••••••••••••••"
+    }
+  },
+  "pricing": {
+    "free_tier": {
+      "licenses_per_month": 100,
+      "features": [
+        "Up to 100 active licenses",
+        "Basic analytics",
+        "Standard support",
+        "99.5% uptime SLA"
+      ]
+    },
+    "paid_tiers": [
+      {
+        "name": "Professional",
+        "price": "$29/month",
+        "licenses_per_month": 1000,
+        "features": [
+          "Up to 1,000 active licenses",
+          "Advanced analytics",
+          "Priority support",
+          "99.9% uptime SLA",
+          "Custom branding"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "$99/month",
+        "licenses_per_month": 10000,
+        "features": [
+          "Up to 10,000 active licenses",
+          "Premium analytics",
+          "Dedicated support",
+          "99.95% uptime SLA",
+          "Custom branding",
+          "Custom integrations",
+          "White-label option"
+        ]
+      },
+      {
+        "name": "Custom",
+        "price": "Contact sales",
+        "licenses_per_month": "Unlimited",
+        "features": [
+          "Unlimited licenses",
+          "Enterprise analytics",
+          "24/7 dedicated support",
+          "99.99% uptime SLA",
+          "Full white-label",
+          "Custom development",
+          "On-premise option available"
+        ]
+      }
+    ]
+  },
+  "signup_url": "https://licenses.spwig.com/signup",
+  "api_info": {
+    "base_url": "https://licenses.spwig.com/api/v1",
+    "endpoints": {
+      "licenses": "/licenses/",
+      "validate": "/licenses/{key}/validate/",
+      "activate": "/licenses/{key}/activate/",
+      "deactivate": "/licenses/{key}/deactivate/",
+      "suspend": "/licenses/{key}/suspend/",
+      "revoke": "/licenses/{key}/revoke/",
+      "account": "/account/"
+    },
+    "documentation_url": "https://licenses.spwig.com/docs/api"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-01-21",
+      "changes": [
+        "Initial release",
+        "Full license lifecycle management",
+        "Device activation and deactivation",
+        "Offline validation tokens",
+        "Real-time webhooks",
+        "Advanced analytics",
+        "Usage tracking",
+        "Trial license support",
+        "Floating license support",
+        "99.9% uptime SLA"
+      ]
+    }
+  ],
+  "logo": "logo.png",
+  "recommended": true
+}

@@ -1,0 +1,116 @@
+{
+  "component_type": "license_server_provider",
+  "slug": "custom-api",
+  "name": "Custom API",
+  "version": "1.0.0",
+  "description": "Connect your own license server via REST API. Flexible integration for merchants with existing license management systems.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "custom",
+  "class_name": "CustomAPIAdapter",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://spwig.com/docs/custom-license-api",
+  "support_url": "https://spwig.com/support",
+  "api_docs_url": "https://spwig.com/docs/custom-license-api/spec",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "create_license": true,
+    "validate_license": true,
+    "activate_device": true,
+    "deactivate_device": true,
+    "suspend_license": false,
+    "revoke_license": false,
+    "webhooks": false,
+    "custom_endpoints": true,
+    "flexible_auth": true
+  },
+  "features": [
+    "Connect your own license server",
+    "Flexible REST API integration",
+    "Multiple authentication methods",
+    "Custom endpoint mapping",
+    "Works with existing systems",
+    "No third-party dependencies",
+    "Full control over data"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "api_endpoint": {
+      "type": "url",
+      "label": "API Base URL",
+      "help_text": "Base URL of your license API (e.g., https://licenses.yoursite.com/api)",
+      "required": true,
+      "placeholder": "https://licenses.yoursite.com/api"
+    },
+    "auth_type": {
+      "type": "select",
+      "label": "Authentication Type",
+      "help_text": "How to authenticate with your API",
+      "required": true,
+      "choices": [
+        ["bearer", "Bearer Token"],
+        ["api_key", "API Key Header"],
+        ["basic", "Basic Auth"],
+        ["custom", "Custom Headers"]
+      ],
+      "default": "bearer"
+    },
+    "auth_token": {
+      "type": "password",
+      "label": "Authentication Token/Key",
+      "help_text": "Token or key for API authentication",
+      "required": true,
+      "secret": true,
+      "placeholder": "••••••••••••••••"
+    },
+    "endpoint_mapping": {
+      "type": "json",
+      "label": "Endpoint Mapping (Optional)",
+      "help_text": "Map operations to custom endpoints (JSON format)",
+      "required": false,
+      "placeholder": "{\"create\": \"/licenses\", \"validate\": \"/licenses/{key}/validate\"}"
+    }
+  },
+  "pricing": {
+    "free_tier": null,
+    "paid_tiers": [],
+    "note": "Custom API integration is included with your Spwig platform license. Costs depend on your own license server infrastructure."
+  },
+  "signup_url": null,
+  "api_info": {
+    "base_url": "Configured by merchant",
+    "documentation_url": "https://spwig.com/docs/custom-license-api/spec",
+    "required_endpoints": {
+      "create": "POST /licenses",
+      "validate": "GET /licenses/{key}/validate",
+      "activate": "POST /licenses/{key}/activate",
+      "deactivate": "POST /licenses/{key}/deactivate"
+    }
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-01-21",
+      "changes": [
+        "Initial release",
+        "Custom REST API integration",
+        "Multiple authentication methods (Bearer, API Key, Basic, Custom)",
+        "Custom endpoint mapping",
+        "License creation",
+        "License validation",
+        "Device activation/deactivation",
+        "Flexible configuration"
+      ]
+    }
+  ],
+  "logo": "logo.svg"
+}

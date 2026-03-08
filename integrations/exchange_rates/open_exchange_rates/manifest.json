@@ -1,0 +1,169 @@
+{
+  "component_type": "exchange_rate_provider",
+  "slug": "open_exchange_rates",
+  "name": "Open Exchange Rates",
+  "version": "1.0.1",
+  "description": "Real-time exchange rates for 200+ currencies powered by Open Exchange Rates API",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "open_exchange_rates",
+  "class_name": "OpenExchangeRatesProvider",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://openexchangerates.org",
+  "support_url": "https://openexchangerates.org/support",
+  "api_docs_url": "https://docs.openexchangerates.org",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "live_rates": true,
+    "historical": false,
+    "crypto": false,
+    "commodities": false,
+    "base_currency_selection": false,
+    "batch_requests": false
+  },
+  "rate_limits": {
+    "requests_per_month": 1000,
+    "requests_per_minute": null,
+    "has_burst_limit": false
+  },
+  "supported_currencies": [
+    "USD",
+    "EUR",
+    "GBP",
+    "JPY",
+    "CHF",
+    "CAD",
+    "AUD",
+    "NZD",
+    "CNY",
+    "INR",
+    "BRL",
+    "ZAR",
+    "SEK",
+    "NOK",
+    "DKK",
+    "PLN",
+    "CZK",
+    "HUF",
+    "RON",
+    "BGN",
+    "HRK",
+    "RUB",
+    "TRY",
+    "MXN",
+    "ARS",
+    "CLP",
+    "COP",
+    "PEN",
+    "KRW",
+    "TWD",
+    "HKD",
+    "SGD",
+    "MYR",
+    "THB",
+    "IDR",
+    "PHP",
+    "VND",
+    "ILS",
+    "SAR",
+    "AED",
+    "KWD",
+    "QAR",
+    "BHD",
+    "OMR",
+    "JOD",
+    "EGP",
+    "MAD",
+    "NGN",
+    "KES",
+    "GHS"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "app_id": {
+      "type": "text",
+      "label": "App ID",
+      "help_text": "Your Open Exchange Rates App ID from the dashboard",
+      "required": true,
+      "placeholder": "e.g., abc123def456..."
+    }
+  },
+  "pricing": {
+    "free_tier": {
+      "requests_per_month": 1000,
+      "features": [
+        "Latest rates (hourly updates)",
+        "USD base currency only",
+        "JSON API access"
+      ]
+    },
+    "paid_tiers": [
+      {
+        "name": "Unlimited",
+        "price": "$12/month",
+        "requests_per_month": "unlimited",
+        "features": [
+          "Latest rates (every 60 seconds)",
+          "Historical data back to 1999",
+          "Any base currency",
+          "HTTPS support",
+          "Time-series data"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "$97/month",
+        "requests_per_month": "unlimited",
+        "features": [
+          "All Unlimited features",
+          "Minute-by-minute updates",
+          "OHLC candlestick data",
+          "Priority support",
+          "Dedicated account manager"
+        ]
+      }
+    ]
+  },
+  "signup_url": "https://openexchangerates.org/signup",
+  "api_info": {
+    "base_url": "https://openexchangerates.org/api",
+    "latest_endpoint": "/latest.json",
+    "currencies_endpoint": "/currencies.json",
+    "documentation_url": "https://docs.openexchangerates.org"
+  },
+  "changelog": [
+    {
+      "version": "1.0.1",
+      "date": "2025-10-25",
+      "changes": [
+        "Updated provider logo to PNG format for better compatibility and display"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-10-24",
+      "changes": [
+        "Initial release",
+        "Support for 200+ currencies",
+        "Real-time exchange rates via Open Exchange Rates API",
+        "Automatic conversion for non-USD base currencies",
+        "Free tier support (1,000 requests/month)",
+        "Encrypted credential storage (Fernet encryption)",
+        "Comprehensive error handling (401, 403, 429, timeout)",
+        "Rate sanity checking and validation",
+        "Test connection via currencies endpoint",
+        "Full unit and integration test coverage"
+      ]
+    }
+  ],
+  "logo": "logo.png"
+}

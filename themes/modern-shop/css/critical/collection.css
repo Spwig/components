@@ -1,0 +1,25 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Modern Shop Theme - Critical CSS for Collection Page
+ * Contains above-the-fold styles for faster initial render
+ */
+
+/* Collection header */
+.collection-header {
+  padding: var(--theme-space-8) 0;
+  text-align: center;
+}
+
+/* Products grid critical styles */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--theme-space-6);
+}
+
+/* Filters sidebar skeleton */
+.filters-sidebar {
+  width: 100%;
+  max-width: 280px;
+}

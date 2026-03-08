@@ -1,0 +1,131 @@
+{
+  "component_type": "social_connector_provider",
+  "slug": "facebook_page",
+  "name": "Facebook Page",
+  "version": "1.1.0",
+  "description": "Share blog posts to your Facebook Page with rich link previews and images",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "facebook_page",
+  "class_name": "FacebookPageConnector",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://developers.facebook.com",
+  "support_url": "https://developers.facebook.com/support",
+  "api_docs_url": "https://developers.facebook.com/docs/pages-api",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "text_posts": true,
+    "image_posts": true,
+    "video_posts": false,
+    "carousel_posts": false,
+    "stories": false,
+    "reels": false,
+    "scheduling": true,
+    "link_preview": true,
+    "hashtags": true,
+    "mentions": true,
+    "analytics": false,
+    "comments": false,
+    "token_refresh": true
+  },
+  "character_limit": 63206,
+  "oauth_config": {
+    "authorize_url": "https://www.facebook.com/v18.0/dialog/oauth",
+    "token_url": "https://graph.facebook.com/v18.0/oauth/access_token",
+    "scope": [
+      "pages_manage_posts",
+      "pages_read_engagement",
+      "pages_show_list"
+    ],
+    "response_type": "code",
+    "token_expiry_days": 60
+  },
+  "account_selection": {
+    "required": true,
+    "type": "page",
+    "api_endpoint": "/me/accounts",
+    "api_fields": "id,name,category,picture{url},access_token",
+    "template": "select_account.html",
+    "id_field": "page_id",
+    "name_field": "page_name",
+    "token_field": "access_token"
+  },
+  "credential_schema": {
+    "access_token": {
+      "type": "text",
+      "label": "Access Token",
+      "required": true,
+      "secret": true,
+      "help_text": "Page access token from Facebook OAuth"
+    },
+    "page_id": {
+      "type": "text",
+      "label": "Page ID",
+      "required": true,
+      "help_text": "The Facebook Page ID to post to"
+    },
+    "page_name": {
+      "type": "text",
+      "label": "Page Name",
+      "required": false,
+      "help_text": "Display name of the page (auto-populated)"
+    }
+  },
+  "settings_schema": {
+    "default_hashtags": {
+      "type": "text",
+      "label": "Default Hashtags",
+      "required": false,
+      "help_text": "Comma-separated hashtags to add to posts (e.g., #mybrand, #blog)"
+    },
+    "post_template": {
+      "type": "textarea",
+      "label": "Post Template",
+      "required": false,
+      "help_text": "Custom template for posts. Use {title}, {excerpt}, {url}, {hashtags}",
+      "placeholder": "{title}\n\n{excerpt}\n\n{url}\n\n{hashtags}"
+    }
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2025-12-18",
+      "changes": [
+        "Added bundled account selection template for self-contained provider packages",
+        "Added account_selection manifest configuration for dynamic page selection",
+        "Added setup instructions HTML for OAuth configuration guide",
+        "Providers can now be updated independently without backend changes"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-12-02",
+      "changes": [
+        "Initial release",
+        "Support for text and image posts",
+        "Rich link preview support",
+        "OAuth 2.0 authentication flow",
+        "Scheduled posting support",
+        "Token refresh capability",
+        "Post template customization"
+      ]
+    }
+  ],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "total_size_bytes": 30075,
+  "file_count": 4,
+  "checksum": "sha256:bd8b1d50bdc1488c990d5208f919ec8648f2793bfb83c9386b19fc215cda0ae2"
+}

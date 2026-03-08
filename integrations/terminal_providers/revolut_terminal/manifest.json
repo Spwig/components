@@ -1,0 +1,126 @@
+{
+  "component_type": "terminal_provider",
+  "slug": "revolut_terminal",
+  "name": "Revolut Terminal",
+  "version": "1.0.0",
+  "description": "Accept card-present payments using Revolut Terminal and Revolut Reader via cloud push payments. Pure server-to-server REST API — no terminal SDK required.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.revolut.com/business/accept-payments/",
+  "support_url": "https://developer.revolut.com/docs/guides/in-person-payments/revolut-terminal/push-payments",
+  "license": "Proprietary",
+  "min_platform_version": "2.0.0",
+  "requires_platform": "2.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "pos_app": ">=1.0.0"
+  },
+  "provider_key": "revolut_terminal",
+  "entry_point": "provider",
+  "class_name": "RevolutTerminalProvider",
+  "capabilities": {
+    "connection_tokens": false,
+    "reader_discovery": true,
+    "locations": true,
+    "refunds": true,
+    "integration_mode": "cloud",
+    "payment_methods": ["card_present", "contactless"],
+    "reader_actions": ["collect_payment", "cancel_payment"],
+    "features": {
+      "cloud_communication": true,
+      "local_communication": false,
+      "tap_to_pay": true,
+      "smart_readers": true,
+      "tipping": false
+    }
+  },
+  "supported_readers": [
+    {
+      "type": "revolut_terminal",
+      "name": "Revolut Terminal",
+      "category": "smart_reader",
+      "connection": "cloud",
+      "description": "Full countertop POS terminal with touchscreen, receipt printer, and barcode scanner"
+    },
+    {
+      "type": "revolut_reader",
+      "name": "Revolut Reader",
+      "category": "card_reader",
+      "connection": "cloud",
+      "description": "Compact wireless contactless and chip card reader"
+    }
+  ],
+  "credential_schema": {
+    "secret_key": {
+      "type": "password",
+      "label": "Revolut Secret Key",
+      "help_text": "Your Revolut Merchant API secret key. Same key as used for online payments.",
+      "required": true,
+      "placeholder": "sk_live_..."
+    }
+  },
+  "settings_schema": {
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use 'sandbox' for development, 'production' for live payments.",
+      "required": true,
+      "default": "sandbox",
+      "options": ["sandbox", "production"]
+    },
+    "location_id": {
+      "type": "text",
+      "label": "Location ID",
+      "help_text": "Revolut location ID that links orders to your physical store. Required for terminal payments.",
+      "required": true,
+      "placeholder": "loc_..."
+    }
+  },
+  "signup_url": "https://business.revolut.com/signup",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with Revolut Terminal cloud push payments",
+        "Server-to-server REST API integration (no SDK required)",
+        "Support for Revolut Terminal and Revolut Reader hardware",
+        "Terminal discovery via Merchant API",
+        "Cloud-based payment push to terminals",
+        "Payment status polling",
+        "Payment cancellation support",
+        "Full and partial refund support"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Revolut charges 0.8% + £0.02 per card-present transaction (UK). No monthly fees."
+  },
+  "regions": {
+    "supported": ["GB", "IE", "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IT", "LV", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "CH"],
+    "restricted": [],
+    "notes": "Available in UK, Ireland, and expanding EEA markets"
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": ["PCI DSS Level 1", "EMV"],
+    "data_residency": ["EU", "GB"]
+  }
+}

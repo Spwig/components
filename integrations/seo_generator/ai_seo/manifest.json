@@ -1,0 +1,132 @@
+{
+    "component_type": "seo_generator_provider",
+    "slug": "ai_seo",
+    "name": "AI SEO Generator",
+    "version": "1.0.0",
+    "description": "AI-powered SEO content generation using Claude (Anthropic) or OpenAI (GPT). Generates contextually rich, native-language meta titles, descriptions, and keywords using large language models. Supports multi-language generation and understands content context deeply.",
+    "author": "Spwig",
+    "author_details": {
+        "name": "Spwig",
+        "email": "support@spwig.com",
+        "website": "https://spwig.com"
+    },
+    "license": "Proprietary",
+    "provider_key": "ai_seo",
+    "class_name": "AISEOProvider",
+    "entry_point": "provider.py",
+    "min_platform_version": "2.0.0",
+    "homepage_url": "https://spwig.com",
+    "support_url": "https://spwig.com/support",
+    "capabilities": {
+        "meta_title": true,
+        "meta_description": true,
+        "keywords": true,
+        "multi_language": true,
+        "bulk_generation": true
+    },
+    "credential_schema": {
+        "ai_service": {
+            "type": "select",
+            "label": "AI Service",
+            "help_text": "Choose which AI service to use for SEO generation",
+            "required": true,
+            "default": "claude",
+            "choices": [
+                {"value": "claude", "label": "Claude (Anthropic)"},
+                {"value": "openai", "label": "OpenAI (GPT)"}
+            ]
+        },
+        "api_key": {
+            "type": "password",
+            "label": "API Key",
+            "help_text": "API key for your selected AI service. Claude keys start with 'sk-ant-'. OpenAI keys start with 'sk-'.",
+            "required": true,
+            "secret": true,
+            "placeholder": "e.g., sk-ant-api03-... or sk-proj-...",
+            "min_length": 20
+        },
+        "model": {
+            "type": "select",
+            "label": "Model",
+            "help_text": "Which AI model to use. More capable models produce better results but cost more per request.",
+            "required": true,
+            "default": "claude-sonnet-4-20250514",
+            "choices": [
+                {"value": "claude-sonnet-4-20250514", "label": "Claude Sonnet 4 (Recommended)"},
+                {"value": "claude-haiku-4-20250514", "label": "Claude Haiku 4 (Faster, cheaper)"},
+                {"value": "gpt-4o-mini", "label": "GPT-4o Mini (Budget)"},
+                {"value": "gpt-4o", "label": "GPT-4o (Capable)"}
+            ]
+        }
+    },
+    "setup_wizard": {
+        "has_setup_instructions": true,
+        "supports_test_connection": true,
+        "estimated_setup_time": "5 minutes"
+    },
+    "pricing": {
+        "model": "per_request",
+        "note": "Costs vary by AI service and model. Claude Haiku/GPT-4o Mini: ~$0.001/request. Claude Sonnet/GPT-4o: ~$0.005/request."
+    },
+    "rate_limits": {
+        "note": "Depends on your AI service plan tier"
+    },
+    "dependencies": {
+        "python": ">=3.10",
+        "django": ">=4.2",
+        "requests": ">=2.28.0"
+    },
+    "default_language": "en",
+    "translations": {
+        "es": {
+            "meta.name": "Generador SEO con IA",
+            "meta.description": "Generacion de contenido SEO con IA usando Claude o OpenAI",
+            "setup.title": "Configurar el Generador SEO con IA",
+            "setup.step1_title": "Elegir servicio de IA",
+            "setup.step1_desc": "Seleccione Claude (Anthropic) u OpenAI como su servicio de IA.",
+            "setup.step2_title": "Obtener clave API",
+            "setup.step2_desc": "Cree una cuenta y obtenga una clave API del servicio elegido.",
+            "setup.step3_title": "Configurar credenciales",
+            "setup.step3_desc": "Ingrese su clave API y seleccione el modelo en el siguiente paso."
+        },
+        "fr": {
+            "meta.name": "Generateur SEO IA",
+            "meta.description": "Generation de contenu SEO par IA avec Claude ou OpenAI",
+            "setup.title": "Configurer le generateur SEO IA",
+            "setup.step1_title": "Choisir le service IA",
+            "setup.step1_desc": "Selectionnez Claude (Anthropic) ou OpenAI comme service IA.",
+            "setup.step2_title": "Obtenir la cle API",
+            "setup.step2_desc": "Creez un compte et obtenez une cle API du service choisi.",
+            "setup.step3_title": "Configurer les identifiants",
+            "setup.step3_desc": "Entrez votre cle API et selectionnez le modele a l'etape suivante."
+        },
+        "de": {
+            "meta.name": "KI-SEO-Generator",
+            "meta.description": "KI-gestutzte SEO-Inhaltsgenerierung mit Claude oder OpenAI",
+            "setup.title": "KI-SEO-Generator einrichten",
+            "setup.step1_title": "KI-Dienst wahlen",
+            "setup.step1_desc": "Wahlen Sie Claude (Anthropic) oder OpenAI als Ihren KI-Dienst.",
+            "setup.step2_title": "API-Schlussel erhalten",
+            "setup.step2_desc": "Erstellen Sie ein Konto und erhalten Sie einen API-Schlussel vom gewahlten Dienst.",
+            "setup.step3_title": "Anmeldedaten konfigurieren",
+            "setup.step3_desc": "Geben Sie Ihren API-Schlussel ein und wahlen Sie das Modell im nachsten Schritt."
+        }
+    },
+    "changelog": [
+        {
+            "version": "1.0.0",
+            "date": "2026-03-01",
+            "changes": [
+                "Initial release",
+                "Claude (Anthropic) and OpenAI (GPT) support",
+                "Multi-language SEO generation",
+                "Single-call optimization for generate_seo()",
+                "Automatic JSON response parsing with fallback"
+            ]
+        }
+    ],
+    "logo": {
+        "file": "logo.svg",
+        "mime_type": "image/svg+xml"
+    }
+}

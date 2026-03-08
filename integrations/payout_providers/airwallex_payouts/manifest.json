@@ -1,0 +1,177 @@
+{
+  "component_type": "payout_provider",
+  "slug": "airwallex_payouts",
+  "name": "Airwallex Payouts",
+  "version": "1.0.0",
+  "description": "Send affiliate commission payouts via Airwallex's global bank transfer network. Supports LOCAL transfers for faster, lower-cost domestic payments and SWIFT for international transfers to 150+ countries.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "airwallex_payouts",
+  "class_name": "AirwallexPayoutProvider",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.airwallex.com/",
+  "support_url": "https://www.airwallex.com/contact",
+  "api_docs_url": "https://www.airwallex.com/docs/api",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "batch_payouts": false,
+    "single_payouts": true,
+    "cancel_pending": true,
+    "webhooks": true,
+    "fee_estimation": true,
+    "sandbox_mode": true
+  },
+  "payout_methods": ["bank_transfer"],
+  "transfer_methods": ["LOCAL", "SWIFT"],
+  "supported_currencies": [
+    "AED", "ARS", "AUD", "BDT", "BGN", "BHD", "BOB", "BRL", "BWP",
+    "CAD", "CHF", "CLP", "CNY", "COP", "CZK", "DKK", "EGP", "EUR",
+    "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KES", "KRW",
+    "LKR", "LSL", "MAD", "MWK", "MXN", "MYR", "NAD", "NOK", "NPR",
+    "NZD", "PEN", "PHP", "PKR", "PLN", "PYG", "RON", "RWF", "SAR",
+    "SEK", "SGD", "THB", "TRY", "TWD", "USD", "UYU", "VND", "XAF",
+    "XOF", "ZMW"
+  ],
+  "currency_note": "90+ currencies supported. List shows commonly used currencies. Check Airwallex Payout Network docs for full list.",
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "client_id": {
+      "type": "text",
+      "label": "Client ID",
+      "help_text": "Your Airwallex API Client ID from the webapp settings",
+      "required": true,
+      "placeholder": "e.g., abc123def456..."
+    },
+    "api_key": {
+      "type": "password",
+      "label": "API Key",
+      "help_text": "Your Airwallex API Key (keep this secure)",
+      "required": true,
+      "sensitive": true,
+      "placeholder": "Your API key..."
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use Demo for testing, Production for live transfers",
+      "required": true,
+      "default": "demo",
+      "options": [
+        {"value": "demo", "label": "Demo (Testing)"},
+        {"value": "production", "label": "Production (Live)"}
+      ]
+    },
+    "webhook_secret": {
+      "type": "password",
+      "label": "Webhook Secret",
+      "help_text": "Optional: Secret for verifying webhook signatures",
+      "required": false,
+      "sensitive": true,
+      "placeholder": "Your webhook secret..."
+    },
+    "default_transfer_method": {
+      "type": "select",
+      "label": "Default Transfer Method",
+      "help_text": "LOCAL is faster and cheaper for supported countries, SWIFT for international",
+      "required": false,
+      "default": "LOCAL",
+      "options": [
+        {"value": "LOCAL", "label": "Local (Faster, lower fees)"},
+        {"value": "SWIFT", "label": "SWIFT (International)"}
+      ]
+    }
+  },
+  "fee_structure": {
+    "type": "variable",
+    "local_transfers": {
+      "description": "Domestic bank transfers using local payment rails",
+      "fee": "Varies by country, typically 0.5% - 1%",
+      "minimum": "Varies by currency"
+    },
+    "swift_transfers": {
+      "description": "International SWIFT transfers",
+      "fee": "Typically $15-25 USD or equivalent",
+      "fx_markup": "0.5% - 1% on currency conversion"
+    },
+    "note": "Actual fees depend on your Airwallex pricing agreement"
+  },
+  "signup_url": "https://www.airwallex.com/signup",
+  "api_info": {
+    "base_url_demo": "https://api-demo.airwallex.com",
+    "base_url_production": "https://api.airwallex.com",
+    "auth_type": "bearer_token",
+    "token_endpoint": "/api/v1/authentication/login"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-11-24",
+      "changes": [
+        "Initial release",
+        "Bank transfer support (LOCAL and SWIFT)",
+        "Bearer token authentication with automatic refresh",
+        "Webhook signature verification",
+        "Fee estimation support",
+        "Demo and Production environment support"
+      ]
+    }
+  ],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "webhooks": {
+    "supported_events": [
+      "transfer.created",
+      "transfer.submitted",
+      "transfer.pending",
+      "transfer.in_review",
+      "transfer.approved",
+      "transfer.sent",
+      "transfer.completed",
+      "transfer.failed",
+      "transfer.cancelled",
+      "transfer.returned"
+    ],
+    "verification_method": "hmac_sha256",
+    "required_headers": ["x-signature", "x-timestamp"]
+  },
+  "pricing_info": {
+    "model": "variable",
+    "local_transfers": {
+      "fee_rate": "0.5% - 1%",
+      "description": "Domestic transfers via local payment rails"
+    },
+    "swift_transfers": {
+      "fee_rate": "$15-25 flat + FX markup",
+      "description": "International SWIFT transfers"
+    },
+    "notes": "Fees vary based on corridor, currency, and your Airwallex account agreement. Contact Airwallex for exact pricing."
+  },
+  "regions": {
+    "supported": ["global"],
+    "local_transfer_countries": [
+      "AU", "US", "GB", "EU", "SG", "HK", "JP", "CA", "NZ", "IN", "ID", "MY", "PH", "TH", "VN", "KR", "TW"
+    ],
+    "restricted": [],
+    "notes": "Local transfers available in 17+ countries. SWIFT available to 150+ countries. Recipients need valid bank accounts."
+  },
+  "compliance": {
+    "pci_dss": false,
+    "certifications": ["AFSL", "FCA", "MAS", "HKMA"],
+    "data_residency": ["multi_region"],
+    "notes": "Airwallex is regulated in multiple jurisdictions. All transfers subject to compliance checks."
+  },
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "setup_instructions": "setup_instructions.html"
+}

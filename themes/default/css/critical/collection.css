@@ -1,0 +1,32 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Default Theme - Critical CSS for Collection Page
+ * Contains above-the-fold styles for faster initial render
+ */
+
+/* Collection header */
+.collection-header {
+  padding: var(--theme-space-8) 0;
+  background-color: var(--theme-color-background-secondary);
+}
+
+/* Filter sidebar */
+.filter-sidebar {
+  position: sticky;
+  top: var(--theme-space-4);
+}
+
+/* Products grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--theme-space-6);
+}
+
+/* Product card */
+.product-card {
+  background-color: var(--theme-color-surface);
+  border-radius: var(--theme-radius-lg);
+  overflow: hidden;
+}

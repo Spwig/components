@@ -1,0 +1,187 @@
+<div class="setup-instructions">
+    <h3>LinkedIn Company Page Setup Instructions</h3>
+
+    <div class="instruction-section">
+        <h4>Prerequisites</h4>
+        <ul>
+            <li>A LinkedIn Company Page that you administer</li>
+            <li>A LinkedIn Developer account</li>
+            <li>Marketing Developer Platform access (for organization posting)</li>
+        </ul>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 1: Create a LinkedIn App</h4>
+        <ol>
+            <li>Go to <a href="https://www.linkedin.com/developers/apps" target="_blank">LinkedIn Developers</a></li>
+            <li>Click "Create app"</li>
+            <li>Fill in your app details:
+                <ul>
+                    <li>App name</li>
+                    <li>LinkedIn Page (associate with your company page)</li>
+                    <li>App logo</li>
+                </ul>
+            </li>
+            <li>Accept the terms and create the app</li>
+        </ol>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 2: Request Marketing Developer Platform Access</h4>
+        <ol>
+            <li>In your app settings, go to the "Products" tab</li>
+            <li>Request access to "Marketing Developer Platform"</li>
+            <li>Fill out the required information about your use case</li>
+            <li>Wait for approval (usually 1-3 business days)</li>
+        </ol>
+        <p class="note">Note: Organization posting requires Marketing Developer Platform access.</p>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 3: Configure OAuth 2.0</h4>
+        <ol>
+            <li>Go to the "Auth" tab in your app settings</li>
+            <li>Add the following Authorized redirect URL:</li>
+        </ol>
+        <div class="code-block">
+            <code>{redirect_uri}</code>
+            <button type="button" class="copy-btn" data-action="copy-text" data-copy-value="{redirect_uri}">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 4: Request Required OAuth Scopes</h4>
+        <p>Your app needs the following OAuth 2.0 scopes:</p>
+        <ul>
+            <li><strong>r_organization_social</strong> - Read organization social data</li>
+            <li><strong>w_organization_social</strong> - Post on behalf of an organization</li>
+            <li><strong>rw_organization_admin</strong> - Manage organization pages</li>
+        </ul>
+        <p>Request these in the "OAuth 2.0 scopes" section of your app settings.</p>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 5: Get Your App Credentials</h4>
+        <ol>
+            <li>Go to the "Auth" tab</li>
+            <li>Copy your <strong>Client ID</strong> and <strong>Client Secret</strong></li>
+            <li>Add these to your platform's environment variables:
+                <ul>
+                    <li><code>LINKEDIN_CLIENT_ID</code></li>
+                    <li><code>LINKEDIN_CLIENT_SECRET</code></li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 6: Verify Your Company Page</h4>
+        <ol>
+            <li>Go to the "Products" tab</li>
+            <li>Under "Marketing Developer Platform", click "Verify"</li>
+            <li>Select your LinkedIn Company Page to verify</li>
+            <li>Complete the verification process</li>
+        </ol>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 7: Connect Your Account</h4>
+        <ol>
+            <li>Click "Authorize" below to start the OAuth flow</li>
+            <li>Log in with your LinkedIn account</li>
+            <li>Grant the requested permissions</li>
+            <li>Select which Organization to connect</li>
+        </ol>
+    </div>
+
+    <div class="help-section">
+        <h4>Need Help?</h4>
+        <ul>
+            <li><a href="https://learn.microsoft.com/en-us/linkedin/marketing/getting-started" target="_blank">LinkedIn Marketing API Documentation</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/posts-api" target="_blank">Posts API Reference</a></li>
+            <li><a href="https://www.linkedin.com/help/linkedin/answer/a548441" target="_blank">Company Page Admin Help</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.setup-instructions {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.instruction-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+.instruction-section:last-child {
+    border-bottom: none;
+}
+.instruction-section h4 {
+    color: #333;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+.instruction-section ol, .instruction-section ul {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.instruction-section li {
+    margin-bottom: 0.5rem;
+}
+.code-block {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.75rem 0;
+}
+.code-block code {
+    font-family: monospace;
+    font-size: 13px;
+    word-break: break-all;
+    flex: 1;
+}
+.copy-btn {
+    background: #0077b5;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+.copy-btn:hover {
+    background: #005e93;
+}
+.note {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    font-size: 13px;
+}
+.help-section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+}
+.help-section h4 {
+    margin-bottom: 0.5rem;
+}
+.help-section ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+.help-section a {
+    color: #0077b5;
+}
+</style>
+

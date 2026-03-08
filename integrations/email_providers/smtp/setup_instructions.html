@@ -1,0 +1,385 @@
+{% load i18n static %}
+{# Setup instructions fragment for External SMTP provider #}
+{# Injected inside .setup-instructions in the wizard template #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<div class="intro-section">
+    <p>{% trans "This guide will walk you through connecting to an external SMTP server to send transactional emails. This provider supports all standard SMTP servers including Gmail, Outlook, SendGrid, Mailgun, Amazon SES, and more." %}</p>
+
+    <div class="note info">
+        <strong>{% trans "Time Required:" %}</strong> {% trans "5-10 minutes" %}<br>
+        <strong>{% trans "Prerequisites:" %}</strong> {% trans "SMTP server credentials from your email provider" %}
+    </div>
+</div>
+
+<h3>{% trans "Quick Setup Overview" %}</h3>
+<p>{% trans "To use an external SMTP server, you'll need:" %}</p>
+<ol>
+    <li>{% trans "SMTP server hostname and port" %}</li>
+    <li>{% trans "Your email address (username)" %}</li>
+    <li>{% trans "SMTP password or app-specific password" %}</li>
+    <li>{% trans "TLS/SSL settings (usually automatic)" %}</li>
+</ol>
+
+<h3>{% trans "Popular SMTP Providers" %}</h3>
+
+<div class="si-tabs">
+    <button class="si-tab active" data-action="switch-si-tab" data-tab="gmail">Gmail</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="outlook">Outlook/Office 365</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="sendgrid">SendGrid</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="mailgun">Mailgun</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="ses">Amazon SES</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="custom">{% trans "Custom SMTP" %}</button>
+</div>
+
+<!-- Gmail Tab -->
+<div id="gmail-si-tab" class="si-tab-content active">
+    <h4>Gmail / Google Workspace SMTP</h4>
+
+    <div class="step">
+        <h4><span class="si-step-number">1</span> {% trans "Enable 2-Step Verification" %}</h4>
+        <ol>
+            <li>{% trans 'Go to' %} <a href="https://myaccount.google.com/security" target="_blank" rel="noopener" class="si-button-link">Google Account Security</a></li>
+            <li>{% trans 'Under "Signing in to Google," select' %} <strong>{% trans "2-Step Verification" %}</strong></li>
+            <li>{% trans "Follow the prompts to enable 2-step verification" %}</li>
+        </ol>
+        <div class="note warning">
+            <strong>{% trans "Important:" %}</strong> {% trans "App Passwords require 2-Step Verification to be enabled first." %}
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">2</span> {% trans "Create App Password" %}</h4>
+        <ol>
+            <li>{% trans 'Go to' %} <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener" class="si-button-link">App Passwords</a></li>
+            <li>{% trans "Select app:" %} <strong>Mail</strong></li>
+            <li>{% trans "Select device:" %} <strong>Other (Custom name)</strong></li>
+            <li>{% trans 'Enter a name like "My Store Email"' %}</li>
+            <li>{% trans "Click" %} <strong>Generate</strong></li>
+            <li>{% trans "Copy the 16-character password (spaces don't matter)" %}</li>
+        </ol>
+        <div class="note info">
+            <strong>{% trans "Note:" %}</strong> {% trans "This password is shown only once. Copy it now!" %}
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">3</span> {% trans "Enter Credentials" %}</h4>
+        <table class="si-table">
+            <tr><th>{% trans "Setting" %}</th><th>{% trans "Value" %}</th></tr>
+            <tr><td>{% trans "SMTP Host" %}</td><td><code>smtp.gmail.com</code></td></tr>
+            <tr><td>{% trans "SMTP Port" %}</td><td><code>587</code> (TLS) / <code>465</code> (SSL)</td></tr>
+            <tr><td>{% trans "Username" %}</td><td>{% trans "Your Gmail address (e.g.," %} <code>you@gmail.com</code>)</td></tr>
+            <tr><td>{% trans "Password" %}</td><td>{% trans "The 16-character App Password" %}</td></tr>
+            <tr><td>{% trans "Use TLS" %}</td><td>{% trans "Yes (for port 587)" %}</td></tr>
+            <tr><td>{% trans "Use SSL" %}</td><td>{% trans "Yes (for port 465)" %}</td></tr>
+        </table>
+    </div>
+
+    <div class="note warning">
+        <strong>{% trans "Sending Limits:" %}</strong>
+        <ul>
+            <li><strong>Gmail:</strong> {% trans "500 emails per day" %}</li>
+            <li><strong>Google Workspace:</strong> {% trans "2,000 emails per day" %}</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Outlook Tab -->
+<div id="outlook-si-tab" class="si-tab-content">
+    <h4>Outlook / Office 365 SMTP</h4>
+
+    <div class="step">
+        <h4><span class="si-step-number">1</span> {% trans "Enable SMTP AUTH" %}</h4>
+        <ol>
+            <li>{% trans "Sign in to" %} <a href="https://admin.microsoft.com" target="_blank" rel="noopener">Microsoft 365 Admin Center</a></li>
+            <li>{% trans "Go to" %} <strong>Users &rarr; Active users</strong></li>
+            <li>{% trans "Select your user account" %}</li>
+            <li>{% trans "Go to" %} <strong>Mail &rarr; Manage email apps</strong></li>
+            <li>{% trans "Ensure" %} <strong>Authenticated SMTP</strong> {% trans "is checked" %}</li>
+            <li>{% trans "Click" %} <strong>Save changes</strong></li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">2</span> {% trans "Enter Credentials" %}</h4>
+        <table class="si-table">
+            <tr><th>{% trans "Setting" %}</th><th>{% trans "Value" %}</th></tr>
+            <tr><td>{% trans "SMTP Host" %}</td><td><code>smtp.office365.com</code></td></tr>
+            <tr><td>{% trans "SMTP Port" %}</td><td><code>587</code></td></tr>
+            <tr><td>{% trans "Username" %}</td><td>{% trans "Your Office 365 email address" %}</td></tr>
+            <tr><td>{% trans "Password" %}</td><td>{% trans "Your Office 365 password" %}</td></tr>
+            <tr><td>{% trans "Use TLS" %}</td><td>{% trans "Yes" %}</td></tr>
+        </table>
+    </div>
+
+    <div class="note info">
+        <strong>{% trans "For Personal Outlook.com accounts:" %}</strong> {% trans "Use" %} <code>smtp-mail.outlook.com</code> {% trans "on port" %} <code>587</code>.
+    </div>
+
+    <div class="note warning">
+        <strong>{% trans "Sending Limits:" %}</strong>
+        <ul>
+            <li><strong>Office 365:</strong> {% trans "10,000 recipients per day" %}</li>
+            <li><strong>Outlook.com:</strong> {% trans "300 emails per day" %}</li>
+        </ul>
+    </div>
+</div>
+
+<!-- SendGrid Tab -->
+<div id="sendgrid-si-tab" class="si-tab-content">
+    <h4>SendGrid SMTP</h4>
+
+    <div class="step">
+        <h4><span class="si-step-number">1</span> {% trans "Create SendGrid Account" %}</h4>
+        <ol>
+            <li>{% trans "Sign up at" %} <a href="https://signup.sendgrid.com" target="_blank" rel="noopener" class="si-button-link">SendGrid</a></li>
+            <li>{% trans "Complete email verification" %}</li>
+            <li>{% trans "Verify your sending domain (highly recommended)" %}</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">2</span> {% trans "Create API Key" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://app.sendgrid.com" target="_blank" rel="noopener">SendGrid Dashboard</a></li>
+            <li>{% trans "Go to" %} <strong>Settings &rarr; API Keys</strong></li>
+            <li>{% trans "Click" %} <strong>Create API Key</strong></li>
+            <li>{% trans 'Enter a name (e.g., "SMTP Integration")' %}</li>
+            <li>{% trans "Select" %} <strong>Full Access</strong> {% trans "or" %} <strong>Restricted Access</strong> {% trans "with Mail Send permissions" %}</li>
+            <li>{% trans "Click" %} <strong>Create &amp; View</strong></li>
+            <li>{% trans "Copy the API key (starts with" %} <code>SG.</code>)</li>
+        </ol>
+        <div class="note warning">
+            <strong>{% trans "Warning:" %}</strong> {% trans "This API key is shown only once. Copy it now!" %}
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">3</span> {% trans "Enter Credentials" %}</h4>
+        <table class="si-table">
+            <tr><th>{% trans "Setting" %}</th><th>{% trans "Value" %}</th></tr>
+            <tr><td>{% trans "SMTP Host" %}</td><td><code>smtp.sendgrid.net</code></td></tr>
+            <tr><td>{% trans "SMTP Port" %}</td><td><code>587</code> ({% trans "recommended" %}) / <code>465</code></td></tr>
+            <tr><td>{% trans "Username" %}</td><td><code>apikey</code> ({% trans 'literally the word "apikey"' %})</td></tr>
+            <tr><td>{% trans "Password" %}</td><td>{% trans "Your SendGrid API key (starts with" %} <code>SG.</code>)</td></tr>
+            <tr><td>{% trans "Use TLS" %}</td><td>{% trans "Yes" %}</td></tr>
+        </table>
+    </div>
+
+    <div class="note success">
+        <strong>{% trans "SendGrid Benefits:" %}</strong>
+        <ul>
+            <li>{% trans "Free tier: 100 emails/day" %}</li>
+            <li>{% trans "Excellent deliverability" %}</li>
+            <li>{% trans "Built-in analytics" %}</li>
+            <li>{% trans "No daily sending limits on paid plans" %}</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Mailgun Tab -->
+<div id="mailgun-si-tab" class="si-tab-content">
+    <h4>Mailgun SMTP</h4>
+
+    <div class="step">
+        <h4><span class="si-step-number">1</span> {% trans "Create Mailgun Account" %}</h4>
+        <ol>
+            <li>{% trans "Sign up at" %} <a href="https://signup.mailgun.com" target="_blank" rel="noopener" class="si-button-link">Mailgun</a></li>
+            <li>{% trans "Complete email and phone verification" %}</li>
+            <li>{% trans "Add and verify your sending domain" %}</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">2</span> {% trans "Get SMTP Credentials" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://app.mailgun.com" target="_blank" rel="noopener">Mailgun Dashboard</a></li>
+            <li>{% trans "Select your domain from the dropdown" %}</li>
+            <li>{% trans "Go to" %} <strong>Sending &rarr; Domain settings &rarr; SMTP credentials</strong></li>
+            <li>{% trans "Click" %} <strong>Reset password</strong> {% trans "for the default login or create a new one" %}</li>
+            <li>{% trans "Copy the SMTP username and password" %}</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">3</span> {% trans "Enter Credentials" %}</h4>
+        <table class="si-table">
+            <tr><th>{% trans "Setting" %}</th><th>{% trans "Value" %}</th></tr>
+            <tr><td>{% trans "SMTP Host" %}</td><td><code>smtp.mailgun.org</code> (US) / <code>smtp.eu.mailgun.org</code> (EU)</td></tr>
+            <tr><td>{% trans "SMTP Port" %}</td><td><code>587</code> (TLS) / <code>465</code> (SSL)</td></tr>
+            <tr><td>{% trans "Username" %}</td><td>{% trans "Your SMTP username (e.g.," %} <code>postmaster@yourdomain.com</code>)</td></tr>
+            <tr><td>{% trans "Password" %}</td><td>{% trans "Your SMTP password" %}</td></tr>
+            <tr><td>{% trans "Use TLS" %}</td><td>{% trans "Yes" %}</td></tr>
+        </table>
+    </div>
+
+    <div class="note info">
+        <strong>{% trans "Mailgun Features:" %}</strong>
+        <ul>
+            <li>{% trans "Free tier: 5,000 emails/month (first 3 months)" %}</li>
+            <li>{% trans "Then 1,000 emails/month free forever" %}</li>
+            <li>{% trans "Advanced routing and tracking" %}</li>
+            <li>{% trans "Webhook support for delivery events" %}</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Amazon SES Tab -->
+<div id="ses-si-tab" class="si-tab-content">
+    <h4>Amazon SES SMTP</h4>
+
+    <div class="step">
+        <h4><span class="si-step-number">1</span> {% trans "Set Up Amazon SES" %}</h4>
+        <ol>
+            <li>{% trans "Sign in to" %} <a href="https://console.aws.amazon.com/ses" target="_blank" rel="noopener" class="si-button-link">AWS SES Console</a></li>
+            <li>{% trans "Verify your email address or domain" %}</li>
+            <li>{% trans "Request production access (to send to any email address)" %}</li>
+        </ol>
+        <div class="note warning">
+            <strong>{% trans "Sandbox Mode:" %}</strong> {% trans "By default, SES is in sandbox mode and can only send to verified addresses. Request production access to send to anyone." %}
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">2</span> {% trans "Create SMTP Credentials" %}</h4>
+        <ol>
+            <li>{% trans "In SES Console, go to" %} <strong>SMTP Settings</strong></li>
+            <li>{% trans "Click" %} <strong>Create SMTP Credentials</strong></li>
+            <li>{% trans 'Enter an IAM user name (e.g., "ses-smtp-user")' %}</li>
+            <li>{% trans "Click" %} <strong>Create</strong></li>
+            <li>{% trans "Download or copy the SMTP username and password" %}</li>
+        </ol>
+        <div class="note warning">
+            <strong>{% trans "Warning:" %}</strong> {% trans "SMTP credentials are shown only once. Save them securely!" %}
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">3</span> {% trans "Enter Credentials" %}</h4>
+        <table class="si-table">
+            <tr><th>{% trans "Setting" %}</th><th>{% trans "Value" %}</th></tr>
+            <tr><td>{% trans "SMTP Host" %}</td><td><code>email-smtp.us-east-1.amazonaws.com</code> ({% trans "adjust region" %})</td></tr>
+            <tr><td>{% trans "SMTP Port" %}</td><td><code>587</code> (TLS) / <code>465</code> (SSL)</td></tr>
+            <tr><td>{% trans "Username" %}</td><td>{% trans "Your SMTP username (starts with" %} <code>AKIA...</code>)</td></tr>
+            <tr><td>{% trans "Password" %}</td><td>{% trans "Your SMTP password" %}</td></tr>
+            <tr><td>{% trans "Use TLS" %}</td><td>{% trans "Yes" %}</td></tr>
+        </table>
+    </div>
+
+    <div class="note info">
+        <strong>{% trans "SES Regions:" %}</strong> {% trans "SMTP endpoint varies by region:" %}
+        <ul>
+            <li><strong>US East (N. Virginia):</strong> <code>email-smtp.us-east-1.amazonaws.com</code></li>
+            <li><strong>US West (Oregon):</strong> <code>email-smtp.us-west-2.amazonaws.com</code></li>
+            <li><strong>EU (Ireland):</strong> <code>email-smtp.eu-west-1.amazonaws.com</code></li>
+        </ul>
+        {% trans "See" %} <a href="https://docs.aws.amazon.com/ses/latest/dg/smtp-connect.html" target="_blank" rel="noopener">AWS docs</a> {% trans "for other regions." %}
+    </div>
+
+    <div class="note success">
+        <strong>{% trans "Amazon SES Benefits:" %}</strong>
+        <ul>
+            <li>{% trans "Extremely low cost: $0.10 per 1,000 emails" %}</li>
+            <li>{% trans "High sending limits (can be increased)" %}</li>
+            <li>{% trans "Excellent deliverability" %}</li>
+            <li>{% trans "Free tier: 62,000 emails/month (if sending from EC2)" %}</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Custom SMTP Tab -->
+<div id="custom-si-tab" class="si-tab-content">
+    <h4>{% trans "Custom SMTP Server" %}</h4>
+
+    <p>{% trans "To connect to any standard SMTP server, you'll need the following information from your email provider:" %}</p>
+
+    <div class="step">
+        <h4><span class="si-step-number">1</span> {% trans "Gather SMTP Server Information" %}</h4>
+        <table class="si-table">
+            <tr><th>{% trans "Setting" %}</th><th>{% trans "Description" %}</th><th>{% trans "Common Values" %}</th></tr>
+            <tr><td>{% trans "SMTP Host" %}</td><td>{% trans "Server hostname or IP address" %}</td><td><code>smtp.example.com</code></td></tr>
+            <tr><td>{% trans "SMTP Port" %}</td><td>{% trans "Server port number" %}</td><td><code>587</code> (TLS)<br><code>465</code> (SSL)<br><code>25</code> ({% trans "plain" %})</td></tr>
+            <tr><td>{% trans "Username" %}</td><td>{% trans "SMTP authentication username" %}</td><td>{% trans "Usually your email address" %}</td></tr>
+            <tr><td>{% trans "Password" %}</td><td>{% trans "SMTP authentication password" %}</td><td>{% trans "Your email password" %}</td></tr>
+            <tr><td>{% trans "Encryption" %}</td><td>TLS / SSL</td><td>TLS ({% trans "port" %} 587)<br>SSL ({% trans "port" %} 465)</td></tr>
+        </table>
+    </div>
+
+    <div class="step">
+        <h4><span class="si-step-number">2</span> {% trans "Choose Encryption Method" %}</h4>
+        <ul>
+            <li><strong>STARTTLS ({% trans "port" %} 587):</strong> {% trans "Recommended. Upgrades plain connection to encrypted" %}</li>
+            <li><strong>SSL/TLS ({% trans "port" %} 465):</strong> {% trans "Encrypted from the start" %}</li>
+            <li><strong>{% trans "Plain" %} ({% trans "port" %} 25):</strong> {% trans "Not recommended - unencrypted" %}</li>
+        </ul>
+    </div>
+
+    <div class="note warning">
+        <strong>{% trans "Security Recommendations:" %}</strong>
+        <ul>
+            <li>{% trans "Always use TLS or SSL encryption" %}</li>
+            <li>{% trans "Avoid port 25 (unencrypted)" %}</li>
+            <li>{% trans "Use app-specific passwords when available" %}</li>
+            <li>{% trans "Verify SSL certificates are valid" %}</li>
+        </ul>
+    </div>
+</div>
+
+<h3>{% trans "Common SMTP Settings" %}</h3>
+<table class="si-table">
+    <thead>
+        <tr>
+            <th>{% trans "Provider" %}</th>
+            <th>{% trans "SMTP Host" %}</th>
+            <th>{% trans "Port" %}</th>
+            <th>{% trans "Encryption" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Gmail</td><td><code>smtp.gmail.com</code></td><td>587 / 465</td><td>TLS / SSL</td></tr>
+        <tr><td>Outlook/Office 365</td><td><code>smtp.office365.com</code></td><td>587</td><td>TLS</td></tr>
+        <tr><td>SendGrid</td><td><code>smtp.sendgrid.net</code></td><td>587 / 465</td><td>TLS / SSL</td></tr>
+        <tr><td>Mailgun</td><td><code>smtp.mailgun.org</code></td><td>587 / 465</td><td>TLS / SSL</td></tr>
+        <tr><td>Amazon SES</td><td><code>email-smtp.[region].amazonaws.com</code></td><td>587 / 465</td><td>TLS / SSL</td></tr>
+        <tr><td>Postmark</td><td><code>smtp.postmarkapp.com</code></td><td>587 / 2525</td><td>TLS</td></tr>
+        <tr><td>SparkPost</td><td><code>smtp.sparkpostmail.com</code></td><td>587 / 2525</td><td>TLS</td></tr>
+    </tbody>
+</table>
+
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans 'Error: "Authentication failed"' %}</h4>
+    <ul>
+        <li>{% trans "Verify your username and password are correct" %}</li>
+        <li>{% trans "For Gmail/Outlook, ensure you're using an app-specific password" %}</li>
+        <li>{% trans "Check if 2-step verification is enabled (required for Gmail app passwords)" %}</li>
+        <li>{% trans "Verify SMTP authentication is enabled for your account" %}</li>
+    </ul>
+
+    <h4>{% trans 'Error: "Connection refused" or "Timeout"' %}</h4>
+    <ul>
+        <li>{% trans "Verify the SMTP hostname is correct" %}</li>
+        <li>{% trans "Check the port number (587 for TLS, 465 for SSL)" %}</li>
+        <li>{% trans "Ensure your firewall allows outbound connections on the SMTP port" %}</li>
+        <li>{% trans "Check if your hosting provider blocks outbound SMTP connections" %}</li>
+    </ul>
+
+    <h4>{% trans 'Error: "Sender address rejected"' %}</h4>
+    <ul>
+        <li>{% trans "Verify your sending domain is verified with the provider" %}</li>
+        <li>{% trans "Ensure the From address matches an authorized sender" %}</li>
+        <li>{% trans "Check SPF and DKIM DNS records are configured" %}</li>
+    </ul>
+
+    <h4>{% trans "Emails Going to Spam" %}</h4>
+    <ul>
+        <li>{% trans "Configure SPF, DKIM, and DMARC DNS records" %}</li>
+        <li>{% trans "Use a verified sending domain" %}</li>
+        <li>{% trans "Avoid spam trigger words in subject lines" %}</li>
+        <li>{% trans "Maintain a good sender reputation" %}</li>
+    </ul>
+</div>
+
+<script src="{% static 'email_system/js/component-tabs.js' %}"></script>

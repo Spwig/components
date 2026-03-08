@@ -1,0 +1,149 @@
+{
+  "component_type": "exchange_rate_provider",
+  "slug": "exchangerate_api",
+  "name": "ExchangeRate-API",
+  "version": "1.0.0",
+  "description": "Real-time exchange rates for 160+ currencies with 99.99% uptime and generous free tier",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "exchangerate_api",
+  "class_name": "ExchangeRateAPIProvider",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.exchangerate-api.com",
+  "support_url": "https://www.exchangerate-api.com/docs",
+  "api_docs_url": "https://www.exchangerate-api.com/docs",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "live_rates": true,
+    "historical": false,
+    "crypto": false,
+    "commodities": false,
+    "base_currency_selection": true,
+    "batch_requests": true
+  },
+  "rate_limits": {
+    "requests_per_month": 30000,
+    "requests_per_minute": null,
+    "has_burst_limit": false
+  },
+  "supported_currencies": [
+    "USD",
+    "EUR",
+    "GBP",
+    "JPY",
+    "CHF",
+    "CAD",
+    "AUD",
+    "NZD",
+    "CNY",
+    "INR",
+    "BRL",
+    "ZAR",
+    "SEK",
+    "NOK",
+    "DKK",
+    "PLN",
+    "CZK",
+    "HUF",
+    "RON",
+    "BGN",
+    "HRK",
+    "RUB",
+    "TRY",
+    "MXN",
+    "ARS",
+    "CLP",
+    "COP",
+    "PEN",
+    "KRW",
+    "TWD",
+    "HKD",
+    "SGD",
+    "MYR",
+    "THB",
+    "IDR",
+    "PHP",
+    "VND",
+    "ILS",
+    "SAR",
+    "AED"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "api_key": {
+      "type": "text",
+      "label": "API Key",
+      "help_text": "Your ExchangeRate-API key from your dashboard",
+      "required": true,
+      "placeholder": "e.g., 1137a55f91aad6c1244b0ac4"
+    }
+  },
+  "pricing": {
+    "free_tier": {
+      "requests_per_month": 30000,
+      "features": [
+        "30,000 requests per month",
+        "Daily rate updates",
+        "160+ currencies supported",
+        "Any base currency",
+        "99.99% uptime",
+        "JSON API access"
+      ]
+    },
+    "paid_tiers": [
+      {
+        "name": "Pro Plans",
+        "price": "From $9.99/month",
+        "description": "Various Pro plans available with higher limits and features. Visit pricing page for details.",
+        "requests_per_month": "Varies by plan",
+        "features": [
+          "Hourly or real-time rate updates",
+          "Higher request quotas (50k - 1M+)",
+          "Historical data (select plans)",
+          "Enhanced features",
+          "Priority support"
+        ]
+      }
+    ]
+  },
+  "signup_url": "https://www.exchangerate-api.com",
+  "pricing_url": "https://www.exchangerate-api.com/#pricing_table",
+  "api_info": {
+    "base_url": "https://v6.exchangerate-api.com/v6",
+    "latest_endpoint": "/latest/{BASE}",
+    "codes_endpoint": "/codes",
+    "quota_endpoint": "/quota",
+    "pair_endpoint": "/pair/{FROM}/{TO}",
+    "documentation_url": "https://www.exchangerate-api.com/docs"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-10-25",
+      "changes": [
+        "Initial release",
+        "Support for 160+ currencies",
+        "Real-time exchange rates via ExchangeRate-API v6",
+        "Free tier support (30,000 requests/month)",
+        "Auto-detection of account plan via /quota endpoint",
+        "Dynamic currency list fetching from /codes endpoint",
+        "Any base currency support (not limited to USD)",
+        "Encrypted credential storage (Fernet encryption)",
+        "Comprehensive error handling (invalid-key, quota-reached, etc.)",
+        "Rate sanity checking and validation",
+        "Test connection via /codes endpoint",
+        "Full unit and integration test coverage"
+      ]
+    }
+  ],
+  "logo": "logo.png"
+}

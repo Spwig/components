@@ -1,0 +1,136 @@
+<div class="setup-instructions">
+    <h2>PayPal Payment Setup</h2>
+
+    <div class="intro-section">
+        <p class="highlight">
+            <strong>Why Choose PayPal?</strong> Accept payments from 400+ million active accounts worldwide.
+            PayPal offers trusted checkout with buyer protection, supporting credit/debit cards, PayPal wallet,
+            Venmo, and Buy Now Pay Later across 200+ markets and 25+ currencies.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>Step 1: Create Your PayPal Business Account</h3>
+        <ol>
+            <li>Visit <a href="https://www.paypal.com/bizsignup" target="_blank">PayPal Business Sign Up</a></li>
+            <li>Select <strong>"Business Account"</strong> and click <strong>"Get Started"</strong></li>
+            <li>Enter your business email and create a password</li>
+            <li>Complete the business profile with your company details</li>
+            <li>Verify your email address</li>
+        </ol>
+        <div class="note info">
+            <strong>Tip:</strong> If you already have a personal PayPal account, you can upgrade it to a Business account from your account settings.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Get Your REST API Credentials</h3>
+        <ol>
+            <li>Go to the <a href="https://developer.paypal.com/dashboard/" target="_blank">PayPal Developer Dashboard</a></li>
+            <li>Log in with your PayPal Business account credentials</li>
+            <li>Navigate to <strong>Apps &amp; Credentials</strong></li>
+            <li>Toggle between <strong>Sandbox</strong> and <strong>Live</strong> mode as needed</li>
+            <li>Click <strong>"Create App"</strong> to create a new REST API application</li>
+            <li>Enter an app name (e.g., "My Store") and click <strong>"Create App"</strong></li>
+            <li>You will see your <strong>Client ID</strong> displayed on the app details page</li>
+            <li>Click <strong>"Show"</strong> under Secret to reveal your <strong>Client Secret</strong></li>
+            <li><strong>Important:</strong> Copy both the Client ID and Secret immediately</li>
+        </ol>
+        <div class="note warning">
+            <strong>Security:</strong> Never share your API credentials. Keep your Client Secret secure and do not commit it to version control or expose it in client-side code.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Configure Webhooks (Recommended)</h3>
+        <ol>
+            <li>In the <a href="https://developer.paypal.com/dashboard/" target="_blank">Developer Dashboard</a>, scroll down to <strong>Webhooks</strong></li>
+            <li>Click <strong>"Add Webhook"</strong></li>
+            <li>Enter your webhook URL: <code id="webhook-url" data-webhook-path="/payment-providers/webhook/paypal/"></code>
+                <button data-action="copy-to-clipboard" data-copy-id="webhook-url" class="btn-sm">Copy</button>
+            </li>
+            <li>Select the following events:
+                <ul>
+                    <li>PAYMENT.CAPTURE.COMPLETED</li>
+                    <li>PAYMENT.CAPTURE.DENIED</li>
+                    <li>PAYMENT.CAPTURE.REFUNDED</li>
+                    <li>CHECKOUT.ORDER.APPROVED</li>
+                    <li>CHECKOUT.ORDER.COMPLETED</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Save"</strong></li>
+            <li>Copy the <strong>Webhook ID</strong> displayed after saving (you will need this for signature verification)</li>
+        </ol>
+        <div class="note info">
+            <strong>Why Webhooks?</strong> Webhooks provide real-time notifications when payments are completed, denied, or refunded. This ensures your orders are updated immediately without relying on customer redirect.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Enter Your Credentials Below</h3>
+        <ol>
+            <li>Paste your <strong>Client ID</strong> from the Developer Dashboard</li>
+            <li>Paste your <strong>Client Secret</strong></li>
+            <li>If you configured webhooks, paste the <strong>Webhook ID</strong></li>
+            <li>Choose your <strong>Environment</strong>:
+                <ul>
+                    <li><strong>Sandbox:</strong> For testing with simulated payments (no real money)</li>
+                    <li><strong>Live:</strong> For processing real transactions</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Test Connection"</strong> to verify your credentials</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Test with Sandbox Accounts</h3>
+        <div class="note success">
+            <strong>Testing Mode:</strong> PayPal provides pre-configured sandbox buyer and seller accounts for testing. No real money is used in sandbox mode.
+        </div>
+        <p><strong>Sandbox Test Accounts:</strong></p>
+        <ol>
+            <li>Go to <a href="https://developer.paypal.com/dashboard/accounts" target="_blank">Developer Dashboard - Sandbox Accounts</a></li>
+            <li>You will find pre-created <strong>Business</strong> and <strong>Personal</strong> sandbox accounts</li>
+            <li>Use the Personal account email and password to simulate buyer payments</li>
+            <li>Default sandbox password is typically shown when you click the account details</li>
+        </ol>
+        <p><strong>Test Credit Cards:</strong></p>
+        <ul>
+            <li><strong>Visa:</strong> 4032 0350 0516 6450</li>
+            <li><strong>Mastercard:</strong> 5425 2334 3010 9903</li>
+            <li><strong>Amex:</strong> 3714 496353 98431</li>
+        </ul>
+        <p>Use any future expiration date and any 3-digit CVV (4 digits for Amex).</p>
+    </div>
+
+    <div class="step">
+        <h3>Step 6: Go Live</h3>
+        <ol>
+            <li>Ensure your PayPal Business account is fully verified</li>
+            <li>Test thoroughly in Sandbox mode first</li>
+            <li>In the Developer Dashboard, switch to <strong>Live</strong> mode</li>
+            <li>Create a new Live REST API app (or use the same app in live mode)</li>
+            <li>Copy the <strong>Live Client ID</strong> and <strong>Live Client Secret</strong></li>
+            <li>Update your credentials here and switch Environment to <strong>Live</strong></li>
+            <li>Set up a new webhook with your Live app for production events</li>
+            <li>Process a small test transaction to verify everything works</li>
+        </ol>
+    </div>
+
+    <div class="help-section">
+        <h3>Additional Resources</h3>
+        <ul>
+            <li><a href="https://developer.paypal.com/docs/api/orders/v2/" target="_blank">Orders API v2 Documentation</a></li>
+            <li><a href="https://developer.paypal.com/docs/checkout/" target="_blank">PayPal Checkout Integration Guide</a></li>
+            <li><a href="https://developer.paypal.com/docs/api/payments/v2/" target="_blank">Payments API v2 (Captures, Refunds)</a></li>
+            <li><a href="https://developer.paypal.com/docs/api-basics/notifications/webhooks/" target="_blank">Webhooks Documentation</a></li>
+            <li><a href="https://www.paypal.com/business/pricing" target="_blank">PayPal Business Pricing</a></li>
+            <li><strong>Support:</strong> <a href="https://developer.paypal.com/docs/support/" target="_blank">PayPal Developer Support</a></li>
+        </ul>
+    </div>
+
+    <div class="note info">
+        <strong>Multi-Currency:</strong> PayPal supports 25+ currencies. Transactions are processed in the currency you specify. PayPal handles currency conversion automatically when the buyer's account uses a different currency.
+    </div>
+</div>
+

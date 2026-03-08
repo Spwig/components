@@ -1,0 +1,59 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Default Theme - Critical CSS for Product Page
+ * Contains above-the-fold styles for faster initial render
+ */
+
+/* Product layout */
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--theme-space-8);
+}
+
+@media (min-width: 768px) {
+  .product-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Product gallery */
+.product-gallery {
+  position: relative;
+}
+
+.product-gallery-main {
+  aspect-ratio: 1;
+  background-color: var(--theme-color-surface);
+  border-radius: var(--theme-radius-lg);
+  overflow: hidden;
+}
+
+/* Product info */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-space-4);
+}
+
+.product-title {
+  font-size: var(--theme-font-size-3xl);
+  font-weight: var(--theme-font-weight-bold);
+}
+
+.product-price {
+  font-size: var(--theme-font-size-2xl);
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-color-primary);
+}
+
+/* Add to cart button */
+.add-to-cart-btn {
+  width: 100%;
+  padding: var(--theme-space-4);
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-text-inverse);
+  border-radius: var(--theme-radius-base);
+  font-weight: var(--theme-font-weight-semibold);
+}

@@ -1,0 +1,506 @@
+{% load i18n static %}
+{# DNS requirements fragment for External SMTP provider #}
+{# Injected inside .dns-requirements-iframe-container.setup-instructions in wizard step 4 #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<p>{% trans "Proper DNS configuration is essential for email deliverability. Configure SPF, DKIM, and DMARC records to ensure your emails reach recipients' inboxes instead of spam folders." %}</p>
+
+<div class="note info">
+    <strong>{% trans "Why DNS Configuration Matters:" %}</strong>
+    <ul>
+        <li><strong>{% trans "Prevents spam filtering:" %}</strong> {% trans "ISPs verify your domain using SPF, DKIM, and DMARC" %}</li>
+        <li><strong>{% trans "Improves deliverability:" %}</strong> {% trans "Properly configured domains have higher inbox placement rates" %}</li>
+        <li><strong>{% trans "Protects reputation:" %}</strong> {% trans "Prevents spammers from spoofing your domain" %}</li>
+        <li><strong>{% trans "Builds trust:" %}</strong> {% trans "Recipients see authenticated, verified emails" %}</li>
+    </ul>
+</div>
+
+<h3>{% trans "DNS Configuration by Provider" %}</h3>
+<p>{% trans "DNS requirements vary by SMTP provider. Select your provider below for specific instructions:" %}</p>
+
+<div class="si-tabs">
+    <button class="si-tab active" data-action="switch-si-tab" data-tab="gmail">Gmail</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="outlook">Outlook</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="sendgrid">SendGrid</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="mailgun">Mailgun</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="ses">Amazon SES</button>
+    <button class="si-tab" data-action="switch-si-tab" data-tab="generic">{% trans "Other SMTP" %}</button>
+</div>
+
+<!-- Gmail DNS -->
+<div id="gmail-si-tab" class="si-tab-content active">
+    <h4>Gmail / Google Workspace DNS</h4>
+
+    <div class="note warning">
+        <strong>{% trans "Important:" %}</strong> {% trans "If you're using Gmail's SMTP server, Google automatically signs emails with DKIM. You don't need to configure DKIM yourself. However, SPF and DMARC are still recommended." %}
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">1</span> {% trans "SPF Configuration" %}</h4>
+        <p>{% trans "Add this SPF record to authorize Gmail to send emails from your domain:" %}</p>
+
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} @ ({% trans "or" %} {{ domain }})</div>
+            <code>v=spf1 include:_spf.google.com ~all</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=spf1 include:_spf.google.com ~all">{% trans "Copy" %}</button>
+        </div>
+
+        <div class="note warning">
+            <strong>{% trans "Important:" %}</strong> {% trans "If you already have an SPF record, add" %} <code>include:_spf.google.com</code> {% trans "to it. Do not create multiple SPF records - only one SPF record is allowed per domain." %}
+        </div>
+
+        <p><strong>{% trans "Example with multiple senders:" %}</strong></p>
+        <div class="dns-record">
+            <code>v=spf1 include:_spf.google.com include:spf.otherprovider.com ~all</code>
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">2</span> {% trans "DKIM Configuration" %}</h4>
+        <p>{% trans "Google automatically signs emails with DKIM when you use Gmail SMTP. No additional configuration is needed." %}</p>
+
+        <div class="note info">
+            <strong>{% trans "For Google Workspace users:" %}</strong> {% trans "You can generate a custom DKIM key in the Google Admin Console:" %}
+            <ol>
+                <li>{% trans "Go to" %} <strong>Apps &rarr; Google Workspace &rarr; Gmail &rarr; Authenticate email</strong></li>
+                <li>{% trans "Click" %} <strong>Generate new record</strong></li>
+                <li>{% trans "Copy the TXT record and add it to your DNS" %}</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">3</span> {% trans "DMARC Configuration (Recommended)" %}</h4>
+        <p>{% trans "DMARC builds on SPF and DKIM to protect your domain from spoofing:" %}</p>
+
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} _dmarc.{{ domain }}</div>
+            <code>v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}; pct=100</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}; pct=100">{% trans "Copy" %}</button>
+        </div>
+
+        <p><strong>{% trans "DMARC Policy Options:" %}</strong></p>
+        <ul>
+            <li><code>p=none</code> - {% trans "Monitor only (recommended for testing)" %}</li>
+            <li><code>p=quarantine</code> - {% trans "Send suspicious emails to spam" %}</li>
+            <li><code>p=reject</code> - {% trans "Reject unauthorized emails completely" %}</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Outlook DNS -->
+<div id="outlook-si-tab" class="si-tab-content">
+    <h4>Outlook / Office 365 DNS</h4>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">1</span> {% trans "SPF Configuration" %}</h4>
+        <p>{% trans "Add this SPF record to authorize Office 365 to send emails:" %}</p>
+
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} @ ({% trans "or" %} {{ domain }})</div>
+            <code>v=spf1 include:spf.protection.outlook.com ~all</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=spf1 include:spf.protection.outlook.com ~all">{% trans "Copy" %}</button>
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">2</span> {% trans "DKIM Configuration" %}</h4>
+        <p>{% trans "For Office 365, DKIM signing is automatic. For custom domains:" %}</p>
+
+        <ol>
+            <li>{% trans "Go to" %} <strong>Microsoft 365 Admin Center</strong></li>
+            <li>{% trans "Navigate to" %} <strong>Settings &rarr; Domains</strong></li>
+            <li>{% trans "Select your domain" %} &rarr; <strong>DNS records</strong></li>
+            <li>{% trans "Enable DKIM signing and add the provided CNAME records" %}</li>
+        </ol>
+
+        <p>{% trans "Typical DKIM records (Office 365 provides exact values):" %}</p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} selector1._domainkey</div>
+            <code>selector1-yourdomain-com._domainkey.yourdomain.onmicrosoft.com</code>
+        </div>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} selector2._domainkey</div>
+            <code>selector2-yourdomain-com._domainkey.yourdomain.onmicrosoft.com</code>
+        </div>
+
+        <div class="note info">
+            <strong>{% trans "Note:" %}</strong> {% trans "Replace 'yourdomain-com' with your domain name (dots replaced by hyphens). Use the exact values provided by Microsoft." %}
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">3</span> {% trans "DMARC Configuration" %}</h4>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} _dmarc.{{ domain }}</div>
+            <code>v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}">{% trans "Copy" %}</button>
+        </div>
+    </div>
+</div>
+
+<!-- SendGrid DNS -->
+<div id="sendgrid-si-tab" class="si-tab-content">
+    <h4>SendGrid DNS</h4>
+
+    <div class="note info">
+        <strong>{% trans "Domain Authentication:" %}</strong> {% trans "SendGrid requires domain authentication (SPF and DKIM) before you can send emails. This is configured in the SendGrid dashboard." %}
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">1</span> {% trans "Authenticate Domain in SendGrid" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://app.sendgrid.com" target="_blank" rel="noopener">SendGrid Dashboard</a></li>
+            <li>{% trans "Go to" %} <strong>Settings &rarr; Sender Authentication &rarr; Authenticate Your Domain</strong></li>
+            <li>{% trans "Select your DNS provider" %}</li>
+            <li>{% trans "Enter your domain name" %}</li>
+            <li>{% trans "Choose" %} <strong>automated security</strong> {% trans "for easier setup" %}</li>
+            <li>{% trans "SendGrid will provide DNS records to add" %}</li>
+        </ol>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">2</span> {% trans "Add SendGrid DNS Records" %}</h4>
+        <p>{% trans "SendGrid will provide these records (exact values vary):" %}</p>
+
+        <p><strong>{% trans "SPF Record:" %}</strong></p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} @ ({% trans "or" %} {{ domain }})</div>
+            <code>v=spf1 include:sendgrid.net ~all</code>
+        </div>
+
+        <p><strong>{% trans "DKIM Records (3 CNAME records):" %}</strong></p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} s1._domainkey</div>
+            <code>s1.domainkey.u12345678.wl123.sendgrid.net</code>
+        </div>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} s2._domainkey</div>
+            <code>s2.domainkey.u12345678.wl123.sendgrid.net</code>
+        </div>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} em1234</div>
+            <code>u12345678.wl123.sendgrid.net</code>
+        </div>
+
+        <div class="note warning">
+            <strong>{% trans "Important:" %}</strong> {% trans "Use the exact values provided by SendGrid - the values above are examples only." %}
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">3</span> {% trans "Verify Domain" %}</h4>
+        <p>{% trans "After adding DNS records:" %}</p>
+        <ol>
+            <li>{% trans "Wait 24-48 hours for DNS propagation" %}</li>
+            <li>{% trans "Return to SendGrid dashboard" %}</li>
+            <li>{% trans "Click" %} <strong>Verify</strong> {% trans "on your domain" %}</li>
+            <li>{% trans "Once verified, you can send emails" %}</li>
+        </ol>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">4</span> {% trans "DMARC Configuration" %}</h4>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} _dmarc.{{ domain }}</div>
+            <code>v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}">{% trans "Copy" %}</button>
+        </div>
+    </div>
+</div>
+
+<!-- Mailgun DNS -->
+<div id="mailgun-si-tab" class="si-tab-content">
+    <h4>Mailgun DNS</h4>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">1</span> {% trans "Add Domain in Mailgun" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://app.mailgun.com" target="_blank" rel="noopener">Mailgun Dashboard</a></li>
+            <li>{% trans "Go to" %} <strong>Sending &rarr; Domains &rarr; Add New Domain</strong></li>
+            <li>{% trans "Enter your domain name" %}</li>
+            <li>{% trans "Mailgun will provide DNS records to add" %}</li>
+        </ol>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">2</span> {% trans "Add Mailgun DNS Records" %}</h4>
+        <p>{% trans "Mailgun provides these records (values are domain-specific):" %}</p>
+
+        <p><strong>{% trans "SPF Record:" %}</strong></p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} @ ({% trans "or" %} {{ domain }})</div>
+            <code>v=spf1 include:mailgun.org ~all</code>
+        </div>
+
+        <p><strong>{% trans "DKIM Record:" %}</strong></p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} mailo._domainkey</div>
+            <code>k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC...</code>
+        </div>
+
+        <p><strong>{% trans "Tracking Record (optional):" %}</strong></p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} email</div>
+            <code>mailgun.org</code>
+        </div>
+
+        <div class="note warning">
+            <strong>{% trans "Important:" %}</strong> {% trans "Use the exact values from your Mailgun dashboard - the DKIM key above is truncated." %}
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">3</span> {% trans "Verify Domain" %}</h4>
+        <p>{% trans "After adding DNS records:" %}</p>
+        <ol>
+            <li>{% trans "Wait for DNS propagation (typically 15 minutes - 24 hours)" %}</li>
+            <li>{% trans "Click" %} <strong>Verify DNS Settings</strong> {% trans "in Mailgun" %}</li>
+            <li>{% trans "Status will change to \"Active\" when verified" %}</li>
+        </ol>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">4</span> {% trans "DMARC Configuration" %}</h4>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} _dmarc.{{ domain }}</div>
+            <code>v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}">{% trans "Copy" %}</button>
+        </div>
+    </div>
+</div>
+
+<!-- Amazon SES DNS -->
+<div id="ses-si-tab" class="si-tab-content">
+    <h4>Amazon SES DNS</h4>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">1</span> {% trans "Verify Domain in SES" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://console.aws.amazon.com/ses" target="_blank" rel="noopener">AWS SES Console</a></li>
+            <li>{% trans "Go to" %} <strong>Configuration &rarr; Verified identities</strong></li>
+            <li>{% trans "Click" %} <strong>Create identity</strong></li>
+            <li>{% trans "Select" %} <strong>Domain</strong></li>
+            <li>{% trans "Enter your domain name" %}</li>
+            <li>{% trans "Enable" %} <strong>DKIM signing</strong></li>
+            <li>{% trans "SES will provide DNS records" %}</li>
+        </ol>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">2</span> {% trans "Add SES DNS Records" %}</h4>
+        <p>{% trans "Amazon SES provides these records:" %}</p>
+
+        <p><strong>{% trans "Verification Record (TXT):" %}</strong></p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} _amazonses.{{ domain }}</div>
+            <code>abc123def456ghi789...</code>
+        </div>
+
+        <p><strong>{% trans "DKIM Records (3 CNAME records):" %}</strong></p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} abc123def._domainkey</div>
+            <code>abc123def.dkim.amazonses.com</code>
+        </div>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} ghi789jkl._domainkey</div>
+            <code>ghi789jkl.dkim.amazonses.com</code>
+        </div>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} mno123pqr._domainkey</div>
+            <code>mno123pqr.dkim.amazonses.com</code>
+        </div>
+
+        <div class="note warning">
+            <strong>{% trans "Important:" %}</strong> {% trans "Use the exact CNAME values provided by AWS SES - values above are examples." %}
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">3</span> {% trans "Add SPF Record" %}</h4>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} @ ({% trans "or" %} {{ domain }})</div>
+            <code>v=spf1 include:amazonses.com ~all</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=spf1 include:amazonses.com ~all">{% trans "Copy" %}</button>
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">4</span> {% trans "DMARC Configuration" %}</h4>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} _dmarc.{{ domain }}</div>
+            <code>v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}">{% trans "Copy" %}</button>
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">5</span> {% trans "Verify Domain" %}</h4>
+        <p>{% trans "After adding all records:" %}</p>
+        <ol>
+            <li>{% trans "Wait for DNS propagation (15 minutes - 24 hours)" %}</li>
+            <li>{% trans "SES will automatically verify your domain" %}</li>
+            <li>{% trans "Check verification status in SES Console" %}</li>
+            <li>{% trans "Once verified, you can send emails" %}</li>
+        </ol>
+    </div>
+</div>
+
+<!-- Generic SMTP DNS -->
+<div id="generic-si-tab" class="si-tab-content">
+    <h4>{% trans "Generic SMTP Server DNS Configuration" %}</h4>
+
+    <p>{% trans "For other SMTP providers, you'll typically need to configure SPF, DKIM, and DMARC records. Contact your SMTP provider for specific DNS record values." %}</p>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">1</span> {% trans "SPF Configuration" %}</h4>
+        <p>{% trans "SPF (Sender Policy Framework) authorizes your SMTP server to send emails from your domain:" %}</p>
+
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} @ ({% trans "or" %} {{ domain }})</div>
+            <code>v=spf1 include:_spf.yourprovider.com ~all</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=spf1 include:_spf.yourprovider.com ~all">{% trans "Copy" %}</button>
+        </div>
+
+        <div class="note warning">
+            <strong>{% trans "Important:" %}</strong> {% trans "Replace" %} <code>_spf.yourprovider.com</code> {% trans "with the SPF include value from your SMTP provider." %}
+        </div>
+
+        <p><strong>{% trans "Common SPF Mechanisms:" %}</strong></p>
+        <ul>
+            <li><code>include:</code> - {% trans "Include SPF records from another domain" %}</li>
+            <li><code>a</code> - {% trans "Authorize the domain's A record IP" %}</li>
+            <li><code>mx</code> - {% trans "Authorize the domain's MX servers" %}</li>
+            <li><code>ip4:</code> - {% trans "Authorize specific IPv4 address" %}</li>
+            <li><code>ip6:</code> - {% trans "Authorize specific IPv6 address" %}</li>
+        </ul>
+
+        <p><strong>{% trans "SPF Qualifiers:" %}</strong></p>
+        <ul>
+            <li><code>~all</code> - {% trans "Soft fail (recommended) - mark as spam" %}</li>
+            <li><code>-all</code> - {% trans "Hard fail - reject unauthorized emails" %}</li>
+            <li><code>?all</code> - {% trans "Neutral - accept but don't verify" %}</li>
+        </ul>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">2</span> {% trans "DKIM Configuration" %}</h4>
+        <p>{% trans "DKIM (DomainKeys Identified Mail) adds a cryptographic signature to emails." %}</p>
+
+        <p>{% trans "Your SMTP provider should provide DKIM public key records. These are typically TXT or CNAME records:" %}</p>
+
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} default._domainkey.{{ domain }}</div>
+            <code>v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQ...</code>
+        </div>
+
+        <p><strong>{% trans "Or as a CNAME:" %}</strong></p>
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} CNAME | {% trans "Hostname:" %} default._domainkey</div>
+            <code>default._domainkey.yourprovider.com</code>
+        </div>
+
+        <div class="note info">
+            <strong>{% trans "Note:" %}</strong> {% trans "Contact your SMTP provider for the exact DKIM selector and public key values." %}
+        </div>
+    </div>
+
+    <div class="dns-section">
+        <h4><span class="si-step-number">3</span> {% trans "DMARC Configuration" %}</h4>
+        <p>{% trans "DMARC (Domain-based Message Authentication, Reporting, and Conformance) builds on SPF and DKIM:" %}</p>
+
+        <div class="dns-record">
+            <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} _dmarc.{{ domain }}</div>
+            <code>v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}; pct=100</code>
+            <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}; pct=100">{% trans "Copy" %}</button>
+        </div>
+
+        <p><strong>{% trans "DMARC Parameters:" %}</strong></p>
+        <ul>
+            <li><code>v=DMARC1</code> - {% trans "Version (required)" %}</li>
+            <li><code>p=</code> - {% trans "Policy for failed authentication (none, quarantine, reject)" %}</li>
+            <li><code>rua=</code> - {% trans "Email address for aggregate reports" %}</li>
+            <li><code>ruf=</code> - {% trans "Email address for forensic reports (optional)" %}</li>
+            <li><code>pct=</code> - {% trans "Percentage of emails to apply policy to (0-100)" %}</li>
+            <li><code>sp=</code> - {% trans "Policy for subdomains (optional)" %}</li>
+        </ul>
+    </div>
+</div>
+
+<h3>{% trans "Verifying DNS Configuration" %}</h3>
+
+<div class="dns-section">
+    <h4>{% trans "Command-Line Verification" %}</h4>
+    <p>{% trans "You can verify your DNS records using command-line tools:" %}</p>
+
+    <p><strong>{% trans "Check SPF Record:" %}</strong></p>
+    <pre><code>dig {{ domain }} TXT | grep "v=spf1"</code></pre>
+
+    <p><strong>{% trans "Check DKIM Record:" %}</strong></p>
+    <pre><code>dig default._domainkey.{{ domain }} TXT</code></pre>
+
+    <p><strong>{% trans "Check DMARC Record:" %}</strong></p>
+    <pre><code>dig _dmarc.{{ domain }} TXT</code></pre>
+</div>
+
+<div class="dns-section">
+    <h4>{% trans "Online Verification Tools" %}</h4>
+    <ul>
+        <li><a href="https://mxtoolbox.com/spf.aspx" target="_blank" rel="noopener">MXToolbox SPF Checker</a></li>
+        <li><a href="https://mxtoolbox.com/dkim.aspx" target="_blank" rel="noopener">MXToolbox DKIM Checker</a></li>
+        <li><a href="https://mxtoolbox.com/dmarc.aspx" target="_blank" rel="noopener">MXToolbox DMARC Checker</a></li>
+        <li><a href="https://www.mail-tester.com" target="_blank" rel="noopener">Mail Tester ({% trans "comprehensive" %})</a></li>
+    </ul>
+</div>
+
+<h3>{% trans "DNS Propagation" %}</h3>
+
+<div class="note info">
+    <strong>{% trans "DNS Changes Take Time:" %}</strong>
+    <ul>
+        <li><strong>{% trans "Minimum:" %}</strong> {% trans "15 minutes - 1 hour" %}</li>
+        <li><strong>{% trans "Typical:" %}</strong> {% trans "2-6 hours" %}</li>
+        <li><strong>{% trans "Maximum:" %}</strong> {% trans "24-48 hours" %}</li>
+    </ul>
+    <p>{% trans "Check propagation status at" %} <a href="https://dnschecker.org" target="_blank" rel="noopener">DNS Checker</a></p>
+</div>
+
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans "SPF Record Not Found" %}</h4>
+    <ul>
+        <li>{% trans "Wait for DNS propagation (up to 48 hours)" %}</li>
+        <li>{% trans "Verify the record was added to the correct hostname (@)" %}</li>
+        <li>{% trans "Check for typos in the SPF record" %}</li>
+        <li>{% trans "Ensure only one SPF record exists" %}</li>
+    </ul>
+
+    <h4>{% trans "DKIM Verification Failed" %}</h4>
+    <ul>
+        <li>{% trans "Verify the DKIM selector is correct" %} ({% trans "e.g.," %} <code>default._domainkey</code>)</li>
+        <li>{% trans "Check the public key was copied correctly (no line breaks)" %}</li>
+        <li>{% trans "Wait for DNS propagation" %}</li>
+        <li>{% trans "Ensure the record type is correct (TXT or CNAME as specified)" %}</li>
+    </ul>
+
+    <h4>{% trans "DMARC Issues" %}</h4>
+    <ul>
+        <li>{% trans "DMARC requires valid SPF or DKIM (at least one must pass)" %}</li>
+        <li>{% trans "Start with" %} <code>p=none</code> {% trans "to monitor before enforcing" %}</li>
+        <li>{% trans "Ensure the hostname is" %} <code>_dmarc.yourdomain.com</code></li>
+        <li>{% trans "Check aggregate report email address is valid" %}</li>
+    </ul>
+
+    <h4>{% trans "Emails Still Going to Spam" %}</h4>
+    <ul>
+        <li>{% trans "Verify all three records (SPF, DKIM, DMARC) are properly configured" %}</li>
+        <li>{% trans "Check domain reputation at" %} <a href="https://www.senderscore.org" target="_blank" rel="noopener">Sender Score</a></li>
+        <li>{% trans "Avoid spam trigger words in subject lines" %}</li>
+        <li>{% trans "Include proper unsubscribe links" %}</li>
+        <li>{% trans "Warm up your domain gradually (start with low volume)" %}</li>
+        <li>{% trans "Maintain good sender practices" %}</li>
+    </ul>
+</div>
+
+<script src="{% static 'email_system/js/component-tabs.js' %}"></script>

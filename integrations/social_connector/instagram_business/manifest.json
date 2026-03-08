@@ -1,0 +1,151 @@
+{
+  "component_type": "social_connector_provider",
+  "slug": "instagram_business",
+  "name": "Instagram Business",
+  "version": "1.1.0",
+  "description": "Share blog posts to your Instagram Business account with images and captions",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "instagram_business",
+  "class_name": "InstagramBusinessConnector",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://developers.facebook.com/docs/instagram-api",
+  "support_url": "https://developers.facebook.com/support",
+  "api_docs_url": "https://developers.facebook.com/docs/instagram-api/guides/content-publishing",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "text_posts": false,
+    "image_posts": true,
+    "video_posts": false,
+    "carousel_posts": true,
+    "stories": false,
+    "reels": false,
+    "scheduling": false,
+    "link_preview": false,
+    "hashtags": true,
+    "mentions": true,
+    "analytics": false,
+    "comments": false,
+    "token_refresh": true
+  },
+  "character_limit": 2200,
+  "oauth_config": {
+    "authorize_url": "https://www.facebook.com/v18.0/dialog/oauth",
+    "token_url": "https://graph.facebook.com/v18.0/oauth/access_token",
+    "scope": [
+      "instagram_basic",
+      "instagram_content_publish",
+      "pages_show_list",
+      "pages_read_engagement"
+    ],
+    "response_type": "code",
+    "token_expiry_days": 60,
+    "note": "Uses Facebook Graph API for Instagram Business accounts"
+  },
+  "account_selection": {
+    "required": true,
+    "type": "instagram_account",
+    "api_endpoint": "/me/accounts",
+    "api_fields": "id,name,instagram_business_account{id,username,profile_picture_url}",
+    "template": "select_account.html",
+    "id_field": "instagram_account_id",
+    "name_field": "instagram_username",
+    "token_field": "access_token"
+  },
+  "credential_schema": {
+    "access_token": {
+      "type": "text",
+      "label": "Access Token",
+      "required": true,
+      "secret": true,
+      "help_text": "Page access token with Instagram permissions"
+    },
+    "instagram_account_id": {
+      "type": "text",
+      "label": "Instagram Account ID",
+      "required": true,
+      "help_text": "Instagram Business Account ID"
+    },
+    "instagram_username": {
+      "type": "text",
+      "label": "Instagram Username",
+      "required": false,
+      "help_text": "Instagram username (auto-populated)"
+    },
+    "facebook_page_id": {
+      "type": "text",
+      "label": "Facebook Page ID",
+      "required": true,
+      "help_text": "Connected Facebook Page ID"
+    }
+  },
+  "settings_schema": {
+    "default_hashtags": {
+      "type": "text",
+      "label": "Default Hashtags",
+      "required": false,
+      "help_text": "Comma-separated hashtags to add to posts (e.g., #mybrand, #blog)"
+    },
+    "post_template": {
+      "type": "textarea",
+      "label": "Post Template",
+      "required": false,
+      "help_text": "Custom template for captions. Use {title}, {excerpt}, {url}, {hashtags}",
+      "placeholder": "{title}\n\n{excerpt}\n\nLink in bio\n\n{hashtags}"
+    },
+    "include_link_in_bio_text": {
+      "type": "boolean",
+      "label": "Include 'Link in Bio'",
+      "required": false,
+      "default": true,
+      "help_text": "Add 'Link in bio' text since Instagram doesn't allow clickable links"
+    }
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "requirements": [
+    "Instagram Business or Creator account",
+    "Connected Facebook Page",
+    "Facebook App with Instagram API access"
+  ],
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2025-12-18",
+      "changes": [
+        "Added bundled account selection template for self-contained provider packages",
+        "Added account_selection manifest configuration for dynamic Instagram account selection",
+        "Added setup instructions HTML for OAuth configuration guide",
+        "Providers can now be updated independently without backend changes"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-12-02",
+      "changes": [
+        "Initial release",
+        "Support for single image posts",
+        "Support for carousel posts (up to 10 images)",
+        "Caption support up to 2200 characters",
+        "Hashtag support (up to 30)",
+        "Uses Facebook Graph API for Instagram Business accounts",
+        "OAuth 2.0 authentication via Facebook"
+      ]
+    }
+  ],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "total_size_bytes": 35389,
+  "file_count": 2,
+  "checksum": "sha256:3da4eb562c21bd50844f1934bf78048e66000d14af45d40801bdb5a82ebc906e"
+}

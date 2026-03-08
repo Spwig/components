@@ -1,0 +1,96 @@
+{
+  "component_type": "sms_provider",
+  "slug": "twilio",
+  "name": "Twilio SMS",
+  "description": "Send SMS messages worldwide via Twilio's reliable global network. Supports delivery reports and two-way messaging.",
+  "version": "1.0.0",
+  "provider_key": "twilio",
+  "entry_point": "provider",
+  "class_name": "TwilioSMSProvider",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://spwig.com/sms-providers/twilio",
+  "support_url": "https://support.spwig.com",
+  "api_docs_url": "https://www.twilio.com/docs/sms",
+  "logo": "logo.svg",
+  "min_platform_version": "2.0.0",
+  "license": "Proprietary",
+
+  "capabilities": {
+    "sms": true,
+    "mms": true,
+    "whatsapp": false,
+    "unicode": true,
+    "delivery_reports": true,
+    "two_way": true,
+    "templates": false,
+    "bulk_send": true
+  },
+
+  "credential_schema": {
+    "type": "object",
+    "required": ["account_sid", "auth_token", "phone_number"],
+    "properties": {
+      "account_sid": {
+        "type": "string",
+        "title": "Account SID",
+        "description": "Your Twilio Account SID from the Console Dashboard",
+        "example": "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "secret": false,
+        "order": 1
+      },
+      "auth_token": {
+        "type": "string",
+        "title": "Auth Token",
+        "description": "Your Twilio Auth Token from the Console Dashboard",
+        "secret": true,
+        "order": 2
+      },
+      "phone_number": {
+        "type": "string",
+        "title": "From Phone Number",
+        "description": "Your Twilio phone number in E.164 format",
+        "example": "+15551234567",
+        "pattern": "^\\+[1-9]\\d{1,14}$",
+        "secret": false,
+        "order": 3
+      }
+    }
+  },
+
+  "setup_wizard": {
+    "has_setup_instructions": true,
+    "has_dns_requirements": false,
+    "supports_test_connection": true,
+    "estimated_setup_time": "5-10 minutes"
+  },
+
+  "pricing": {
+    "model": "per_message",
+    "note": "Pricing varies by country. See Twilio pricing page for details."
+  },
+
+  "requirements": {
+    "python": ">=3.10",
+    "dependencies": ["twilio>=8.0.0"]
+  },
+
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-01-15",
+      "changes": [
+        "Initial release",
+        "SMS sending support",
+        "MMS support",
+        "Delivery status webhooks",
+        "Connection testing",
+        "E.164 phone number normalization"
+      ]
+    }
+  ]
+}

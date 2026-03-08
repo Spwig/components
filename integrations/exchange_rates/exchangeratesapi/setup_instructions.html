@@ -1,0 +1,127 @@
+{% load i18n static %}
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>{% trans "Getting Your ExchangeRatesAPI.io Access Key" %}</h3>
+    </div>
+
+    <div class="instruction-steps">
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>{% trans "Create a Free Account" %}</h4>
+                <p>{% trans "Sign up for a free account at APILayer (ExchangeRatesAPI.io provider). The free tier includes 250 requests per month." %}</p>
+                <a href="https://apilayer.com?fpr=spwig" class="btn-external" target="_blank" rel="noopener">
+                    <i class="fas fa-external-link-alt"></i>
+                    {% trans "Open Signup Page" %}
+                </a>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>{% trans "Verify Your Email" %}</h4>
+                <p>{% trans "Check your email inbox for a verification email from APILayer and click the verification link." %}</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>{% trans "Subscribe to ExchangeRatesAPI.io" %}</h4>
+                <p>{% trans "After logging in, navigate to the Exchange Rates Data API in the APILayer marketplace and subscribe to the free plan." %}</p>
+                <a href="https://apilayer.com/marketplace/exchangerates_data-api" class="btn-external" target="_blank" rel="noopener">
+                    <i class="fas fa-external-link-alt"></i>
+                    {% trans "Go to Exchange Rates API" %}
+                </a>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>{% trans "Copy Your Access Key" %}</h4>
+                <p>{% trans "Your Access Key is displayed on the API dashboard. It looks like a 32-character alphanumeric string." %}</p>
+                <div class="code-block">
+                    <code>{% trans "Example:" %} abc123def456789...</code>
+                </div>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    {% trans "Keep your Access Key secure. Never share it publicly or commit it to version control." %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <div class="important-notes">
+            <h4><i class="fas fa-info-circle"></i> {% trans "Important Information" %}</h4>
+            <ul>
+                <li>
+                    <strong>{% trans "Free Tier Limits:" %}</strong>
+                    {% trans "250 requests per month, hourly rate updates, EUR base currency only" %}
+                </li>
+                <li>
+                    <strong>{% trans "Rate Updates:" %}</strong>
+                    {% trans "Rates are updated every hour on the free plan" %}
+                </li>
+                <li>
+                    <strong>{% trans "Supported Currencies:" %}</strong>
+                    {% trans "Over 168 world currencies including precious metals (Gold, Silver)" %}
+                </li>
+                <li>
+                    <strong>{% trans "Base Currency:" %}</strong>
+                    {% trans "Free tier uses EUR as base (automatic conversion for other bases)" %}
+                </li>
+                <li>
+                    <strong>{% trans "HTTPS Only:" %}</strong>
+                    {% trans "The free tier uses HTTPS for secure connections" %}
+                </li>
+            </ul>
+        </div>
+
+        <div class="helpful-links">
+            <h4>{% trans "Helpful Resources" %}</h4>
+            <ul>
+                <li>
+                    <a href="https://apilayer.com/marketplace/exchangerates_data-api#documentation-tab" target="_blank" rel="noopener">
+                        <i class="fas fa-book"></i> {% trans "API Documentation" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://apilayer.com/marketplace/exchangerates_data-api#pricing-tab" target="_blank" rel="noopener">
+                        <i class="fas fa-dollar-sign"></i> {% trans "Pricing & Plans" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://apilayer.com/marketplace/exchangerates_data-api#details-tab" target="_blank" rel="noopener">
+                        <i class="fas fa-question-circle"></i> {% trans "API Details" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://apilayer.com/marketplace/exchangerates_data-api#support-tab" target="_blank" rel="noopener">
+                        <i class="fas fa-life-ring"></i> {% trans "Support Center" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="upgrade-info">
+            <h4><i class="fas fa-arrow-up"></i> {% trans "Need More?" %}</h4>
+            <p>{% trans "Upgrade to a paid plan for:" %}</p>
+            <ul>
+                <li>{% trans "Up to 1 million API requests per month" %}</li>
+                <li>{% trans "Minute-by-minute rate updates" %}</li>
+                <li>{% trans "Historical data" %}</li>
+                <li>{% trans "Any base currency (Professional plan and above)" %}</li>
+                <li>{% trans "Time-series data" %}</li>
+                <li>{% trans "Currency conversion endpoint" %}</li>
+                <li>{% trans "Priority support" %}</li>
+            </ul>
+            <a href="https://apilayer.com/marketplace/exchangerates_data-api#pricing-tab" class="btn-external" target="_blank" rel="noopener">
+                <i class="fas fa-star"></i> {% trans "View Plans" %}
+            </a>
+        </div>
+    </div>
+</div>

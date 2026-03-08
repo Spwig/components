@@ -1,0 +1,207 @@
+/* Space Theme - Custom CSS */
+/* Copyright 2025 Spwig. All rights reserved. */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ============================================================
+   Base Dark Theme
+   ============================================================ */
+
+html,
+body {
+  background-color: var(--theme-color-background);
+  color: var(--theme-color-text);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-color-background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-color-border-dark);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-color-primary);
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(132, 204, 22, 0.25);
+  color: var(--theme-color-text);
+}
+
+/* ============================================================
+   Angular Bevel Corners: Product Cards
+   Uses corner-shape: bevel for a sci-fi panel look with native
+   box-shadow support. Falls back to clip-path for older browsers.
+   ============================================================ */
+
+/* Fallback: clip-path approach for browsers without corner-shape */
+.product-card {
+  --space-clip-size: 16px;
+  background-color: var(--theme-color-surface);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--space-clip-size)),
+    calc(100% - var(--space-clip-size)) 100%,
+    0 100%
+  );
+  filter:
+    drop-shadow(0 0 1px rgba(132, 204, 22, 0.6))
+    drop-shadow(0 0 4px rgba(132, 204, 22, 0.15));
+  transition:
+    filter 0.3s ease;
+}
+
+.product-card:hover {
+  --space-clip-size: 20px;
+  filter:
+    drop-shadow(0 0 1px rgba(132, 204, 22, 0.9))
+    drop-shadow(0 0 12px rgba(132, 204, 22, 0.4));
+}
+
+/* Modern: corner-shape bevel with native box-shadow */
+@supports (corner-shape: bevel) {
+  .product-card {
+    clip-path: none;
+    filter: none;
+    border-radius: 0 0 0 0;
+    corner-bottom-right-shape: bevel;
+    border-bottom-right-radius: 16px;
+    box-shadow:
+      0 0 1px rgba(132, 204, 22, 0.6),
+      0 0 4px rgba(132, 204, 22, 0.15);
+    transition:
+      border-bottom-right-radius 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    border-bottom-right-radius: 20px;
+    box-shadow:
+      0 0 1px rgba(132, 204, 22, 0.9),
+      0 0 12px rgba(132, 204, 22, 0.4);
+  }
+}
+
+/* Product card image wrapper */
+.product-card__image-wrapper,
+.product-card__image {
+  background-color: var(--theme-color-background-secondary);
+}
+
+/* Product card content area */
+.product-card__content {
+  background-color: var(--theme-color-surface);
+  padding: var(--theme-space-md);
+}
+
+/* ============================================================
+   Angular Bevel Corners: Category Cards
+   ============================================================ */
+
+/* Fallback: clip-path */
+.category-card {
+  --space-clip-size: 12px;
+  position: relative;
+  background-color: var(--theme-color-surface);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--space-clip-size)),
+    calc(100% - var(--space-clip-size)) 100%,
+    0 100%
+  );
+  filter:
+    drop-shadow(0 0 1px rgba(132, 204, 22, 0.6))
+    drop-shadow(0 0 4px rgba(132, 204, 22, 0.15));
+  transition: filter 0.3s ease;
+}
+
+.category-card:hover {
+  filter:
+    drop-shadow(0 0 1px rgba(132, 204, 22, 0.9))
+    drop-shadow(0 0 14px rgba(132, 204, 22, 0.45));
+}
+
+/* Modern: corner-shape bevel */
+@supports (corner-shape: bevel) {
+  .category-card {
+    clip-path: none;
+    filter: none;
+    border-radius: 0 0 0 0;
+    corner-bottom-right-shape: bevel;
+    border-bottom-right-radius: 12px;
+    box-shadow:
+      0 0 1px rgba(132, 204, 22, 0.6),
+      0 0 4px rgba(132, 204, 22, 0.15);
+    transition:
+      box-shadow 0.3s ease;
+  }
+
+  .category-card:hover {
+    box-shadow:
+      0 0 1px rgba(132, 204, 22, 0.9),
+      0 0 14px rgba(132, 204, 22, 0.45);
+  }
+}
+
+/* Lime accent line on hover */
+.category-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--theme-color-primary);
+  transform: scaleX(0);
+  transition: transform var(--theme-transition-duration-base) var(--theme-transition-easing-default);
+  transform-origin: left;
+}
+
+.category-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* Category card image overlay */
+.category-card__image-wrapper {
+  background-color: var(--theme-color-background-secondary);
+}
+
+/* ============================================================
+   Angular Bevel Corners: Primary Buttons
+   ============================================================ */
+
+/* Fallback: clip-path */
+.btn--primary,
+.btn-primary,
+.button--primary {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 6px),
+    calc(100% - 6px) 100%,
+    0 100%
+  );
+}
+
+/* Modern: corner-shape bevel */
+@supports (corner-shape: bevel) {
+  .btn--primary,
+  .btn-primary,
+  .button--primary {
+    clip-path: none;
+    corner-bottom-right-shape: bevel;
+    border-bottom-right-radius: 6px;
+  }
+}

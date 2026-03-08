@@ -1,0 +1,16 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Modern Shop Theme - Main CSS Entry Point
+ *
+ * This file imports all theme CSS in the correct order:
+ * 1. Reset - Normalize browser defaults
+ * 2. Tokens - CSS custom properties (design tokens)
+ * 3. Components - All component styles
+ *
+ * Total size target: < 15KB minified
+ */
+
+@import url('reset.css');
+@import url('tokens.css');
+@import url('components.css');

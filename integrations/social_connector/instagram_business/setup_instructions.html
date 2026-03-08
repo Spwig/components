@@ -1,0 +1,171 @@
+<div class="setup-instructions">
+    <h3>Instagram Business Setup Instructions</h3>
+
+    <div class="instruction-section">
+        <h4>Prerequisites</h4>
+        <ul>
+            <li>An Instagram Business or Creator account</li>
+            <li>A Facebook Page connected to your Instagram account</li>
+            <li>Admin access to both the Facebook Page and Instagram account</li>
+        </ul>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 1: Create a Facebook App</h4>
+        <ol>
+            <li>Go to <a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a></li>
+            <li>Click "My Apps" and then "Create App"</li>
+            <li>Select "Business" as the app type</li>
+            <li>Fill in the app details and create the app</li>
+        </ol>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 2: Configure Instagram API</h4>
+        <ol>
+            <li>In your app dashboard, click "Add Product"</li>
+            <li>Find "Instagram" and click "Set Up"</li>
+            <li>Complete the Instagram Basic Display setup if prompted</li>
+            <li>Navigate to "Instagram > Basic Display" in the sidebar</li>
+        </ol>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 3: Configure OAuth Settings</h4>
+        <ol>
+            <li>Go to "Facebook Login" > "Settings"</li>
+            <li>Add the following Valid OAuth Redirect URI:</li>
+        </ol>
+        <div class="code-block">
+            <code>{redirect_uri}</code>
+            <button type="button" class="copy-btn" data-action="copy-text" data-copy-value="{redirect_uri}">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 4: Request Permissions</h4>
+        <p>Your app needs the following permissions:</p>
+        <ul>
+            <li><strong>instagram_basic</strong> - Read Instagram account info</li>
+            <li><strong>instagram_content_publish</strong> - Publish content to Instagram</li>
+            <li><strong>pages_show_list</strong> - List Facebook Pages</li>
+            <li><strong>pages_read_engagement</strong> - Read page engagement data</li>
+        </ul>
+        <p class="note">Note: Some permissions require App Review before going live.</p>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 5: Get Your App Credentials</h4>
+        <ol>
+            <li>Go to "Settings" > "Basic"</li>
+            <li>Copy your <strong>App ID</strong> and <strong>App Secret</strong></li>
+            <li>Add these to your platform's environment variables:
+                <ul>
+                    <li><code>FACEBOOK_APP_ID</code></li>
+                    <li><code>FACEBOOK_APP_SECRET</code></li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="instruction-section">
+        <h4>Step 6: Connect Your Instagram Account</h4>
+        <ol>
+            <li>Click "Authorize" below to start the OAuth flow</li>
+            <li>Log in with your Facebook account</li>
+            <li>Grant the requested permissions</li>
+            <li>Select which Instagram Business account to connect</li>
+        </ol>
+    </div>
+
+    <div class="help-section">
+        <h4>Need Help?</h4>
+        <ul>
+            <li><a href="https://developers.facebook.com/docs/instagram-api/getting-started" target="_blank">Instagram API Getting Started Guide</a></li>
+            <li><a href="https://developers.facebook.com/docs/instagram-api/guides/content-publishing" target="_blank">Content Publishing Documentation</a></li>
+            <li><a href="https://www.facebook.com/help/instagram/502981923235522" target="_blank">Converting to Instagram Business Account</a></li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.setup-instructions {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.instruction-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+.instruction-section:last-child {
+    border-bottom: none;
+}
+.instruction-section h4 {
+    color: #333;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+.instruction-section ol, .instruction-section ul {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.instruction-section li {
+    margin-bottom: 0.5rem;
+}
+.code-block {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.75rem 0;
+}
+.code-block code {
+    font-family: monospace;
+    font-size: 13px;
+    word-break: break-all;
+    flex: 1;
+}
+.copy-btn {
+    background: #e1306c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+.copy-btn:hover {
+    background: #c91458;
+}
+.note {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    font-size: 13px;
+}
+.help-section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+}
+.help-section h4 {
+    margin-bottom: 0.5rem;
+}
+.help-section ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+.help-section a {
+    color: #e1306c;
+}
+</style>
+

@@ -1,0 +1,308 @@
+{% load i18n %}
+<div class="setup-instructions">
+    <div class="instruction-header">
+        <h3><i class="fab fa-google"></i> {% trans "Google Merchant Center Setup" %}</h3>
+        <p class="instruction-subtitle">{% trans "Follow these steps to connect your store to Google Merchant Center" %}</p>
+    </div>
+
+    <div class="instruction-steps">
+        <!-- Step 1: Create Merchant Center Account -->
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>{% trans "Create a Merchant Center Account" %}</h4>
+                <p>{% trans "If you don't have a Google Merchant Center account, create one:" %}</p>
+                <ol>
+                    <li>{% trans "Go to" %} <a href="https://merchants.google.com/" target="_blank" rel="noopener">Google Merchant Center</a></li>
+                    <li>{% trans "Sign in with your Google account" %}</li>
+                    <li>{% trans "Follow the setup wizard to create your merchant account" %}</li>
+                    <li>{% trans "Verify and claim your website URL" %}</li>
+                </ol>
+                <div class="tip-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>{% trans "Your Merchant ID is displayed in the top-left corner of Merchant Center (e.g., 123456789)" %}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Create Service Account -->
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>{% trans "Create a Service Account" %}</h4>
+                <p>{% trans "You need a Google Cloud service account to authenticate API requests:" %}</p>
+                <ol>
+                    <li>{% trans "Go to the" %} <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener">Google Cloud Console Credentials page</a></li>
+                    <li>{% trans "Select or create a project" %}</li>
+                    <li>{% trans "Click 'Create Credentials' → 'Service Account'" %}</li>
+                    <li>{% trans "Give it a name like 'Spwig Product Feed'" %}</li>
+                    <li>{% trans "Click 'Create and Continue', then 'Done'" %}</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Step 3: Generate JSON Key -->
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>{% trans "Generate and Download JSON Key" %}</h4>
+                <ol>
+                    <li>{% trans "Find your service account in the credentials list" %}</li>
+                    <li>{% trans "Click on the service account email" %}</li>
+                    <li>{% trans "Go to the 'Keys' tab" %}</li>
+                    <li>{% trans "Click 'Add Key' → 'Create new key'" %}</li>
+                    <li>{% trans "Select 'JSON' format and click 'Create'" %}</li>
+                    <li>{% trans "The JSON key file will download automatically" %}</li>
+                </ol>
+                <div class="warning-box">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>{% trans "Keep this JSON key secure! It provides access to your Merchant Center account." %}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Enable Content API -->
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>{% trans "Enable the Content API" %}</h4>
+                <ol>
+                    <li>{% trans "In Google Cloud Console, go to" %} <a href="https://console.cloud.google.com/apis/library" target="_blank" rel="noopener">API Library</a></li>
+                    <li>{% trans "Search for 'Content API for Shopping'" %}</li>
+                    <li>{% trans "Click on it and then click 'Enable'" %}</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Step 5: Grant Access in Merchant Center -->
+        <div class="instruction-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h4>{% trans "Grant Access in Merchant Center" %}</h4>
+                <ol>
+                    <li>{% trans "Go to" %} <a href="https://merchants.google.com/mc/users" target="_blank" rel="noopener">Merchant Center → Settings → Users</a></li>
+                    <li>{% trans "Click 'Add user'" %}</li>
+                    <li>{% trans "Enter your service account email (from the JSON key)" %}</li>
+                    <li>{% trans "Select 'Standard' or 'Admin' access level" %}</li>
+                    <li>{% trans "Click 'Add user'" %}</li>
+                </ol>
+                <div class="tip-box">
+                    <i class="fas fa-info-circle"></i>
+                    <span>{% trans "The service account email looks like: your-service-account@your-project.iam.gserviceaccount.com" %}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Configure in Spwig -->
+        <div class="instruction-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h4>{% trans "Enter Your Credentials" %}</h4>
+                <p>{% trans "On the next step, you'll need:" %}</p>
+                <ul class="credentials-list">
+                    <li><strong>{% trans "Merchant ID" %}:</strong> {% trans "Your numeric Merchant Center ID" %}</li>
+                    <li><strong>{% trans "Service Account JSON" %}:</strong> {% trans "The entire contents of the downloaded JSON key file" %}</li>
+                    <li><strong>{% trans "Target Country" %}:</strong> {% trans "The primary country where you sell products" %}</li>
+                    <li><strong>{% trans "Content Language" %}:</strong> {% trans "The language of your product data" %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <h4>{% trans "Additional Resources" %}</h4>
+        <ul class="resource-links">
+            <li>
+                <a href="https://support.google.com/merchants/answer/7439058" target="_blank" rel="noopener">
+                    <i class="fas fa-book"></i> {% trans "Google Merchant Center Help" %}
+                </a>
+            </li>
+            <li>
+                <a href="https://support.google.com/merchants/answer/7052112" target="_blank" rel="noopener">
+                    <i class="fas fa-list-check"></i> {% trans "Product Data Specification" %}
+                </a>
+            </li>
+            <li>
+                <a href="https://developers.google.com/shopping-content/guides/quickstart" target="_blank" rel="noopener">
+                    <i class="fas fa-code"></i> {% trans "Content API Developer Guide" %}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.setup-instructions {
+    max-width: 800px;
+}
+
+.instruction-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--admin-primary, #007bff);
+}
+
+.instruction-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--admin-text-primary, #212529);
+}
+
+.instruction-header h3 i {
+    margin-right: 0.5rem;
+    color: #4285f4;
+}
+
+.instruction-subtitle {
+    margin: 0.5rem 0 0;
+    color: var(--admin-text-secondary, #6c757d);
+}
+
+.instruction-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.instruction-step {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--admin-bg-secondary, #f8f9fa);
+    border-radius: 8px;
+    border-left: 4px solid var(--admin-primary, #007bff);
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--admin-primary, #007bff);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    color: var(--admin-text-primary, #212529);
+}
+
+.step-content p {
+    margin: 0 0 0.75rem;
+    color: var(--admin-text-secondary, #6c757d);
+}
+
+.step-content ol, .step-content ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.step-content li {
+    margin-bottom: 0.5rem;
+    color: var(--admin-text-primary, #212529);
+}
+
+.step-content a {
+    color: var(--admin-primary, #007bff);
+    text-decoration: none;
+}
+
+.step-content a:hover {
+    text-decoration: underline;
+}
+
+.tip-box, .warning-box {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.tip-box {
+    background: #e7f3ff;
+    border: 1px solid #b3d7ff;
+}
+
+.tip-box i {
+    color: #007bff;
+    margin-top: 2px;
+}
+
+.warning-box {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.warning-box i {
+    color: #856404;
+    margin-top: 2px;
+}
+
+.credentials-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.credentials-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--admin-border-color, #dee2e6);
+}
+
+.credentials-list li:last-child {
+    border-bottom: none;
+}
+
+.instruction-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--admin-border-color, #dee2e6);
+}
+
+.instruction-footer h4 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    color: var(--admin-text-primary, #212529);
+}
+
+.resource-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.resource-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--admin-bg-secondary, #f8f9fa);
+    border: 1px solid var(--admin-border-color, #dee2e6);
+    border-radius: 4px;
+    color: var(--admin-text-primary, #212529);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.resource-links a:hover {
+    background: var(--admin-primary, #007bff);
+    color: white;
+    border-color: var(--admin-primary, #007bff);
+}
+</style>

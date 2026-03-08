@@ -1,0 +1,167 @@
+<div class="setup-instructions">
+    <h2>Stripe Payment Setup</h2>
+
+    <div class="intro-section">
+        <p class="highlight">
+            <strong>Why Choose Stripe?</strong> The most popular payment platform for internet businesses.
+            Accept cards, digital wallets, BNPL, and local payment methods in 135+ currencies with
+            industry-leading developer tools and fraud prevention.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>Step 1: Create Your Stripe Account</h3>
+        <ol>
+            <li>Visit <a href="https://dashboard.stripe.com/register" target="_blank">dashboard.stripe.com/register</a></li>
+            <li>Enter your email address and create a password</li>
+            <li>Complete the registration process with your business details</li>
+            <li>Verify your email address</li>
+        </ol>
+        <div class="note info">
+            <strong>Tip:</strong> You can start testing immediately in test mode, even before completing business verification.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Get Your API Keys</h3>
+        <ol>
+            <li>Log into your <a href="https://dashboard.stripe.com" target="_blank">Stripe Dashboard</a></li>
+            <li>Navigate to <strong>Developers &rarr; API keys</strong></li>
+            <li>You will see two keys:
+                <ul>
+                    <li><strong>Publishable key</strong> (starts with <code>pk_test_</code> or <code>pk_live_</code>) &mdash; used on the frontend</li>
+                    <li><strong>Secret key</strong> (starts with <code>sk_test_</code> or <code>sk_live_</code>) &mdash; used on the backend</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Reveal test key"</strong> to copy your secret key</li>
+            <li><strong>Important:</strong> Copy both keys and store them securely</li>
+        </ol>
+        <div class="note warning">
+            <strong>Security:</strong> Never share your Secret Key. Keep it secure and do not commit it to version control. The Publishable Key is safe to expose in frontend code.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2a: Understanding Test vs Production Credentials</h3>
+        <p>You will need to provide both test and production credentials:</p>
+        <ul>
+            <li><strong>Test Credentials:</strong> For testing without real charges (<code>pk_test_</code>, <code>sk_test_</code>)
+                <ul>
+                    <li>Use these to test your integration with Stripe's test card numbers</li>
+                    <li>No real money is charged</li>
+                    <li>Available immediately after creating your account</li>
+                </ul>
+            </li>
+            <li><strong>Production Credentials:</strong> For live transactions (<code>pk_live_</code>, <code>sk_live_</code>)
+                <ul>
+                    <li>Use these to process real payments from customers</li>
+                    <li>Real money is charged to real credit cards</li>
+                    <li>Requires completing business verification</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="note info">
+            <strong>💡 Getting Started:</strong> You can initially set up with only test credentials and add production credentials later when you're ready to go live. The wizard will collect both sets of keys, allowing you to easily switch between test and production mode.
+        </div>
+        <div class="note warning">
+            <strong>⚠️ Never Mix Keys!</strong> Always keep test and production keys separate. Using the wrong key can result in test charges appearing in production reports or real charges being processed in test mode.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Configure Webhook (Recommended)</h3>
+        <ol>
+            <li>In your Stripe Dashboard, go to <strong>Developers &rarr; Webhooks</strong></li>
+            <li>Click <strong>"Add endpoint"</strong></li>
+            <li>Enter your webhook URL: <code id="webhook-url" data-webhook-path="/payment-providers/webhook/stripe/"></code>
+                <button data-action="copy-to-clipboard" data-copy-id="webhook-url" class="btn-sm">Copy</button>
+            </li>
+            <li>Select the following events to listen for:
+                <ul>
+                    <li>payment_intent.succeeded</li>
+                    <li>payment_intent.payment_failed</li>
+                    <li>charge.refunded</li>
+                    <li>charge.refund.updated</li>
+                    <li>checkout.session.completed</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Add endpoint"</strong> to save</li>
+            <li>After creating the endpoint, click on it and copy the <strong>Signing secret</strong> (starts with <code>whsec_</code>)</li>
+        </ol>
+        <div class="note info">
+            <strong>Why Webhooks?</strong> Webhooks provide real-time payment notifications, ensuring your orders are updated immediately when payments succeed, fail, or are refunded.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Enter Your Credentials Below</h3>
+        <ol>
+            <li><strong>Test Credentials:</strong> Paste your test keys
+                <ul>
+                    <li>Test Publishable Key (<code>pk_test_...</code>)</li>
+                    <li>Test Secret Key (<code>sk_test_...</code>)</li>
+                    <li>Test Webhook Secret (<code>whsec_...</code>) if you configured a test webhook</li>
+                </ul>
+            </li>
+            <li><strong>Production Credentials (optional initially):</strong> Paste your live keys
+                <ul>
+                    <li>Live Publishable Key (<code>pk_live_...</code>)</li>
+                    <li>Live Secret Key (<code>sk_live_...</code>)</li>
+                    <li>Live Webhook Secret (<code>whsec_...</code>) if you configured a live webhook</li>
+                </ul>
+            </li>
+            <li>Use the <strong>Test Mode toggle</strong> to switch between test and production:
+                <ul>
+                    <li><strong>Test Mode ON:</strong> For development and testing with test card numbers</li>
+                    <li><strong>Test Mode OFF:</strong> For real transactions with actual money</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Test Connection"</strong> to verify everything works</li>
+        </ol>
+        <div class="note info">
+            <strong>Tip:</strong> Start with Test Mode enabled. You can add production credentials and switch to production mode later when you're ready to go live.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Test Your Integration</h3>
+        <div class="note success">
+            <strong>Testing Mode:</strong> When using Test environment, use Stripe's test card numbers to simulate payments without real money.
+        </div>
+        <p><strong>Test Cards:</strong></p>
+        <ul>
+            <li><strong>Success:</strong> <code>4242 4242 4242 4242</code> (any future expiry, any 3-digit CVC)</li>
+            <li><strong>3D Secure:</strong> <code>4000 0025 0000 3155</code> (triggers 3DS authentication)</li>
+            <li><strong>Declined:</strong> <code>4000 0000 0000 0002</code> (simulates declined payment)</li>
+            <li><strong>Insufficient funds:</strong> <code>4000 0000 0000 9995</code></li>
+        </ul>
+        <p>Visit <a href="https://stripe.com/docs/testing" target="_blank">Stripe Testing Documentation</a> for more test scenarios and international test cards.</p>
+    </div>
+
+    <div class="step">
+        <h3>Step 6: Go Live</h3>
+        <ol>
+            <li>Complete your Stripe account activation (business verification, bank account, etc.)</li>
+            <li>Test thoroughly in Test mode first</li>
+            <li>When ready, toggle to <strong>Live mode</strong> in your Stripe Dashboard (top-right switch)</li>
+            <li>Copy your <strong>live</strong> API keys (they start with <code>pk_live_</code> and <code>sk_live_</code>)</li>
+            <li>Update your credentials here with the live keys</li>
+            <li>Change the <strong>Environment</strong> setting to <strong>Live</strong></li>
+            <li>Create a new webhook endpoint with your live signing secret</li>
+            <li>Process a small test transaction to verify</li>
+        </ol>
+    </div>
+
+    <div class="help-section">
+        <h3>Additional Resources</h3>
+        <ul>
+            <li><a href="https://stripe.com/docs" target="_blank">Stripe Documentation</a></li>
+            <li><a href="https://stripe.com/docs/api" target="_blank">API Reference</a></li>
+            <li><a href="https://stripe.com/docs/testing" target="_blank">Testing Guide</a></li>
+            <li><a href="https://stripe.com/docs/payments/payment-methods/overview" target="_blank">Payment Methods Overview</a></li>
+            <li><a href="https://stripe.com/pricing" target="_blank">Pricing Information</a></li>
+            <li><strong>Support:</strong> <a href="https://support.stripe.com" target="_blank">Stripe Support Center</a></li>
+        </ul>
+    </div>
+</div>
+

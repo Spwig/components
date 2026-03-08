@@ -1,0 +1,74 @@
+{
+  "component_type": "shipping_provider",
+  "slug": "fedex",
+  "name": "FedEx",
+  "version": "1.1.1",
+  "description": "FedEx shipping integration with rate quotes, label generation, and tracking via FedEx Web Services API",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.fedex.com",
+  "support_url": "https://developer.fedex.com",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0",
+    "python-dateutil>=2.8.2"
+  ],
+  "platform_components": {
+    "shipping": ">=1.0.0"
+  },
+  "provider_key": "fedex",
+  "entry_point": "provider",
+  "class_name": "FedExProvider",
+  "capabilities": {
+    "rates": true,
+    "labels": true,
+    "tracking": true,
+    "international": true,
+    "returns": false,
+    "pickup": false,
+    "insurance": true,
+    "signature": true
+  },
+  "credential_schema": {
+    "api_key": {
+      "type": "text",
+      "label": "API Key (Client ID)",
+      "help_text": "Your FedEx API Key (Client ID) from the FedEx Developer Portal",
+      "required": true,
+      "placeholder": "Enter your FedEx API Key"
+    },
+    "api_secret": {
+      "type": "password",
+      "label": "API Secret (Client Secret)",
+      "help_text": "Your FedEx API Secret (Client Secret) from the FedEx Developer Portal",
+      "required": true,
+      "placeholder": "Enter your FedEx API Secret"
+    },
+    "account_number": {
+      "type": "text",
+      "label": "FedEx Account Number",
+      "help_text": "Your 9-digit FedEx account number (found on invoices or in your FedEx account dashboard)",
+      "required": true,
+      "placeholder": "e.g., 123456789"
+    }
+  },
+  "signup_url": "https://developer.fedex.com/api/en-us/get-started.html",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "total_size_bytes": 160687,
+  "file_count": 15,
+  "checksum": "sha256:3372ca24cf07e7879346bfec3d7a39244b2225c041f7484c99c5843dd8c308e8",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

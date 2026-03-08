@@ -1,0 +1,137 @@
+{
+  "name": "Google Merchant Center",
+  "slug": "google_merchant",
+  "version": "1.0.0",
+  "provider_key": "google_merchant",
+  "class_name": "GoogleMerchantProvider",
+  "description": "Connect your product catalog to Google Merchant Center for Google Shopping, Performance Max campaigns, and free product listings.",
+  "author": "Spwig",
+  "website": "https://merchants.google.com/",
+  "documentation_url": "https://support.google.com/merchants/answer/7439058",
+  "signup_url": "https://merchants.google.com/mc/welcome",
+  "logo": "logo.png",
+  "component_type": "product_feed_provider",
+  "category": "search_ads",
+  "tags": ["google", "shopping", "pmax", "search", "ads", "free-listings"],
+  "feed_formats": ["xml", "csv", "json"],
+  "default_format": "xml",
+  "capabilities": {
+    "push_feed": true,
+    "fetch_feed": true,
+    "incremental_updates": true,
+    "real_time_sync": false,
+    "scheduled_sync": true,
+    "batch_operations": true,
+    "validation": true,
+    "inventory_sync": true,
+    "promotions": true,
+    "local_inventory": true
+  },
+  "rate_limits": {
+    "requests_per_minute": 100,
+    "requests_per_day": 50000,
+    "products_per_batch": 10000
+  },
+  "credential_schema": {
+    "merchant_id": {
+      "type": "text",
+      "label": "Merchant ID",
+      "required": true,
+      "placeholder": "123456789",
+      "help_text": "Your Google Merchant Center account ID. Found in the top-left of Merchant Center."
+    },
+    "service_account_json": {
+      "type": "textarea",
+      "label": "Service Account JSON Key",
+      "required": true,
+      "placeholder": "Paste your service account JSON key here",
+      "help_text": "Create a service account in Google Cloud Console and download the JSON key file."
+    },
+    "target_country": {
+      "type": "select",
+      "label": "Target Country",
+      "required": true,
+      "default": "US",
+      "choices": [
+        {"value": "US", "label": "United States"},
+        {"value": "GB", "label": "United Kingdom"},
+        {"value": "CA", "label": "Canada"},
+        {"value": "AU", "label": "Australia"},
+        {"value": "DE", "label": "Germany"},
+        {"value": "FR", "label": "France"},
+        {"value": "JP", "label": "Japan"},
+        {"value": "BR", "label": "Brazil"},
+        {"value": "MX", "label": "Mexico"},
+        {"value": "IN", "label": "India"}
+      ],
+      "help_text": "Primary country where you'll sell products"
+    },
+    "content_language": {
+      "type": "select",
+      "label": "Content Language",
+      "required": true,
+      "default": "en",
+      "choices": [
+        {"value": "en", "label": "English"},
+        {"value": "de", "label": "German"},
+        {"value": "fr", "label": "French"},
+        {"value": "es", "label": "Spanish"},
+        {"value": "ja", "label": "Japanese"},
+        {"value": "pt", "label": "Portuguese"}
+      ],
+      "help_text": "Language of your product data"
+    }
+  },
+  "attribute_mapping": {
+    "required": {
+      "id": "Product ID",
+      "title": "Product Title",
+      "description": "Product Description",
+      "link": "Product URL",
+      "image_link": "Main Image URL",
+      "price": "Price",
+      "availability": "Availability Status"
+    },
+    "recommended": {
+      "brand": "Brand Name",
+      "gtin": "GTIN/EAN/UPC",
+      "mpn": "Manufacturer Part Number",
+      "google_product_category": "Google Product Category",
+      "product_type": "Store Category Path"
+    },
+    "optional": {
+      "sale_price": "Sale Price",
+      "sale_price_effective_date": "Sale Date Range",
+      "condition": "Product Condition",
+      "color": "Color",
+      "size": "Size",
+      "gender": "Gender",
+      "age_group": "Age Group",
+      "material": "Material",
+      "pattern": "Pattern",
+      "item_group_id": "Variant Group ID",
+      "shipping": "Shipping Info",
+      "tax": "Tax Info",
+      "custom_label_0": "Custom Label 0",
+      "custom_label_1": "Custom Label 1",
+      "custom_label_2": "Custom Label 2",
+      "custom_label_3": "Custom Label 3",
+      "custom_label_4": "Custom Label 4"
+    }
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-11-23",
+      "changes": [
+        "Initial release",
+        "Support for XML, CSV, and JSON feed formats",
+        "Content API integration for feed push",
+        "Product validation against Google specifications"
+      ]
+    }
+  ],
+  "requirements": {
+    "min_platform_version": "1.0.0"
+  }
+}

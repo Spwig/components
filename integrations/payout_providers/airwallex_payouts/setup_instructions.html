@@ -1,0 +1,107 @@
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <h2>Airwallex API Setup</h2>
+        <p>Follow these steps to obtain your Airwallex API credentials for processing affiliate bank transfers.</p>
+    </div>
+
+    <div class="instruction-steps">
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Create an Airwallex Account</h3>
+                <p>Visit <a href="https://www.airwallex.com/app/sign-up" target="_blank" rel="noopener">airwallex.com</a> and sign up for a business account.</p>
+                <p class="step-note">Airwallex requires business verification. Have your business registration documents ready.</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Complete Business Verification</h3>
+                <p>After signing up, complete the KYB (Know Your Business) verification process:</p>
+                <ul>
+                    <li>Provide business registration details</li>
+                    <li>Upload required identification documents</li>
+                    <li>Verify beneficial owners</li>
+                </ul>
+                <p class="step-note">Verification typically takes 1-3 business days.</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Access Developer Settings</h3>
+                <p>Once verified, log in to your Airwallex account and navigate to:</p>
+                <p><strong>Settings</strong> &rarr; <strong>Developer</strong> &rarr; <strong>API Keys</strong></p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Generate API Credentials</h3>
+                <p>Create a new API key set:</p>
+                <ol>
+                    <li>Click <strong>Create API Key</strong></li>
+                    <li>Select the appropriate permissions (Transfers, Beneficiaries)</li>
+                    <li>Copy your <strong>Client ID</strong> and <strong>API Key</strong></li>
+                </ol>
+                <p class="step-note">Store your API Key securely - it will only be shown once.</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h3>Configure Webhooks (Recommended)</h3>
+                <p>Set up webhooks to receive real-time transfer status updates:</p>
+                <ol>
+                    <li>Go to <strong>Settings</strong> &rarr; <strong>Developer</strong> &rarr; <strong>Webhooks</strong></li>
+                    <li>Click <strong>Add Endpoint</strong></li>
+                    <li>Enter your webhook URL: <code>{{ webhook_url }}</code></li>
+                    <li>Select these events:
+                        <ul>
+                            <li>transfer.ready_for_funding</li>
+                            <li>transfer.batch_confirmed</li>
+                            <li>transfer.completed</li>
+                            <li>transfer.failed</li>
+                            <li>transfer.returned</li>
+                        </ul>
+                    </li>
+                    <li>Save and copy the <strong>Webhook Secret</strong></li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h3>Fund Your Account</h3>
+                <p>Before processing payouts, ensure your Airwallex wallet has sufficient balance:</p>
+                <ul>
+                    <li>Go to <strong>Wallet</strong> in the dashboard</li>
+                    <li>Add funds via bank transfer or linked account</li>
+                    <li>Funds in the correct currency will be used for payouts</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">7</div>
+            <div class="step-content">
+                <h3>Test in Demo Mode</h3>
+                <p>Airwallex provides a demo environment for testing:</p>
+                <ul>
+                    <li>Demo API Base: <code>api-demo.airwallex.com</code></li>
+                    <li>Use demo credentials to test transfers without real money</li>
+                    <li>Switch to Production when ready to go live</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <p><strong>Need Help?</strong> Visit <a href="https://www.airwallex.com/docs/payouts__create-a-transfer" target="_blank" rel="noopener">Airwallex Payouts Documentation</a> for detailed API information.</p>
+    </div>
+</div>

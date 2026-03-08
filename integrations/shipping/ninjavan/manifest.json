@@ -1,0 +1,142 @@
+{
+  "component_type": "shipping_provider",
+  "slug": "ninjavan",
+  "name": "NinjaVan",
+  "version": "1.0.2",
+  "description": "Southeast Asian logistics provider with OAuth 2.0 Plugin API integration. Supports Singapore, Malaysia, Thailand, Indonesia, Vietnam, Philippines, and Myanmar.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "ninjavan",
+  "class_name": "NinjaVanProvider",
+  "entry_point": "provider.py",
+  "dependencies": {
+    "python": ">=3.8",
+    "django": ">=4.2",
+    "requests": ">=2.31.0"
+  },
+  "capabilities": {
+    "rates": false,
+    "labels": true,
+    "tracking": true,
+    "international": true,
+    "returns": true,
+    "pickup": true,
+    "insurance": true,
+    "signature": false
+  },
+  "supported_countries": [
+    "SG",
+    "MY",
+    "TH",
+    "ID",
+    "VN",
+    "PH",
+    "MM"
+  ],
+  "credential_schema": {
+    "client_id": {
+      "type": "text",
+      "label": "Client ID",
+      "help_text": "OAuth Client ID from NinjaVan Dashboard (Settings > IT Settings)",
+      "required": true,
+      "placeholder": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "min_length": 20
+    },
+    "client_secret": {
+      "type": "password",
+      "label": "Client Secret",
+      "help_text": "OAuth Client Secret from NinjaVan Dashboard (Settings > IT Settings)",
+      "required": true,
+      "placeholder": "Enter your Client Secret",
+      "min_length": 20
+    },
+    "country_code": {
+      "type": "select",
+      "label": "Country",
+      "choices": [
+        {
+          "value": "sg",
+          "label": "Singapore"
+        },
+        {
+          "value": "my",
+          "label": "Malaysia"
+        },
+        {
+          "value": "th",
+          "label": "Thailand"
+        },
+        {
+          "value": "id",
+          "label": "Indonesia"
+        },
+        {
+          "value": "vn",
+          "label": "Vietnam"
+        },
+        {
+          "value": "ph",
+          "label": "Philippines"
+        },
+        {
+          "value": "mm",
+          "label": "Myanmar"
+        }
+      ],
+      "required": true,
+      "help_text": "Country where your NinjaVan account is registered"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "choices": [
+        {
+          "value": "sandbox",
+          "label": "Sandbox (Testing)"
+        },
+        {
+          "value": "production",
+          "label": "Production (Live)"
+        }
+      ],
+      "default": "sandbox",
+      "required": true,
+      "help_text": "Use sandbox for testing. Production requires passing NinjaVan's integration audit."
+    }
+  },
+  "api_info": {
+    "base_url_production": "https://api.ninjavan.co",
+    "base_url_sandbox": "https://api-sandbox.ninjavan.co",
+    "oauth_authorization_url_production": "https://dashboard.ninjavan.co/oauth/login",
+    "oauth_authorization_url_sandbox": "https://dashboard-sandbox.ninjavan.co/oauth/login",
+    "oauth_token_url": "/1.0/oauth/token",
+    "documentation_url": "https://api-docs.ninjavan.co/en#tag/Plugin-APIs"
+  },
+  "changelog": [
+    {
+      "version": "1.0.2",
+      "date": "2025-11-06",
+      "changes": [
+        "Removed inline CSS from setup_instructions.html to comply with design standards",
+        "Setup instructions now use consolidated wizard CSS (wizard-base.css and provider-wizard.css)",
+        "Improved consistency and maintainability of setup UI"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2025-10-23",
+      "changes": [
+        "Initial release",
+        "OAuth 2.0 authorization code flow with token refresh",
+        "Order creation for 7 Southeast Asian countries (SG, MY, TH, ID, VN, PH, MM)",
+        "Label generation (waybill) in PDF format",
+        "Order cancellation for Pending Pickup orders",
+        "Webhook-based tracking with HMAC-SHA256 verification",
+        "Multi-country support with country-specific routing",
+        "COD, pickup scheduling, and time slot support",
+        "Integration audit compliance for production access",
+        "Note: Rate calculation not supported (Plugin API design)"
+      ]
+    }
+  ]
+}

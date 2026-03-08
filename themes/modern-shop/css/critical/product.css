@@ -1,0 +1,41 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Modern Shop Theme - Critical CSS for Product Page
+ * Contains above-the-fold styles for faster initial render
+ */
+
+/* Product layout */
+.product-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--theme-space-8);
+}
+
+@media (max-width: 768px) {
+  .product-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Product gallery skeleton */
+.product-gallery {
+  position: relative;
+  aspect-ratio: 1;
+  background-color: var(--theme-color-background-secondary);
+  border-radius: var(--theme-radius-lg);
+}
+
+/* Product info critical styles */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-space-4);
+}
+
+/* Price display */
+.product-price {
+  font-size: var(--theme-font-size-2xl);
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-color-text);
+}

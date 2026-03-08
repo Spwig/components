@@ -1,0 +1,251 @@
+{% load i18n static %}
+{# DNS requirements fragment for Gmail API provider #}
+{# Injected inside .dns-requirements-iframe-container.setup-instructions in wizard step 4 #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<p>{% trans "Proper DNS configuration (SPF, DKIM, DMARC) prevents your emails from landing in spam folders and ensures recipients can verify your emails are legitimate. This is essential for transactional emails like order confirmations and password resets." %}</p>
+
+<div class="note info">
+    <strong>{% trans "Your Domain:" %}</strong> <strong>{{ domain }}</strong><br>
+    <strong>{% trans "Sending Email:" %}</strong> <strong>{{ from_email }}</strong>
+</div>
+
+{# SPF Configuration #}
+<div class="dns-section">
+    <h4>{% trans "SPF (Sender Policy Framework)" %}</h4>
+    <p>{% trans "SPF tells receiving mail servers which IP addresses are authorized to send email from your domain." %}</p>
+
+    <h4>{% trans "Add This DNS Record:" %}</h4>
+    <div class="dns-record">
+        <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} @ ({% trans "or" %} {{ domain }})</div>
+        <code>v=spf1 include:_spf.google.com ~all</code>
+        <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=spf1 include:_spf.google.com ~all">{% trans "Copy" %}</button>
+    </div>
+
+    <div class="note warning">
+        <strong>{% trans "Important:" %}</strong> {% trans "If you already have an SPF record, do not create a second one. Instead, add" %} <code>include:_spf.google.com</code> {% trans "to your existing SPF record. Each domain can only have one SPF record." %}
+    </div>
+
+    <h4>{% trans "Example with Existing SPF:" %}</h4>
+    <div class="dns-record">
+        <div class="record-label">{% trans "If you have:" %} v=spf1 a mx ~all</div>
+        <code>v=spf1 include:_spf.google.com a mx ~all</code>
+        <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=spf1 include:_spf.google.com a mx ~all">{% trans "Copy" %}</button>
+    </div>
+</div>
+
+{# DKIM Configuration #}
+<div class="dns-section">
+    <h4>{% trans "DKIM (DomainKeys Identified Mail)" %}</h4>
+    <p>{% trans "DKIM adds a digital signature to your emails that receiving servers can verify using a public key in your DNS records." %}</p>
+
+    <div class="note warning">
+        <strong>{% trans "Gmail vs Google Workspace:" %}</strong>
+        <ul>
+            <li><strong>{% trans "Standard Gmail accounts:" %}</strong> {% trans "DKIM is automatically configured by Google. No action needed." %}</li>
+            <li><strong>{% trans "Google Workspace accounts:" %}</strong> {% trans "You must configure DKIM manually in the Admin Console." %}</li>
+        </ul>
+    </div>
+
+    <h4>{% trans "Google Workspace DKIM Setup:" %}</h4>
+    <ol>
+        <li>{% trans "Go to" %} <a href="https://admin.google.com" target="_blank" rel="noopener" class="si-button-link">Google Workspace Admin Console</a></li>
+        <li>{% trans "Navigate to" %} <strong>Apps</strong> &rarr; <strong>Google Workspace</strong> &rarr; <strong>Gmail</strong></li>
+        <li>{% trans "Click" %} <strong>{% trans "Authenticate email" %}</strong></li>
+        <li>{% trans "Select your domain:" %} <strong>{{ domain }}</strong></li>
+        <li>{% trans "Click" %} <strong>{% trans "Generate new record" %}</strong></li>
+        <li>{% trans "Copy the TXT record name and TXT record value shown" %}</li>
+        <li>{% trans "Add this DNS record to your domain (see tabs below for registrar-specific instructions)" %}</li>
+        <li>{% trans "Return to Google Admin Console and click" %} <strong>{% trans "Start authentication" %}</strong></li>
+    </ol>
+
+    <div class="note info">
+        <strong>{% trans "DKIM Record Format:" %}</strong><br>
+        <strong>{% trans "Hostname:" %}</strong> google._domainkey.{{ domain }}<br>
+        <strong>{% trans "Type:" %}</strong> TXT<br>
+        <strong>{% trans "Value:" %}</strong> <em>({% trans "Provided by Google Workspace Admin Console" %})</em>
+    </div>
+
+    <p>{% trans "DKIM authentication can take up to 48 hours to activate after you add the DNS record. Google will verify the record and enable DKIM signing automatically." %}</p>
+</div>
+
+{# DMARC Configuration #}
+<div class="dns-section">
+    <h4>{% trans "DMARC (Domain-based Message Authentication)" %}</h4>
+    <p>{% trans "DMARC tells receiving servers what to do if SPF or DKIM checks fail, and where to send reports about email authentication." %}</p>
+
+    <h4>{% trans "Recommended DMARC Record:" %}</h4>
+    <div class="dns-record">
+        <div class="record-label">{% trans "Record Type:" %} TXT | {% trans "Hostname:" %} _dmarc.{{ domain }}</div>
+        <code>v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}; pct=100; adkim=r; aspf=r</code>
+        <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="v=DMARC1; p=quarantine; rua=mailto:dmarc@{{ domain }}; pct=100; adkim=r; aspf=r">{% trans "Copy" %}</button>
+    </div>
+
+    <h4>{% trans "DMARC Policy Options:" %}</h4>
+    <table class="si-table">
+        <thead>
+            <tr>
+                <th>{% trans "Policy" %}</th>
+                <th>{% trans "Description" %}</th>
+                <th>{% trans "Recommended For" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>p=none</code></td>
+                <td>{% trans "Monitor only - no action taken on failures" %}</td>
+                <td>{% trans "Initial testing phase" %}</td>
+            </tr>
+            <tr>
+                <td><code>p=quarantine</code></td>
+                <td>{% trans "Failed emails go to spam folder" %}</td>
+                <td><strong>{% trans "Production (Recommended)" %}</strong></td>
+            </tr>
+            <tr>
+                <td><code>p=reject</code></td>
+                <td>{% trans "Failed emails are rejected entirely" %}</td>
+                <td>{% trans "High security requirements" %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note info">
+        <strong>{% trans "Tip:" %}</strong> {% trans "If this is your first time setting up DMARC, start with" %} <code>p=none</code> {% trans "to monitor results for a few weeks, then upgrade to" %} <code>p=quarantine</code>.
+    </div>
+</div>
+
+{# DNS Provider Instructions #}
+<div class="dns-section">
+    <h4>{% trans "Adding DNS Records - Provider-Specific Instructions" %}</h4>
+
+    <div class="si-tabs">
+        <button class="si-tab active" data-action="switch-si-tab" data-tab="cloudflare">Cloudflare</button>
+        <button class="si-tab" data-action="switch-si-tab" data-tab="godaddy">GoDaddy</button>
+        <button class="si-tab" data-action="switch-si-tab" data-tab="namecheap">Namecheap</button>
+        <button class="si-tab" data-action="switch-si-tab" data-tab="google-domains">Google Domains</button>
+    </div>
+
+    <div id="cloudflare-si-tab" class="si-tab-content active">
+        <h4>{% trans "Cloudflare DNS Setup" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://dash.cloudflare.com" target="_blank" rel="noopener">Cloudflare Dashboard</a></li>
+            <li>{% trans "Select your domain:" %} <strong>{{ domain }}</strong></li>
+            <li>{% trans "Click" %} <strong>DNS</strong> {% trans "in the top menu" %}</li>
+            <li>{% trans "Click" %} <strong>{% trans "Add record" %}</strong></li>
+            <li>{% trans "For SPF:" %} {% trans "Type" %} = <code>TXT</code>, {% trans "Name" %} = <code>@</code>, {% trans "Content" %} = ({% trans "SPF record from above" %})</li>
+            <li>{% trans "For DKIM:" %} {% trans "Type" %} = <code>TXT</code>, {% trans "Name" %} = <code>google._domainkey</code>, {% trans "Content" %} = ({% trans "from Google Workspace" %})</li>
+            <li>{% trans "For DMARC:" %} {% trans "Type" %} = <code>TXT</code>, {% trans "Name" %} = <code>_dmarc</code>, {% trans "Content" %} = ({% trans "DMARC record from above" %})</li>
+            <li>{% trans "Click" %} <strong>{% trans "Save" %}</strong></li>
+        </ol>
+        <div class="note success">
+            <strong>{% trans "Cloudflare Tip:" %}</strong> {% trans "Cloudflare DNS updates typically propagate within 1-5 minutes." %}
+        </div>
+    </div>
+
+    <div id="godaddy-si-tab" class="si-tab-content">
+        <h4>{% trans "GoDaddy DNS Setup" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://dcc.godaddy.com/manage/dns" target="_blank" rel="noopener">GoDaddy DNS Management</a></li>
+            <li>{% trans "Select your domain:" %} <strong>{{ domain }}</strong></li>
+            <li>{% trans "Scroll to" %} <strong>{% trans "Records" %}</strong> {% trans "section" %}</li>
+            <li>{% trans "Click" %} <strong>{% trans "Add" %}</strong></li>
+            <li>{% trans "For SPF:" %} {% trans "Type" %} = <code>TXT</code>, {% trans "Name" %} = <code>@</code>, {% trans "Value" %} = ({% trans "SPF record" %}), TTL = 1 {% trans "hour" %}</li>
+            <li>{% trans "For DKIM:" %} {% trans "Type" %} = <code>TXT</code>, {% trans "Name" %} = <code>google._domainkey</code>, {% trans "Value" %} = ({% trans "from Google Workspace" %})</li>
+            <li>{% trans "For DMARC:" %} {% trans "Type" %} = <code>TXT</code>, {% trans "Name" %} = <code>_dmarc</code>, {% trans "Value" %} = ({% trans "DMARC record" %})</li>
+            <li>{% trans "Click" %} <strong>{% trans "Save" %}</strong></li>
+        </ol>
+        <div class="note success">
+            <strong>{% trans "GoDaddy Tip:" %}</strong> {% trans "DNS changes can take up to 1 hour to propagate." %}
+        </div>
+    </div>
+
+    <div id="namecheap-si-tab" class="si-tab-content">
+        <h4>{% trans "Namecheap DNS Setup" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://ap.www.namecheap.com/domains/list/" target="_blank" rel="noopener">Namecheap Dashboard</a></li>
+            <li>{% trans "Find your domain" %} <strong>{{ domain }}</strong> {% trans "and click" %} <strong>{% trans "Manage" %}</strong></li>
+            <li>{% trans "Go to" %} <strong>{% trans "Advanced DNS" %}</strong> {% trans "tab" %}</li>
+            <li>{% trans "Under" %} <strong>{% trans "Host Records" %}</strong>{% trans ", click" %} <strong>{% trans "Add New Record" %}</strong></li>
+            <li>{% trans "For SPF:" %} {% trans "Type" %} = <code>TXT Record</code>, {% trans "Host" %} = <code>@</code>, {% trans "Value" %} = ({% trans "SPF record" %}), TTL = {% trans "Automatic" %}</li>
+            <li>{% trans "For DKIM:" %} {% trans "Type" %} = <code>TXT Record</code>, {% trans "Host" %} = <code>google._domainkey</code>, {% trans "Value" %} = ({% trans "from Google Workspace" %})</li>
+            <li>{% trans "For DMARC:" %} {% trans "Type" %} = <code>TXT Record</code>, {% trans "Host" %} = <code>_dmarc</code>, {% trans "Value" %} = ({% trans "DMARC record" %})</li>
+            <li>{% trans "Click" %} <strong>{% trans "Save Changes" %}</strong></li>
+        </ol>
+        <div class="note success">
+            <strong>{% trans "Namecheap Tip:" %}</strong> {% trans "Changes propagate within 30 minutes typically." %}
+        </div>
+    </div>
+
+    <div id="google-domains-si-tab" class="si-tab-content">
+        <h4>{% trans "Google Domains DNS Setup" %}</h4>
+        <ol>
+            <li>{% trans "Log in to" %} <a href="https://domains.google.com" target="_blank" rel="noopener">Google Domains</a></li>
+            <li>{% trans "Select your domain:" %} <strong>{{ domain }}</strong></li>
+            <li>{% trans "Click" %} <strong>DNS</strong> {% trans "in the left sidebar" %}</li>
+            <li>{% trans "Scroll to" %} <strong>{% trans "Custom records" %}</strong></li>
+            <li>{% trans "For SPF:" %} {% trans "Host name" %} = <code>@</code>, {% trans "Type" %} = <code>TXT</code>, {% trans "Data" %} = ({% trans "SPF record" %})</li>
+            <li>{% trans "For DKIM:" %} {% trans "Host name" %} = <code>google._domainkey</code>, {% trans "Type" %} = <code>TXT</code>, {% trans "Data" %} = ({% trans "from Google Workspace" %})</li>
+            <li>{% trans "For DMARC:" %} {% trans "Host name" %} = <code>_dmarc</code>, {% trans "Type" %} = <code>TXT</code>, {% trans "Data" %} = ({% trans "DMARC record" %})</li>
+            <li>{% trans "Click" %} <strong>{% trans "Save" %}</strong></li>
+        </ol>
+        <div class="note success">
+            <strong>{% trans "Google Domains Tip:" %}</strong> {% trans "DNS updates are usually live within minutes." %}
+        </div>
+    </div>
+</div>
+
+{# Testing & Verification #}
+<div class="dns-section">
+    <h4>{% trans "Testing Your DNS Configuration" %}</h4>
+
+    <h4>{% trans "Online DNS Check Tools:" %}</h4>
+    <ul>
+        <li><a href="https://mxtoolbox.com/spf.aspx" target="_blank" rel="noopener">{% trans "Check SPF Record" %}</a></li>
+        <li><a href="https://mxtoolbox.com/dkim.aspx" target="_blank" rel="noopener">{% trans "Check DKIM Record" %}</a></li>
+        <li><a href="https://mxtoolbox.com/dmarc.aspx" target="_blank" rel="noopener">{% trans "Check DMARC Record" %}</a></li>
+        <li><a href="https://www.mail-tester.com" target="_blank" rel="noopener">{% trans "Complete Email Test" %}</a></li>
+    </ul>
+
+    <h4>{% trans "Command Line Checks:" %}</h4>
+    <div class="dns-record">
+        <div class="record-label">{% trans "Check SPF Record:" %}</div>
+        <code>dig {{ domain }} TXT +short | grep "v=spf1"</code>
+        <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="dig {{ domain }} TXT +short | grep &quot;v=spf1&quot;">{% trans "Copy" %}</button>
+    </div>
+
+    <div class="dns-record">
+        <div class="record-label">{% trans "Check DKIM Record:" %}</div>
+        <code>dig google._domainkey.{{ domain }} TXT +short</code>
+        <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="dig google._domainkey.{{ domain }} TXT +short">{% trans "Copy" %}</button>
+    </div>
+
+    <div class="dns-record">
+        <div class="record-label">{% trans "Check DMARC Record:" %}</div>
+        <code>dig _dmarc.{{ domain }} TXT +short</code>
+        <button class="copy-btn" data-action="copy-to-clipboard" data-copy-value="dig _dmarc.{{ domain }} TXT +short">{% trans "Copy" %}</button>
+    </div>
+</div>
+
+{# Troubleshooting #}
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans "DNS Changes Not Showing" %}</h4>
+    <ul>
+        <li>{% trans "DNS propagation can take 5 minutes to 48 hours depending on TTL settings" %}</li>
+        <li>{% trans "Try using a different DNS checker or command:" %} <code>dig @8.8.8.8 {{ domain }} TXT</code></li>
+        <li>{% trans "Clear your local DNS cache" %}</li>
+    </ul>
+
+    <h4>{% trans "Multiple SPF Records" %}</h4>
+    <ul>
+        <li>{% trans "Having more than one SPF record will cause email delivery failures. Combine all SPF mechanisms into a single TXT record." %}</li>
+    </ul>
+
+    <h4>{% trans 'SPF "Too Many Lookups"' %}</h4>
+    <ul>
+        <li>{% trans "SPF has a 10 DNS lookup limit. If you have many" %} <code>include:</code> {% trans "statements, you may exceed this. Consider flattening your SPF record or using fewer includes." %}</li>
+    </ul>
+</div>
+
+<script src="{% static 'email_system/js/component-tabs.js' %}"></script>

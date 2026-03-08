@@ -1,0 +1,74 @@
+{
+  "component_type": "shipping_provider",
+  "slug": "ups",
+  "name": "UPS",
+  "version": "1.0.1",
+  "description": "UPS shipping integration with rate quotes, label generation, and tracking via UPS REST API with OAuth 2.0 authentication",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.ups.com",
+  "support_url": "https://developer.ups.com",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0",
+    "python-dateutil>=2.8.2"
+  ],
+  "platform_components": {
+    "shipping": ">=1.0.0"
+  },
+  "provider_key": "ups",
+  "entry_point": "provider",
+  "class_name": "UPSProvider",
+  "capabilities": {
+    "rates": true,
+    "labels": true,
+    "tracking": true,
+    "international": true,
+    "returns": false,
+    "pickup": false,
+    "insurance": true,
+    "signature": true
+  },
+  "credential_schema": {
+    "api_key": {
+      "type": "text",
+      "label": "Client ID",
+      "help_text": "Your UPS API Client ID from the UPS Developer Portal",
+      "required": true,
+      "placeholder": "Enter your UPS Client ID"
+    },
+    "api_secret": {
+      "type": "password",
+      "label": "Client Secret",
+      "help_text": "Your UPS API Client Secret from the UPS Developer Portal",
+      "required": true,
+      "placeholder": "Enter your UPS Client Secret"
+    },
+    "account_number": {
+      "type": "text",
+      "label": "UPS Account Number",
+      "help_text": "Your 6-character UPS account number (optional for rates, required for shipping labels)",
+      "required": false,
+      "placeholder": "e.g., A1B2C3"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Select Test for development or Production for live shipments",
+      "required": true,
+      "choices": ["test", "production"]
+    }
+  },
+  "signup_url": "https://developer.ups.com/",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": []
+}

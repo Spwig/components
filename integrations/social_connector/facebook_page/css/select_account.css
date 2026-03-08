@@ -1,0 +1,97 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Social Connector - Facebook Page
+ *
+ * Description: Frontend styles for select_account.html
+ * Template: components/integrations/social_connector/facebook_page/v1.1.0/select_account.html
+ * Extracted: 2026-02-14
+ *
+ * Dependencies:
+ * - Theme CSS variables (loaded via page_builder/base.html or admin base)
+ *
+ * Notes:
+ * - Extracted during CSP hardening migration
+ * - Uses theme CSS variables for consistent theming
+ */
+
+.account-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    .account-card {
+        background: var(--card-bg, #fff);
+        border: 2px solid var(--border-color, #e0e0e0);
+        border-radius: 12px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .account-card:hover {
+        border-color: var(--primary-color, #1877f2);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .account-card.selected {
+        border-color: var(--primary-color, #1877f2);
+        background: var(--selected-bg, #f0f7ff);
+    }
+    .account-card input[type="radio"] {
+        display: none;
+    }
+    .account-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #f5f5f5;
+    }
+    .account-info {
+        flex: 1;
+    }
+    .account-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--text-primary, #333);
+        margin-bottom: 0.25rem;
+    }
+    .account-category {
+        font-size: 0.875rem;
+        color: var(--text-secondary, #666);
+    }
+    .account-id {
+        font-size: 0.75rem;
+        color: var(--text-muted, #999);
+        font-family: monospace;
+    }
+    .check-indicator {
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--border-color, #ccc);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.2s;
+    }
+    .account-card.selected .check-indicator {
+        background: var(--primary-color, #1877f2);
+        border-color: var(--primary-color, #1877f2);
+    }
+    .no-accounts-message {
+        text-align: center;
+        padding: 3rem;
+        background: var(--warning-bg, #fff8e1);
+        border-radius: 12px;
+        border: 1px solid var(--warning-border, #ffe082);
+    }
+    .no-accounts-message i {
+        font-size: 3rem;
+        color: var(--warning-color, #ffa000);
+        margin-bottom: 1rem;
+    }

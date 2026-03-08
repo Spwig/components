@@ -1,0 +1,191 @@
+{% load i18n static %}
+
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>{% trans "Getting Your UPS API Credentials" %}</h3>
+        <p class="header-subtitle">
+            {% trans "Follow these steps to set up your UPS developer account and obtain API credentials" %}
+        </p>
+    </div>
+
+    <div class="instruction-steps">
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>{% trans "Create a UPS Developer Account" %}</h4>
+                <p>{% trans "Visit the UPS Developer Portal and register for a free developer account." %}</p>
+                <a href="https://developer.ups.com/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-external">
+                    <i class="fas fa-external-link-alt"></i>
+                    {% trans "Open UPS Developer Portal" %}
+                </a>
+                <p class="step-note">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "You'll need a valid email address and basic business information to register." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>{% trans "Create a New Application" %}</h4>
+                <p>{% trans "After logging in to your UPS developer account:" %}</p>
+                <ul>
+                    <li>{% trans "Navigate to 'My Apps' or 'Applications'" %}</li>
+                    <li>{% trans "Click 'Create App' or 'Add Application'" %}</li>
+                    <li>{% trans "Give your application a descriptive name (e.g., 'My Store Shipping')" %}</li>
+                    <li>{% trans "Provide a description for your integration" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>{% trans "Request API Access" %}</h4>
+                <p>{% trans "You need to request access to specific UPS APIs:" %}</p>
+                <ul>
+                    <li><strong>{% trans "Rating API" %}</strong> - {% trans "For calculating shipping rates" %}</li>
+                    <li><strong>{% trans "Shipping API" %}</strong> - {% trans "For generating shipping labels" %}</li>
+                    <li><strong>{% trans "Tracking API" %}</strong> - {% trans "For real-time tracking updates" %}</li>
+                    <li><strong>{% trans "Address Validation" %}</strong> - {% trans "Optional but recommended" %}</li>
+                </ul>
+                <p class="step-note">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {% trans "API access requests may require approval from UPS. This can take 1-2 business days." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>{% trans "Generate OAuth Credentials" %}</h4>
+                <p>{% trans "Once your application is approved and API access granted:" %}</p>
+                <ul>
+                    <li>{% trans "Open your application in the UPS Developer Portal" %}</li>
+                    <li>{% trans "Navigate to the 'Credentials' or 'API Keys' section" %}</li>
+                    <li>{% trans "Click 'Generate Client Credentials' or 'Create Credentials'" %}</li>
+                    <li>{% trans "You will receive a Client ID and Client Secret" %}</li>
+                    <li>{% trans "Copy both values immediately - you'll enter them in the next step" %}</li>
+                </ul>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>{% trans "Important!" %}</strong>
+                    {% trans "UPS will only show your Client Secret once. Make sure to save it securely before closing the page." %}
+                </div>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h4>{% trans "Choose Your Environment" %}</h4>
+                <p>{% trans "UPS provides two environments for API integration:" %}</p>
+                <ul>
+                    <li>
+                        <strong>{% trans "Test Environment (Customer Integration Environment - CIE)" %}:</strong>
+                        {% trans "Use this for development and testing. It simulates the UPS system without creating real shipments or charges. Highly recommended for initial setup and testing." %}
+                    </li>
+                    <li>
+                        <strong>{% trans "Production Environment" %}:</strong>
+                        {% trans "Use this for live shipments with real tracking numbers and charges. Your UPS account will be billed for actual shipments." %}
+                    </li>
+                </ul>
+                <p class="step-note">
+                    <i class="fas fa-lightbulb"></i>
+                    {% trans "Start with the Test environment to verify your integration works correctly before switching to Production." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h4>{% trans "Get Your UPS Account Number (Optional)" %}</h4>
+                <p>{% trans "Your UPS account number is a 6-character alphanumeric identifier:" %}</p>
+                <ul>
+                    <li>{% trans "Required for generating shipping labels" %}</li>
+                    <li>{% trans "Optional for getting shipping rates" %}</li>
+                    <li>{% trans "Found on your UPS invoices or in your UPS account dashboard" %}</li>
+                    <li>{% trans "Format: 6 characters (e.g., A1B2C3, 123ABC)" %}</li>
+                </ul>
+                <p class="step-note">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "If you don't have a UPS account number yet, you can still get rates. You'll need it when you're ready to generate shipping labels." %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <div class="help-box">
+            <i class="fas fa-question-circle"></i>
+            <div>
+                <strong>{% trans "Need Help?" %}</strong>
+                <p>
+                    {% trans "If you encounter any issues during setup:" %}
+                </p>
+                <ul>
+                    <li>
+                        {% trans "Visit the" %}
+                        <a href="https://developer.ups.com/get-started" target="_blank" rel="noopener noreferrer">
+                            {% trans "UPS Developer Getting Started Guide" %}
+                        </a>
+                    </li>
+                    <li>
+                        {% trans "Check the" %}
+                        <a href="https://developer.ups.com/api/reference" target="_blank" rel="noopener noreferrer">
+                            {% trans "UPS API Reference Documentation" %}
+                        </a>
+                    </li>
+                    <li>
+                        {% trans "Contact UPS Developer Support at" %}
+                        <a href="mailto:developer@ups.com">developer@ups.com</a>
+                    </li>
+                    <li>
+                        {% trans "For general UPS account questions, call" %} 1-800-742-5877
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="checklist-box">
+            <strong>{% trans "Before Proceeding, Make Sure You Have:" %}</strong>
+            <ul class="checklist">
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "UPS Developer account created" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Application created in the developer portal" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "API access granted (Rating, Shipping, Tracking)" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Client ID copied and ready" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Client Secret copied and ready" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "Decided on Test vs Production environment" %}
+                </li>
+                <li>
+                    <i class="fas fa-square"></i>
+                    {% trans "UPS account number available (if you plan to generate labels)" %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+{
+  "component_type": "terminal_provider",
+  "slug": "adyen_terminal",
+  "name": "Adyen Terminal",
+  "version": "1.0.0",
+  "description": "Accept card-present payments using Adyen payment terminals via cloud communication. Supports countertop, portable, and mobile readers.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.adyen.com/pos-payments",
+  "support_url": "https://docs.adyen.com/point-of-sale/",
+  "license": "Proprietary",
+  "min_platform_version": "2.0.0",
+  "requires_platform": "2.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "pos_app": ">=1.0.0"
+  },
+  "provider_key": "adyen_terminal",
+  "entry_point": "provider",
+  "class_name": "AdyenTerminalProvider",
+  "capabilities": {
+    "connection_tokens": false,
+    "reader_discovery": true,
+    "locations": false,
+    "refunds": true,
+    "integration_mode": "cloud",
+    "payment_methods": ["card_present", "contactless"],
+    "reader_actions": ["collect_payment", "cancel_payment"],
+    "features": {
+      "cloud_communication": true,
+      "local_communication": false,
+      "tap_to_pay": true,
+      "smart_readers": true
+    }
+  },
+  "supported_readers": [
+    {
+      "type": "S1F2L",
+      "name": "Adyen S1F2L",
+      "category": "smart_reader",
+      "connection": "cloud",
+      "description": "Smart reader with large touchscreen"
+    },
+    {
+      "type": "P400",
+      "name": "Adyen P400",
+      "category": "countertop",
+      "connection": "cloud",
+      "description": "Countertop payment terminal"
+    },
+    {
+      "type": "S1F2",
+      "name": "Adyen S1F2",
+      "category": "portable",
+      "connection": "cloud",
+      "description": "Portable smart reader"
+    },
+    {
+      "type": "S1E",
+      "name": "Adyen S1E",
+      "category": "mobile",
+      "connection": "cloud",
+      "description": "Compact mobile terminal"
+    }
+  ],
+  "credential_schema": {
+    "api_key": {
+      "type": "password",
+      "label": "API Key",
+      "help_text": "Your Adyen API key with Terminal API permissions. Generate in Adyen Customer Area under Developers > API credentials.",
+      "required": true,
+      "placeholder": "AQE..."
+    },
+    "merchant_account": {
+      "type": "text",
+      "label": "Merchant Account",
+      "help_text": "Your Adyen merchant account name (e.g. 'YourCompanyECOM').",
+      "required": true,
+      "placeholder": "YourCompanyECOM"
+    }
+  },
+  "settings_schema": {
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "help_text": "Use 'test' for development, 'live' for production.",
+      "required": true,
+      "default": "test",
+      "options": ["test", "live"]
+    },
+    "live_prefix": {
+      "type": "text",
+      "label": "Live URL Prefix",
+      "help_text": "Your live endpoint prefix from Adyen Customer Area (e.g. '1234abcd5678'). Required for production only.",
+      "required": false,
+      "placeholder": "1234abcd5678"
+    }
+  },
+  "signup_url": "https://www.adyen.com/signup",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-02-09",
+      "changes": [
+        "Initial release with Adyen Terminal cloud API support",
+        "Cloud-based payment initiation and status polling",
+        "Reader discovery via Management API",
+        "Payment cancellation via AbortRequest",
+        "Referenced refund support via ReversalRequest",
+        "Support for S1F2L, P400, S1F2, and S1E terminals"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Adyen terminal fees vary by region and volume. Contact Adyen for pricing."
+  },
+  "regions": {
+    "supported": ["US", "CA", "GB", "IE", "AU", "NZ", "SG", "HK", "FR", "DE", "NL", "AT", "BE", "DK", "FI", "IT", "LU", "NO", "PT", "ES", "SE", "CH", "PL", "CZ", "JP", "BR", "MX", "AE", "SA", "ZA", "MY", "IN"],
+    "restricted": [],
+    "notes": "Available in 40+ countries. Terminal availability varies by region."
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": ["PCI DSS Level 1", "PCI P2PE", "EMV"],
+    "data_residency": ["multi_region"]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "component_type": "shipping_provider",
+  "slug": "usps",
+  "name": "USPS",
+  "version": "1.0.2",
+  "description": "USPS shipping integration with rate quotes, label generation, and tracking via USPS REST API v3",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "usps",
+  "class_name": "USPSProvider",
+  "entry_point": "provider.py",
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.31.0",
+    "python-dateutil": ">=2.8.2"
+  },
+  "capabilities": {
+    "rates": true,
+    "labels": true,
+    "tracking": true,
+    "international": false,
+    "returns": true,
+    "pickup": false,
+    "insurance": true,
+    "signature": true
+  },
+  "credential_schema": {
+    "consumer_key": {
+      "type": "text",
+      "label": "Consumer Key (Client ID)",
+      "help_text": "Your USPS API Consumer Key from the developer portal",
+      "required": true,
+      "placeholder": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "min_length": 20
+    },
+    "consumer_secret": {
+      "type": "password",
+      "label": "Consumer Secret (Client Secret)",
+      "help_text": "Your USPS API Consumer Secret",
+      "required": true,
+      "placeholder": "Enter your Consumer Secret",
+      "min_length": 20
+    },
+    "payment_account_number": {
+      "type": "text",
+      "label": "Payment Account Number",
+      "help_text": "10-digit Enterprise Payment (EPS), Permit, or Meter account number (required for label generation)",
+      "required": false,
+      "placeholder": "1234567890",
+      "pattern": "^\\d{10}$"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "choices": [
+        {
+          "value": "test",
+          "label": "Test (TEM)"
+        },
+        {
+          "value": "production",
+          "label": "Production"
+        }
+      ],
+      "default": "test",
+      "required": true,
+      "help_text": "Use Test environment for development and testing"
+    }
+  },
+  "supported_countries": [
+    "US"
+  ],
+  "supported_services": [
+    {
+      "code": "USPS_GROUND_ADVANTAGE",
+      "name": "USPS Ground Advantage™",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "PRIORITY_MAIL",
+      "name": "Priority Mail®",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "PRIORITY_MAIL_EXPRESS",
+      "name": "Priority Mail Express®",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "PARCEL_SELECT",
+      "name": "Parcel Select®",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "USPS_CONNECT_LOCAL",
+      "name": "USPS Connect® Local",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "USPS_CONNECT_REGIONAL",
+      "name": "USPS Connect® Regional",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "MEDIA_MAIL",
+      "name": "Media Mail®",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "LIBRARY_MAIL",
+      "name": "Library Mail",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "BOUND_PRINTED_MATTER",
+      "name": "Bound Printed Matter",
+      "domestic": true,
+      "international": false
+    }
+  ],
+  "api_info": {
+    "base_url_production": "https://apis.usps.com",
+    "base_url_test": "https://apis-tem.usps.com",
+    "oauth_endpoint": "/oauth2/v3/token",
+    "token_lifetime_hours": 8,
+    "documentation_url": "https://developers.usps.com/"
+  },
+  "changelog": [
+    {
+      "version": "1.0.2",
+      "date": "2025-11-06",
+      "changes": [
+        "Removed inline CSS from setup_instructions.html to comply with design standards",
+        "Setup instructions now use consolidated wizard CSS (wizard-base.css and provider-wizard.css)",
+        "Improved consistency and maintainability of setup UI"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2025-10-23",
+      "changes": [
+        "Initial release",
+        "OAuth 2.0 authentication with 8-hour token caching",
+        "Rate calculation for all USPS domestic mail classes",
+        "Label generation with multipart response parsing",
+        "Tracking via POST endpoint with status text mapping",
+        "Domestic shipping support",
+        "Return label support",
+        "Insurance and signature confirmation via extra services"
+      ]
+    }
+  ]
+}

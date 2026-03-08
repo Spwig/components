@@ -1,0 +1,163 @@
+{
+  "component_type": "exchange_rate_provider",
+  "slug": "xe",
+  "name": "XE Currency Data API",
+  "version": "1.0.1",
+  "description": "Premium exchange rate data from XE.com - trusted globally for 30+ years. Access 220+ currencies from 100+ authoritative sources with unparalleled data quality and brand recognition.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "xe",
+  "class_name": "XEProvider",
+  "entry_point": "provider.py",
+
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+
+  "homepage_url": "https://www.xe.com/xecurrencydata/",
+  "support_url": "https://www.xe.com/xecurrencydata/#contact",
+  "api_docs_url": "https://xecdapi.xe.com/docs/v1",
+  "min_platform_version": "1.0.0",
+
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+
+  "capabilities": {
+    "live_rates": true,
+    "historical": null,
+    "crypto": false,
+    "commodities": false,
+    "base_currency_selection": true,
+    "batch_requests": true,
+    "mock_rate_detection": true
+  },
+
+  "rate_limits": null,
+
+  "supported_currencies": null,
+
+  "credential_schema": {
+    "account_id": {
+      "type": "text",
+      "label": "Account ID",
+      "required": true,
+      "help_text": "Your XE Account ID (not secret - visible in logs)",
+      "placeholder": "e.g., yourcompany123456789"
+    },
+    "api_key": {
+      "type": "text",
+      "label": "API Key",
+      "required": true,
+      "help_text": "Your XE API Key (keep secure - will be encrypted)",
+      "placeholder": "e.g., abc123def456ghi789jkl012mno"
+    }
+  },
+
+  "pricing": {
+    "free_tier": {
+      "name": "7-Day Trial",
+      "requests_per_month": 100,
+      "features": [
+        "Mock rates (not real market data)",
+        "Test all API features",
+        "220+ currencies",
+        "7-day access"
+      ],
+      "limitations": [
+        "Returns MOCK RATES only - not suitable for production",
+        "Limited to 100 requests during trial period",
+        "Must upgrade for real market data"
+      ]
+    },
+    "paid_tiers": [
+      {
+        "name": "Subscription Packages",
+        "description": "Contact XE for pricing based on your requirements",
+        "features": [
+          "Real-time accurate exchange rates from 100+ sources",
+          "220+ currencies worldwide",
+          "Historical data access",
+          "Monthly average rates for financial reporting",
+          "Various update frequencies (hourly/daily)",
+          "Scalable request volumes",
+          "Enterprise-grade reliability",
+          "Premium support"
+        ]
+      }
+    ]
+  },
+
+  "update_frequency": {
+    "free_tier": "Trial mode - mock data only",
+    "paid_tiers": "Hourly or real-time (package dependent)"
+  },
+
+  "data_sources": "100+ authoritative global sources aggregated by XE.com",
+
+  "features": [
+    "220+ currencies from 100+ trusted sources",
+    "Mid-market exchange rates with no hidden markup",
+    "30+ years of brand trust and global recognition",
+    "Historical rate data (on supported packages)",
+    "Monthly average rates for financial reporting",
+    "Automatic account package detection",
+    "Trial mode with prominent mock rate warnings",
+    "Batch fetching - all rates in one API call",
+    "Dynamic capability detection based on subscription"
+  ],
+
+  "changelog": [
+    {
+      "version": "1.0.1",
+      "date": "2025-10-25",
+      "changes": [
+        "Fixed: Provider now properly inherits from ExchangeRateProviderBase",
+        "Fixed: Implemented credential_schema as @property (required abstract method)",
+        "Fixed: Changed capabilities from method to @property (required abstract method)",
+        "Fixed: Updated validate_credentials signature to raise ValueError (was returning dict)",
+        "Fixed: Removed @staticmethod decorators from validate_credentials and redact_credentials",
+        "Updated: All alert boxes now use theme-aware CSS classes (messagelist .warning/.info)",
+        "Updated: Removed inline CSS styles for better dark/light theme support",
+        "Updated: Placeholder credentials changed to generic examples (security)",
+        "Provider now loads correctly in ProviderRegistry"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-10-25",
+      "changes": [
+        "Initial release of XE Currency Data API provider",
+        "Dual credential authentication (Account ID + API Key)",
+        "Automatic package detection via /account_info endpoint",
+        "Trial mode detection with mock rate warnings",
+        "Support for 220+ currencies from 100+ sources",
+        "Dynamic capability detection based on subscription package",
+        "Historical rate support (package dependent)",
+        "Batch rate fetching with comma-separated targets",
+        "Comprehensive error handling and recovery"
+      ]
+    }
+  ],
+
+  "tags": ["exchange-rates", "currency", "forex", "premium", "enterprise", "trusted-brand"],
+
+  "logo": "logo.png",
+
+  "settings_schema": {},
+
+  "webhooks": [],
+
+  "notes": [
+    "Trial accounts return MOCK RATES - not real market data",
+    "Prominent warnings displayed for trial mode activation",
+    "Contact XE for production pricing and package options",
+    "Account info endpoint does not count against quota",
+    "Package type determines available capabilities (historical, update frequency, etc.)",
+    "Rate limits are package-specific - see account dashboard"
+  ]
+}

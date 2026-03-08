@@ -1,0 +1,213 @@
+<!-- Twilio SMS Setup Instructions (HTML Fragment - no inline styles) -->
+
+<p>This guide will help you set up Twilio to send SMS messages from your store. Twilio is a cloud communications platform that provides reliable global SMS delivery.</p>
+
+<div class="info-box">
+    <i class="fas fa-info-circle"></i>
+    <div>
+        <strong>Time Required:</strong> 5-10 minutes<br>
+        <strong>Prerequisites:</strong> None (free trial available)
+    </div>
+</div>
+
+<h3>Quick Setup Overview</h3>
+<p>To use Twilio SMS, you'll need:</p>
+<ol>
+    <li>A Twilio account (free trial or paid)</li>
+    <li>Account SID and Auth Token from your dashboard</li>
+    <li>A Twilio phone number for sending messages</li>
+</ol>
+
+<h3>Step-by-Step Setup</h3>
+
+<div class="instruction-step">
+    <div class="step-number">1</div>
+    <div class="step-content">
+        <h4>Create a Twilio Account</h4>
+        <ol>
+            <li>Go to <a href="https://www.twilio.com/try-twilio" target="_blank" rel="noopener noreferrer">Twilio Sign Up</a></li>
+            <li>Enter your email, name, and create a password</li>
+            <li>Verify your email address</li>
+            <li>Verify your phone number (for security)</li>
+        </ol>
+        <div class="step-note">
+            <i class="fas fa-lightbulb"></i>
+            <strong>Free Trial:</strong> New accounts receive $15 in free trial credit to test SMS sending.
+        </div>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">2</div>
+    <div class="step-content">
+        <h4>Get Your Account SID and Auth Token</h4>
+        <ol>
+            <li>Log in to your <a href="https://console.twilio.com" target="_blank" rel="noopener noreferrer">Twilio Console</a></li>
+            <li>On the dashboard, locate your <strong>Account SID</strong> and <strong>Auth Token</strong></li>
+            <li>Click the "eye" icon next to Auth Token to reveal it</li>
+            <li>Copy both values - you'll need them in the next step</li>
+        </ol>
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+                <strong>Keep Your Auth Token Secret!</strong>
+                <p>Never share your Auth Token publicly or commit it to version control. Anyone with your Account SID and Auth Token can send messages using your account.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">3</div>
+    <div class="step-content">
+        <h4>Get a Twilio Phone Number</h4>
+        <ol>
+            <li>In the Console, go to <strong>Phone Numbers → Manage → Buy a number</strong></li>
+            <li>Or use the link: <a href="https://console.twilio.com/us1/develop/phone-numbers/manage/search" target="_blank" rel="noopener noreferrer">Buy a Phone Number</a></li>
+            <li>Select your country and search for available numbers</li>
+            <li>Choose a number with <strong>SMS</strong> capability (check the SMS column)</li>
+            <li>Click <strong>Buy</strong> to purchase the number</li>
+        </ol>
+        <div class="step-note">
+            <i class="fas fa-info-circle"></i>
+            <strong>Free Trial Numbers:</strong> During the free trial, you'll get a free phone number with limited capabilities. Upgrade to unlock full features.
+        </div>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">4</div>
+    <div class="step-content">
+        <h4>Enter Your Credentials</h4>
+        <p>Use the following information to configure the SMS provider:</p>
+        <table class="credentials-table">
+            <tr>
+                <th>Field</th>
+                <th>Where to Find It</th>
+            </tr>
+            <tr>
+                <td>Account SID</td>
+                <td>Twilio Console Dashboard (starts with <code>AC</code>)</td>
+            </tr>
+            <tr>
+                <td>Auth Token</td>
+                <td>Twilio Console Dashboard (click eye icon to reveal)</td>
+            </tr>
+            <tr>
+                <td>From Phone Number</td>
+                <td>Your Twilio phone number in E.164 format (e.g., <code>+15551234567</code>)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">5</div>
+    <div class="step-content">
+        <h4>Test Your Connection</h4>
+        <p>After entering your credentials, click the <strong>Test Connection</strong> button to verify everything is working correctly.</p>
+        <p>A successful test will show:</p>
+        <ul>
+            <li>Your account name and status</li>
+            <li>Whether your phone number is valid</li>
+        </ul>
+    </div>
+</div>
+
+<h3>Free Trial Limitations</h3>
+<div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div>
+        <p>During the free trial, Twilio has some restrictions:</p>
+        <ul>
+            <li>Can only send to <strong>verified phone numbers</strong> (numbers you've added to your account)</li>
+            <li>Messages include <strong>"Sent from Twilio trial account"</strong> prefix</li>
+            <li>Limited to the trial credit balance</li>
+        </ul>
+        <p>To remove these limitations, upgrade to a paid account in the Twilio Console.</p>
+    </div>
+</div>
+
+<h3>Verifying Phone Numbers (Trial Accounts)</h3>
+<p>If you're on a trial account and need to send to specific numbers:</p>
+<ol>
+    <li>Go to <a href="https://console.twilio.com/us1/develop/phone-numbers/manage/verified" target="_blank" rel="noopener noreferrer">Verified Caller IDs</a></li>
+    <li>Click <strong>Add a new Caller ID</strong></li>
+    <li>Enter the phone number you want to text</li>
+    <li>Verify via SMS or voice call</li>
+</ol>
+
+<h3>Pricing</h3>
+<div class="info-box">
+    <i class="fas fa-info-circle"></i>
+    <div>
+        <p>Twilio pricing varies by country. Example rates:</p>
+        <table class="credentials-table">
+            <tr>
+                <th>Country</th>
+                <th>Outbound SMS</th>
+            </tr>
+            <tr>
+                <td>United States</td>
+                <td>$0.0079 per message</td>
+            </tr>
+            <tr>
+                <td>United Kingdom</td>
+                <td>$0.0420 per message</td>
+            </tr>
+            <tr>
+                <td>Canada</td>
+                <td>$0.0075 per message</td>
+            </tr>
+            <tr>
+                <td>Australia</td>
+                <td>$0.0500 per message</td>
+            </tr>
+        </table>
+        <p>See <a href="https://www.twilio.com/sms/pricing" target="_blank" rel="noopener noreferrer">Twilio SMS Pricing</a> for current rates.</p>
+    </div>
+</div>
+
+<h3>Troubleshooting</h3>
+
+<h4>Error: "Authentication Error"</h4>
+<ul>
+    <li>Verify your Account SID starts with <code>AC</code></li>
+    <li>Make sure you copied the Auth Token correctly (it's hidden by default)</li>
+    <li>Check that you're using the main account credentials, not API key credentials</li>
+</ul>
+
+<h4>Error: "Phone number is not valid"</h4>
+<ul>
+    <li>Ensure the phone number is in E.164 format: <code>+[country code][number]</code></li>
+    <li>Verify the number is associated with your Twilio account</li>
+    <li>Check that the number has SMS capability</li>
+</ul>
+
+<h4>Error: "Cannot send to unverified number"</h4>
+<ul>
+    <li>This occurs on trial accounts</li>
+    <li>Either verify the recipient number or upgrade to a paid account</li>
+</ul>
+
+<h4>Messages Not Delivered</h4>
+<ul>
+    <li>Check the <a href="https://console.twilio.com/us1/monitor/logs/sms" target="_blank" rel="noopener noreferrer">SMS Logs</a> in your Twilio Console</li>
+    <li>Look for error codes and details</li>
+    <li>Common issues: invalid recipient number, carrier filtering, daily limits</li>
+</ul>
+
+<h3>Additional Resources</h3>
+<ul>
+    <li><a href="https://www.twilio.com/docs/sms/quickstart" target="_blank" rel="noopener noreferrer">Twilio SMS Quickstart</a></li>
+    <li><a href="https://www.twilio.com/docs/sms/api/message-resource" target="_blank" rel="noopener noreferrer">Twilio Message API Reference</a></li>
+    <li><a href="https://www.twilio.com/docs/usage/troubleshooting" target="_blank" rel="noopener noreferrer">Twilio Troubleshooting Guide</a></li>
+    <li><a href="https://support.twilio.com" target="_blank" rel="noopener noreferrer">Twilio Support</a></li>
+</ul>
+
+<h3>Need Help?</h3>
+<p>If you encounter issues during setup:</p>
+<ul>
+    <li><strong>Twilio Issues:</strong> Contact <a href="https://support.twilio.com" target="_blank" rel="noopener noreferrer">Twilio Support</a></li>
+    <li><strong>Platform Issues:</strong> Contact your platform administrator</li>
+</ul>

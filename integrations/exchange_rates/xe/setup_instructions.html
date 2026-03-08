@@ -1,0 +1,201 @@
+{% load i18n static %}
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <i class="fas fa-globe"></i>
+        <h3>{% trans "Getting Your XE Currency Data API Credentials" %}</h3>
+    </div>
+
+    <!-- TRIAL WARNING BANNER -->
+    <div class="messagelist">
+        <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>{% trans "Important: Trial Account Limitations" %}</strong>
+            <p style="margin: 8px 0 8px 0;">
+                {% trans "XE trial accounts (7-day free trial) return MOCK RATES, not real market data. These rates are for testing purposes only and should NOT be used in production environments." %}
+            </p>
+            <p style="margin: 0;">
+                <strong>{% trans "You must upgrade to a paid package to receive real exchange rates." %}</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="instruction-steps">
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>{% trans "Sign Up for XE Currency Data API" %}</h4>
+                <p>{% trans "Visit the XE Currency Data API website and sign up for an account. You can start with a 7-day free trial to test the integration, but remember that trial accounts return mock data only." %}</p>
+                <a href="https://www.xe.com/xecurrencydata/" class="btn-external" target="_blank" rel="noopener">
+                    <i class="fas fa-external-link-alt"></i>
+                    {% trans "Sign Up at XE.com" %}
+                </a>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>{% trans "Get Your Account ID" %}</h4>
+                <p>{% trans "After signing up, you'll receive an Account ID. This is your username for authentication and is not considered secret - it may appear in logs." %}</p>
+                <div class="code-block">
+                    <code>{% trans "Example Account ID:" %} yourcompany123456789</code>
+                </div>
+                <div class="messagelist">
+                    <div class="info">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "The Account ID is typically a combination of letters and numbers, around 15-20 characters." %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>{% trans "Get Your API Key" %}</h4>
+                <p>{% trans "Along with your Account ID, you'll receive an API Key. This is your password for authentication and must be kept secure." %}</p>
+                <div class="code-block">
+                    <code>{% trans "Example API Key:" %} abc123def456ghi789jkl012mno</code>
+                </div>
+                <div class="messagelist">
+                    <div class="warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% trans "Keep your API Key secure. Never share it publicly or commit it to version control. It will be encrypted when stored." %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>{% trans "Enter Your Credentials Below" %}</h4>
+                <p>{% trans "Enter both your Account ID and API Key in the credential form below. Both are required for XE authentication." %}</p>
+                <ul>
+                    <li><strong>{% trans "Account ID:" %}</strong> {% trans "Your XE account identifier (not secret)" %}</li>
+                    <li><strong>{% trans "API Key:" %}</strong> {% trans "Your XE API password (will be encrypted)" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h4>{% trans "Test Connection" %}</h4>
+                <p>{% trans "Click 'Test Connection' to verify your credentials work correctly. The test will check your account package and warn you if you're in trial mode." %}</p>
+                <div class="messagelist">
+                    <div class="info">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "The connection test uses the free /account_info endpoint and does not count against your quota!" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <div class="important-notes">
+            <h4><i class="fas fa-info-circle"></i> {% trans "Why Choose XE Currency Data API?" %}</h4>
+            <ul>
+                <li>
+                    <strong>{% trans "Global Trust:" %}</strong>
+                    {% trans "30+ years as a global leader in currency data - recognized and trusted worldwide" %}
+                </li>
+                <li>
+                    <strong>{% trans "Data Quality:" %}</strong>
+                    {% trans "220+ currencies from 100+ authoritative sources for unparalleled accuracy" %}
+                </li>
+                <li>
+                    <strong>{% trans "Mid-Market Rates:" %}</strong>
+                    {% trans "Fair exchange rates with no hidden markup - ideal for transparent pricing" %}
+                </li>
+                <li>
+                    <strong>{% trans "Historical Data:" %}</strong>
+                    {% trans "Access historical rates and monthly averages (on supported packages)" %}
+                </li>
+                <li>
+                    <strong>{% trans "Enterprise Grade:" %}</strong>
+                    {% trans "Reliable, scalable infrastructure trusted by major financial institutions" %}
+                </li>
+                <li>
+                    <strong>{% trans "Any Base Currency:" %}</strong>
+                    {% trans "Convert from any supported currency - not limited to USD" %}
+                </li>
+            </ul>
+        </div>
+
+        <div class="messagelist" style="margin-top: 20px;">
+            <div class="warning">
+                <h4 style="margin-top: 0;">
+                    <i class="fas fa-exclamation-circle"></i> {% trans "Trial Account Warning" %}
+                </h4>
+                <p>{% trans "If you're using a 7-day trial account:" %}</p>
+                <ul style="margin-bottom: 10px;">
+                    <li>{% trans "You will receive MOCK RATES, not real market data" %}</li>
+                    <li>{% trans "These rates are for testing the integration only" %}</li>
+                    <li>{% trans "DO NOT use trial accounts in production environments" %}</li>
+                    <li>{% trans "Limited to 100 requests during the 7-day trial period" %}</li>
+                </ul>
+                <p><strong>{% trans "To use real exchange rates in production, you must upgrade to a paid subscription package." %}</strong></p>
+            </div>
+        </div>
+
+        <div class="upgrade-info">
+            <h4><i class="fas fa-arrow-up"></i> {% trans "Ready for Production?" %}</h4>
+            <p>{% trans "XE offers various subscription packages tailored to your needs:" %}</p>
+            <ul>
+                <li>{% trans "Real-time accurate exchange rates from 100+ global sources" %}</li>
+                <li>{% trans "220+ currencies worldwide" %}</li>
+                <li>{% trans "Historical data access for trend analysis" %}</li>
+                <li>{% trans "Monthly average rates for financial reporting" %}</li>
+                <li>{% trans "Flexible update frequencies (hourly, daily, or real-time)" %}</li>
+                <li>{% trans "Scalable request volumes for any business size" %}</li>
+                <li>{% trans "Enterprise-grade support" %}</li>
+            </ul>
+            <a href="https://www.xe.com/xecurrencydata/" class="btn-external" target="_blank" rel="noopener">
+                <i class="fas fa-external-link-alt"></i>
+                {% trans "View Subscription Packages" %}
+            </a>
+        </div>
+
+        <div class="helpful-links">
+            <h4>{% trans "Helpful Resources" %}</h4>
+            <ul>
+                <li>
+                    <a href="https://xecdapi.xe.com/docs/v1" target="_blank" rel="noopener">
+                        <i class="fas fa-book"></i> {% trans "API Documentation" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.xe.com/xecurrencydata/" target="_blank" rel="noopener">
+                        <i class="fas fa-dollar-sign"></i> {% trans "Pricing & Packages" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.xe.com/xecurrencydata/#contact" target="_blank" rel="noopener">
+                        <i class="fas fa-envelope"></i> {% trans "Contact Sales" %}
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.xe.com/company/" target="_blank" rel="noopener">
+                        <i class="fas fa-info-circle"></i> {% trans "About XE" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="messagelist" style="margin-top: 20px;">
+            <div class="info">
+                <h4 style="margin-top: 0;"><i class="fas fa-cog"></i> {% trans "Technical Details" %}</h4>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>{% trans "Authentication:" %}</strong> {% trans "HTTP Basic Auth with Account ID as username and API Key as password" %}</li>
+                    <li><strong>{% trans "Supported Currencies:" %}</strong> {% trans "220+ currencies dynamically fetched from API" %}</li>
+                    <li><strong>{% trans "Rate Fetching:" %}</strong> {% trans "Batch fetching - all rates retrieved in one API call" %}</li>
+                    <li><strong>{% trans "Account Detection:" %}</strong> {% trans "Automatic package detection via /account_info endpoint (free - doesn't count against quota)" %}</li>
+                    <li><strong>{% trans "Capability Detection:" %}</strong> {% trans "Historical data support detected automatically based on your package" %}</li>
+                    <li><strong>{% trans "Update Frequency:" %}</strong> {% trans "Package-dependent (hourly, daily, or real-time)" %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

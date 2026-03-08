@@ -1,0 +1,26 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Tech Theme - Critical CSS for Collection Page
+ * Contains above-the-fold styles for faster initial render
+ */
+
+/* Collection header */
+.collection-header {
+  padding: var(--theme-space-8) 0;
+  background-color: var(--theme-color-background-secondary);
+}
+
+/* Products grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--theme-space-6);
+}
+
+/* Filter sidebar skeleton */
+.filter-sidebar {
+  background-color: var(--theme-color-surface);
+  border-radius: var(--theme-radius-lg);
+  padding: var(--theme-space-4);
+}

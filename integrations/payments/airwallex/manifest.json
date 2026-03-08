@@ -1,0 +1,713 @@
+{
+  "component_type": "payment_provider",
+  "slug": "airwallex",
+  "name": "Airwallex",
+  "version": "1.1.6",
+  "description": "Global payment processing with 160+ payment methods across 130+ countries. Optimized for international commerce with competitive FX rates.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.airwallex.com",
+  "support_url": "https://www.airwallex.com/docs",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "payment_providers": ">=1.0.0"
+  },
+  "provider_key": "airwallex",
+  "entry_point": "provider",
+  "class_name": "AirwallexProvider",
+  "capabilities": {
+    "payment_methods": ["card", "bank_transfer", "digital_wallet", "local_methods"],
+    "supported_currencies": [
+      "USD", "EUR", "GBP", "AUD", "CAD", "SGD", "HKD", "CNY", "JPY",
+      "NZD", "CHF", "SEK", "DKK", "NOK", "PLN", "CZK", "HUF", "RON",
+      "BGN", "HRK", "THB", "MYR", "PHP", "IDR", "VND", "KRW", "TWD",
+      "INR", "BRL", "MXN", "CLP", "COP", "PEN", "ARS", "ZAR", "AED",
+      "SAR", "QAR", "KWD", "BHD", "OMR", "JOD", "ILS", "EGP", "TRY"
+    ],
+    "features": {
+      "capture": true,
+      "authorize": true,
+      "refund": true,
+      "partial_refund": true,
+      "webhooks": true,
+      "recurring": true,
+      "3d_secure": true,
+      "multi_currency": true
+    },
+    "checkout_modes": ["hosted", "redirect", "integrated"],
+    "integration_types": ["api"]
+  },
+  "frontend": {
+    "checkout_handler": "checkout-handler.js",
+    "sdk_dependencies": [
+      "https://static.airwallex.com/components/sdk/v1/index.js"
+    ]
+  },
+  "payment_methods": {
+    "cards": [
+      {
+        "slug": "visa",
+        "name": "Visa",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all"
+      },
+      {
+        "slug": "mastercard",
+        "name": "Mastercard",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all"
+      },
+      {
+        "slug": "amex",
+        "name": "American Express",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all",
+        "notes": "Higher processing fees typically apply"
+      },
+      {
+        "slug": "discover",
+        "name": "Discover",
+        "category": "card",
+        "regions": ["US", "CA"],
+        "currencies": ["USD", "CAD"]
+      },
+      {
+        "slug": "jcb",
+        "name": "JCB",
+        "category": "card",
+        "regions": ["JP", "CN", "TW", "KR", "TH", "SG", "HK", "US"],
+        "currencies": ["JPY", "CNY", "TWD", "KRW", "THB", "SGD", "HKD", "USD"]
+      },
+      {
+        "slug": "unionpay",
+        "name": "UnionPay",
+        "category": "card",
+        "regions": ["CN", "HK", "TW", "SG", "MY", "TH", "JP", "KR"],
+        "currencies": ["CNY", "HKD", "TWD", "SGD", "MYR", "THB", "JPY", "KRW", "USD"]
+      },
+      {
+        "slug": "diners",
+        "name": "Diners Club",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all"
+      },
+      {
+        "slug": "maestro",
+        "name": "Maestro",
+        "category": "card",
+        "regions": ["EU", "GB", "CH"],
+        "currencies": ["EUR", "GBP", "CHF"]
+      },
+      {
+        "slug": "cartes_bancaires",
+        "name": "Cartes Bancaires",
+        "category": "card",
+        "regions": ["FR"],
+        "currencies": ["EUR"]
+      },
+      {
+        "slug": "dankort",
+        "name": "Dankort",
+        "category": "card",
+        "regions": ["DK"],
+        "currencies": ["DKK", "EUR"]
+      },
+      {
+        "slug": "elo",
+        "name": "Elo",
+        "category": "card",
+        "regions": ["BR"],
+        "currencies": ["BRL"]
+      },
+      {
+        "slug": "hipercard",
+        "name": "Hipercard",
+        "category": "card",
+        "regions": ["BR"],
+        "currencies": ["BRL"]
+      },
+      {
+        "slug": "vpay",
+        "name": "V PAY",
+        "category": "card",
+        "regions": ["EU", "CH"],
+        "currencies": ["EUR", "CHF"]
+      },
+      {
+        "slug": "uatp",
+        "name": "UATP",
+        "category": "card",
+        "regions": ["global"],
+        "currencies": "all",
+        "notes": "Universal Air Travel Plan - airline industry payment card"
+      }
+    ],
+    "digital_wallets": [
+      {
+        "slug": "apple_pay",
+        "name": "Apple Pay",
+        "category": "digital_wallet",
+        "regions": ["global"],
+        "currencies": "all",
+        "notes": "Requires iOS/macOS device"
+      },
+      {
+        "slug": "google_pay",
+        "name": "Google Pay",
+        "category": "digital_wallet",
+        "regions": ["global"],
+        "currencies": "all",
+        "notes": "Requires Android device or Chrome browser"
+      },
+      {
+        "slug": "samsung_pay",
+        "name": "Samsung Pay",
+        "category": "digital_wallet",
+        "regions": ["KR", "US", "CN", "SG", "AU", "ES", "GB", "FR", "IT", "BR", "RU", "TH", "VN"],
+        "currencies": ["KRW", "USD", "CNY", "SGD", "AUD", "EUR", "GBP", "BRL", "RUB", "THB", "VND"]
+      },
+      {
+        "slug": "paypal",
+        "name": "PayPal",
+        "category": "digital_wallet",
+        "regions": ["global"],
+        "currencies": "all"
+      },
+      {
+        "slug": "alipay",
+        "name": "Alipay",
+        "category": "digital_wallet",
+        "regions": ["CN", "HK", "SG", "MY", "TH", "PH", "ID", "KR", "JP"],
+        "currencies": ["CNY", "HKD", "SGD", "MYR", "THB", "PHP", "IDR", "KRW", "JPY", "USD", "EUR"]
+      },
+      {
+        "slug": "alipay_plus",
+        "name": "Alipay+",
+        "category": "digital_wallet",
+        "regions": ["CN", "HK", "SG", "MY", "TH", "PH", "ID", "KR", "JP", "VN"],
+        "currencies": ["CNY", "HKD", "SGD", "MYR", "THB", "PHP", "IDR", "KRW", "JPY", "VND", "USD", "EUR"],
+        "notes": "Includes partner wallets: GCash, Kakao Pay, Touch'n Go, TrueMoney"
+      },
+      {
+        "slug": "wechat_pay",
+        "name": "WeChat Pay",
+        "category": "digital_wallet",
+        "regions": ["CN", "HK", "SG", "MY", "TH", "JP", "KR"],
+        "currencies": ["CNY", "HKD", "SGD", "MYR", "THB", "JPY", "KRW", "USD", "EUR"]
+      },
+      {
+        "slug": "amazon_pay",
+        "name": "Amazon Pay",
+        "category": "digital_wallet",
+        "regions": ["US", "GB", "DE", "FR", "IT", "ES", "JP", "IN"],
+        "currencies": ["USD", "GBP", "EUR", "JPY", "INR"]
+      }
+    ],
+    "buy_now_pay_later": [
+      {
+        "slug": "klarna",
+        "name": "Klarna",
+        "category": "bnpl",
+        "regions": ["US", "GB", "DE", "AT", "NL", "SE", "NO", "FI", "DK", "BE", "ES", "FR", "IT", "PL", "CH", "IE", "AU", "NZ"],
+        "currencies": ["USD", "GBP", "EUR", "SEK", "NOK", "DKK", "CHF", "AUD", "NZD", "PLN"]
+      },
+      {
+        "slug": "availabill",
+        "name": "Availabill",
+        "category": "bnpl",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "powerpay",
+        "name": "PowerPay",
+        "category": "bnpl",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "cembrapay",
+        "name": "CembraPay",
+        "category": "bnpl",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      }
+    ],
+    "bank_transfers": [
+      {
+        "slug": "ideal",
+        "name": "iDEAL",
+        "category": "bank_transfer",
+        "regions": ["NL"],
+        "currencies": ["EUR"]
+      },
+      {
+        "slug": "giropay",
+        "name": "Giropay",
+        "category": "bank_transfer",
+        "regions": ["DE"],
+        "currencies": ["EUR"]
+      },
+      {
+        "slug": "bancontact",
+        "name": "Bancontact",
+        "category": "bank_transfer",
+        "regions": ["BE"],
+        "currencies": ["EUR"]
+      },
+      {
+        "slug": "eps",
+        "name": "EPS",
+        "category": "bank_transfer",
+        "regions": ["AT"],
+        "currencies": ["EUR"]
+      },
+      {
+        "slug": "sepa",
+        "name": "SEPA Direct Debit",
+        "category": "bank_transfer",
+        "regions": ["EU"],
+        "currencies": ["EUR"],
+        "notes": "Available across SEPA zone (36 European countries)"
+      },
+      {
+        "slug": "przelewy24",
+        "name": "Przelewy24",
+        "category": "bank_transfer",
+        "regions": ["PL"],
+        "currencies": ["PLN", "EUR"]
+      },
+      {
+        "slug": "blik",
+        "name": "BLIK",
+        "category": "bank_transfer",
+        "regions": ["PL"],
+        "currencies": ["PLN"]
+      }
+    ],
+    "nordic_mobile": [
+      {
+        "slug": "swish",
+        "name": "Swish",
+        "category": "mobile_payment",
+        "regions": ["SE"],
+        "currencies": ["SEK"]
+      },
+      {
+        "slug": "mobilepay",
+        "name": "MobilePay",
+        "category": "mobile_payment",
+        "regions": ["DK", "FI"],
+        "currencies": ["DKK", "EUR"]
+      },
+      {
+        "slug": "vipps",
+        "name": "Vipps",
+        "category": "mobile_payment",
+        "regions": ["NO"],
+        "currencies": ["NOK"]
+      }
+    ],
+    "prepaid_vouchers": [
+      {
+        "slug": "paysafecard",
+        "name": "Paysafecard",
+        "category": "prepaid",
+        "regions": ["EU", "GB", "US", "CA", "AU", "NZ", "BR", "MX", "AR", "UY", "PE"],
+        "currencies": ["EUR", "GBP", "USD", "CAD", "AUD", "NZD", "BRL", "MXN", "ARS", "UYU", "PEN", "CHF", "SEK", "DKK", "NOK", "PLN", "CZK", "RON", "HUF", "BGN", "HRK"]
+      },
+      {
+        "slug": "skrill",
+        "name": "Skrill",
+        "category": "prepaid",
+        "regions": ["global"],
+        "currencies": "all"
+      }
+    ],
+    "swiss_methods": [
+      {
+        "slug": "postfinance_card",
+        "name": "PostFinance Card",
+        "category": "local_card",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "postfinance_pay",
+        "name": "PostFinance Pay",
+        "category": "digital_wallet",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "postfinance_efinance",
+        "name": "PostFinance E-Finance",
+        "category": "bank_transfer",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "twint",
+        "name": "TWINT",
+        "category": "mobile_payment",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "swisscom_pay",
+        "name": "Swisscom Pay",
+        "category": "mobile_payment",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "swissbilling",
+        "name": "SwissBilling",
+        "category": "invoice",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "reka",
+        "name": "Reka",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"],
+        "notes": "Swiss tourism and leisure voucher"
+      },
+      {
+        "slug": "boncard",
+        "name": "Boncard",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "bonus_card",
+        "name": "Bonus Card",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "butterfly_card",
+        "name": "Butterfly Card",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "half_fare_plus",
+        "name": "Half Fare+",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"],
+        "notes": "Swiss rail travel card"
+      },
+      {
+        "slug": "lunch_check",
+        "name": "Lunch Check",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "migros_giftcard",
+        "name": "Migros Giftcard",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "swisspass",
+        "name": "Swisspass",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"],
+        "notes": "Swiss public transport card"
+      },
+      {
+        "slug": "pointspay",
+        "name": "PointsPay",
+        "category": "loyalty",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "paycard",
+        "name": "PayCard",
+        "category": "voucher",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      },
+      {
+        "slug": "ebill",
+        "name": "eBill",
+        "category": "invoice",
+        "regions": ["CH"],
+        "currencies": ["CHF"]
+      }
+    ],
+    "other_methods": [
+      {
+        "slug": "cryptocurrency",
+        "name": "Cryptocurrency",
+        "category": "crypto",
+        "regions": ["global"],
+        "currencies": ["BTC", "ETH", "USDT", "USDC"],
+        "notes": "Subject to regulatory restrictions in some countries"
+      },
+      {
+        "slug": "crif",
+        "name": "CRIF",
+        "category": "invoice",
+        "regions": ["CH"],
+        "currencies": ["CHF"],
+        "notes": "Invoice payment with credit check"
+      },
+      {
+        "slug": "mediamarkt",
+        "name": "MediaMarkt",
+        "category": "financing",
+        "regions": ["DE", "AT", "CH", "ES", "IT", "NL", "BE", "PL", "PT", "SE"],
+        "currencies": ["EUR", "CHF", "SEK", "PLN"]
+      }
+    ]
+  },
+  "credential_schema": {
+    "test_mode": {
+      "type": "boolean",
+      "label": "Test Mode",
+      "help_text": "Use demo credentials for testing. Automatically enforced in sandbox environments.",
+      "required": true,
+      "default": true
+    },
+    "test_client_id": {
+      "type": "text",
+      "label": "Demo Client ID",
+      "help_text": "Your Airwallex Demo Client ID from Developer settings",
+      "required": true,
+      "placeholder": "e.g., demo_abc123def456",
+      "group": "test_credentials"
+    },
+    "test_api_key": {
+      "type": "password",
+      "label": "Demo API Key",
+      "help_text": "Your Airwallex Demo API Key from Developer settings",
+      "required": true,
+      "secret": true,
+      "placeholder": "Enter your Demo API Key",
+      "group": "test_credentials"
+    },
+    "test_webhook_secret": {
+      "type": "password",
+      "label": "Demo Webhook Secret",
+      "help_text": "Optional: Demo webhook signature secret",
+      "required": false,
+      "secret": true,
+      "placeholder": "Enter demo webhook secret (optional)",
+      "group": "test_credentials"
+    },
+    "live_client_id": {
+      "type": "text",
+      "label": "Production Client ID",
+      "help_text": "Your Airwallex Production Client ID. Optional - can be added later.",
+      "required": false,
+      "placeholder": "e.g., prod_abc123def456",
+      "group": "live_credentials"
+    },
+    "live_api_key": {
+      "type": "password",
+      "label": "Production API Key",
+      "help_text": "Your Airwallex Production API Key. Optional - can be added later.",
+      "required": false,
+      "secret": true,
+      "placeholder": "Enter your Production API Key",
+      "group": "live_credentials"
+    },
+    "live_webhook_secret": {
+      "type": "password",
+      "label": "Production Webhook Secret",
+      "help_text": "Optional: Production webhook signature secret",
+      "required": false,
+      "secret": true,
+      "placeholder": "Enter production webhook secret (optional)",
+      "group": "live_credentials"
+    },
+    "auto_capture": {
+      "type": "boolean",
+      "label": "Auto Capture Payments",
+      "help_text": "Automatically capture payments after authorization. Disable for manual capture workflow.",
+      "required": false,
+      "default": true
+    },
+    "payment_descriptor": {
+      "type": "text",
+      "label": "Statement Descriptor",
+      "help_text": "Text that appears on customer's bank statement (max 22 characters)",
+      "required": false,
+      "max_length": 22,
+      "placeholder": "YOUR STORE NAME"
+    },
+    "payment_method_types": {
+      "type": "multiselect",
+      "label": "Enabled Payment Methods",
+      "help_text": "Select which payment methods to offer customers. Leave empty to show all methods available in your Airwallex account. Common types: card, wechatpay, alipaycn, applepay, googlepay, grabpay",
+      "required": false,
+      "options": [
+        {"value": "card", "label": "Card Payments (Visa, Mastercard, Amex, etc.)"},
+        {"value": "wechatpay", "label": "WeChat Pay"},
+        {"value": "alipaycn", "label": "Alipay China"},
+        {"value": "alipayhk", "label": "Alipay Hong Kong"},
+        {"value": "applepay", "label": "Apple Pay"},
+        {"value": "googlepay", "label": "Google Pay"},
+        {"value": "grabpay", "label": "GrabPay"},
+        {"value": "kakaopay", "label": "Kakao Pay"},
+        {"value": "gcash", "label": "GCash"},
+        {"value": "dana", "label": "DANA"},
+        {"value": "tng", "label": "Touch 'n Go"},
+        {"value": "truemoney", "label": "TrueMoney"}
+      ]
+    }
+  },
+  "webhooks": {
+    "supported_events": [
+      "payment_intent.succeeded",
+      "payment_intent.failed",
+      "payment_intent.requires_capture",
+      "refund.received",
+      "refund.accepted",
+      "refund.settled",
+      "refund.failed",
+      "subscription.created",
+      "subscription.active",
+      "subscription.updated",
+      "subscription.cancelled",
+      "subscription.expired",
+      "subscription.unpaid",
+      "subscription.paused",
+      "invoice.paid",
+      "invoice.payment_failed",
+      "invoice.upcoming"
+    ],
+    "verification_method": "hmac_sha256",
+    "headers": ["x-timestamp", "x-signature"]
+  },
+  "signup_url": "https://www.airwallex.com/signup",
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "post_install_commands": [],
+  "setup_instructions": "setup_instructions.html",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "changelog": [
+    {
+      "version": "1.1.6",
+      "date": "2026-03-01",
+      "changes": [
+        "Fixed credential validation failing for dual-credential (test/production) setup - base class now validates unprefixed credentials after selection",
+        "Fixed subscription webhook signature verification to include x-timestamp in HMAC computation (security fix)",
+        "Fixed cardholder name not being sent to Airwallex API during payment confirmation",
+        "Fixed credential redaction to handle both prefixed (test_api_key, live_api_key) and unprefixed key formats",
+        "Removed stale environment field from credential_schema property"
+      ]
+    },
+    {
+      "version": "1.1.4",
+      "date": "2026-02-16",
+      "changes": [
+        "Implemented plugin architecture for frontend checkout integration - providers now ship their own JavaScript handlers",
+        "Added checkout-handler.js for embedded payment integration using Airwallex SDK",
+        "Added frontend manifest section with checkout_handler and sdk_dependencies",
+        "Fixed cancel_url not being sent to Airwallex API (was received but not included in intent_data)",
+        "Switched from hosted redirect to embedded checkout for better UX (customer stays on merchant site)",
+        "Removed reliance on get_hosted_checkout_url() - now returns handler_config instead of checkout_url",
+        "Added support for dynamic SDK loading based on merchant's configured provider"
+      ]
+    },
+    {
+      "version": "1.1.3",
+      "date": "2026-02-16",
+      "changes": [
+        "Added configurable payment_method_types to allow merchants to select which payment methods to offer (card, Apple Pay, Google Pay, WeChat Pay, Alipay, GrabPay, etc.)",
+        "Added customer name to payment intent creation for hosted checkout display",
+        "Added fallback for last_name when customer only has single name",
+        "Removed hardcoded 'card' payment method - now shows all available methods by default"
+      ]
+    },
+    {
+      "version": "1.1.2",
+      "date": "2026-02-11",
+      "changes": [
+        "Fixed test_connection() using /account endpoint that requires admin permissions — now uses /pa/config/payment_method_types which works with scoped API keys",
+        "Added error logging to test_connection() failures"
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "date": "2026-02-09",
+      "changes": [
+        "Fixed missing request_id in create_payment_intent_for_checkout() when no order_id provided",
+        "Fixed missing request_id in cancel_payment_intent(), capture_payment(), refund_payment(), and confirm_payment_intent()",
+        "Fixed charge() and authorize() passing empty string as order_id",
+        "Added create_checkout_session() implementation for hosted checkout flow"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-02-04",
+      "changes": [
+        "Added payment orchestration support for checkout flow",
+        "New create_payment_intent_for_checkout() method for hosted/embedded checkout",
+        "New retrieve_payment_intent() method for status polling",
+        "New confirm_payment_intent() method for 3DS confirmation",
+        "New cancel_payment_intent() method for intent cancellation",
+        "Added get_hosted_checkout_url() helper for redirect flow",
+        "Support for PaymentIntent lifecycle management"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-01-14",
+      "changes": [
+        "Initial release with full payment processing support",
+        "Support for 160+ payment methods globally",
+        "Multi-currency processing with competitive FX rates",
+        "Webhook integration for real-time payment notifications",
+        "Full and partial refund capabilities",
+        "3D Secure authentication support"
+      ]
+    }
+  ],
+  "pricing_info": {
+    "model": "transaction_based",
+    "notes": "Competitive transaction fees. Partner rates available. Contact Airwallex for pricing details."
+  },
+  "regions": {
+    "supported": ["global"],
+    "restricted": [],
+    "notes": "Available globally with 160+ local payment methods across 130+ countries"
+  },
+  "compliance": {
+    "pci_dss": true,
+    "certifications": ["PCI DSS Level 1", "SOC 2 Type II"],
+    "data_residency": ["multi_region"]
+  }
+}

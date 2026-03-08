@@ -1,0 +1,268 @@
+<!-- Twilio WhatsApp Setup Instructions (HTML Fragment - no inline styles) -->
+
+<p>This guide will help you set up Twilio to send WhatsApp messages from your store. WhatsApp Business API allows you to reach customers on their preferred messaging platform.</p>
+
+<div class="info-box">
+    <i class="fas fa-info-circle"></i>
+    <div>
+        <strong>Time Required:</strong> 10-15 minutes<br>
+        <strong>Prerequisites:</strong> Twilio account (free trial or paid)
+    </div>
+</div>
+
+<h3>Important: WhatsApp Business Policies</h3>
+<div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div>
+        <strong>WhatsApp Messaging Rules:</strong>
+        <ul>
+            <li><strong>24-Hour Window:</strong> Free-form messages can only be sent within 24 hours of the customer's last message to you</li>
+            <li><strong>Template Messages:</strong> Outside the 24-hour window, you must use pre-approved templates</li>
+            <li><strong>Opt-in Required:</strong> Customers must explicitly opt-in to receive WhatsApp messages</li>
+            <li><strong>Business Content:</strong> Messages must comply with WhatsApp's commerce and business policies</li>
+        </ul>
+    </div>
+</div>
+
+<h3>Setup Options</h3>
+<p>Twilio offers two ways to get started with WhatsApp:</p>
+
+<div class="info-box">
+    <i class="fas fa-info-circle"></i>
+    <div>
+        <strong>Option A: Sandbox (Testing)</strong> - Quick setup for testing, limited features<br>
+        <strong>Option B: Production (Recommended)</strong> - Full WhatsApp Business API access, requires Meta approval
+    </div>
+</div>
+
+<h3>Option A: WhatsApp Sandbox (Quick Start)</h3>
+
+<div class="instruction-step">
+    <div class="step-number">1</div>
+    <div class="step-content">
+        <h4>Access the Sandbox</h4>
+        <ol>
+            <li>Log in to your <a href="https://console.twilio.com" target="_blank" rel="noopener noreferrer">Twilio Console</a></li>
+            <li>Navigate to <strong>Messaging → Try it out → Send a WhatsApp message</strong></li>
+            <li>Or go directly to: <a href="https://console.twilio.com/us1/develop/sms/try-it-out/whatsapp-learn" target="_blank" rel="noopener noreferrer">WhatsApp Sandbox</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">2</div>
+    <div class="step-content">
+        <h4>Connect Your Phone</h4>
+        <ol>
+            <li>You'll see a sandbox number (e.g., <code>+14155238886</code>)</li>
+            <li>Send a WhatsApp message to this number with the code shown (e.g., "join &lt;keyword&gt;")</li>
+            <li>You should receive a confirmation message</li>
+        </ol>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">3</div>
+    <div class="step-content">
+        <h4>Configure the Provider</h4>
+        <table class="credentials-table">
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Account SID</td>
+                <td>Your Twilio Account SID (starts with <code>AC</code>)</td>
+            </tr>
+            <tr>
+                <td>Auth Token</td>
+                <td>Your Twilio Auth Token</td>
+            </tr>
+            <tr>
+                <td>WhatsApp Number</td>
+                <td>The sandbox number (e.g., <code>+14155238886</code>)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle"></i>
+    <div>
+        <strong>Sandbox Limitations:</strong>
+        <ul>
+            <li>Can only message phones that have "joined" the sandbox</li>
+            <li>Uses a shared Twilio number, not your business number</li>
+            <li>No access to message templates</li>
+            <li>For testing only, not production use</li>
+        </ul>
+    </div>
+</div>
+
+<h3>Option B: Production WhatsApp Setup</h3>
+
+<div class="instruction-step">
+    <div class="step-number">1</div>
+    <div class="step-content">
+        <h4>Request Access</h4>
+        <ol>
+            <li>Log in to your <a href="https://console.twilio.com" target="_blank" rel="noopener noreferrer">Twilio Console</a></li>
+            <li>Go to <strong>Messaging → Senders → WhatsApp senders</strong></li>
+            <li>Click <strong>Register WhatsApp Sender</strong></li>
+            <li>Follow the guided setup process</li>
+        </ol>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">2</div>
+    <div class="step-content">
+        <h4>Set Up Meta Business Account</h4>
+        <ol>
+            <li>Create or connect your <a href="https://business.facebook.com" target="_blank" rel="noopener noreferrer">Meta Business Account</a></li>
+            <li>Verify your business with Meta</li>
+            <li>Complete the WhatsApp Business API request</li>
+            <li>Wait for approval (typically 1-3 business days)</li>
+        </ol>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">3</div>
+    <div class="step-content">
+        <h4>Register Your Number</h4>
+        <ol>
+            <li>Once approved, purchase a Twilio phone number</li>
+            <li>Or use your existing business phone number</li>
+            <li>Complete the WhatsApp sender registration in Twilio</li>
+            <li>Verify your number with the OTP sent via SMS</li>
+        </ol>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">4</div>
+    <div class="step-content">
+        <h4>Create Message Templates</h4>
+        <ol>
+            <li>In Twilio Console, go to <strong>Messaging → Content Editor</strong></li>
+            <li>Create templates for transactional messages (order confirmations, receipts, etc.)</li>
+            <li>Submit templates for approval</li>
+            <li>Wait for Meta to approve your templates (24-48 hours)</li>
+        </ol>
+        <div class="step-note">
+            <i class="fas fa-lightbulb"></i>
+            <strong>Tip:</strong> Start with simple templates. Templates with excessive marketing language may be rejected.
+        </div>
+    </div>
+</div>
+
+<div class="instruction-step">
+    <div class="step-number">5</div>
+    <div class="step-content">
+        <h4>Configure the Provider</h4>
+        <table class="credentials-table">
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Account SID</td>
+                <td>Your Twilio Account SID (starts with <code>AC</code>)</td>
+            </tr>
+            <tr>
+                <td>Auth Token</td>
+                <td>Your Twilio Auth Token</td>
+            </tr>
+            <tr>
+                <td>WhatsApp Number</td>
+                <td>Your registered WhatsApp number (e.g., <code>+15551234567</code>)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<h3>WhatsApp Pricing</h3>
+<div class="info-box">
+    <i class="fas fa-info-circle"></i>
+    <div>
+        <p>WhatsApp uses <strong>conversation-based pricing</strong>, not per-message pricing:</p>
+        <ul>
+            <li><strong>User-initiated (Service):</strong> When a customer messages you first</li>
+            <li><strong>Business-initiated (Marketing/Utility):</strong> When you message first with templates</li>
+        </ul>
+        <p>Pricing varies by country. Example rates per conversation:</p>
+        <table class="credentials-table">
+            <tr>
+                <th>Region</th>
+                <th>User-Initiated</th>
+                <th>Business-Initiated</th>
+            </tr>
+            <tr>
+                <td>North America</td>
+                <td>~$0.0088</td>
+                <td>~$0.0147</td>
+            </tr>
+            <tr>
+                <td>UK/Western Europe</td>
+                <td>~$0.0516</td>
+                <td>~$0.0858</td>
+            </tr>
+        </table>
+        <p>See <a href="https://www.twilio.com/whatsapp/pricing" target="_blank" rel="noopener noreferrer">Twilio WhatsApp Pricing</a> for current rates.</p>
+    </div>
+</div>
+
+<h3>Troubleshooting</h3>
+
+<h4>Error: "Number not registered for WhatsApp"</h4>
+<ul>
+    <li>Ensure you've completed WhatsApp sender registration</li>
+    <li>Verify the phone number format is correct (E.164 with +)</li>
+    <li>Check that your Meta Business account is approved</li>
+</ul>
+
+<h4>Error: "Template not approved"</h4>
+<ul>
+    <li>Wait for template approval (24-48 hours)</li>
+    <li>Check template status in Twilio Console</li>
+    <li>Revise and resubmit if rejected</li>
+</ul>
+
+<h4>Error: "Outside 24-hour window"</h4>
+<ul>
+    <li>You can only send free-form messages within 24 hours of customer's last message</li>
+    <li>Use approved templates for business-initiated conversations</li>
+</ul>
+
+<h4>Messages Not Delivered</h4>
+<ul>
+    <li>Check <a href="https://console.twilio.com/us1/monitor/logs/messaging" target="_blank" rel="noopener noreferrer">Message Logs</a> in Twilio Console</li>
+    <li>Verify recipient has WhatsApp installed</li>
+    <li>Ensure recipient hasn't blocked your number</li>
+</ul>
+
+<h3>Best Practices</h3>
+<ul>
+    <li><strong>Get explicit opt-in:</strong> Always obtain consent before sending WhatsApp messages</li>
+    <li><strong>Respond quickly:</strong> Take advantage of the 24-hour window for free-form messaging</li>
+    <li><strong>Use templates wisely:</strong> Create templates for common transactional messages</li>
+    <li><strong>Respect preferences:</strong> Provide easy opt-out options</li>
+    <li><strong>Keep it professional:</strong> WhatsApp messages should be valuable to the customer</li>
+</ul>
+
+<h3>Additional Resources</h3>
+<ul>
+    <li><a href="https://www.twilio.com/docs/whatsapp/quickstart" target="_blank" rel="noopener noreferrer">Twilio WhatsApp Quickstart</a></li>
+    <li><a href="https://www.twilio.com/docs/whatsapp/api" target="_blank" rel="noopener noreferrer">Twilio WhatsApp API Reference</a></li>
+    <li><a href="https://developers.facebook.com/docs/whatsapp/overview" target="_blank" rel="noopener noreferrer">Meta WhatsApp Business Platform</a></li>
+    <li><a href="https://www.whatsapp.com/legal/business-policy" target="_blank" rel="noopener noreferrer">WhatsApp Business Policy</a></li>
+</ul>
+
+<h3>Need Help?</h3>
+<p>If you encounter issues during setup:</p>
+<ul>
+    <li><strong>Twilio Issues:</strong> Contact <a href="https://support.twilio.com" target="_blank" rel="noopener noreferrer">Twilio Support</a></li>
+    <li><strong>WhatsApp Approval:</strong> Contact Meta Business Support</li>
+    <li><strong>Platform Issues:</strong> Contact your platform administrator</li>
+</ul>

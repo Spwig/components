@@ -1,0 +1,418 @@
+{
+  "component_type": "shipping_provider",
+  "slug": "australiapost",
+  "name": "Australia Post",
+  "version": "2.0.2",
+  "description": "Production-ready Australia Post shipping integration meeting full lodgement validation requirements. Supports order management, basket management (10,000 items), validation services, all product features (ATL, Safe Drop, DG), and 4 account types (eParcel, StarTrack, Same Day, On Demand). Complete workflow from validation to manifest generation.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "australiapost",
+  "class_name": "AustraliaPostProvider",
+  "entry_point": "provider.py",
+  "dependencies": {
+    "python": ">=3.8",
+    "django": ">=4.2",
+    "requests": ">=2.31.0",
+    "python-dateutil": ">=2.8.0"
+  },
+  "capabilities": {
+    "rates": true,
+    "labels": true,
+    "tracking": true,
+    "international": true,
+    "returns": true,
+    "pickup": true,
+    "insurance": true,
+    "signature": true,
+    "dangerous_goods": true,
+    "orders": true,
+    "order_summary": true,
+    "basket_management": true,
+    "shipment_update": true,
+    "validation": true,
+    "address_validation": true,
+    "serviceability": true,
+    "adhoc_pickups": true,
+    "sscc_barcoding": true,
+    "authority_to_leave": true,
+    "safe_drop": true,
+    "eta_calculation": true,
+    "charge_code_expiry": true,
+    "item_operations": true
+  },
+  "limits": {
+    "basket_size": 10000,
+    "max_order_items": 2000,
+    "tracking_rate_limit": 10,
+    "tracking_window_seconds": 60,
+    "basket_warning_threshold": 8000
+  },
+  "supported_countries": [
+    "AU",
+    "INTL"
+  ],
+  "credential_schema": {
+    "api_key": {
+      "type": "text",
+      "label": "API Key",
+      "help_text": "Your Australia Post API Key in UUID format (e.g., 601a4032-6dbd-46aa-9c6c-8c6dacca5e61) from the Developer Portal",
+      "required": true,
+      "placeholder": "601a4032-6dbd-46aa-9c6c-8c6dacca5e61",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "secret": true
+    },
+    "api_password": {
+      "type": "password",
+      "label": "API Password",
+      "help_text": "Password you set when generating your API Key",
+      "required": true,
+      "placeholder": "Enter your API password",
+      "min_length": 6,
+      "secret": true
+    },
+    "account_number": {
+      "type": "text",
+      "label": "Account Number",
+      "help_text": "Your charge account number. Australia Post: 10 digits (will be left-padded with zeros). StarTrack: 8 digits (no padding needed).",
+      "required": true,
+      "placeholder": "0000123456 or 12345678",
+      "pattern": "^\\d{8,10}$"
+    },
+    "account_type": {
+      "type": "select",
+      "label": "Account Type",
+      "choices": [
+        {
+          "value": "eparcel",
+          "label": "eParcel / International (10-digit, prefix 2)"
+        },
+        {
+          "value": "startrack",
+          "label": "StarTrack Premium/Express (8-digit)"
+        },
+        {
+          "value": "same_day",
+          "label": "Same Day Services (10-digit, prefix 3)"
+        },
+        {
+          "value": "on_demand",
+          "label": "On Demand (10-digit, prefix 1)"
+        }
+      ],
+      "default": "eparcel",
+      "required": true,
+      "help_text": "Select your account type for proper validation and feature support"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "choices": [
+        {
+          "value": "test",
+          "label": "Test (Development/Sandbox)"
+        },
+        {
+          "value": "production",
+          "label": "Production (Live)"
+        }
+      ],
+      "default": "test",
+      "required": true,
+      "help_text": "Use Test for development with sandbox credentials"
+    }
+  },
+  "supported_services": [
+    {
+      "code": "AUS_PARCEL_REGULAR",
+      "name": "Regular Parcel",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "AUS_PARCEL_EXPRESS",
+      "name": "Express Post",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "AUS_PARCEL_COURIER",
+      "name": "Courier Post",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "AUS_LETTER_REGULAR",
+      "name": "Regular Letter",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "AUS_LETTER_EXPRESS",
+      "name": "Express Letter",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "INTL_PARCEL_STD",
+      "name": "International Standard",
+      "domestic": false,
+      "international": true
+    },
+    {
+      "code": "INTL_PARCEL_EXP",
+      "name": "International Express",
+      "domestic": false,
+      "international": true
+    },
+    {
+      "code": "INTL_PARCEL_COR",
+      "name": "International Courier",
+      "domestic": false,
+      "international": true
+    },
+    {
+      "code": "ST_PREMIUM",
+      "name": "StarTrack Premium",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "ST_EXPRESS",
+      "name": "StarTrack Express",
+      "domestic": true,
+      "international": false
+    }
+  ],
+  "api_info": {
+    "base_url_production": "https://digitalapi.auspost.com.au",
+    "base_url_test": "https://digitalapi.auspost.com.au/test",
+    "authentication": "HTTP Basic Authentication (API Key:Password)",
+    "api_key_format": "UUID (e.g., 601a4032-6dbd-46aa-9c6c-8c6dacca5e61)",
+    "account_format": "10-digit (Australia Post, left-padded) or 8-digit (StarTrack)",
+    "format": "JSON",
+    "api_version": "v1",
+    "rate_limit_tracking": "10 requests per 60 seconds",
+    "label_generation": "Two-step process (create shipment, then create labels)",
+    "label_mode_sync": "Synchronous for <250 parcels (wait_for_label_url=true)",
+    "label_mode_async": "Asynchronous for >=250 parcels (polling required)",
+    "documentation_url": "https://developers.auspost.com.au/"
+  },
+  "required_headers": {
+    "Authorization": "Basic {base64(api_key:password)}",
+    "Account-Number": "{10-digit padded or 8-digit}",
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  },
+  "features": {
+    "order_management": {
+      "description": "Full order management for production lodgement",
+      "create_order": "Create orders from shipments (max 2,000 items per order)",
+      "get_order": "Retrieve order details",
+      "get_order_summary": "Generate manifest/summary for lodgement",
+      "auto_split": "Automatically split orders exceeding 2,000 items"
+    },
+    "basket_management": {
+      "description": "Manage shipments before order creation",
+      "max_basket_size": 10000,
+      "warning_threshold": 8000,
+      "get_shipments": "Retrieve and filter shipments",
+      "update_shipment": "Modify shipments before order creation",
+      "item_operations": "Add, update, or delete individual items"
+    },
+    "validation_services": {
+      "description": "Pre-flight validation for addresses and shipments",
+      "validate_suburb": "Validate Australian suburbs and postcodes",
+      "validate_shipments": "Pre-flight validation before creation",
+      "lookup_serviceability": "Check if address is serviceable",
+      "auto_validation": "Optional automatic validation in workflow"
+    },
+    "product_features": {
+      "description": "Product-specific features support",
+      "authority_to_leave": "Leave parcel without signature (product-dependent)",
+      "safe_drop": "Safe drop location instructions (product-dependent)",
+      "signature_required": "Signature on delivery (product-dependent)",
+      "allow_partial": "Allow partial delivery for multi-item shipments",
+      "delivery_instructions": "Custom delivery instructions",
+      "dangerous_goods": "Dangerous goods declarations and validation",
+      "sscc_barcoding": "SSCC barcode support (18-digit)",
+      "returns": "Returns shipment handling"
+    },
+    "enhanced_pricing": {
+      "description": "Advanced pricing and ETA capabilities",
+      "shipment_price": "Get individual shipment pricing",
+      "calculate_eta": "Calculate estimated time of arrival",
+      "price_comparison": "Compare pricing across services"
+    },
+    "adhoc_pickups": {
+      "description": "Schedule adhoc pickups",
+      "create_pickup": "Schedule pickup with time slot selection",
+      "address_validation": "Validate pickup addresses",
+      "cancel_pickup": "Cancel scheduled pickups"
+    },
+    "charge_code_expiry": {
+      "description": "Automatic charge code expiry management",
+      "auto_check": "Daily expiry checking via Get Accounts API",
+      "expiry_warnings": "Alert merchants before expiry",
+      "cache_expiry_dates": "Cache and track product expiry dates"
+    },
+    "two_step_labels": {
+      "description": "Label generation requires two API calls",
+      "step1": "POST /shipping/v1/shipments (create shipment)",
+      "step2": "POST /shipping/v1/labels (create labels)"
+    },
+    "rate_limiting": {
+      "description": "Tracking API has rate limits",
+      "limit": "10 requests per 60 seconds",
+      "implementation": "Token bucket algorithm with automatic waiting"
+    },
+    "account_types": {
+      "description": "Support for all Australia Post account types",
+      "eparcel": "10-digit accounts (prefix 2) - eParcel and International",
+      "startrack": "8-digit accounts - StarTrack Premium and Express",
+      "same_day": "10-digit accounts (prefix 3) - Same Day Services",
+      "on_demand": "10-digit accounts (prefix 1) - On Demand delivery",
+      "auto_padding": "Automatic account number formatting per type"
+    },
+    "api_key_format": {
+      "description": "API Key must be UUID format",
+      "example": "601a4032-6dbd-46aa-9c6c-8c6dacca5e61",
+      "validation": "UUID v4 pattern"
+    }
+  },
+  "error_codes": {
+    "40001": "JSON_NO_CONTRACT_ID - Charge account not found",
+    "40002": "JSON_MANDATORY_FIELD_MISSING - Required field missing",
+    "41001": "CUSTOMER_NOT_FOUND - Location with account number not found",
+    "41002": "ACCOUNT_NOT_FOUND - Account with ID not found",
+    "41003": "CONTRACT_NOT_VALID_ERROR - Contract expired or not yet valid",
+    "44013": "Shipment creation failed"
+  },
+  "changelog": [
+    {
+      "version": "2.0.2",
+      "date": "2025-11-07",
+      "changes": [
+        "\ud83d\udc1b CRITICAL FIX: Corrected testbed URL from digitalapi-test.auspost.com.au to digitalapi.auspost.com.au/test",
+        "Implemented missing ProviderBase abstract methods for wizard compatibility",
+        "Added credential_schema property with full validation schema",
+        "Added validate_credentials method with comprehensive validation (UUID, account number, account type)",
+        "Added redact_credentials method for secure credential logging",
+        "Added cancel_label method wrapping existing void_label functionality",
+        "Added verify_webhook_signature and handle_webhook methods (not supported by API)",
+        "Updated __init__ to properly call parent class initialization",
+        "Provider now fully implements ProviderBase interface and works in shipping wizard"
+      ]
+    },
+    {
+      "version": "2.0.1",
+      "date": "2025-11-06",
+      "changes": [
+        "Removed inline CSS from setup_instructions.html to comply with design standards",
+        "Setup instructions now use consolidated wizard CSS (wizard-base.css and provider-wizard.css)",
+        "Improved consistency and maintainability of setup UI"
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "date": "2025-11-06",
+      "changes": [
+        "\ud83c\udf89 Major release - Production lodgement validation requirements fully implemented",
+        "\u2728 ORDER MANAGEMENT: Create orders from shipments (PUT /orders)",
+        "\u2728 ORDER MANAGEMENT: Retrieve order details (GET /orders/{id})",
+        "\u2728 ORDER MANAGEMENT: Get order summary/manifest (GET /orders/{id}/summary)",
+        "\u2728 ORDER MANAGEMENT: Automatic order splitting for >2,000 items",
+        "\u2728 ORDER MANAGEMENT: Order size validation and tracking",
+        "\u2728 BASKET MANAGEMENT: Track basket size (10,000 item limit)",
+        "\u2728 BASKET MANAGEMENT: Get shipment details (GET /shipments/{id})",
+        "\u2728 BASKET MANAGEMENT: List and filter shipments (GET /shipments)",
+        "\u2728 BASKET MANAGEMENT: Update shipments before order creation (PUT /shipments/{id})",
+        "\u2728 BASKET MANAGEMENT: Delete items from shipments",
+        "\u2728 BASKET MANAGEMENT: Update individual items",
+        "\u2728 BASKET MANAGEMENT: Basket overflow warnings at 8,000 items",
+        "\u2728 VALIDATION: Validate Australian suburbs and postcodes (POST /postcode/validate)",
+        "\u2728 VALIDATION: Pre-flight shipment validation (POST /shipments/validate)",
+        "\u2728 VALIDATION: Lookup address serviceability (POST /serviceability)",
+        "\u2728 VALIDATION: Automatic validation in shipment workflow",
+        "\u2728 VALIDATION: Validation result caching for performance",
+        "\u2728 PRODUCT FEATURES: Authority To Leave (ATL) support",
+        "\u2728 PRODUCT FEATURES: Safe Drop with location instructions",
+        "\u2728 PRODUCT FEATURES: Signature on Delivery options",
+        "\u2728 PRODUCT FEATURES: Allow Partial Delivery for multi-item shipments",
+        "\u2728 PRODUCT FEATURES: Custom delivery instructions",
+        "\u2728 PRODUCT FEATURES: Dangerous Goods declarations and validation",
+        "\u2728 PRODUCT FEATURES: SSCC barcoding support (18-digit)",
+        "\u2728 PRODUCT FEATURES: Returns shipment handling",
+        "\u2728 PRODUCT FEATURES: Product-feature compatibility matrix",
+        "\u2728 ENHANCED PRICING: Get individual shipment pricing (POST /prices/items)",
+        "\u2728 ENHANCED PRICING: Calculate ETA (POST /eta)",
+        "\u2728 ENHANCED PRICING: Price comparison across services",
+        "\u2728 ADHOC PICKUPS: Schedule pickups with time slot selection (POST /pickups)",
+        "\u2728 ADHOC PICKUPS: Pickup address validation",
+        "\u2728 ADHOC PICKUPS: Pickup cancellation support",
+        "\u2728 ACCOUNT TYPES: Full support for eParcel (10-digit, prefix 2)",
+        "\u2728 ACCOUNT TYPES: Full support for StarTrack Premium/Express (8-digit)",
+        "\u2728 ACCOUNT TYPES: Full support for Same Day Services (10-digit, prefix 3)",
+        "\u2728 ACCOUNT TYPES: Full support for On Demand (10-digit, prefix 1)",
+        "\u2728 EXPIRY MANAGEMENT: Automatic charge code expiry checking",
+        "\u2728 EXPIRY MANAGEMENT: Expiry date caching and warnings",
+        "\u2728 EXPIRY MANAGEMENT: Daily expiry validation via Get Accounts API",
+        "\ud83e\uddea TESTING: Comprehensive integration tests for all 4 account types",
+        "\ud83e\uddea TESTING: Complete workflow tests (validate \u2192 basket \u2192 order \u2192 labels \u2192 track)",
+        "\ud83e\uddea TESTING: All product feature testing (ATL, Safe Drop, DG, etc.)",
+        "\ud83e\uddea TESTING: Error scenario and recovery testing",
+        "\ud83e\uddea TESTING: Reusable test fixtures and mock data",
+        "\ud83e\uddea TESTING: Testbed API integration (test accounts configured)",
+        "\ud83d\udcda DOCUMENTATION: Complete workflow documentation",
+        "\ud83d\udcda DOCUMENTATION: Feature configuration guide",
+        "\ud83d\udcda DOCUMENTATION: Order and basket management guide",
+        "\ud83d\udcda DOCUMENTATION: Validation services usage",
+        "\ud83d\udcda DOCUMENTATION: Multiple account type handling",
+        "\ud83d\udcda DOCUMENTATION: Limits and constraints reference",
+        "\ud83d\udd27 CONFIGURATION: Account type selection in credentials",
+        "\ud83d\udd27 CONFIGURATION: Feature flags configuration",
+        "\ud83d\udd27 CONFIGURATION: Limits configuration (basket, order sizes)",
+        "\ud83d\udd27 CONFIGURATION: Validation options",
+        "\u26a1 PERFORMANCE: Validation result caching",
+        "\u26a1 PERFORMANCE: Optimized basket operations",
+        "\u26a1 PERFORMANCE: Efficient order splitting algorithm",
+        "\ud83d\udee1\ufe0f SECURITY: Enhanced validation and sanitization",
+        "\ud83d\udee1\ufe0f SECURITY: Product-feature compatibility enforcement",
+        "Breaking: This is a greenfield implementation - no backward compatibility with v1.0.1 required"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2025-10-24",
+      "changes": [
+        "Initial release",
+        "HTTP Basic Authentication with API Key (UUID format)",
+        "Account number padding support (10-digit Australia Post, 8-digit StarTrack)",
+        "Two-step label generation (create shipment, then create labels)",
+        "Synchronous label generation for <250 parcels",
+        "Rate limiting for tracking API (10 requests/60 seconds)",
+        "Token bucket rate limiter with automatic waiting",
+        "Rate calculation for domestic and international shipments",
+        "Real-time tracking with event history",
+        "Shipment void/refund support",
+        "JSON request/response format",
+        "Comprehensive error handling with error code parsing",
+        "Exponential backoff retry logic",
+        "Australia Post backoff policy implementation",
+        "International customs support",
+        "Pickup scheduling support",
+        "Dangerous goods support",
+        "Insurance and signature options",
+        "10+ service codes supported",
+        "Thread-safe rate limiting",
+        "Connection pooling for performance"
+      ]
+    }
+  ],
+  "file_count": 25,
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "total_size_bytes": 415902,
+  "checksum": "sha256:fd2146c9d0249391279d4574f25d742a05d30c88b31f53a40ba07686c756b362"
+}

@@ -1,0 +1,44 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Modern Dark Theme - Critical CSS for Cart Page
+ * Contains above-the-fold styles for faster initial render
+ */
+
+/* Cart layout */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--theme-space-8);
+}
+
+@media (min-width: 768px) {
+  .cart-layout {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* Cart items */
+.cart-items {
+  background-color: var(--theme-color-surface);
+  border-radius: var(--theme-radius-lg);
+  padding: var(--theme-space-4);
+}
+
+/* Cart summary */
+.cart-summary {
+  background-color: var(--theme-color-surface);
+  border-radius: var(--theme-radius-lg);
+  padding: var(--theme-space-4);
+  position: sticky;
+  top: var(--theme-space-4);
+}
+
+/* Checkout button */
+.checkout-btn {
+  width: 100%;
+  padding: var(--theme-space-4);
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-text-inverse);
+  border-radius: var(--theme-radius-base);
+}

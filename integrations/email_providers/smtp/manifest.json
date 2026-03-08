@@ -1,0 +1,246 @@
+{
+  "component_type": "email_provider",
+  "slug": "smtp",
+  "name": "External SMTP Client",
+  "description": "Connect to any SMTP server to send transactional emails. Supports Gmail, Outlook, SendGrid, Mailgun, Amazon SES, and other standard SMTP servers.",
+  "version": "1.0.4",
+  "provider_key": "smtp",
+  "entry_point": "provider.py",
+  "class_name": "SMTPProvider",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://spwig.com/email-providers/smtp",
+  "support_url": "https://support.spwig.com",
+  "api_docs_url": "https://docs.spwig.com/email/smtp-provider",
+  "logo": "logo.png",
+  "min_platform_version": "1.0.0",
+  "license": "Proprietary",
+
+  "capabilities": {
+    "send": true,
+    "attachments": true,
+    "inline_images": true,
+    "html_email": true,
+    "text_email": true,
+    "healthcheck": true,
+    "oauth": false,
+    "webhooks": false,
+    "bounce_handling": false,
+    "rate_limits": false,
+    "templates": false
+  },
+
+  "credential_schema": {
+    "host": {
+      "type": "text",
+      "label": "SMTP Server Host",
+      "help_text": "Hostname or IP address of the SMTP server (e.g., smtp.gmail.com)",
+      "required": true,
+      "placeholder": "smtp.gmail.com"
+    },
+    "port": {
+      "type": "number",
+      "label": "SMTP Port",
+      "help_text": "Port number (usually 587 for TLS, 465 for SSL, 25 for unencrypted)",
+      "required": true,
+      "default": 587,
+      "placeholder": "587",
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "username": {
+      "type": "text",
+      "label": "Username",
+      "help_text": "SMTP authentication username (usually your email address)",
+      "required": true,
+      "placeholder": "you@example.com"
+    },
+    "password": {
+      "type": "password",
+      "label": "Password",
+      "help_text": "SMTP authentication password or app-specific password",
+      "required": true
+    },
+    "use_tls": {
+      "type": "boolean",
+      "label": "Use TLS (STARTTLS)",
+      "help_text": "Enable TLS encryption via STARTTLS command (recommended for port 587)",
+      "default": true
+    },
+    "use_ssl": {
+      "type": "boolean",
+      "label": "Use SSL",
+      "help_text": "Use implicit SSL/TLS connection (recommended for port 465)",
+      "default": false
+    },
+    "timeout": {
+      "type": "number",
+      "label": "Connection Timeout (seconds)",
+      "help_text": "Timeout for SMTP operations (5-120 seconds)",
+      "required": false,
+      "default": 30,
+      "placeholder": "30",
+      "minimum": 5,
+      "maximum": 120
+    }
+  },
+
+  "setup_wizard": {
+    "has_setup_instructions": true,
+    "has_dns_requirements": true,
+    "supports_test_connection": true,
+    "estimated_setup_time": "5-10 minutes"
+  },
+
+  "dns_requirements": {
+    "spf_required": true,
+    "dkim_required": false,
+    "dkim_note": "DKIM signing should be configured on your SMTP server",
+    "dmarc_recommended": true,
+    "ptr_recommended": false,
+    "mx_required": false,
+    "provider_dns_profiles": {
+      "smtp.gmail.com": {
+        "dkim_selector": "google",
+        "spf_include": "_spf.google.com",
+        "provider_name": "Gmail"
+      },
+      "smtp.office365.com": {
+        "dkim_selector": "selector1",
+        "spf_include": "spf.protection.outlook.com",
+        "provider_name": "Office 365"
+      },
+      "smtp-mail.outlook.com": {
+        "dkim_selector": "selector1",
+        "spf_include": "spf.protection.outlook.com",
+        "provider_name": "Outlook.com"
+      },
+      "smtp.sendgrid.net": {
+        "dkim_selector": "s1",
+        "spf_include": "sendgrid.net",
+        "provider_name": "SendGrid"
+      },
+      "smtp.mailgun.org": {
+        "dkim_selector": "mailo",
+        "spf_include": "mailgun.org",
+        "provider_name": "Mailgun"
+      },
+      "email-smtp.": {
+        "dkim_selector": null,
+        "spf_include": "amazonses.com",
+        "provider_name": "Amazon SES",
+        "host_match": "contains"
+      }
+    }
+  },
+
+  "common_configurations": [
+    {
+      "name": "Gmail",
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "use_tls": true,
+      "use_ssl": false,
+      "note": "Requires app-specific password. Enable 2FA first: https://myaccount.google.com/security"
+    },
+    {
+      "name": "Outlook / Office 365",
+      "host": "smtp.office365.com",
+      "port": 587,
+      "use_tls": true,
+      "use_ssl": false,
+      "note": "Use your Office 365 email and password"
+    },
+    {
+      "name": "SendGrid SMTP Relay",
+      "host": "smtp.sendgrid.net",
+      "port": 587,
+      "use_tls": true,
+      "use_ssl": false,
+      "note": "Username: 'apikey', Password: Your SendGrid API key"
+    },
+    {
+      "name": "Mailgun SMTP",
+      "host": "smtp.mailgun.org",
+      "port": 587,
+      "use_tls": true,
+      "use_ssl": false,
+      "note": "Find SMTP credentials in Mailgun dashboard"
+    },
+    {
+      "name": "Amazon SES",
+      "host": "email-smtp.us-east-1.amazonaws.com",
+      "port": 587,
+      "use_tls": true,
+      "use_ssl": false,
+      "note": "Use SMTP credentials from SES console (not IAM credentials)"
+    }
+  ],
+
+  "requirements": {
+    "python": ">=3.10",
+    "dependencies": []
+  },
+
+  "changelog": [
+    {
+      "version": "1.0.4",
+      "date": "2026-03-03",
+      "changes": [
+        "Added provider_dns_profiles for automatic DKIM selector and SPF include detection",
+        "DNS validation now correctly validates DKIM and SPF for Gmail, Office 365, Outlook.com, SendGrid, Mailgun, and Amazon SES",
+        "Wizard auto-detects the SMTP sub-provider from configured host and applies correct DNS checks"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "date": "2026-03-02",
+      "changes": [
+        "Fixed SendResult format to match base class contract (accepted/status/provider_message_id)",
+        "Fixed EmailMessage field names in MIME builder (html/text instead of html_body/text_body)",
+        "Fixed attachment and inline image content field name (content instead of data)",
+        "Fixed validate_credentials signature to match base class (credentials dict arg, raises ValueError)",
+        "Fixed healthcheck return format (success bool + details dict)",
+        "Added credential validation in __init__ for fail-fast behavior"
+      ]
+    },
+    {
+      "version": "1.0.2",
+      "date": "2026-03-02",
+      "changes": [
+        "Fixed credential_schema format to use flat field definitions matching platform convention",
+        "Credential fields (host, port, username, password, TLS, SSL, timeout) now render correctly in setup wizard Step 2"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2026-03-02",
+      "changes": [
+        "Converted setup_instructions.html and dns_requirements.html to scoped HTML fragments",
+        "Eliminated standalone HTML documents with DOCTYPE and global CSS that caused style bleeding",
+        "All CSS now scoped under .setup-instructions via provider-wizard.css",
+        "Added i18n support with Django {% trans %} template tags",
+        "Replaced inline scripts with data-action attributes for CSP compliance",
+        "Tab switching uses si-tab/si-tab-content pattern to avoid class conflicts",
+        "Copy-to-clipboard buttons use data-action='copy-to-clipboard' pattern",
+        "Removed obsolete standalone CSS files (css/ directory)"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-10-28",
+      "changes": [
+        "Initial release",
+        "Support for TLS and SSL connections",
+        "HTML and text email support",
+        "Attachment and inline image support",
+        "Connection health checking",
+        "Common provider presets (Gmail, Outlook, SendGrid, Mailgun, SES)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Social Connector - Linkedin Company
+ *
+ * Description: Frontend styles for setup_instructions.html
+ * Template: components/integrations/social_connector/linkedin_company/v1.1.0/setup_instructions.html
+ * Extracted: 2026-02-14
+ *
+ * Dependencies:
+ * - Theme CSS variables (loaded via page_builder/base.html or admin base)
+ *
+ * Notes:
+ * - Extracted during CSP hardening migration
+ * - Uses theme CSS variables for consistent theming
+ */
+
+.setup-instructions {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.instruction-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+.instruction-section:last-child {
+    border-bottom: none;
+}
+.instruction-section h4 {
+    color: #333;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+.instruction-section ol, .instruction-section ul {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.instruction-section li {
+    margin-bottom: 0.5rem;
+}
+.code-block {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.75rem 0;
+}
+.code-block code {
+    font-family: monospace;
+    font-size: 13px;
+    word-break: break-all;
+    flex: 1;
+}
+.copy-btn {
+    background: #0077b5;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+.copy-btn:hover {
+    background: #005e93;
+}
+.note {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    font-size: 13px;
+}
+.help-section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+}
+.help-section h4 {
+    margin-bottom: 0.5rem;
+}
+.help-section ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+.help-section a {
+    color: #0077b5;
+}

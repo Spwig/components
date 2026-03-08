@@ -1,0 +1,170 @@
+{
+  "component_type": "email_provider",
+  "slug": "gmail_api",
+  "name": "Gmail API",
+  "version": "1.0.4",
+  "description": "Send transactional emails via Gmail API with OAuth 2.0 authentication",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "gmail_api",
+  "class_name": "GmailProvider",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://developers.google.com/gmail/api",
+  "support_url": "https://support.google.com/a",
+  "api_docs_url": "https://developers.google.com/gmail/api/reference/rest",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "send": true,
+    "oauth": true,
+    "healthcheck": true,
+    "batch_send": false,
+    "webhooks": false,
+    "attachments": true,
+    "inline_images": true,
+    "tracking": false
+  },
+  "rate_limits": {
+    "emails_per_second": 15,
+    "emails_per_day": 2000,
+    "has_burst_limit": true
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "google-auth": ">=2.41.0",
+    "google-auth-oauthlib": ">=1.2.0",
+    "google-auth-httplib2": ">=0.2.0",
+    "google-api-python-client": ">=2.185.0"
+  },
+  "credential_schema": {
+    "oauth_credentials": {
+      "type": "oauth",
+      "label": "OAuth Credentials",
+      "help_text": "OAuth 2.0 credentials from Google Cloud Console",
+      "required": true,
+      "oauth_config": {
+        "provider": "google",
+        "scopes": [
+          "https://www.googleapis.com/auth/gmail.send"
+        ],
+        "redirect_uri": "/admin/email_system/oauth/callback/gmail_api/"
+      }
+    }
+  },
+  "pricing": {
+    "free_tier": {
+      "emails_per_day": 2000,
+      "emails_per_second": 15,
+      "features": [
+        "Send emails via Gmail account",
+        "OAuth 2.0 authentication",
+        "Attachment support",
+        "HTML emails",
+        "No additional cost (uses your Gmail account)"
+      ]
+    },
+    "notes": [
+      "Free with any Gmail or Google Workspace account",
+      "Subject to Gmail sending limits",
+      "Standard Gmail accounts: 500 emails/day",
+      "Google Workspace accounts: 2,000 emails/day",
+      "Rate limited to 15 emails/second"
+    ]
+  },
+  "signup_url": "https://console.cloud.google.com",
+  "api_info": {
+    "base_url": "https://gmail.googleapis.com",
+    "send_endpoint": "/gmail/v1/users/me/messages/send",
+    "documentation_url": "https://developers.google.com/gmail/api/guides/sending",
+    "oauth_setup_url": "https://console.cloud.google.com/apis/credentials"
+  },
+  "setup_requirements": [
+    "Google Cloud Console project",
+    "Gmail API enabled in project",
+    "OAuth 2.0 client ID credentials",
+    "OAuth consent screen configured",
+    "Authorized redirect URI configured"
+  ],
+  "dns_requirements": {
+    "dkim_selector": "google._domainkey",
+    "dkim_info": "DKIM is configured in Google Workspace Admin Console under Apps > Google Workspace > Gmail > Authenticate email",
+    "requires_domain_verification": true,
+    "spf_include": "_spf.google.com",
+    "spf_mechanism": "v=spf1 include:_spf.google.com ~all",
+    "dmarc_recommended": true,
+    "notes": [
+      "Gmail API sending uses your Gmail/Google Workspace account",
+      "SPF record should include Google's servers",
+      "DKIM is configured separately in Google Workspace Admin Console",
+      "Standard Gmail accounts may not have DKIM configuration access",
+      "Google Workspace accounts have full DKIM control"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "1.0.4",
+      "date": "2026-03-03",
+      "changes": [
+        "Fixed DMARC recommendation to use relaxed alignment (adkim=r; aspf=r) for multi-provider compatibility",
+        "Normalized spf_include value format (removed include: prefix for consistency)"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "date": "2026-03-02",
+      "changes": [
+        "Converted setup_instructions.html and dns_requirements.html to scoped HTML fragments",
+        "Eliminated standalone HTML documents with DOCTYPE and global CSS that caused style bleeding",
+        "All CSS now scoped under .setup-instructions via provider-wizard.css",
+        "Added i18n support with Django {% trans %} template tags",
+        "Replaced inline scripts with data-action attributes for CSP compliance",
+        "Tab switching uses si-tab/si-tab-content pattern to avoid class conflicts",
+        "Copy-to-clipboard buttons use data-action='copy-to-clipboard' pattern"
+      ]
+    },
+    {
+      "version": "1.0.2",
+      "date": "2025-10-29",
+      "changes": [
+        "Updated setup_instructions.html to use CSS variables for admin theme support",
+        "Updated dns_requirements.html to use CSS variables for theme support",
+        "Setup instructions now adapt properly to light/dark themes",
+        "Fixed CSS class name conflicts - renamed .step to .gmail-setup-step",
+        "Fixed CSS class name conflicts - renamed .steps to .gmail-dns-steps",
+        "All colors now use fallback values for maximum compatibility"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2025-10-28",
+      "changes": [
+        "Fixed SVG logo display issue by adding explicit width and height attributes",
+        "Logo now displays correctly on provider browse page"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-10-25",
+      "changes": [
+        "Initial release",
+        "OAuth 2.0 authentication with token refresh",
+        "Send emails via Gmail API",
+        "HTML and plain text email support",
+        "Attachment support (files up to 25MB)",
+        "Inline image support with Content-ID",
+        "CC and BCC recipient support",
+        "Custom headers support",
+        "Encrypted credential storage (Fernet encryption)",
+        "Comprehensive error handling (401, 403, 429, timeout)",
+        "Health check via Gmail API profile endpoint",
+        "Full unit and integration test coverage"
+      ]
+    }
+  ],
+  "logo": "logo.svg"
+}

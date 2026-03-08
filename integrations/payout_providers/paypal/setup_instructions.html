@@ -1,0 +1,92 @@
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <h2>PayPal Payouts API Setup</h2>
+        <p>Follow these steps to obtain your PayPal API credentials for processing affiliate payouts.</p>
+    </div>
+
+    <div class="instruction-steps">
+        <div class="instruction-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Create or Log In to PayPal Developer Account</h3>
+                <p>Visit <a href="https://developer.paypal.com/" target="_blank" rel="noopener">developer.paypal.com</a> and log in with your PayPal Business account credentials.</p>
+                <p class="step-note">You must have a PayPal Business account to use the Payouts API. Personal accounts do not support payouts.</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Navigate to Apps & Credentials</h3>
+                <p>From the Developer Dashboard, click on <strong>Apps & Credentials</strong> in the left sidebar.</p>
+                <p>Select either <strong>Sandbox</strong> (for testing) or <strong>Live</strong> (for production) depending on your needs.</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Create a New App</h3>
+                <p>Click <strong>Create App</strong> and enter a name for your application (e.g., "Store Affiliate Payouts").</p>
+                <p>Select your Business account as the associated PayPal account.</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Enable Payouts Feature</h3>
+                <p>In your app settings, scroll down to <strong>Features</strong> and ensure <strong>Payouts</strong> is enabled.</p>
+                <p class="step-note">The Payouts feature requires approval from PayPal. If not available, contact PayPal support to enable it for your account.</p>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h3>Copy Your API Credentials</h3>
+                <p>From your app details page, copy the following:</p>
+                <ul>
+                    <li><strong>Client ID</strong> - Your app's unique identifier</li>
+                    <li><strong>Client Secret</strong> - Click "Show" to reveal and copy (keep this secure)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h3>Set Up Webhooks (Optional but Recommended)</h3>
+                <p>To receive real-time payout status updates:</p>
+                <ol>
+                    <li>In your app settings, scroll to <strong>Webhooks</strong></li>
+                    <li>Click <strong>Add Webhook</strong></li>
+                    <li>Enter your webhook URL: <code>{{ webhook_url }}</code></li>
+                    <li>Select these events:
+                        <ul>
+                            <li>PAYMENT.PAYOUTSBATCH.SUCCESS</li>
+                            <li>PAYMENT.PAYOUTSBATCH.DENIED</li>
+                            <li>PAYMENT.PAYOUTS-ITEM.SUCCEEDED</li>
+                            <li>PAYMENT.PAYOUTS-ITEM.FAILED</li>
+                            <li>PAYMENT.PAYOUTS-ITEM.UNCLAIMED</li>
+                        </ul>
+                    </li>
+                    <li>After creating, copy the <strong>Webhook ID</strong> for signature verification</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="instruction-step">
+            <div class="step-number">7</div>
+            <div class="step-content">
+                <h3>Fund Your Account</h3>
+                <p>Ensure your PayPal Business account has sufficient balance to process payouts.</p>
+                <p class="step-note">PayPal charges a fee of 2% per payout (capped at $20 USD or equivalent).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-footer">
+        <p><strong>Need Help?</strong> Visit <a href="https://developer.paypal.com/docs/api/payments.payouts-batch/v1/" target="_blank" rel="noopener">PayPal Payouts API Documentation</a> for detailed technical information.</p>
+    </div>
+</div>

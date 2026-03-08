@@ -1,0 +1,186 @@
+{
+  "component_type": "shipping_provider",
+  "slug": "canadapost",
+  "name": "Canada Post",
+  "version": "1.0.2",
+  "description": "Canada Post shipping integration with XML-based REST API. Supports both Contract Shipping (commercial customers) and Non-Contract Shipping (Solutions for Small Business). Includes rate calculation, label generation, tracking, and international customs support.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "canadapost",
+  "class_name": "CanadaPostProvider",
+  "entry_point": "provider.py",
+  "dependencies": {
+    "python": ">=3.8",
+    "django": ">=4.2",
+    "requests": ">=2.31.0"
+  },
+  "capabilities": {
+    "rates": true,
+    "labels": true,
+    "tracking": true,
+    "international": true,
+    "returns": true,
+    "pickup": true,
+    "insurance": true,
+    "signature": true,
+    "manifests": true
+  },
+  "supported_countries": [
+    "CA",
+    "US",
+    "INTL"
+  ],
+  "credential_schema": {
+    "username": {
+      "type": "text",
+      "label": "API Username",
+      "help_text": "Your Canada Post API username from the Developer Portal",
+      "required": true,
+      "placeholder": "your_api_username",
+      "min_length": 3
+    },
+    "password": {
+      "type": "password",
+      "label": "API Password",
+      "help_text": "Your Canada Post API password",
+      "required": true,
+      "placeholder": "Enter your API password",
+      "min_length": 8
+    },
+    "customer_number": {
+      "type": "text",
+      "label": "Customer Number (Optional)",
+      "help_text": "10-digit commercial customer number for Contract Shipping. Leave blank for Non-Contract Shipping (Solutions for Small Business).",
+      "required": false,
+      "placeholder": "1234567890",
+      "pattern": "^\\d{10}$"
+    },
+    "contract_id": {
+      "type": "text",
+      "label": "Contract ID (Optional)",
+      "help_text": "Contract ID for discounted commercial rates. Required if Customer Number is provided.",
+      "required": false,
+      "placeholder": "12345678"
+    },
+    "environment": {
+      "type": "select",
+      "label": "Environment",
+      "choices": [
+        {
+          "value": "development",
+          "label": "Development (Testing)"
+        },
+        {
+          "value": "production",
+          "label": "Production (Live)"
+        }
+      ],
+      "default": "development",
+      "required": true,
+      "help_text": "Use Development for testing with sandbox credentials"
+    }
+  },
+  "supported_services": [
+    {
+      "code": "DOM.RP",
+      "name": "Regular Parcel",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "DOM.EP",
+      "name": "Expedited Parcel",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "DOM.XP",
+      "name": "Xpresspost",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "DOM.PC",
+      "name": "Priority",
+      "domestic": true,
+      "international": false
+    },
+    {
+      "code": "USA.EP",
+      "name": "Expedited Parcel USA",
+      "domestic": false,
+      "international": true
+    },
+    {
+      "code": "USA.XP",
+      "name": "Xpresspost USA",
+      "domestic": false,
+      "international": true
+    },
+    {
+      "code": "INT.XP",
+      "name": "Xpresspost International",
+      "domestic": false,
+      "international": true
+    },
+    {
+      "code": "INT.IP.AIR",
+      "name": "International Parcel Air",
+      "domestic": false,
+      "international": true
+    },
+    {
+      "code": "INT.IP.SURF",
+      "name": "International Parcel Surface",
+      "domestic": false,
+      "international": true
+    }
+  ],
+  "api_info": {
+    "base_url_production": "https://soa-gw.canadapost.ca",
+    "base_url_development": "https://ct.soa-gw.canadapost.ca",
+    "authentication": "HTTP Basic Authentication",
+    "format": "XML",
+    "rate_api_version": "v4",
+    "shipment_api_version": "v8",
+    "documentation_url": "https://www.canadapost-postescanada.ca/information/app/wtz/business/productsServices/developers/default"
+  },
+  "changelog": [
+    {
+      "version": "1.0.2",
+      "date": "2025-11-06",
+      "changes": [
+        "Removed inline CSS from setup_instructions.html to comply with design standards",
+        "Setup instructions now use consolidated wizard CSS (wizard-base.css and provider-wizard.css)",
+        "Improved consistency and maintainability of setup UI"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2025-10-23",
+      "changes": [
+        "Initial release",
+        "HTTP Basic Authentication support",
+        "XML-based request/response handling",
+        "Dual customer type support (Contract and Non-Contract Shipping)",
+        "Rate calculation for domestic, USA, and international shipments",
+        "Label generation with PDF artifact download",
+        "Shipment void/refund support",
+        "Real-time tracking with event history",
+        "Options support: signature, insurance, COD, delivery preferences",
+        "International customs declarations",
+        "Manifest system support for batch shipping",
+        "Returns label generation (authorized and open returns)",
+        "15+ service codes supported",
+        "10+ shipping options supported",
+        "Comprehensive error handling with XML error parsing",
+        "Exponential backoff retry logic"
+      ]
+    }
+  ],
+  "file_count": 13,
+  "logo": {
+    "file": "logo.png",
+    "mime_type": "image/png"
+  }
+}

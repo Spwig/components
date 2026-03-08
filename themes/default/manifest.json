@@ -1,0 +1,56 @@
+{
+  "name": "default",
+  "version": "1.1.0",
+  "display_name": "Default Theme",
+  "description": "A versatile default theme suitable for any store type. Features clean blue accents with a professional appearance.",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "Proprietary",
+  "min_platform_version": "1.0.0",
+  "max_platform_version": "2.0.0",
+  "categories": ["general", "fashion", "electronics"],
+  "tags": ["default", "clean", "professional", "responsive", "mobile-first"],
+  "preview_image": "preview.png",
+  "design_tokens": "tokens.json",
+  "assets": {
+    "css": [
+      "css/reset.css",
+      "css/tokens.css",
+      "css/components.css",
+      "css/theme.css"
+    ],
+    "js": [],
+    "critical_css": {
+      "home": "css/critical/home.css",
+      "collection": "css/critical/collection.css",
+      "product": "css/critical/product.css",
+      "cart": "css/critical/cart.css"
+    }
+  },
+  "features": {
+    "responsive": true,
+    "mobile_first": true,
+    "dark_mode": false,
+    "rtl_support": false,
+    "accessibility": "WCAG 2.1 AA"
+  },
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-01-26",
+      "changes": [
+        "Standardized CSS variable naming to --color-*, --space-*, etc.",
+        "Added comprehensive design tokens following Starter Theme pattern",
+        "Added critical CSS support for key pages",
+        "Improved token coverage for all design aspects"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-12-01",
+      "changes": [
+        "Initial release"
+      ]
+    }
+  ]
+}

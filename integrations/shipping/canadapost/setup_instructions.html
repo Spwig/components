@@ -1,0 +1,513 @@
+{% load i18n static %}
+
+<div class="setup-instructions-content">
+    <div class="instruction-header">
+        <h3>{% trans "Canada Post API Setup Guide" %}</h3>
+        <p class="instruction-subtitle">
+            {% trans "Follow these steps to configure your Canada Post shipping integration. Canada Post offers two customer types: Contract Shipping (for commercial customers with negotiated rates) and Non-Contract Shipping (Solutions for Small Business with credit card payment)." %}
+        </p>
+    </div>
+
+    <!-- Step 1: Introduction -->
+    <div class="instruction-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            <h4>{% trans "Understanding Canada Post Customer Types" %}</h4>
+            <p>
+                {% trans "Before setting up your integration, it's important to understand which type of Canada Post customer you are:" %}
+            </p>
+
+            <div class="customer-type-cards">
+                <div class="customer-type-card contract-type">
+                    <h5><i class="fas fa-file-contract"></i> {% trans "Contract Shipping" %}</h5>
+                    <div class="type-badge">{% trans "Commercial Customers" %}</div>
+                    <ul>
+                        <li>{% trans "For businesses with a Canada Post commercial account" %}</li>
+                        <li>{% trans "Requires 10-digit customer number AND contract ID" %}</li>
+                        <li>{% trans "Access to discounted commercial rates" %}</li>
+                        <li>{% trans "Postage charged to your account" %}</li>
+                        <li>{% trans "Can use manifest system for batch shipping" %}</li>
+                        <li>{% trans "Full service access (domestic, USA, international)" %}</li>
+                    </ul>
+                    <div class="info-box info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>{% trans "Endpoint: /rs/{customer_number}/{mobo}/shipment" %}</span>
+                    </div>
+                </div>
+
+                <div class="customer-type-card noncontract-type">
+                    <h5><i class="fas fa-credit-card"></i> {% trans "Non-Contract Shipping" %}</h5>
+                    <div class="type-badge">{% trans "Solutions for Small Business" %}</div>
+                    <ul>
+                        <li>{% trans "For small businesses without a commercial agreement" %}</li>
+                        <li>{% trans "Requires 10-digit customer number (no contract ID)" %}</li>
+                        <li>{% trans "Higher retail rates (no commercial discount)" %}</li>
+                        <li>{% trans "Credit card payment required per shipment" %}</li>
+                        <li>{% trans "No manifest system" %}</li>
+                        <li>{% trans "Full service access (domestic, USA, international)" %}</li>
+                    </ul>
+                    <div class="info-box info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>{% trans "Endpoint: /rs/{customer_number}/ncshipment" %}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>{% trans "Important: If you have a customer number AND a contract ID, you are a Contract Shipping customer. If you only have a customer number (no contract ID), you are a Non-Contract Shipping customer. The integration will automatically detect your customer type." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2: Choose Customer Type -->
+    <div class="instruction-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <h4>{% trans "Determine Your Customer Type" %}</h4>
+            <p>
+                {% trans "Select the option that describes your situation:" %}
+            </p>
+
+            <div class="customer-selection">
+                <div class="selection-option">
+                    <input type="radio" id="has-contract" name="customer-type" value="contract">
+                    <label for="has-contract">
+                        <i class="fas fa-file-contract"></i>
+                        <strong>{% trans "I have a customer number AND a contract ID" %}</strong>
+                        <span>{% trans "You have a commercial agreement with Canada Post" %}</span>
+                    </label>
+                </div>
+                <div class="selection-option">
+                    <input type="radio" id="no-contract" name="customer-type" value="noncontract">
+                    <label for="no-contract">
+                        <i class="fas fa-credit-card"></i>
+                        <strong>{% trans "I only have a customer number (no contract ID)" %}</strong>
+                        <span>{% trans "You are using Solutions for Small Business" %}</span>
+                    </label>
+                </div>
+                <div class="selection-option">
+                    <input type="radio" id="no-account" name="customer-type" value="none">
+                    <label for="no-account">
+                        <i class="fas fa-user-plus"></i>
+                        <strong>{% trans "I don't have a Canada Post account yet" %}</strong>
+                        <span>{% trans "You need to register first (see Step 3)" %}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3: Register at Developer Portal -->
+    <div class="instruction-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            <h4>{% trans "Register at Canada Post Developer Portal" %}</h4>
+            <p>
+                {% trans "All API access requires credentials from the Canada Post Developer Portal, regardless of customer type." %}
+            </p>
+            <ol>
+                <li>{% trans "Visit the Canada Post Developer Portal" %}</li>
+                <li>{% trans "Click 'Register' to create a developer account" %}</li>
+                <li>{% trans "Complete the registration form with your business information" %}</li>
+                <li>{% trans "Verify your email address" %}</li>
+                <li>{% trans "Log in to the Developer Portal" %}</li>
+            </ol>
+            <a href="https://www.canadapost-postescanada.ca/information/app/wtz/business/productsServices/developers/default" target="_blank" rel="noopener noreferrer" class="btn-external">
+                <i class="fas fa-external-link-alt"></i>
+                {% trans "Open Canada Post Developer Portal" %}
+            </a>
+
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <span>{% trans "Developer registration is free. You'll receive sandbox credentials immediately for testing." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 4: Generate API Credentials -->
+    <div class="instruction-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+            <h4>{% trans "Generate Your API Credentials" %}</h4>
+            <p>
+                {% trans "After registering at the Developer Portal, generate your API username and password." %}
+            </p>
+            <ol>
+                <li>{% trans "Log in to the Canada Post Developer Portal" %}</li>
+                <li>{% trans "Navigate to 'My Account' or 'API Credentials'" %}</li>
+                <li>{% trans "Create a new API key or use existing credentials" %}</li>
+                <li>{% trans "Copy the following values:" %}
+                    <ul>
+                        <li><strong>{% trans "API Username" %}</strong> {% trans "(also called API Key)" %}</li>
+                        <li><strong>{% trans "API Password" %}</strong> {% trans "(also called API Secret)" %}</li>
+                    </ul>
+                </li>
+                <li>{% trans "Keep your customer number and contract ID (if applicable) ready" %}</li>
+            </ol>
+
+            <div class="credential-info">
+                <h5>{% trans "What You'll Need:" %}</h5>
+                <div class="credential-grid">
+                    <div class="credential-item required">
+                        <i class="fas fa-user"></i>
+                        <strong>{% trans "API Username" %}</strong>
+                        <span>{% trans "From Developer Portal" %}</span>
+                    </div>
+                    <div class="credential-item required">
+                        <i class="fas fa-key"></i>
+                        <strong>{% trans "API Password" %}</strong>
+                        <span>{% trans "From Developer Portal" %}</span>
+                    </div>
+                    <div class="credential-item required">
+                        <i class="fas fa-id-card"></i>
+                        <strong>{% trans "Customer Number" %}</strong>
+                        <span>{% trans "10-digit number from Canada Post" %}</span>
+                    </div>
+                    <div class="credential-item optional">
+                        <i class="fas fa-file-contract"></i>
+                        <strong>{% trans "Contract ID" %}</strong>
+                        <span>{% trans "Only for Contract customers" %}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>{% trans "Keep your API password secure. Never share it publicly or commit it to version control." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 5: Enter Credentials -->
+    <div class="instruction-step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+            <h4>{% trans "Enter Your Credentials" %}</h4>
+            <p>
+                {% trans "In the next step, you'll enter your API credentials. The system will automatically detect whether you're a Contract or Non-Contract customer." %}
+            </p>
+
+            <div class="credential-form-preview">
+                <div class="form-field">
+                    <label><i class="fas fa-user"></i> {% trans "API Username" %} <span class="required-mark">*</span></label>
+                    <input type="text" placeholder="{% trans 'your_api_username' %}" disabled>
+                    <small>{% trans "Your API username from the Developer Portal" %}</small>
+                </div>
+                <div class="form-field">
+                    <label><i class="fas fa-key"></i> {% trans "API Password" %} <span class="required-mark">*</span></label>
+                    <input type="password" placeholder="••••••••" disabled>
+                    <small>{% trans "Your API password" %}</small>
+                </div>
+                <div class="form-field">
+                    <label><i class="fas fa-id-card"></i> {% trans "Customer Number" %} <span class="required-mark">*</span></label>
+                    <input type="text" placeholder="1234567890" pattern="[0-9]{10}" disabled>
+                    <small>{% trans "Your 10-digit Canada Post customer number" %}</small>
+                </div>
+                <div class="form-field">
+                    <label><i class="fas fa-file-contract"></i> {% trans "Contract ID" %}</label>
+                    <input type="text" placeholder="{% trans 'Leave blank for Non-Contract' %}" disabled>
+                    <small>{% trans "Required for Contract Shipping, leave empty for Non-Contract Shipping" %}</small>
+                </div>
+                <div class="form-field">
+                    <label><i class="fas fa-globe"></i> {% trans "Environment" %} <span class="required-mark">*</span></label>
+                    <select disabled>
+                        <option>{% trans "Development (Testing)" %}</option>
+                        <option>{% trans "Production (Live)" %}</option>
+                    </select>
+                    <small>{% trans "Use Development for testing" %}</small>
+                </div>
+            </div>
+
+            <div class="info-box success">
+                <i class="fas fa-check-circle"></i>
+                <span>{% trans "Customer Type Detection: If you provide a Contract ID, you'll use Contract Shipping endpoints. If you leave Contract ID empty, you'll use Non-Contract Shipping endpoints." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 6: Test Connection -->
+    <div class="instruction-step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+            <h4>{% trans "Test Your Connection" %}</h4>
+            <p>
+                {% trans "After entering your credentials, test the connection to verify everything works correctly." %}
+            </p>
+            <ol>
+                <li>{% trans "Enter all required credentials" %}</li>
+                <li>{% trans "Choose your environment (Development or Production)" %}</li>
+                <li>{% trans "Click 'Test Connection'" %}</li>
+                <li>{% trans "Wait for the validation to complete" %}</li>
+            </ol>
+
+            <div class="test-results">
+                <div class="test-result success">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>{% trans "Connection Successful" %}</strong>
+                        <p>{% trans "Your credentials are valid and the API is accessible." %}</p>
+                    </div>
+                </div>
+                <div class="test-result error">
+                    <i class="fas fa-times-circle"></i>
+                    <div>
+                        <strong>{% trans "Authentication Failed" %}</strong>
+                        <p>{% trans "Check your API username and password. Ensure your customer number is correct." %}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <span>{% trans "The test makes a real API call to Canada Post's Get Rates endpoint to verify your credentials work correctly." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 7: Service Configuration -->
+    <div class="instruction-step">
+        <div class="step-number">7</div>
+        <div class="step-content">
+            <h4>{% trans "Configure Available Services" %}</h4>
+            <p>
+                {% trans "Select which Canada Post services you want to offer to your customers." %}
+            </p>
+
+            <div class="services-table">
+                <h5>{% trans "Domestic Services (Canada)" %}</h5>
+                <table class="service-list">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Service Code" %}</th>
+                            <th>{% trans "Service Name" %}</th>
+                            <th>{% trans "Description" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>DOM.RP</code></td>
+                            <td>{% trans "Regular Parcel" %}</td>
+                            <td>{% trans "Standard ground delivery (2-9 business days)" %}</td>
+                        </tr>
+                        <tr>
+                            <td><code>DOM.EP</code></td>
+                            <td>{% trans "Expedited Parcel" %}</td>
+                            <td>{% trans "Faster ground service (1-7 business days)" %}</td>
+                        </tr>
+                        <tr>
+                            <td><code>DOM.XP</code></td>
+                            <td>{% trans "Xpresspost" %}</td>
+                            <td>{% trans "Next-day to 2-day delivery with tracking" %}</td>
+                        </tr>
+                        <tr>
+                            <td><code>DOM.PC</code></td>
+                            <td>{% trans "Priority" %}</td>
+                            <td>{% trans "Overnight to most Canadian destinations" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>{% trans "USA Services" %}</h5>
+                <table class="service-list">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Service Code" %}</th>
+                            <th>{% trans "Service Name" %}</th>
+                            <th>{% trans "Description" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>USA.EP</code></td>
+                            <td>{% trans "Expedited Parcel USA" %}</td>
+                            <td>{% trans "Ground service to USA (4-7 business days)" %}</td>
+                        </tr>
+                        <tr>
+                            <td><code>USA.XP</code></td>
+                            <td>{% trans "Xpresspost USA" %}</td>
+                            <td>{% trans "Fast air service to USA (2-3 business days)" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>{% trans "International Services" %}</h5>
+                <table class="service-list">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Service Code" %}</th>
+                            <th>{% trans "Service Name" %}</th>
+                            <th>{% trans "Description" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>INT.XP</code></td>
+                            <td>{% trans "Xpresspost International" %}</td>
+                            <td>{% trans "Fast air service to 65+ countries (4-7 business days)" %}</td>
+                        </tr>
+                        <tr>
+                            <td><code>INT.IP.AIR</code></td>
+                            <td>{% trans "International Parcel Air" %}</td>
+                            <td>{% trans "Air service to worldwide destinations (6-12 business days)" %}</td>
+                        </tr>
+                        <tr>
+                            <td><code>INT.IP.SURF</code></td>
+                            <td>{% trans "International Parcel Surface" %}</td>
+                            <td>{% trans "Surface service (4-12 weeks, varies by destination)" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box info">
+                <i class="fas fa-info-circle"></i>
+                <span>{% trans "All services are available to both Contract and Non-Contract customers, but Contract customers receive discounted rates." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 8: Options Configuration -->
+    <div class="instruction-step">
+        <div class="step-number">8</div>
+        <div class="step-content">
+            <h4>{% trans "Configure Shipping Options" %}</h4>
+            <p>
+                {% trans "Canada Post offers various shipping options that can be added to shipments." %}
+            </p>
+
+            <div class="options-table">
+                <table class="option-list">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Option Code" %}</th>
+                            <th>{% trans "Option Name" %}</th>
+                            <th>{% trans "Description" %}</th>
+                            <th>{% trans "Value Required" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>SO</code></td>
+                            <td>{% trans "Signature" %}</td>
+                            <td>{% trans "Signature required on delivery" %}</td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td><code>COV</code></td>
+                            <td>{% trans "Coverage (Insurance)" %}</td>
+                            <td>{% trans "Insurance coverage for package contents" %}</td>
+                            <td><i class="fas fa-check"></i> {% trans "Amount in CAD" %}</td>
+                        </tr>
+                        <tr>
+                            <td><code>COD</code></td>
+                            <td>{% trans "Collect on Delivery" %}</td>
+                            <td>{% trans "Collect payment on delivery" %}</td>
+                            <td><i class="fas fa-check"></i> {% trans "Amount to collect" %}</td>
+                        </tr>
+                        <tr>
+                            <td><code>D2PO</code></td>
+                            <td>{% trans "Deliver to Post Office" %}</td>
+                            <td>{% trans "Hold at post office for pickup" %}</td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td><code>HFP</code></td>
+                            <td>{% trans "Card for Pickup" %}</td>
+                            <td>{% trans "Leave card for recipient to pick up" %}</td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td><code>DNS</code></td>
+                            <td>{% trans "Do Not Safe Drop" %}</td>
+                            <td>{% trans "Requires signature or card left" %}</td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td><code>LAD</code></td>
+                            <td>{% trans "Leave at Door" %}</td>
+                            <td>{% trans "Allow safe drop delivery" %}</td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>{% trans "Not all options are available for all service types. Canada Post will return an error if you request an invalid option combination." %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Resources -->
+    <div class="instruction-resources">
+        <h4><i class="fas fa-book"></i> {% trans "Additional Resources" %}</h4>
+        <div class="resource-links">
+            <a href="https://www.canadapost-postescanada.ca/information/app/wtz/business/productsServices/developers/default" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-home"></i>
+                <span>{% trans "Developer Portal" %}</span>
+            </a>
+            <a href="https://www.canadapost-postescanada.ca/cpc/doc/en/business/developers/apis/docs/index.htm" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-book-open"></i>
+                <span>{% trans "API Documentation" %}</span>
+            </a>
+            <a href="https://www.canadapost-postescanada.ca/information/app/wtz/business/productsServices/solutionsForSmallBusiness/default" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-credit-card"></i>
+                <span>{% trans "Solutions for Small Business" %}</span>
+            </a>
+            <a href="https://www.canadapost-postescanada.ca/information/app/wtz/business/smallBusiness?LOCALE=en" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-store"></i>
+                <span>{% trans "Small Business Solutions" %}</span>
+            </a>
+            <a href="https://www.canadapost-postescanada.ca/track-reperage/en#/home" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{% trans "Track a Package" %}</span>
+            </a>
+            <a href="https://www.canadapost-postescanada.ca/information/app/far/business/findARate?execution=e1s1" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <i class="fas fa-calculator"></i>
+                <span>{% trans "Rate Calculator" %}</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="instruction-troubleshooting">
+        <h4><i class="fas fa-wrench"></i> {% trans "Common Issues" %}</h4>
+
+        <div class="troubleshooting-item">
+            <h5>{% trans "401 Unauthorized Error" %}</h5>
+            <p>{% trans "Verify your API username and password are correct. Ensure you copied them exactly from the Developer Portal without extra spaces. Check that you're using the correct environment (Development vs Production)." %}</p>
+        </div>
+
+        <div class="troubleshooting-item">
+            <h5>{% trans "Invalid Customer Number" %}</h5>
+            <p>{% trans "The customer number must be exactly 10 digits. Remove any spaces, dashes, or other characters. Verify the number with Canada Post if you're unsure." %}</p>
+        </div>
+
+        <div class="troubleshooting-item">
+            <h5>{% trans "No Rates Returned" %}</h5>
+            <p>{% trans "Verify both origin and destination postal codes are valid. Ensure package weight and dimensions are within Canada Post limits. Check that the service is available for your selected route (domestic, USA, or international)." %}</p>
+        </div>
+
+        <div class="troubleshooting-item">
+            <h5>{% trans "Shipment Creation Failed" %}</h5>
+            <p>{% trans "Ensure all required address fields are provided (name, street, city, province, postal code). For international shipments, customs declarations are required. Verify your customer type matches your credentials (Contract vs Non-Contract)." %}</p>
+        </div>
+
+        <div class="troubleshooting-item">
+            <h5>{% trans "XML Parse Error" %}</h5>
+            <p>{% trans "Canada Post uses XML-based APIs. If you see XML errors, it may indicate malformed request data. Check that special characters in addresses are properly handled. Enable debug logging to see the full XML request and response." %}</p>
+        </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="instruction-footer">
+        <div class="info-box info">
+            <i class="fas fa-arrow-right"></i>
+            <span>{% trans "Ready to continue? Click 'Next' to enter your credentials and test the connection." %}</span>
+        </div>
+    </div>
+</div>
+
+

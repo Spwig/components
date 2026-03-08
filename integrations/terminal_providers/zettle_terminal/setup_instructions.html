@@ -1,0 +1,21 @@
+<h3>Setting up Zettle (PayPal) Terminal</h3>
+<ol>
+  <li><strong>Get a Zettle account</strong> — Sign up at <a href="https://www.zettle.com/" target="_blank">zettle.com</a> (or through PayPal for US merchants)</li>
+  <li><strong>Register as a developer</strong> — Go to the <a href="https://developer.zettle.com/" target="_blank">Zettle Developer Portal</a> and create an application.</li>
+  <li><strong>Get your Client ID</strong> — In the Developer Portal, find your application's Client ID.</li>
+  <li><strong>Create an API key</strong> — Go to <a href="https://my.zettle.com/" target="_blank">my.zettle.com</a>, navigate to API integrations, and create an API key (JWT assertion) for your application.</li>
+  <li><strong>Get a PayPal Reader</strong> — Order a PayPal Reader from the <a href="https://shop.zettle.com/" target="_blank">Zettle shop</a>. Note: the Reader Connect API requires the WiFi-connected <strong>PayPal Reader</strong>, not the Bluetooth-only Zettle Reader 2.</li>
+  <li><strong>Connect your reader to WiFi</strong> — Power on the reader and visit <code>http://192.168.4.1/</code> in a browser on a device connected to the reader's temporary WiFi to configure your network.</li>
+  <li><strong>Link the reader</strong> — The reader displays an 8-character pairing code. Enter this in Spwig POS to link the reader to your account.</li>
+  <li><strong>Test the connection</strong> — Use the "Test Connection" button in the POS Terminal Provider settings to verify connectivity.</li>
+</ol>
+<h4>Supported Devices</h4>
+<ul>
+  <li><strong>PayPal Reader</strong> — WiFi-connected card reader supporting chip &amp; PIN, contactless (NFC), and magstripe. Accepts Visa, Mastercard, American Express, and digital wallets (Apple Pay, Google Pay).</li>
+</ul>
+<h4>Important Notes</h4>
+<ul>
+  <li>The <strong>Zettle Reader 2</strong> (Bluetooth-only) is <em>not</em> supported — it requires a native mobile SDK.</li>
+  <li>No sandbox environment is available. Testing uses real hardware with automatically reversed transactions.</li>
+  <li>Refunds for card-present payments must be initiated through the Zettle dashboard or app.</li>
+</ul>

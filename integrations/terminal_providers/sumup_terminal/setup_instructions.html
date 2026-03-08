@@ -1,0 +1,17 @@
+<h3>Setting up SumUp Terminal</h3>
+<ol>
+  <li><strong>Get a SumUp account</strong> — Sign up at <a href="https://www.sumup.com/en-us/signup/" target="_blank">sumup.com/signup</a></li>
+  <li><strong>Create an API key</strong> — In the <a href="https://developer.sumup.com/" target="_blank">SumUp Developer Dashboard</a>, create an API key with <em>payments</em> and <em>transactions.history</em> scopes.</li>
+  <li><strong>Create an Affiliate Key</strong> — In the Developer Dashboard, go to <em>Affiliate Keys</em> and create one. This is required for Cloud API transactions.</li>
+  <li><strong>Note your Merchant Code</strong> — Found in your SumUp profile settings or Dashboard.</li>
+  <li><strong>Set up your Solo reader</strong> — Power on your SumUp Solo and follow the on-screen instructions to connect to WiFi.</li>
+  <li><strong>Pair the reader</strong> — The Solo displays a pairing code. Your reader will appear automatically in Spwig POS once paired.</li>
+  <li><strong>Test the connection</strong> — Use the "Test Connection" button in the POS Terminal Provider settings to verify API connectivity.</li>
+</ol>
+<h4>Supported Devices</h4>
+<ul>
+  <li><strong>SumUp Solo</strong> — Standalone card reader with touchscreen display and WiFi/SIM connectivity</li>
+  <li><strong>SumUp Solo Lite</strong> — Compact card reader</li>
+</ul>
+<h4>Testing</h4>
+<p>SumUp provides a Virtual Solo for testing without physical hardware. Use a test API key (prefixed with <code>sk_test_</code>) during development. Note: a checkout amount of 11.00 in any currency will always fail — useful for testing error handling.</p>

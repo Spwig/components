@@ -1,0 +1,1516 @@
+/* © 2025 Spwig. All rights reserved. */
+
+/**
+ * Artisan Theme - Design Tokens as CSS Custom Properties
+ * Generated from tokens.json on 2026-02-25 15:00:56
+ * DO NOT EDIT MANUALLY - Edit tokens.json instead and regenerate
+ */
+
+:root {
+  /* ==========================================================================
+     Colors
+     ========================================================================== */
+
+  /* Primary */
+  --theme-color-primary: #B45309;
+  --theme-color-primary-hover: #92400E;
+  --theme-color-primary-light: #FDE68A;
+
+  /* Secondary */
+  --theme-color-secondary: #78716C;
+  --theme-color-secondary-hover: #57534E;
+
+  /* Accent */
+  --theme-color-accent: #D97706;
+  --theme-color-accent-hover: #B45309;
+
+  /* Text */
+  --theme-color-text: #44403C;
+  --theme-color-text-light: #78716C;
+  --theme-color-text-muted: #A8A29E;
+  --theme-color-text-inverse: #ffffff;
+
+  /* Background */
+  --theme-color-background: #FFFBF5;
+
+  /* Surface */
+  --theme-color-surface: #FFFFFF;
+  --theme-color-surface-hover: #FEF3E2;
+
+  /* Border */
+  --theme-color-border: #E7DDD0;
+  --theme-color-border-light: #F0E6D8;
+  --theme-color-border-dark: #D6C8B8;
+
+  /* Status */
+  --theme-color-success: #10B981;
+  --theme-color-success-light: #d1fae5;
+  --theme-color-error: #EF4444;
+  --theme-color-error-light: #FEE2E2;
+  --theme-color-warning: #F59E0B;
+  --theme-color-warning-light: #fef3c7;
+  --theme-color-info: #3b82f6;
+  --theme-color-info-light: #dbeafe;
+
+  /* Overlay */
+  --theme-color-overlay: rgba(68, 64, 60, 0.5);
+
+  /* Other */
+  --theme-color-primary-dark: #78350F;
+  --theme-color-secondary-light: #A8A29E;
+  --theme-color-secondary-dark: #44403C;
+  --theme-color-accent-light: #FEF3C7;
+  --theme-color-accent-dark: #92400E;
+  --theme-color-background-secondary: #FEF3E2;
+  --theme-color-background-tertiary: #FDE68A;
+  --theme-color-surface-secondary: #FEF3E2;
+  --theme-color-surface-dark: #E7DDD0;
+  --theme-color-success-dark: #065f46;
+  --theme-color-warning-dark: #92400e;
+  --theme-color-info-dark: #1e40af;
+  --theme-color-shadow: rgba(180, 83, 9, 0.08);
+
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+
+  /* Font Families */
+  --theme-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --theme-font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --theme-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --theme-font-family-body: 'Source Sans 3', system-ui, sans-serif;
+  --theme-font-family-heading: 'Playfair Display', Georgia, serif;
+
+  /* Font Sizes */
+  --theme-font-size-xs: 0.75rem;
+  --theme-font-size-sm: 0.875rem;
+  --theme-font-size-base: 1rem;
+  --theme-font-size-lg: 1.125rem;
+  --theme-font-size-xl: 1.25rem;
+  --theme-font-size-2xl: 1.5rem;
+  --theme-font-size-3xl: 1.875rem;
+  --theme-font-size-4xl: 2.25rem;
+  --theme-font-size-5xl: 3rem;
+
+  /* Font Weights */
+  --theme-font-weight-normal: 400;
+  --theme-font-weight-medium: 500;
+  --theme-font-weight-semibold: 600;
+  --theme-font-weight-bold: 700;
+
+  /* Line Heights */
+  --theme-line-height-tight: 1.25;
+  --theme-line-height-normal: 1.5;
+  --theme-line-height-relaxed: 1.625;
+  --theme-line-height-base: 1.5;
+
+  /* Letter Spacing */
+  --theme-letter-spacing-tight: -0.025em;
+  --theme-letter-spacing-normal: 0;
+  --theme-letter-spacing-wide: 0.025em;
+
+  /* ==========================================================================
+     Spacing
+     ========================================================================== */
+  --theme-space-0: 0;
+  --theme-space-1: 0.25rem;
+  --theme-space-2: 0.5rem;
+  --theme-space-3: 0.75rem;
+  --theme-space-4: 1rem;
+  --theme-space-5: 1.25rem;
+  --theme-space-6: 1.5rem;
+  --theme-space-8: 2rem;
+  --theme-space-10: 2.5rem;
+  --theme-space-12: 3rem;
+  --theme-space-16: 4rem;
+  --theme-space-20: 5rem;
+  --theme-space-24: 6rem;
+
+  /* ==========================================================================
+     Borders
+     ========================================================================== */
+
+  /* Border Widths */
+  --theme-border-width-0: 0;
+  --theme-border-width-1: 1px;
+  --theme-border-width-2: 2px;
+
+  /* Border Radius */
+  --theme-radius-none: 0;
+  --theme-radius-sm: 0.25rem;
+  --theme-radius-base: 0.375rem;
+  --theme-radius-md: 0.375rem;
+  --theme-radius-lg: 0.5rem;
+  --theme-radius-xl: 0.75rem;
+  --theme-radius-full: 9999px;
+
+  /* ==========================================================================
+     Shadows
+     ========================================================================== */
+  --theme-shadow-none: none;
+  --theme-shadow-sm: 0 1px 3px 0 rgba(180, 83, 9, 0.04);
+  --theme-shadow-base: 0 2px 6px 0 rgba(180, 83, 9, 0.06);
+  --theme-shadow-md: 0 4px 8px -1px rgba(180, 83, 9, 0.08);
+  --theme-shadow-lg: 0 8px 16px -2px rgba(180, 83, 9, 0.08);
+  --theme-shadow-xl: 0 16px 24px -4px rgba(180, 83, 9, 0.1);
+
+  /* ==========================================================================
+     Transitions
+     ========================================================================== */
+  --theme-transition-duration-fast: 150ms;
+  --theme-transition-duration-base: 200ms;
+  --theme-transition-duration-slow: 300ms;
+  --theme-transition-easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --theme-transition-easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --theme-transition-easing-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ==========================================================================
+     Breakpoints
+     ========================================================================== */
+  --theme-breakpoint-sm: 640px;
+  --theme-breakpoint-md: 768px;
+  --theme-breakpoint-lg: 1024px;
+  --theme-breakpoint-xl: 1280px;
+  --theme-breakpoint-2xl: 1536px;
+
+  /* ==========================================================================
+     Responsive Scaling
+     ========================================================================== */
+  --theme-responsive-scale-mobile-text: 0.875;
+  --theme-responsive-scale-mobile-space: 0.75;
+  --theme-responsive-scale-mobile-padding: 0.667;
+
+  /* ==========================================================================
+     Z-Index
+     ========================================================================== */
+  --theme-z-dropdown: 1000;
+  --theme-z-sticky: 1020;
+  --theme-z-fixed: 1030;
+  --theme-z-modal-backdrop: 1040;
+  --theme-z-modal: 1050;
+  --theme-z-popover: 1060;
+  --theme-z-tooltip: 1070;
+
+  /* ==========================================================================
+     Container
+     ========================================================================== */
+  --theme-container-max-width: 1280px;
+  --theme-container-padding: 1rem;
+
+  /* ==========================================================================
+     Menu
+     ========================================================================== */
+  --theme-menu-text-color: var(--theme-color-text);
+  --theme-menu-text-hover-color: var(--theme-color-text-inverse);
+  --theme-menu-background: transparent;
+  --theme-menu-background-hover: var(--theme-color-primary);
+  --theme-menu-dropdown-background: var(--theme-color-surface);
+  --theme-menu-dropdown-shadow: var(--theme-shadow-lg);
+  --theme-menu-border-color: var(--theme-color-border);
+  --theme-menu-active-indicator-color: var(--theme-color-accent);
+  --theme-menu-item-gap: var(--theme-space-1);
+  --theme-menu-link-padding-x: var(--theme-space-4);
+  --theme-menu-link-padding-y: var(--theme-space-2);
+  --theme-menu-dropdown-padding: var(--theme-space-2);
+  --theme-menu-dropdown-offset: var(--theme-space-2);
+  --theme-menu-font-size: var(--theme-font-size-base);
+  --theme-menu-font-weight: var(--theme-font-weight-medium);
+  --theme-menu-font-weight-active: var(--theme-font-weight-semibold);
+  --theme-menu-border-radius: var(--theme-radius-md);
+  --theme-menu-dropdown-border-radius: var(--theme-radius-lg);
+  --theme-menu-animation-duration: var(--theme-transition-duration-fast);
+  --theme-menu-animation-timing: var(--theme-transition-easing-default);
+  --theme-menu-slide-duration: var(--theme-transition-duration-slow);
+
+  /* ==========================================================================
+     Header
+     ========================================================================== */
+  --theme-header-background: var(--theme-color-surface);
+  --theme-header-text-color: var(--theme-color-text);
+  --theme-header-border-color: var(--theme-color-border);
+  --theme-header-link-color: var(--theme-color-text);
+  --theme-header-link-hover-color: var(--theme-color-accent-dark);
+  --theme-header-padding-y: var(--theme-space-4);
+  --theme-header-padding-x: var(--theme-space-4);
+  --theme-header-logo-height: 40px;
+  --theme-header-icon-size: 1.25rem;
+  --theme-header-icon-color: var(--theme-color-text);
+  --theme-header-icon-hover-color: var(--theme-color-accent-dark);
+
+  /* Header Zones */
+  --theme-header-zones-top-bar-background: var(--theme-color-primary);
+  --theme-header-zones-top-bar-background-promotional: var(--theme-header-zones-top-bar-background);
+  --theme-header-zones-top-bar-background-boutique: var(--theme-header-zones-top-bar-background);
+  --theme-header-zones-top-bar-background-split: var(--theme-header-zones-top-bar-background);
+  --theme-header-zones-top-bar-background-classic: var(--theme-header-zones-top-bar-background);
+  --theme-header-zones-top-bar-background-mega: var(--theme-header-zones-top-bar-background);
+  --theme-header-zones-top-bar-background-minimal: var(--theme-header-zones-top-bar-background);
+  --theme-header-zones-top-bar-text-color: var(--theme-color-text-inverse);
+  --theme-header-zones-top-bar-text-color-promotional: var(--theme-header-zones-top-bar-text-color);
+  --theme-header-zones-top-bar-text-color-boutique: var(--theme-header-zones-top-bar-text-color);
+  --theme-header-zones-top-bar-text-color-split: var(--theme-header-zones-top-bar-text-color);
+  --theme-header-zones-top-bar-text-color-classic: var(--theme-header-zones-top-bar-text-color);
+  --theme-header-zones-top-bar-text-color-mega: var(--theme-header-zones-top-bar-text-color);
+  --theme-header-zones-top-bar-text-color-minimal: var(--theme-header-zones-top-bar-text-color);
+  --theme-header-zones-top-bar-border-color: var(--theme-color-border);
+  --theme-header-zones-top-bar-border-color-promotional: var(--theme-header-zones-top-bar-border-color);
+  --theme-header-zones-top-bar-border-color-boutique: var(--theme-header-zones-top-bar-border-color);
+  --theme-header-zones-top-bar-border-color-split: var(--theme-header-zones-top-bar-border-color);
+  --theme-header-zones-top-bar-border-color-classic: var(--theme-header-zones-top-bar-border-color);
+  --theme-header-zones-top-bar-border-color-mega: var(--theme-header-zones-top-bar-border-color);
+  --theme-header-zones-top-bar-border-color-minimal: var(--theme-header-zones-top-bar-border-color);
+  --theme-header-zones-top-bar-height: 70px;
+  --theme-header-zones-top-bar-height-promotional: var(--theme-header-zones-top-bar-height);
+  --theme-header-zones-top-bar-height-boutique: var(--theme-header-zones-top-bar-height);
+  --theme-header-zones-top-bar-height-split: var(--theme-header-zones-top-bar-height);
+  --theme-header-zones-top-bar-height-classic: var(--theme-header-zones-top-bar-height);
+  --theme-header-zones-top-bar-height-mega: var(--theme-header-zones-top-bar-height);
+  --theme-header-zones-top-bar-height-minimal: var(--theme-header-zones-top-bar-height);
+  --theme-header-zones-top-bar-padding-y: var(--theme-space-4);
+  --theme-header-zones-top-bar-padding-y-promotional: var(--theme-header-zones-top-bar-padding-y);
+  --theme-header-zones-top-bar-padding-y-boutique: var(--theme-header-zones-top-bar-padding-y);
+  --theme-header-zones-top-bar-padding-y-split: var(--theme-header-zones-top-bar-padding-y);
+  --theme-header-zones-top-bar-padding-y-classic: var(--theme-header-zones-top-bar-padding-y);
+  --theme-header-zones-top-bar-padding-y-mega: var(--theme-header-zones-top-bar-padding-y);
+  --theme-header-zones-top-bar-padding-y-minimal: var(--theme-header-zones-top-bar-padding-y);
+  --theme-header-zones-top-bar-padding-x: var(--theme-space-4);
+  --theme-header-zones-top-bar-padding-x-promotional: var(--theme-header-zones-top-bar-padding-x);
+  --theme-header-zones-top-bar-padding-x-boutique: var(--theme-header-zones-top-bar-padding-x);
+  --theme-header-zones-top-bar-padding-x-split: var(--theme-header-zones-top-bar-padding-x);
+  --theme-header-zones-top-bar-padding-x-classic: var(--theme-header-zones-top-bar-padding-x);
+  --theme-header-zones-top-bar-padding-x-mega: var(--theme-header-zones-top-bar-padding-x);
+  --theme-header-zones-top-bar-padding-x-minimal: var(--theme-header-zones-top-bar-padding-x);
+  --theme-header-zones-top-bar-font-size: var(--theme-font-size-sm);
+  --theme-header-zones-top-bar-font-size-promotional: var(--theme-header-zones-top-bar-font-size);
+  --theme-header-zones-top-bar-font-size-boutique: var(--theme-header-zones-top-bar-font-size);
+  --theme-header-zones-top-bar-font-size-split: var(--theme-header-zones-top-bar-font-size);
+  --theme-header-zones-top-bar-font-size-classic: var(--theme-header-zones-top-bar-font-size);
+  --theme-header-zones-top-bar-font-size-mega: var(--theme-header-zones-top-bar-font-size);
+  --theme-header-zones-top-bar-font-size-minimal: var(--theme-header-zones-top-bar-font-size);
+
+  --theme-header-zones-main-header-background: var(--theme-color-surface);
+  --theme-header-zones-main-header-background-promotional: var(--theme-header-main-header-background);
+  --theme-header-zones-main-header-background-boutique: var(--theme-header-main-header-background);
+  --theme-header-zones-main-header-background-split: var(--theme-header-main-header-background);
+  --theme-header-zones-main-header-background-classic: var(--theme-header-main-header-background);
+  --theme-header-zones-main-header-background-mega: var(--theme-header-main-header-background);
+  --theme-header-zones-main-header-background-minimal: var(--theme-header-main-header-background);
+  --theme-header-zones-main-header-text-color: var(--theme-color-text);
+  --theme-header-zones-main-header-text-color-promotional: var(--theme-header-main-header-text-color);
+  --theme-header-zones-main-header-text-color-boutique: var(--theme-header-main-header-text-color);
+  --theme-header-zones-main-header-text-color-split: var(--theme-header-main-header-text-color);
+  --theme-header-zones-main-header-text-color-classic: var(--theme-header-main-header-text-color);
+  --theme-header-zones-main-header-text-color-mega: var(--theme-header-main-header-text-color);
+  --theme-header-zones-main-header-text-color-minimal: var(--theme-header-main-header-text-color);
+  --theme-header-zones-main-header-border-color: var(--theme-color-border);
+  --theme-header-zones-main-header-border-color-promotional: var(--theme-header-main-header-border-color);
+  --theme-header-zones-main-header-border-color-boutique: var(--theme-header-main-header-border-color);
+  --theme-header-zones-main-header-border-color-split: var(--theme-header-main-header-border-color);
+  --theme-header-zones-main-header-border-color-classic: var(--theme-header-main-header-border-color);
+  --theme-header-zones-main-header-border-color-mega: var(--theme-header-main-header-border-color);
+  --theme-header-zones-main-header-border-color-minimal: var(--theme-header-main-header-border-color);
+  --theme-header-zones-main-header-height: 70px;
+  --theme-header-zones-main-header-height-promotional: var(--theme-header-main-header-height);
+  --theme-header-zones-main-header-height-boutique: var(--theme-header-main-header-height);
+  --theme-header-zones-main-header-height-split: var(--theme-header-main-header-height);
+  --theme-header-zones-main-header-height-classic: var(--theme-header-main-header-height);
+  --theme-header-zones-main-header-height-mega: var(--theme-header-main-header-height);
+  --theme-header-zones-main-header-height-minimal: var(--theme-header-main-header-height);
+  --theme-header-zones-main-header-padding-y: var(--theme-space-4);
+  --theme-header-zones-main-header-padding-y-promotional: var(--theme-header-main-header-padding-y);
+  --theme-header-zones-main-header-padding-y-boutique: var(--theme-header-main-header-padding-y);
+  --theme-header-zones-main-header-padding-y-split: var(--theme-header-main-header-padding-y);
+  --theme-header-zones-main-header-padding-y-classic: var(--theme-header-main-header-padding-y);
+  --theme-header-zones-main-header-padding-y-mega: var(--theme-header-main-header-padding-y);
+  --theme-header-zones-main-header-padding-y-minimal: var(--theme-header-main-header-padding-y);
+  --theme-header-zones-main-header-padding-x: var(--theme-space-4);
+  --theme-header-zones-main-header-padding-x-promotional: var(--theme-header-main-header-padding-x);
+  --theme-header-zones-main-header-padding-x-boutique: var(--theme-header-main-header-padding-x);
+  --theme-header-zones-main-header-padding-x-split: var(--theme-header-main-header-padding-x);
+  --theme-header-zones-main-header-padding-x-classic: var(--theme-header-main-header-padding-x);
+  --theme-header-zones-main-header-padding-x-mega: var(--theme-header-main-header-padding-x);
+  --theme-header-zones-main-header-padding-x-minimal: var(--theme-header-main-header-padding-x);
+  --theme-header-zones-main-header-font-size: var(--theme-font-size-sm);
+  --theme-header-zones-main-header-font-size-promotional: var(--theme-header-zones-main-header-font-size);
+  --theme-header-zones-main-header-font-size-boutique: var(--theme-header-zones-main-header-font-size);
+  --theme-header-zones-main-header-font-size-split: var(--theme-header-zones-main-header-font-size);
+  --theme-header-zones-main-header-font-size-classic: var(--theme-header-zones-main-header-font-size);
+  --theme-header-zones-main-header-font-size-mega: var(--theme-header-zones-main-header-font-size);
+  --theme-header-zones-main-header-font-size-minimal: var(--theme-header-zones-main-header-font-size);
+
+  --theme-header-zones-bottom-bar-background: var(--theme-color-background-secondary);
+  --theme-header-zones-bottom-bar-background-promotional: var(--theme-header-zones-bottom-bar-background);
+  --theme-header-zones-bottom-bar-background-boutique: var(--theme-header-zones-bottom-bar-background);
+  --theme-header-zones-bottom-bar-background-split: var(--theme-header-zones-bottom-bar-background);
+  --theme-header-zones-bottom-bar-background-classic: var(--theme-header-zones-bottom-bar-background);
+  --theme-header-zones-bottom-bar-background-mega: var(--theme-header-zones-bottom-bar-background);
+  --theme-header-zones-bottom-bar-background-minimal: var(--theme-header-zones-bottom-bar-background);
+  --theme-header-zones-bottom-bar-text-color: var(--theme-color-text);
+  --theme-header-zones-bottom-bar-text-color-promotional: var(--theme-header-bottom-bar-text-color);
+  --theme-header-zones-bottom-bar-text-color-boutique: var(--theme-header-bottom-bar-text-color);
+  --theme-header-zones-bottom-bar-text-color-split: var(--theme-header-bottom-bar-text-color);
+  --theme-header-zones-bottom-bar-text-color-classic: var(--theme-header-bottom-bar-text-color);
+  --theme-header-zones-bottom-bar-text-color-mega: var(--theme-header-bottom-bar-text-color);
+  --theme-header-zones-bottom-bar-text-color-minimal: var(--theme-header-bottom-bar-text-color);
+  --theme-header-zones-bottom-bar-border-color: var(--theme-color-border);
+  --theme-header-zones-bottom-bar-border-color-promotional: var(--theme-header-bottom-bar-border-color);
+  --theme-header-zones-bottom-bar-border-color-boutique: var(--theme-header-bottom-bar-border-color);
+  --theme-header-zones-bottom-bar-border-color-split: var(--theme-header-bottom-bar-border-color);
+  --theme-header-zones-bottom-bar-border-color-classic: var(--theme-header-bottom-bar-border-color);
+  --theme-header-zones-bottom-bar-border-color-mega: var(--theme-header-bottom-bar-border-color);
+  --theme-header-zones-bottom-bar-border-color-minimal: var(--theme-header-bottom-bar-border-color);
+  --theme-header-zones-bottom-bar-height: 50px;
+  --theme-header-zones-bottom-bar-height-promotional: var(--theme-header-bottom-bar-height);
+  --theme-header-zones-bottom-bar-height-boutique: var(--theme-header-bottom-bar-height);
+  --theme-header-zones-bottom-bar-height-split: var(--theme-header-bottom-bar-height);
+  --theme-header-zones-bottom-bar-height-classic: var(--theme-header-bottom-bar-height);
+  --theme-header-zones-bottom-bar-height-mega: var(--theme-header-bottom-bar-height);
+  --theme-header-zones-bottom-bar-height-minimal: var(--theme-header-bottom-bar-height);
+  --theme-header-zones-bottom-bar-padding-y: var(--theme-space-3);
+  --theme-header-zones-bottom-bar-padding-y-promotional: var(--theme-header-bottom-bar-padding-y);
+  --theme-header-zones-bottom-bar-padding-y-boutique: var(--theme-header-bottom-bar-padding-y);
+  --theme-header-zones-bottom-bar-padding-y-split: var(--theme-header-bottom-bar-padding-y);
+  --theme-header-zones-bottom-bar-padding-y-classic: var(--theme-header-bottom-bar-padding-y);
+  --theme-header-zones-bottom-bar-padding-y-mega: var(--theme-header-bottom-bar-padding-y);
+  --theme-header-zones-bottom-bar-padding-y-minimal: var(--theme-header-bottom-bar-padding-y);
+  --theme-header-zones-bottom-bar-padding-x: var(--theme-space-4);
+  --theme-header-zones-bottom-bar-padding-x-promotional: var(--theme-header-bottom-bar-padding-x);
+  --theme-header-zones-bottom-bar-padding-x-boutique: var(--theme-header-bottom-bar-padding-x);
+  --theme-header-zones-bottom-bar-padding-x-split: var(--theme-header-bottom-bar-padding-x);
+  --theme-header-zones-bottom-bar-padding-x-classic: var(--theme-header-bottom-bar-padding-x);
+  --theme-header-zones-bottom-bar-padding-x-mega: var(--theme-header-bottom-bar-padding-x);
+  --theme-header-zones-bottom-bar-padding-x-minimal: var(--theme-header-bottom-bar-padding-x);
+  --theme-header-zones-bottom-bar-font-size: var(--theme-font-size-sm);
+  --theme-header-zones-bottom-bar-font-size-promotional: var(--theme-header-zones-bottom-bar-font-size);
+  --theme-header-zones-bottom-bar-font-size-boutique: var(--theme-header-zones-bottom-bar-font-size);
+  --theme-header-zones-bottom-bar-font-size-split: var(--theme-header-zones-bottom-bar-font-size);
+  --theme-header-zones-bottom-bar-font-size-classic: var(--theme-header-zones-bottom-bar-font-size);
+  --theme-header-zones-bottom-bar-font-size-mega: var(--theme-header-zones-bottom-bar-font-size);
+  --theme-header-zones-bottom-bar-font-size-minimal: var(--theme-header-zones-bottom-bar-font-size);
+
+  --theme-header-zones-mega-menu-bar-background: var(--theme-color-background-secondary);
+  --theme-header-zones-mega-menu-bar-background-promotional: var(--theme-header-zones-mega-menu-bar-background);
+  --theme-header-zones-mega-menu-bar-background-boutique: var(--theme-header-zones-mega-menu-bar-background);
+  --theme-header-zones-mega-menu-bar-background-split: var(--theme-header-zones-mega-menu-bar-background);
+  --theme-header-zones-mega-menu-bar-background-classic: var(--theme-header-zones-mega-menu-bar-background);
+  --theme-header-zones-mega-menu-bar-background-mega: var(--theme-header-zones-mega-menu-bar-background);
+  --theme-header-zones-mega-menu-bar-background-minimal: var(--theme-header-zones-mega-menu-bar-background);
+  --theme-header-zones-mega-menu-bar-text-color: var(--theme-color-text);
+  --theme-header-zones-mega-menu-bar-text-color-promotional: var(--theme-header-mega-menu-bar-text-color);
+  --theme-header-zones-mega-menu-bar-text-color-boutique: var(--theme-header-mega-menu-bar-text-color);
+  --theme-header-zones-mega-menu-bar-text-color-split: var(--theme-header-mega-menu-bar-text-color);
+  --theme-header-zones-mega-menu-bar-text-color-classic: var(--theme-header-mega-menu-bar-text-color);
+  --theme-header-zones-mega-menu-bar-text-color-mega: var(--theme-header-mega-menu-bar-text-color);
+  --theme-header-zones-mega-menu-bar-text-color-minimal: var(--theme-header-mega-menu-bar-text-color);
+  --theme-header-zones-mega-menu-bar-border-color: var(--theme-color-border);
+  --theme-header-zones-mega-menu-bar-border-color-promotional: var(--theme-header-mega-menu-bar-border-color);
+  --theme-header-zones-mega-menu-bar-border-color-boutique: var(--theme-header-mega-menu-bar-border-color);
+  --theme-header-zones-mega-menu-bar-border-color-split: var(--theme-header-mega-menu-bar-border-color);
+  --theme-header-zones-mega-menu-bar-border-color-classic: var(--theme-header-mega-menu-bar-border-color);
+  --theme-header-zones-mega-menu-bar-border-color-mega: var(--theme-header-mega-menu-bar-border-color);
+  --theme-header-zones-mega-menu-bar-border-color-minimal: var(--theme-header-mega-menu-bar-border-color);
+  --theme-header-zones-mega-menu-bar-height: 60px;
+  --theme-header-zones-mega-menu-bar-height-promotional: var(--theme-header-mega-menu-bar-height);
+  --theme-header-zones-mega-menu-bar-height-boutique: var(--theme-header-mega-menu-bar-height);
+  --theme-header-zones-mega-menu-bar-height-split: var(--theme-header-mega-menu-bar-height);
+  --theme-header-zones-mega-menu-bar-height-classic: var(--theme-header-mega-menu-bar-height);
+  --theme-header-zones-mega-menu-bar-height-mega: var(--theme-header-mega-menu-bar-height);
+  --theme-header-zones-mega-menu-bar-height-minimal: var(--theme-header-mega-menu-bar-height);
+  --theme-header-zones-mega-menu-bar-padding-y: var(--theme-space-4);
+  --theme-header-zones-mega-menu-bar-padding-y-promotional: var(--theme-header-mega-menu-bar-padding-y);
+  --theme-header-zones-mega-menu-bar-padding-y-boutique: var(--theme-header-mega-menu-bar-padding-y);
+  --theme-header-zones-mega-menu-bar-padding-y-split: var(--theme-header-mega-menu-bar-padding-y);
+  --theme-header-zones-mega-menu-bar-padding-y-classic: var(--theme-header-mega-menu-bar-padding-y);
+  --theme-header-zones-mega-menu-bar-padding-y-mega: var(--theme-header-mega-menu-bar-padding-y);
+  --theme-header-zones-mega-menu-bar-padding-y-minimal: var(--theme-header-mega-menu-bar-padding-y);
+  --theme-header-zones-mega-menu-bar-padding-x: var(--theme-space-4);
+  --theme-header-zones-mega-menu-bar-padding-x-promotional: var(--theme-header-mega-menu-bar-padding-x);
+  --theme-header-zones-mega-menu-bar-padding-x-boutique: var(--theme-header-mega-menu-bar-padding-x);
+  --theme-header-zones-mega-menu-bar-padding-x-split: var(--theme-header-mega-menu-bar-padding-x);
+  --theme-header-zones-mega-menu-bar-padding-x-classic: var(--theme-header-mega-menu-bar-padding-x);
+  --theme-header-zones-mega-menu-bar-padding-x-mega: var(--theme-header-mega-menu-bar-padding-x);
+  --theme-header-zones-mega-menu-bar-padding-x-minimal: var(--theme-header-mega-menu-bar-padding-x);
+  --theme-header-zones-mega-menu-bar-font-size: var(--theme-font-size-sm);
+  --theme-header-zones-mega-menu-bar-font-size-promotional: var(--theme-header-zones-mega-menu-bar-font-size);
+  --theme-header-zones-mega-menu-bar-font-size-boutique: var(--theme-header-zones-mega-menu-bar-font-size);
+  --theme-header-zones-mega-menu-bar-font-size-split: var(--theme-header-zones-mega-menu-bar-font-size);
+  --theme-header-zones-mega-menu-bar-font-size-classic: var(--theme-header-zones-mega-menu-bar-font-size);
+  --theme-header-zones-mega-menu-bar-font-size-mega: var(--theme-header-zones-mega-menu-bar-font-size);
+  --theme-header-zones-mega-menu-bar-font-size-minimal: var(--theme-header-zones-mega-menu-bar-font-size);
+
+  /* ==========================================================================
+     Footer
+     ========================================================================== */
+  --theme-footer-background: #44403C;
+  --theme-footer-text-color: var(--theme-color-text-inverse);
+  --theme-footer-border-color: rgba(217, 119, 6, 0.2);
+  --theme-footer-link-color: var(--theme-color-text-inverse);
+  --theme-footer-link-hover-color: var(--theme-color-accent);
+  --theme-footer-heading-color: var(--theme-color-text-inverse);
+  --theme-footer-muted-color: var(--theme-color-secondary);
+  --theme-footer-padding-top: var(--theme-space-12);
+  --theme-footer-padding-bottom: var(--theme-space-8);
+  --theme-footer-column-gap: var(--theme-space-8);
+
+  /* Footer Zones */
+  --theme-footer-zones-top-background: var(--theme-color-background-secondary);
+  --theme-footer-zones-top-text-color: var(--theme-color-text);
+  --theme-footer-zones-top-border-color: var(--theme-color-accent);
+  --theme-footer-zones-top-padding-y: var(--theme-space-12);
+
+  --theme-footer-zones-main-background: #44403C;
+  --theme-footer-zones-main-text-color: var(--theme-color-text-inverse);
+  --theme-footer-zones-main-padding-y: var(--theme-space-8);
+
+  --theme-footer-zones-bottom-background: #3a3633;
+  --theme-footer-zones-bottom-text-color: var(--theme-color-text-inverse);
+  --theme-footer-zones-bottom-border-color: rgba(217, 119, 6, 0.15);
+  --theme-footer-zones-bottom-padding-y: var(--theme-space-6);
+  --theme-footer-zones-bottom-font-size: var(--theme-font-size-sm);
+
+  /* ==========================================================================
+     Search
+     ========================================================================== */
+  --theme-search-input-bg: var(--theme-color-surface);
+  --theme-search-input-border: var(--theme-color-border);
+  --theme-search-input-color: var(--theme-color-text);
+  --theme-search-input-placeholder-color: var(--theme-color-text-muted);
+  --theme-search-input-focus-border: var(--theme-color-accent);
+  --theme-search-input-focus-shadow: 0 0 0 3px rgba(217, 119, 6, 0.3);
+  --theme-search-input-radius: var(--theme-radius-md);
+  --theme-search-input-padding-x: var(--theme-space-4);
+  --theme-search-input-padding-y: var(--theme-space-2);
+  --theme-search-btn-bg: var(--theme-color-primary);
+  --theme-search-btn-color: var(--theme-color-text-inverse);
+  --theme-search-btn-hover-bg: var(--theme-color-primary-hover);
+  --theme-search-btn-radius: var(--theme-radius-md);
+  --theme-search-dropdown-bg: var(--theme-color-surface);
+  --theme-search-dropdown-border: var(--theme-color-border);
+  --theme-search-dropdown-shadow: var(--theme-shadow-xl);
+  --theme-search-dropdown-radius: var(--theme-radius-lg);
+  --theme-search-results-bg: var(--theme-color-background-secondary);
+  --theme-search-results-item-hover-bg: var(--theme-color-surface-hover);
+  --theme-search-results-item-padding: var(--theme-space-3);
+  --theme-search-mobile-input-bg: var(--theme-color-surface);
+  --theme-search-mobile-input-border: var(--theme-color-border);
+  --theme-search-mobile-input-color: var(--theme-color-text);
+  --theme-search-mobile-input-placeholder-color: var(--theme-color-text-muted);
+  --theme-search-mobile-input-focus-border: var(--theme-color-accent);
+  --theme-search-mobile-input-radius: var(--theme-radius-md);
+  --theme-search-mobile-input-padding: var(--theme-space-3);
+  --theme-search-mobile-btn-bg: var(--theme-color-primary);
+  --theme-search-mobile-btn-color: var(--theme-color-text-inverse);
+  --theme-search-mobile-btn-hover-bg: var(--theme-color-primary-hover);
+  --theme-search-mobile-btn-radius: var(--theme-radius-md);
+  --theme-search-mobile-btn-size: 44px;
+  --theme-search-mobile-gap: var(--theme-space-2);
+  --theme-search-mobile-margin-bottom: var(--theme-space-4);
+  --theme-search-mobile-trigger-color: var(--theme-header-icon-color, currentColor);
+  --theme-search-mobile-trigger-hover-color: var(--theme-header-icon-hover-color, var(--theme-color-accent));
+  --theme-search-mobile-trigger-size: 44px;
+  --theme-search-mobile-overlay-bg: var(--theme-color-surface);
+  --theme-search-mobile-overlay-shadow: 0 4px 12px rgba(68, 64, 60, 0.12);
+  --theme-search-mobile-overlay-padding-x: var(--theme-space-4);
+  --theme-search-mobile-overlay-padding-y: var(--theme-space-3);
+  --theme-search-mobile-overlay-z-index: 1050;
+  --theme-search-mobile-backdrop-bg: rgba(68, 64, 60, 0.3);
+  --theme-search-mobile-close-color: var(--theme-color-text-muted);
+  --theme-search-mobile-close-hover-color: var(--theme-color-text);
+  --theme-search-mobile-close-size: 44px;
+
+  /* ==========================================================================
+     Button Color Variants
+     ========================================================================== */
+
+  /* Primary */
+  --theme-element-button-primary-solid-bg: var(--theme-color-primary);
+  --theme-element-button-primary-solid-bg-hover: var(--theme-color-primary-hover);
+  --theme-element-button-primary-solid-text: #ffffff;
+  --theme-element-button-primary-solid-border: var(--theme-color-primary);
+  --theme-element-button-primary-outline-bg: transparent;
+  --theme-element-button-primary-outline-bg-hover: var(--theme-color-primary-light);
+  --theme-element-button-primary-outline-text: var(--theme-color-primary);
+  --theme-element-button-primary-outline-border: var(--theme-color-primary);
+  --theme-element-button-primary-ghost-bg: transparent;
+  --theme-element-button-primary-ghost-bg-hover: var(--theme-color-primary-light);
+  --theme-element-button-primary-ghost-text: var(--theme-color-primary);
+  --theme-element-button-primary-focus-ring-color: var(--theme-color-accent);
+
+  /* Secondary */
+  --theme-element-button-secondary-solid-bg: var(--theme-color-accent);
+  --theme-element-button-secondary-solid-bg-hover: var(--theme-color-accent-hover);
+  --theme-element-button-secondary-solid-text: #ffffff;
+  --theme-element-button-secondary-solid-border: var(--theme-color-accent);
+  --theme-element-button-secondary-outline-bg: transparent;
+  --theme-element-button-secondary-outline-bg-hover: var(--theme-color-accent-light);
+  --theme-element-button-secondary-outline-text: var(--theme-color-accent-dark);
+  --theme-element-button-secondary-outline-border: var(--theme-color-accent);
+  --theme-element-button-secondary-ghost-bg: transparent;
+  --theme-element-button-secondary-ghost-bg-hover: var(--theme-color-accent-light);
+  --theme-element-button-secondary-ghost-text: var(--theme-color-accent-dark);
+  --theme-element-button-secondary-focus-ring-color: rgba(217, 119, 6, 0.4);
+
+  /* Neutral */
+  --theme-element-button-neutral-solid-bg: var(--theme-color-text);
+  --theme-element-button-neutral-solid-bg-hover: #292524;
+  --theme-element-button-neutral-solid-text: var(--theme-color-text-inverse);
+  --theme-element-button-neutral-solid-border: var(--theme-color-text);
+  --theme-element-button-neutral-outline-bg: transparent;
+  --theme-element-button-neutral-outline-bg-hover: var(--theme-color-surface-hover);
+  --theme-element-button-neutral-outline-text: var(--theme-color-text);
+  --theme-element-button-neutral-outline-border: var(--theme-color-border);
+  --theme-element-button-neutral-ghost-bg: transparent;
+  --theme-element-button-neutral-ghost-bg-hover: var(--theme-color-surface-hover);
+  --theme-element-button-neutral-ghost-text: var(--theme-color-text);
+  --theme-element-button-neutral-focus-ring-color: var(--theme-color-border);
+
+  /* Danger */
+  --theme-element-button-danger-solid-bg: var(--theme-color-error);
+  --theme-element-button-danger-solid-bg-hover: #dc2626;
+  --theme-element-button-danger-solid-text: var(--theme-color-text-inverse);
+  --theme-element-button-danger-solid-border: var(--theme-color-error);
+  --theme-element-button-danger-outline-bg: transparent;
+  --theme-element-button-danger-outline-bg-hover: var(--theme-color-error-light);
+  --theme-element-button-danger-outline-text: var(--theme-color-error);
+  --theme-element-button-danger-outline-border: var(--theme-color-error);
+  --theme-element-button-danger-ghost-bg: transparent;
+  --theme-element-button-danger-ghost-bg-hover: var(--theme-color-error-light);
+  --theme-element-button-danger-ghost-text: var(--theme-color-error);
+  --theme-element-button-danger-focus-ring-color: var(--theme-color-error-light);
+
+  /* ==========================================================================
+     Card Style Variants
+     ========================================================================== */
+
+  /* Default */
+  --theme-element-card-default-bg: var(--theme-color-surface);
+  --theme-element-card-default-border-width: 0;
+  --theme-element-card-default-border-color: transparent;
+  --theme-element-card-default-shadow: var(--theme-shadow-sm);
+  --theme-element-card-default-shadow-hover: var(--theme-shadow-md);
+
+  /* Elevated */
+  --theme-element-card-elevated-bg: var(--theme-color-surface);
+  --theme-element-card-elevated-border-width: 0;
+  --theme-element-card-elevated-border-color: transparent;
+  --theme-element-card-elevated-shadow: var(--theme-shadow-md);
+  --theme-element-card-elevated-shadow-hover: var(--theme-shadow-lg);
+
+  /* Bordered */
+  --theme-element-card-bordered-bg: var(--theme-color-surface);
+  --theme-element-card-bordered-border-width: var(--theme-border-width-1);
+  --theme-element-card-bordered-border-color: var(--theme-color-border);
+  --theme-element-card-bordered-border-color-hover: var(--theme-color-primary);
+  --theme-element-card-bordered-shadow: none;
+  --theme-element-card-bordered-shadow-hover: none;
+
+  /* Minimal */
+  --theme-element-card-minimal-bg: transparent;
+  --theme-element-card-minimal-border-width: 0;
+  --theme-element-card-minimal-border-color: transparent;
+  --theme-element-card-minimal-shadow: none;
+  --theme-element-card-minimal-shadow-hover: none;
+
+  /* ==========================================================================
+     Element Tokens (Page Builder)
+     ========================================================================== */
+
+  /* Hero Section */
+  --theme-element-hero-bg: var(--theme-color-primary);
+  --theme-element-hero-min-height: 28rem;
+  --theme-element-hero-padding-y: var(--theme-space-16);
+  --theme-element-hero-padding-x: var(--theme-space-4);
+  --theme-element-hero-title-size: var(--theme-font-size-4xl);
+  --theme-element-hero-subtitle-size: var(--theme-font-size-xl);
+  --theme-element-hero-text-color: #FFFFFF;
+  --theme-element-hero-subtitle-color: #FFFFFF;
+  --theme-element-hero-overlay-color: rgba(68, 64, 60, 0.45);
+  --theme-element-hero-title-size-mobile: clamp(1.5rem, 5vw, 2.5rem);
+  --theme-element-hero-subtitle-size-mobile: clamp(1rem, 3vw, 1.25rem);
+  --theme-element-hero-padding-y-mobile: var(--theme-space-8);
+
+  /* Button */
+  --theme-element-button-font-family: var(--theme-font-family-body);
+  --theme-element-button-font-weight: var(--theme-font-weight-semibold);
+  --theme-element-button-font-size-sm: var(--theme-font-size-sm);
+  --theme-element-button-font-size-md: var(--theme-font-size-base);
+  --theme-element-button-font-size-lg: var(--theme-font-size-lg);
+  --theme-element-button-line-height: var(--theme-line-height-normal);
+  --theme-element-button-letter-spacing: var(--theme-letter-spacing-normal);
+  --theme-element-button-text-transform: none;
+  --theme-element-button-padding-x-sm: var(--theme-space-4);
+  --theme-element-button-padding-y-sm: var(--theme-space-2);
+  --theme-element-button-padding-x-md: var(--theme-space-6);
+  --theme-element-button-padding-y-md: var(--theme-space-2);
+  --theme-element-button-padding-x-lg: var(--theme-space-8);
+  --theme-element-button-padding-y-lg: var(--theme-space-4);
+  --theme-element-button-radius: var(--theme-radius-md);
+  --theme-element-button-radius-pill: var(--theme-radius-full);
+  --theme-element-button-border-width: var(--theme-border-width-1);
+  --theme-element-button-transition-duration: var(--theme-transition-duration-fast);
+  --theme-element-button-transition-easing: var(--theme-transition-easing-default);
+  --theme-element-button-focus-ring-width: 3px;
+  --theme-element-button-focus-ring-offset: 2px;
+  --theme-element-button-disabled-opacity: 0.5;
+  --theme-element-button-icon-gap: var(--theme-space-2);
+  --theme-element-button-font-size-mobile-sm: 0.8125rem;
+  --theme-element-button-font-size-mobile-md: 0.875rem;
+  --theme-element-button-font-size-mobile-lg: 1rem;
+  --theme-element-button-font-size: var(--theme-font-size-base);
+
+  /* Card (Shared) */
+  --theme-element-card-bg: var(--theme-color-surface);
+  --theme-element-card-border-color: var(--theme-color-border);
+  --theme-element-card-border-width: 0;
+  --theme-element-card-radius: var(--theme-radius-lg);
+  --theme-element-card-shadow: var(--theme-shadow-sm);
+  --theme-element-card-shadow-hover: var(--theme-shadow-md);
+  --theme-element-card-padding: var(--theme-space-4);
+  --theme-element-card-padding-sm: var(--theme-space-3);
+  --theme-element-card-padding-lg: var(--theme-space-6);
+  --theme-element-card-gap: var(--theme-space-4);
+  --theme-element-card-transition-duration: var(--theme-transition-duration-base);
+  --theme-element-card-transition-easing: var(--theme-transition-easing-default);
+  --theme-element-card-title-font-family: var(--theme-font-family-heading);
+  --theme-element-card-title-font-size: var(--theme-font-size-base);
+  --theme-element-card-title-font-weight: var(--theme-font-weight-semibold);
+  --theme-element-card-title-line-height: var(--theme-line-height-tight);
+  --theme-element-card-title-color: var(--theme-color-text);
+  --theme-element-card-text-font-size: var(--theme-font-size-sm);
+  --theme-element-card-text-color: var(--theme-color-text-muted);
+  --theme-element-card-text-line-height: var(--theme-line-height-normal);
+  --theme-element-card-meta-font-size: var(--theme-font-size-xs);
+  --theme-element-card-meta-color: var(--theme-color-text-muted);
+  --theme-element-card-image-radius: var(--theme-radius-md);
+  --theme-element-card-image-bg: var(--theme-color-background-secondary);
+  --theme-element-card-image-scale-hover: 1.06;
+  --theme-element-card-border: var(--theme-color-border);
+
+  /* Divider */
+  --theme-element-divider-color: var(--theme-color-accent);
+  --theme-element-divider-thickness: 1px;
+  --theme-element-divider-spacing: var(--theme-space-6);
+
+  /* Form */
+  --theme-element-form-input-bg: var(--theme-color-surface);
+  --theme-element-form-input-border: var(--theme-color-border);
+  --theme-element-form-input-focus-border: var(--theme-color-accent);
+  --theme-element-form-input-radius: var(--theme-radius-md);
+  --theme-element-form-input-padding: var(--theme-space-4);
+  --theme-element-form-input-disabled-bg: var(--theme-color-background-secondary);
+  --theme-element-form-input-placeholder-color: var(--theme-color-text-muted);
+  --theme-element-form-label-color: var(--theme-color-text);
+  --theme-element-form-label-size: var(--theme-font-size-sm);
+  --theme-element-form-error-color: var(--theme-color-error);
+  --theme-element-form-help-color: var(--theme-color-text-muted);
+  --theme-element-form-primary-color: var(--theme-color-primary);
+  --theme-element-form-primary-hover: var(--theme-color-primary-hover);
+  --theme-element-form-success-color: var(--theme-color-success);
+  --theme-element-form-warning-color: var(--theme-color-warning);
+  --theme-element-form-text-color: var(--theme-color-text);
+  --theme-element-form-text-muted: var(--theme-color-text-muted);
+  --theme-element-form-bg-color: var(--theme-color-surface);
+  --theme-element-form-bg-light: var(--theme-color-background-secondary);
+  --theme-element-form-border-color: var(--theme-color-border);
+  --theme-element-form-focus-shadow: 0 0 0 3px rgba(217, 119, 6, 0.3);
+  --theme-element-form-title-size: var(--theme-font-size-xl);
+  --theme-element-form-heading-size: var(--theme-font-size-lg);
+  --theme-element-form-base-size: var(--theme-font-size-base);
+  --theme-element-form-small-size: var(--theme-font-size-sm);
+  --theme-element-form-tiny-size: var(--theme-font-size-xs);
+  --theme-element-form-font-weight-bold: var(--theme-font-weight-semibold);
+  --theme-element-form-font-weight-medium: var(--theme-font-weight-medium);
+  --theme-element-form-line-height-relaxed: var(--theme-line-height-relaxed);
+  --theme-element-form-spacing-lg: var(--theme-space-6);
+  --theme-element-form-spacing-md: var(--theme-space-4);
+  --theme-element-form-spacing-sm: var(--theme-space-3);
+  --theme-element-form-spacing-xs: var(--theme-space-2);
+  --theme-element-form-container-max-width: 720px;
+  --theme-element-form-container-padding: var(--theme-space-6);
+  --theme-element-form-shadow: var(--theme-shadow-sm);
+  --theme-element-form-transition: all 0.2s ease;
+  --theme-element-form-button-padding-x: var(--theme-space-6);
+  --theme-element-form-button-padding-y: var(--theme-space-3);
+  --theme-element-form-button-radius: var(--theme-radius-md);
+  --theme-element-form-checkbox-size: 1.25rem;
+  --theme-element-form-checkbox-radius: var(--theme-radius-sm);
+  --theme-element-form-radio-size: 1.25rem;
+  --theme-element-form-star-empty-color: var(--theme-color-border);
+  --theme-element-form-star-filled-color: #D97706;
+  --theme-element-form-nps-button-height: 48px;
+  --theme-element-form-likert-min-width: 80px;
+  --theme-element-form-progress-height: 8px;
+  --theme-element-form-step-circle-size: 36px;
+  --theme-element-form-step-circle-size-mobile: 32px;
+
+  /* Accordion */
+  --theme-element-accordion-header-bg: var(--theme-color-surface);
+  --theme-element-accordion-header-hover-bg: var(--theme-color-surface-hover);
+  --theme-element-accordion-border: var(--theme-color-border);
+  --theme-element-accordion-content-bg: var(--theme-color-background);
+  --theme-element-accordion-icon-color: var(--theme-color-text-muted);
+  --theme-element-accordion-padding: var(--theme-space-4);
+
+  /* Modal */
+  --theme-element-modal-backdrop-color: var(--theme-color-overlay);
+  --theme-element-modal-bg: var(--theme-color-surface);
+  --theme-element-modal-radius: var(--theme-radius-xl);
+  --theme-element-modal-shadow: var(--theme-shadow-xl);
+  --theme-element-modal-padding: var(--theme-space-6);
+  --theme-element-modal-max-width: 32rem;
+  --theme-element-modal-border-width: 0;
+  --theme-element-modal-border-color: transparent;
+  --theme-element-modal-close-button-size: 36px;
+  --theme-element-modal-close-button-color: var(--theme-color-text-muted);
+  --theme-element-modal-close-button-color-hover: var(--theme-color-text);
+  --theme-element-modal-close-button-bg: transparent;
+  --theme-element-modal-close-button-bg-hover: var(--theme-color-surface-hover);
+
+  /* Countdown */
+  --theme-element-countdown-number-size: var(--theme-font-size-4xl);
+  --theme-element-countdown-number-color: var(--theme-color-text);
+  --theme-element-countdown-label-size: var(--theme-font-size-sm);
+  --theme-element-countdown-label-color: var(--theme-color-text-muted);
+  --theme-element-countdown-bg: var(--theme-color-surface);
+  --theme-element-countdown-separator-color: var(--theme-color-accent);
+
+  /* Testimonial */
+  --theme-element-testimonial-bg: var(--theme-color-surface);
+  --theme-element-testimonial-border: var(--theme-color-border);
+  --theme-element-testimonial-quote-color: var(--theme-color-accent-dark);
+  --theme-element-testimonial-author-color: var(--theme-color-text);
+  --theme-element-testimonial-radius: var(--theme-radius-lg);
+  --theme-element-testimonial-shadow: var(--theme-shadow-sm);
+
+  /* Blog */
+  --theme-element-blog-card-radius: var(--theme-radius-lg);
+  --theme-element-blog-card-shadow: var(--theme-shadow-sm);
+  --theme-element-blog-meta-color: var(--theme-color-text-muted);
+  --theme-element-blog-title-color: var(--theme-color-text);
+  --theme-element-blog-excerpt-color: var(--theme-color-text-light);
+
+  /* Product */
+  --theme-element-product-card-bg: var(--theme-color-surface);
+  --theme-element-product-card-radius: var(--theme-radius-lg);
+  --theme-element-product-card-border-width: 0;
+  --theme-element-product-card-border-color: var(--theme-color-border);
+  --theme-element-product-card-border-color-hover: var(--theme-color-accent);
+  --theme-element-product-card-shadow: var(--theme-shadow-sm);
+  --theme-element-product-card-shadow-hover: var(--theme-shadow-md);
+  --theme-element-product-card-padding: 0;
+  --theme-element-product-card-gap: 0;
+  --theme-element-product-card-transition-duration: var(--theme-transition-duration-base);
+  --theme-element-product-card-transition-easing: var(--theme-transition-easing-default);
+  --theme-element-product-card-hover-transform: translateY(-4px);
+  --theme-element-product-image-aspect-ratio: 4 / 3;
+  --theme-element-product-image-object-fit: cover;
+  --theme-element-product-image-bg: var(--theme-color-background-secondary);
+  --theme-element-product-image-radius: 0;
+  --theme-element-product-image-zoom-scale: 1.06;
+  --theme-element-product-image-transition-duration: 600ms;
+  --theme-element-product-image-overlay-bg: rgba(68, 64, 60, 0.03);
+  --theme-element-product-image-overlay-opacity: 0;
+  --theme-element-product-image-overlay-opacity-hover: 1;
+  --theme-element-product-content-padding: var(--theme-space-4);
+  --theme-element-product-content-gap: var(--theme-space-2);
+  --theme-element-product-title-font-family: var(--theme-font-family-heading);
+  --theme-element-product-title-font-size: var(--theme-font-size-base);
+  --theme-element-product-title-font-weight: var(--theme-font-weight-medium);
+  --theme-element-product-title-line-height: var(--theme-line-height-tight);
+  --theme-element-product-title-color: var(--theme-color-text);
+  --theme-element-product-title-color-hover: var(--theme-color-accent-dark);
+  --theme-element-product-title-max-lines: 2;
+  --theme-element-product-price-font-size: var(--theme-font-size-lg);
+  --theme-element-product-price-font-weight: var(--theme-font-weight-semibold);
+  --theme-element-product-price-color: var(--theme-color-text);
+  --theme-element-product-price-gap: var(--theme-space-2);
+  --theme-element-product-sale-price-color: var(--theme-color-error);
+  --theme-element-product-original-price-font-size: var(--theme-font-size-sm);
+  --theme-element-product-original-price-color: var(--theme-color-text-muted);
+  --theme-element-product-original-price-decoration: line-through;
+  --theme-element-product-original-price-opacity: 0.7;
+  --theme-element-product-badge-radius: var(--theme-radius-sm);
+  --theme-element-product-badge-padding-x: var(--theme-space-2);
+  --theme-element-product-badge-padding-y: var(--theme-space-1);
+  --theme-element-product-badge-font-size: var(--theme-font-size-xs);
+  --theme-element-product-badge-font-weight: var(--theme-font-weight-semibold);
+  --theme-element-product-badge-sale-bg: var(--theme-color-accent-dark);
+  --theme-element-product-badge-sale-color: #ffffff;
+  --theme-element-product-badge-new-bg: var(--theme-color-primary);
+  --theme-element-product-badge-new-color: #ffffff;
+  --theme-element-product-badge-soldout-bg: var(--theme-color-text-muted);
+  --theme-element-product-badge-soldout-color: #ffffff;
+  --theme-element-product-button-bg: var(--theme-color-primary);
+  --theme-element-product-button-color: var(--theme-color-text-inverse);
+  --theme-element-product-button-bg-hover: var(--theme-color-primary-hover);
+  --theme-element-product-button-width: 100%;
+  --theme-element-product-button-radius: var(--theme-radius-md);
+  --theme-element-product-button-padding-x: var(--theme-space-4);
+  --theme-element-product-button-padding-y: var(--theme-space-2);
+  --theme-element-product-button-font-size: var(--theme-font-size-sm);
+  --theme-element-product-button-font-weight: var(--theme-font-weight-semibold);
+  --theme-element-product-actions-offset: var(--theme-space-2);
+  --theme-element-product-actions-gap: var(--theme-space-2);
+  --theme-element-product-actions-opacity: 0;
+  --theme-element-product-actions-opacity-hover: 1;
+  --theme-element-product-actions-btn-bg: var(--theme-color-surface);
+  --theme-element-product-actions-btn-color: var(--theme-color-text);
+  --theme-element-product-actions-btn-shadow: var(--theme-shadow-sm);
+  --theme-element-product-actions-btn-radius: var(--theme-radius-full);
+  --theme-element-product-actions-btn-size: 36px;
+  --theme-element-product-rating-star-size: var(--theme-font-size-sm);
+  --theme-element-product-rating-star-filled-color: #D97706;
+  --theme-element-product-rating-star-empty-color: var(--theme-color-border);
+  --theme-element-product-rating-gap: var(--theme-space-1);
+  --theme-element-product-grid-columns-sm: 2;
+  --theme-element-product-grid-columns-md: 3;
+  --theme-element-product-grid-columns-lg: 4;
+  --theme-element-product-grid-gap: var(--theme-space-6);
+
+  /* Category */
+  --theme-element-category-banner-min-height: 16rem;
+  --theme-element-category-banner-min-height-md: 20rem;
+  --theme-element-category-banner-overlay-bg: rgba(68, 64, 60, 0.4);
+  --theme-element-category-banner-title-size: var(--theme-font-size-3xl);
+  --theme-element-category-banner-title-size-md: var(--theme-font-size-4xl);
+  --theme-element-category-banner-title-weight: var(--theme-font-weight-bold);
+  --theme-element-category-banner-title-color: #ffffff;
+  --theme-element-category-banner-subtitle-size: var(--theme-font-size-lg);
+  --theme-element-category-banner-subtitle-color: rgba(255, 255, 255, 0.9);
+  --theme-element-category-banner-content-max-width: 42rem;
+  --theme-element-category-banner-padding-y: var(--theme-space-12);
+  --theme-element-category-header-bg: var(--theme-color-background);
+  --theme-element-category-header-padding-y: var(--theme-space-8);
+  --theme-element-category-header-title-size: var(--theme-font-size-3xl);
+  --theme-element-category-header-title-weight: var(--theme-font-weight-bold);
+  --theme-element-category-header-title-color: var(--theme-color-text);
+  --theme-element-category-header-subtitle-color: var(--theme-color-text-muted);
+  --theme-element-category-header-subtitle-size: var(--theme-font-size-lg);
+  --theme-element-category-card-bg: var(--theme-color-surface);
+  --theme-element-category-card-radius: var(--theme-radius-lg);
+  --theme-element-category-card-shadow: var(--theme-shadow-sm);
+  --theme-element-category-card-shadow-hover: var(--theme-shadow-md);
+  --theme-element-category-card-hover-transform: translateY(-2px);
+  --theme-element-category-card-transition-duration: var(--theme-transition-duration-base);
+  --theme-element-category-card-transition-easing: var(--theme-transition-easing-default);
+  --theme-element-category-card-image-height: 12rem;
+  --theme-element-category-card-image-bg: var(--theme-color-background-secondary);
+  --theme-element-category-card-placeholder-size: 3rem;
+  --theme-element-category-card-placeholder-color: var(--theme-color-text-muted);
+  --theme-element-category-card-content-padding: var(--theme-space-4);
+  --theme-element-category-card-title-size: var(--theme-font-size-xl);
+  --theme-element-category-card-title-weight: var(--theme-font-weight-semibold);
+  --theme-element-category-card-title-color: var(--theme-color-text);
+  --theme-element-category-card-desc-color: var(--theme-color-text-muted);
+  --theme-element-category-card-desc-size: var(--theme-font-size-sm);
+  --theme-element-category-chip-bg: var(--theme-color-surface);
+  --theme-element-category-chip-border-color: var(--theme-color-border);
+  --theme-element-category-chip-radius: var(--theme-radius-full);
+  --theme-element-category-chip-padding-x: var(--theme-space-4);
+  --theme-element-category-chip-padding-y: var(--theme-space-2);
+  --theme-element-category-chip-font-size: var(--theme-font-size-sm);
+  --theme-element-category-chip-color: var(--theme-color-text);
+  --theme-element-category-chip-hover-border: var(--theme-color-accent);
+  --theme-element-category-chip-hover-color: var(--theme-color-accent-dark);
+  --theme-element-category-chip-hover-bg: var(--theme-color-accent-light);
+  --theme-element-category-sort-border-color: var(--theme-color-border);
+  --theme-element-category-sort-count-color: var(--theme-color-text-muted);
+  --theme-element-category-sort-label-color: var(--theme-color-text-muted);
+  --theme-element-category-sort-select-border: var(--theme-color-border);
+  --theme-element-category-sort-select-radius: var(--theme-radius-base);
+  --theme-element-category-sort-select-color: var(--theme-color-text);
+  --theme-element-category-sort-select-bg: var(--theme-color-surface);
+  --theme-element-category-sort-select-focus-border: var(--theme-color-accent);
+  --theme-element-category-page-link-border: var(--theme-color-border);
+  --theme-element-category-page-link-radius: var(--theme-radius-base);
+  --theme-element-category-page-link-color: var(--theme-color-text);
+  --theme-element-category-page-link-hover-border: var(--theme-color-accent);
+  --theme-element-category-page-link-hover-color: var(--theme-color-accent-dark);
+  --theme-element-category-page-link-hover-bg: var(--theme-color-accent-light);
+  --theme-element-category-page-active-bg: var(--theme-color-primary);
+  --theme-element-category-page-active-color: #ffffff;
+  --theme-element-category-page-ellipsis-color: var(--theme-color-text-muted);
+  --theme-element-category-loadmore-border-color: var(--theme-color-primary);
+  --theme-element-category-loadmore-color: var(--theme-color-primary);
+  --theme-element-category-loadmore-hover-bg: var(--theme-color-primary);
+  --theme-element-category-loadmore-hover-color: #ffffff;
+  --theme-element-category-grid-gap: var(--theme-space-6);
+  --theme-element-category-grid-empty-color: var(--theme-color-text-muted);
+  --theme-element-category-section-padding: var(--theme-space-10);
+  --theme-element-category-section-alt-bg: var(--theme-color-background-secondary);
+  --theme-element-category-help-title-color: var(--theme-color-text);
+  --theme-element-category-help-text-color: var(--theme-color-text-muted);
+  --theme-element-category-list-row-bg: var(--theme-color-surface);
+  --theme-element-category-list-row-border: var(--theme-color-border);
+  --theme-element-category-list-row-radius: var(--theme-radius-lg);
+  --theme-element-category-list-row-padding: var(--theme-space-4);
+  --theme-element-category-list-row-gap: var(--theme-space-5);
+  --theme-element-category-list-row-shadow: var(--theme-shadow-sm);
+  --theme-element-category-list-row-shadow-hover: var(--theme-shadow-base);
+  --theme-element-category-list-row-transition: var(--theme-transition-duration-base);
+  --theme-element-category-list-image-width: 12rem;
+  --theme-element-category-list-image-width-md: 16rem;
+  --theme-element-category-list-image-radius: var(--theme-radius-base);
+  --theme-element-category-list-title-size: var(--theme-font-size-lg);
+  --theme-element-category-list-title-weight: var(--theme-font-weight-semibold);
+  --theme-element-category-list-title-color: var(--theme-color-text);
+  --theme-element-category-list-desc-color: var(--theme-color-text-muted);
+  --theme-element-category-list-desc-size: var(--theme-font-size-sm);
+  --theme-element-category-list-price-size: var(--theme-font-size-lg);
+  --theme-element-category-list-price-color: var(--theme-color-text);
+  --theme-element-category-list-price-weight: var(--theme-font-weight-bold);
+  --theme-element-category-carousel-gap: var(--theme-space-4);
+  --theme-element-category-carousel-arrow-size: 2.5rem;
+  --theme-element-category-carousel-arrow-bg: var(--theme-color-surface);
+  --theme-element-category-carousel-arrow-color: var(--theme-color-text);
+  --theme-element-category-carousel-arrow-shadow: var(--theme-shadow-base);
+  --theme-element-category-carousel-arrow-hover-bg: var(--theme-color-primary);
+  --theme-element-category-carousel-arrow-hover-color: #ffffff;
+  --theme-element-category-carousel-arrow-radius: var(--theme-radius-full);
+  --theme-element-category-carousel-dot-size: 0.625rem;
+  --theme-element-category-carousel-dot-color: var(--theme-color-border);
+  --theme-element-category-carousel-dot-active-color: var(--theme-color-accent);
+  --theme-element-category-carousel-dot-gap: var(--theme-space-2);
+  --theme-element-category-carousel-transition-speed: 300ms;
+  --theme-element-category-carousel-transition-easing: var(--theme-transition-easing-default);
+  --theme-element-category-masonry-gap: var(--theme-space-5);
+  --theme-element-category-masonry-gap-sm: var(--theme-space-3);
+  --theme-element-category-masonry-gap-lg: var(--theme-space-8);
+  --theme-element-category-masonry-columns-sm: 2;
+  --theme-element-category-masonry-columns-md: 3;
+  --theme-element-category-masonry-columns-lg: 4;
+  --theme-element-category-featured-hero-min-height: 24rem;
+  --theme-element-category-featured-hero-min-height-md: 28rem;
+  --theme-element-category-featured-hero-radius: var(--theme-radius-xl);
+  --theme-element-category-featured-hero-overlay-bg: rgba(68, 64, 60, 0.35);
+  --theme-element-category-featured-hero-title-size: var(--theme-font-size-2xl);
+  --theme-element-category-featured-hero-title-size-md: var(--theme-font-size-3xl);
+  --theme-element-category-featured-hero-title-color: #ffffff;
+  --theme-element-category-featured-hero-title-weight: var(--theme-font-weight-bold);
+  --theme-element-category-featured-hero-price-size: var(--theme-font-size-xl);
+  --theme-element-category-featured-hero-price-color: #ffffff;
+  --theme-element-category-featured-hero-badge-bg: var(--theme-color-accent);
+  --theme-element-category-featured-hero-badge-color: #ffffff;
+  --theme-element-category-featured-hero-btn-bg: #ffffff;
+  --theme-element-category-featured-hero-btn-color: var(--theme-color-text);
+  --theme-element-category-featured-hero-shadow: var(--theme-shadow-lg);
+  --theme-element-category-featured-divider-color: var(--theme-color-border);
+  --theme-element-category-featured-divider-spacing: var(--theme-space-8);
+  --theme-element-category-accordion-frame-radius: var(--theme-radius-lg);
+  --theme-element-category-accordion-gap: var(--theme-space-2);
+  --theme-element-category-accordion-transition-duration: 400ms;
+  --theme-element-category-accordion-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --theme-element-category-accordion-expand-ratio: 3;
+  --theme-element-category-accordion-overlay-bg: rgba(68, 64, 60, 0.4);
+  --theme-element-category-accordion-overlay-hover-bg: rgba(68, 64, 60, 0.25);
+  --theme-element-category-accordion-title-size: var(--theme-font-size-2xl);
+  --theme-element-category-accordion-title-color: #ffffff;
+  --theme-element-category-accordion-title-weight: var(--theme-font-weight-bold);
+  --theme-element-category-accordion-subtitle-size: var(--theme-font-size-sm);
+  --theme-element-category-accordion-subtitle-color: rgba(255, 255, 255, 0.85);
+  --theme-element-category-accordion-content-padding: var(--theme-space-6);
+  --theme-element-category-accordion-height-sm: 16rem;
+  --theme-element-category-accordion-height-md: 24rem;
+  --theme-element-category-accordion-height-lg: 32rem;
+  --theme-element-category-accordion-height-xl: 40rem;
+  --theme-element-category-accordion-mobile-height: 14rem;
+  --theme-element-category-accordion-badge-bg: rgba(217, 119, 6, 0.3);
+  --theme-element-category-accordion-badge-color: #ffffff;
+  --theme-element-category-accordion-badge-radius: var(--theme-radius-full);
+
+  /* Voucher */
+  --theme-element-voucher-code-bg: var(--theme-color-background-secondary);
+  --theme-element-voucher-code-border: var(--theme-color-accent);
+  --theme-element-voucher-code-font: var(--theme-font-mono);
+  --theme-element-voucher-code-color: var(--theme-color-text);
+
+  /* Heading */
+  --theme-element-heading-h1-font-family: var(--theme-font-family-heading);
+  --theme-element-heading-h2-font-family: var(--theme-font-family-heading);
+  --theme-element-heading-h3-font-family: var(--theme-font-family-heading);
+  --theme-element-heading-h4-font-family: var(--theme-font-family-heading);
+  --theme-element-heading-h5-font-family: var(--theme-font-family-heading);
+  --theme-element-heading-h6-font-family: var(--theme-font-family-heading);
+  --theme-element-heading-h1-size: var(--theme-font-size-4xl);
+  --theme-element-heading-h2-size: var(--theme-font-size-3xl);
+  --theme-element-heading-h3-size: var(--theme-font-size-2xl);
+  --theme-element-heading-h4-size: var(--theme-font-size-xl);
+  --theme-element-heading-h5-size: var(--theme-font-size-lg);
+  --theme-element-heading-h6-size: var(--theme-font-size-base);
+  --theme-element-heading-h1-line-height: var(--theme-line-height-tight);
+  --theme-element-heading-h2-line-height: var(--theme-line-height-tight);
+  --theme-element-heading-h3-line-height: var(--theme-line-height-tight);
+  --theme-element-heading-h4-line-height: var(--theme-line-height-snug);
+  --theme-element-heading-h5-line-height: var(--theme-line-height-snug);
+  --theme-element-heading-h6-line-height: var(--theme-line-height-normal);
+  --theme-element-heading-h1-letter-spacing: var(--theme-letter-spacing-tight);
+  --theme-element-heading-h2-letter-spacing: var(--theme-letter-spacing-tight);
+  --theme-element-heading-h3-letter-spacing: var(--theme-letter-spacing-tight);
+  --theme-element-heading-h4-letter-spacing: var(--theme-letter-spacing-normal);
+  --theme-element-heading-h5-letter-spacing: var(--theme-letter-spacing-normal);
+  --theme-element-heading-h6-letter-spacing: var(--theme-letter-spacing-normal);
+  --theme-element-heading-h1-text-transform: none;
+  --theme-element-heading-h2-text-transform: none;
+  --theme-element-heading-h3-text-transform: none;
+  --theme-element-heading-h4-text-transform: none;
+  --theme-element-heading-h5-text-transform: none;
+  --theme-element-heading-h6-text-transform: none;
+  --theme-element-heading-h1-color: var(--theme-color-text);
+  --theme-element-heading-h2-color: var(--theme-color-text);
+  --theme-element-heading-h3-color: var(--theme-color-text);
+  --theme-element-heading-h4-color: var(--theme-color-text);
+  --theme-element-heading-h5-color: var(--theme-color-text);
+  --theme-element-heading-h6-color: var(--theme-color-text);
+  --theme-element-heading-h1-font-weight: var(--theme-font-weight-bold);
+  --theme-element-heading-h2-font-weight: var(--theme-font-weight-bold);
+  --theme-element-heading-h3-font-weight: var(--theme-font-weight-bold);
+  --theme-element-heading-h4-font-weight: var(--theme-font-weight-semibold);
+  --theme-element-heading-h5-font-weight: var(--theme-font-weight-semibold);
+  --theme-element-heading-h6-font-weight: var(--theme-font-weight-semibold);
+  --theme-element-heading-h1-word-spacing: var(--theme-word-spacing-normal);
+  --theme-element-heading-h2-word-spacing: var(--theme-word-spacing-normal);
+  --theme-element-heading-h3-word-spacing: var(--theme-word-spacing-normal);
+  --theme-element-heading-h4-word-spacing: var(--theme-word-spacing-normal);
+  --theme-element-heading-h5-word-spacing: var(--theme-word-spacing-normal);
+  --theme-element-heading-h6-word-spacing: var(--theme-word-spacing-normal);
+  --theme-element-heading-h1-text-indent: var(--theme-text-indent-none);
+  --theme-element-heading-h2-text-indent: var(--theme-text-indent-none);
+  --theme-element-heading-h3-text-indent: var(--theme-text-indent-none);
+  --theme-element-heading-h4-text-indent: var(--theme-text-indent-none);
+  --theme-element-heading-h5-text-indent: var(--theme-text-indent-none);
+  --theme-element-heading-h6-text-indent: var(--theme-text-indent-none);
+  --theme-element-heading-h1-font-variant: var(--theme-font-variant-normal);
+  --theme-element-heading-h2-font-variant: var(--theme-font-variant-normal);
+  --theme-element-heading-h3-font-variant: var(--theme-font-variant-normal);
+  --theme-element-heading-h4-font-variant: var(--theme-font-variant-normal);
+  --theme-element-heading-h5-font-variant: var(--theme-font-variant-normal);
+  --theme-element-heading-h6-font-variant: var(--theme-font-variant-normal);
+  --theme-element-heading-h1-text-decoration: var(--theme-text-decoration-none);
+  --theme-element-heading-h2-text-decoration: var(--theme-text-decoration-none);
+  --theme-element-heading-h3-text-decoration: var(--theme-text-decoration-none);
+  --theme-element-heading-h4-text-decoration: var(--theme-text-decoration-none);
+  --theme-element-heading-h5-text-decoration: var(--theme-text-decoration-none);
+  --theme-element-heading-h6-text-decoration: var(--theme-text-decoration-none);
+  --theme-element-heading-h1-text-align: var(--theme-text-align-left);
+  --theme-element-heading-h2-text-align: var(--theme-text-align-left);
+  --theme-element-heading-h3-text-align: var(--theme-text-align-left);
+  --theme-element-heading-h4-text-align: var(--theme-text-align-left);
+  --theme-element-heading-h5-text-align: var(--theme-text-align-left);
+  --theme-element-heading-h6-text-align: var(--theme-text-align-left);
+  --theme-element-heading-h1-vertical-align: var(--theme-vertical-align-baseline);
+  --theme-element-heading-h2-vertical-align: var(--theme-vertical-align-baseline);
+  --theme-element-heading-h3-vertical-align: var(--theme-vertical-align-baseline);
+  --theme-element-heading-h4-vertical-align: var(--theme-vertical-align-baseline);
+  --theme-element-heading-h5-vertical-align: var(--theme-vertical-align-baseline);
+  --theme-element-heading-h6-vertical-align: var(--theme-vertical-align-baseline);
+  --theme-element-heading-h1-direction: var(--theme-direction-ltr);
+  --theme-element-heading-h2-direction: var(--theme-direction-ltr);
+  --theme-element-heading-h3-direction: var(--theme-direction-ltr);
+  --theme-element-heading-h4-direction: var(--theme-direction-ltr);
+  --theme-element-heading-h5-direction: var(--theme-direction-ltr);
+  --theme-element-heading-h6-direction: var(--theme-direction-ltr);
+  --theme-element-heading-color: var(--theme-color-text);
+  --theme-element-heading-line-height: var(--theme-line-height-tight);
+
+  /* Image */
+  --theme-element-image-radius: var(--theme-radius-md);
+  --theme-element-image-shadow: var(--theme-shadow-none);
+
+  /* Gallery */
+  --theme-element-gallery-gap: var(--theme-space-4);
+  --theme-element-gallery-radius: var(--theme-radius-md);
+
+  /* Spacer */
+  --theme-element-spacer-mobile-scale: 0.6;
+
+  /* Body */
+  --theme-element-body-font-family: var(--theme-font-family-body);
+  --theme-element-body-font-size: var(--theme-font-size-base);
+  --theme-element-body-font-weight: var(--theme-font-weight-normal);
+  --theme-element-body-line-height: var(--theme-line-height-normal);
+  --theme-element-body-letter-spacing: var(--theme-letter-spacing-normal);
+  --theme-element-body-word-spacing: normal;
+  --theme-element-body-text-indent: 0;
+  --theme-element-body-font-variant: normal;
+  --theme-element-body-text-decoration: none;
+  --theme-element-body-text-align: left;
+  --theme-element-body-vertical-align: baseline;
+  --theme-element-body-direction: ltr;
+  --theme-element-body-color: var(--theme-color-text);
+
+  /* Body Light */
+  --theme-element-body-light-font-family: var(--theme-font-family-body);
+  --theme-element-body-light-font-size: var(--theme-font-size-base);
+  --theme-element-body-light-font-weight: var(--theme-font-weight-normal);
+  --theme-element-body-light-line-height: var(--theme-line-height-normal);
+  --theme-element-body-light-letter-spacing: var(--theme-letter-spacing-normal);
+  --theme-element-body-light-word-spacing: normal;
+  --theme-element-body-light-text-indent: 0;
+  --theme-element-body-light-font-variant: normal;
+  --theme-element-body-light-text-decoration: none;
+  --theme-element-body-light-text-align: left;
+  --theme-element-body-light-vertical-align: baseline;
+  --theme-element-body-light-direction: ltr;
+  --theme-element-body-light-color: var(--theme-color-text-light);
+
+  /* Body Muted */
+  --theme-element-body-muted-font-family: var(--theme-font-family-body);
+  --theme-element-body-muted-font-size: var(--theme-font-size-base);
+  --theme-element-body-muted-font-weight: var(--theme-font-weight-normal);
+  --theme-element-body-muted-line-height: var(--theme-line-height-normal);
+  --theme-element-body-muted-letter-spacing: var(--theme-letter-spacing-normal);
+  --theme-element-body-muted-word-spacing: normal;
+  --theme-element-body-muted-text-indent: 0;
+  --theme-element-body-muted-font-variant: normal;
+  --theme-element-body-muted-text-decoration: none;
+  --theme-element-body-muted-text-align: left;
+  --theme-element-body-muted-vertical-align: baseline;
+  --theme-element-body-muted-direction: ltr;
+  --theme-element-body-muted-color: var(--theme-color-text-muted);
+
+  /* Alert */
+  --theme-element-alert-padding: var(--theme-space-4);
+  --theme-element-alert-radius: var(--theme-radius-base);
+  --theme-element-alert-font-size: var(--theme-font-size-sm);
+  --theme-element-alert-font-weight: var(--theme-font-weight-medium);
+  --theme-element-alert-icon-size: var(--theme-font-size-lg);
+  --theme-element-alert-gap: var(--theme-space-3);
+  --theme-element-alert-success-bg: var(--theme-color-success-light);
+  --theme-element-alert-success-text: var(--theme-color-success);
+  --theme-element-alert-warning-bg: var(--theme-color-warning-light);
+  --theme-element-alert-warning-text: var(--theme-color-warning);
+  --theme-element-alert-error-bg: var(--theme-color-error-light);
+  --theme-element-alert-error-text: var(--theme-color-error);
+  --theme-element-alert-info-bg: var(--theme-color-info-light);
+  --theme-element-alert-info-text: var(--theme-color-info);
+
+  /* Image Accordion */
+  --theme-element-image-accordion-height-sm: 300px;
+  --theme-element-image-accordion-height-md: 450px;
+  --theme-element-image-accordion-height-lg: 600px;
+  --theme-element-image-accordion-height-xl: 750px;
+  --theme-element-image-accordion-gap: var(--theme-space-4);
+  --theme-element-image-accordion-border-radius: var(--theme-radius-lg);
+  --theme-element-image-accordion-frame-radius: var(--theme-radius-base);
+  --theme-element-image-accordion-transition-duration: 300ms;
+  --theme-element-image-accordion-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --theme-element-image-accordion-expand-ratio: 3;
+  --theme-element-image-accordion-content-padding: var(--theme-space-6);
+  --theme-element-image-accordion-title-size: var(--theme-font-size-2xl);
+  --theme-element-image-accordion-title-color: #ffffff;
+  --theme-element-image-accordion-title-weight: var(--theme-font-weight-bold);
+  --theme-element-image-accordion-subtitle-size: var(--theme-font-size-base);
+  --theme-element-image-accordion-subtitle-color: rgba(255, 255, 255, 0.85);
+  --theme-element-image-accordion-overlay-color: #44403C;
+  --theme-element-image-accordion-overlay-opacity: 0.35;
+  --theme-element-image-accordion-mobile-height: 250px;
+  --theme-element-image-accordion-style-hero-bold-padding: 2.5rem;
+  --theme-element-image-accordion-style-hero-bold-title-size: clamp(2rem, 5vw, 3.5rem);
+  --theme-element-image-accordion-style-hero-bold-title-weight: 800;
+  --theme-element-image-accordion-style-hero-bold-letter-spacing: -0.025em;
+  --theme-element-image-accordion-style-hero-bold-text-transform: none;
+  --theme-element-image-accordion-style-hero-bold-subtitle-size: 1.125rem;
+  --theme-element-image-accordion-style-bottom-left-padding: 1.5rem;
+  --theme-element-image-accordion-style-bottom-left-title-size: 1.25rem;
+  --theme-element-image-accordion-style-bottom-left-subtitle-size: 0.875rem;
+  --theme-element-image-accordion-style-bottom-right-padding: 1.5rem;
+  --theme-element-image-accordion-style-bottom-right-title-size: 1.25rem;
+  --theme-element-image-accordion-style-bottom-right-subtitle-size: 0.875rem;
+  --theme-element-image-accordion-style-center-left-padding: 2rem;
+  --theme-element-image-accordion-style-center-left-title-size: 1.75rem;
+  --theme-element-image-accordion-style-center-left-subtitle-size: 1rem;
+  --theme-element-image-accordion-style-center-right-padding: 2rem;
+  --theme-element-image-accordion-style-center-right-title-size: 1.75rem;
+  --theme-element-image-accordion-style-center-right-subtitle-size: 1rem;
+  --theme-element-image-accordion-style-center-center-padding: 2rem;
+  --theme-element-image-accordion-style-center-center-title-size: 2rem;
+  --theme-element-image-accordion-style-center-center-subtitle-size: 1rem;
+  --theme-element-image-accordion-style-top-left-padding: 1.5rem;
+  --theme-element-image-accordion-style-top-left-title-size: 1.25rem;
+  --theme-element-image-accordion-style-top-left-subtitle-size: 0.875rem;
+  --theme-element-image-accordion-style-card-padding: 1.5rem;
+  --theme-element-image-accordion-style-card-panel-height: 45%;
+  --theme-element-image-accordion-style-card-panel-bg: linear-gradient(to top, rgba(68, 64, 60, 0.85) 0%, rgba(68, 64, 60, 0.4) 70%, transparent 100%);
+  --theme-element-image-accordion-style-card-title-size: 1.375rem;
+  --theme-element-image-accordion-style-card-subtitle-size: 0.9375rem;
+  --theme-element-image-accordion-style-minimal-padding: 1.25rem;
+  --theme-element-image-accordion-style-minimal-title-size: 0.9375rem;
+  --theme-element-image-accordion-style-minimal-subtitle-size: 0.8125rem;
+
+  /* ==========================================================================
+     Widget Tokens (Header/Footer)
+     ========================================================================== */
+
+  /* Account Widget */
+  --theme-widget-account-icon-size: 1.25rem;
+  --theme-widget-account-icon-color: var(--theme-header-icon-color);
+  --theme-widget-account-icon-hover-color: var(--theme-header-icon-hover-color);
+  --theme-widget-account-dropdown-bg: var(--theme-color-surface);
+  --theme-widget-account-dropdown-border: var(--theme-color-border);
+  --theme-widget-account-dropdown-shadow: var(--theme-shadow-lg);
+  --theme-widget-account-dropdown-radius: var(--theme-radius-md);
+  --theme-widget-account-dropdown-padding: var(--theme-space-2);
+  --theme-widget-account-link-color: var(--theme-color-text);
+  --theme-widget-account-link-hover-bg: var(--theme-color-surface-hover);
+  --theme-widget-account-link-padding: var(--theme-space-2) var(--theme-space-3);
+  --theme-widget-account-link-radius: var(--theme-radius-sm);
+
+  /* Cart Widget */
+  --theme-widget-cart-icon-size: 1.25rem;
+  --theme-widget-cart-icon-color: var(--theme-header-icon-color);
+  --theme-widget-cart-icon-hover-color: var(--theme-header-icon-hover-color);
+  --theme-widget-cart-badge-bg: var(--theme-color-accent);
+  --theme-widget-cart-badge-color: #ffffff;
+  --theme-widget-cart-badge-size: 1.25rem;
+  --theme-widget-cart-badge-font-size: var(--theme-font-size-xs);
+  --theme-widget-cart-badge-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-cart-badge-offset-x: -0.5rem;
+  --theme-widget-cart-badge-offset-y: -0.25rem;
+  --theme-widget-cart-dropdown-bg: var(--theme-color-surface);
+  --theme-widget-cart-dropdown-border: var(--theme-color-border);
+  --theme-widget-cart-dropdown-shadow: var(--theme-shadow-xl);
+  --theme-widget-cart-dropdown-radius: var(--theme-radius-lg);
+  --theme-widget-cart-dropdown-padding: var(--theme-space-4);
+  --theme-widget-cart-dropdown-width: 320px;
+  --theme-widget-cart-panel-width: 420px;
+  --theme-widget-cart-overlay-bg: var(--theme-color-overlay);
+  --theme-widget-cart-z-index: var(--theme-z-modal-backdrop);
+
+  /* Language Widget */
+  --theme-widget-language-select-bg: var(--theme-color-surface);
+  --theme-widget-language-select-border: var(--theme-color-border);
+  --theme-widget-language-select-color: var(--theme-color-text);
+  --theme-widget-language-select-hover-bg: var(--theme-color-surface-hover);
+  --theme-widget-language-select-focus-border: var(--theme-color-accent);
+  --theme-widget-language-select-focus-shadow: 0 0 0 2px rgba(217, 119, 6, 0.3);
+  --theme-widget-language-select-radius: var(--theme-radius-md);
+  --theme-widget-language-select-padding-x: var(--theme-space-3);
+  --theme-widget-language-select-padding-y: var(--theme-space-2);
+  --theme-widget-language-select-font-size: var(--theme-font-size-sm);
+  --theme-widget-language-flag-size: 1.25em;
+  --theme-widget-language-flag-gap: var(--theme-space-2);
+
+  /* Currency Widget */
+  --theme-widget-currency-select-bg: var(--theme-color-surface);
+  --theme-widget-currency-select-border: var(--theme-color-border);
+  --theme-widget-currency-select-color: var(--theme-color-text);
+  --theme-widget-currency-select-hover-bg: var(--theme-color-surface-hover);
+  --theme-widget-currency-select-hover-border: var(--theme-color-border-dark);
+  --theme-widget-currency-select-focus-border: var(--theme-color-accent);
+  --theme-widget-currency-select-focus-shadow: 0 0 0 2px rgba(217, 119, 6, 0.3);
+  --theme-widget-currency-select-radius: var(--theme-radius-md);
+  --theme-widget-currency-select-padding-x: var(--theme-space-3);
+  --theme-widget-currency-select-padding-y: var(--theme-space-2);
+  --theme-widget-currency-select-font-size: var(--theme-font-size-sm);
+  --theme-widget-currency-select-min-width: 120px;
+  --theme-widget-currency-code-font-weight: var(--theme-font-weight-medium);
+  --theme-widget-currency-symbol-font-weight: var(--theme-font-weight-medium);
+  --theme-widget-currency-flag-size: 1.125rem;
+  --theme-widget-currency-button-gap: var(--theme-space-2);
+  --theme-widget-currency-button-padding-x: var(--theme-space-3);
+  --theme-widget-currency-button-padding-y: var(--theme-space-2);
+  --theme-widget-currency-button-radius: var(--theme-radius-md);
+  --theme-widget-currency-button-solid-bg: var(--theme-color-primary);
+  --theme-widget-currency-button-solid-color: #ffffff;
+  --theme-widget-currency-button-solid-border: var(--theme-color-primary);
+  --theme-widget-currency-button-outline-bg: transparent;
+  --theme-widget-currency-button-outline-border: var(--theme-color-border);
+  --theme-widget-currency-button-outline-hover-bg: var(--theme-color-surface-hover);
+  --theme-widget-currency-button-ghost-bg: transparent;
+  --theme-widget-currency-button-ghost-border: transparent;
+  --theme-widget-currency-button-ghost-hover-bg: var(--theme-color-surface-hover);
+  --theme-widget-currency-dropdown-bg: var(--theme-color-surface);
+  --theme-widget-currency-dropdown-border: var(--theme-color-border);
+  --theme-widget-currency-dropdown-radius: var(--theme-radius-lg);
+  --theme-widget-currency-dropdown-shadow: var(--theme-shadow-lg);
+  --theme-widget-currency-dropdown-margin: var(--theme-space-1);
+  --theme-widget-currency-dropdown-padding: var(--theme-space-1);
+  --theme-widget-currency-dropdown-max-height: 300px;
+  --theme-widget-currency-dropdown-min-width: 200px;
+  --theme-widget-currency-option-padding-x: var(--theme-space-3);
+  --theme-widget-currency-option-padding-y: var(--theme-space-2);
+  --theme-widget-currency-option-gap: var(--theme-space-2);
+  --theme-widget-currency-option-radius: var(--theme-radius-md);
+  --theme-widget-currency-option-hover-bg: var(--theme-color-surface-hover);
+  --theme-widget-currency-option-active-bg: var(--theme-color-accent-light);
+  --theme-widget-currency-option-active-color: var(--theme-color-primary);
+  --theme-widget-currency-option-active-font-weight: var(--theme-font-weight-medium);
+  --theme-widget-currency-check-color: var(--theme-color-primary);
+  --theme-widget-currency-loading-color: var(--theme-color-primary);
+  --theme-widget-currency-chevron-color: var(--theme-color-text-muted);
+
+  /* Logo Widget */
+  --theme-widget-logo-max-height: var(--theme-header-logo-height);
+  --theme-widget-logo-max-width: 200px;
+  --theme-widget-logo-text-color: var(--theme-header-text-color);
+  --theme-widget-logo-text-font-size: var(--theme-font-size-xl);
+  --theme-widget-logo-text-font-weight: var(--theme-font-weight-bold);
+  --theme-widget-logo-text-letter-spacing: var(--theme-letter-spacing-tight);
+
+  /* Announcement Widget */
+  --theme-widget-announcement-bar-bg: var(--theme-color-primary);
+  --theme-widget-announcement-bar-color: var(--theme-color-text-inverse);
+  --theme-widget-announcement-bar-padding-x: var(--theme-space-4);
+  --theme-widget-announcement-bar-padding-y: var(--theme-space-2);
+  --theme-widget-announcement-bar-font-size: var(--theme-font-size-sm);
+  --theme-widget-announcement-bar-font-weight: var(--theme-font-weight-medium);
+  --theme-widget-announcement-link-color: var(--theme-color-text-inverse);
+  --theme-widget-announcement-link-hover-opacity: 0.8;
+  --theme-widget-announcement-link-underline: underline;
+  --theme-widget-announcement-close-btn-color: var(--theme-color-text-inverse);
+  --theme-widget-announcement-close-btn-hover-opacity: 0.7;
+  --theme-widget-announcement-close-btn-size: 1.25rem;
+  --theme-widget-announcement-scroll-speed: 20s;
+  --theme-widget-announcement-vertical-transition-duration: 500ms;
+  --theme-widget-announcement-vertical-transition-timing: var(--theme-transition-easing-default);
+  --theme-widget-announcement-modal-max-width: 36rem;
+  --theme-widget-announcement-modal-image-max-height: 300px;
+  --theme-widget-announcement-modal-image-radius: var(--theme-radius-md);
+  --theme-widget-announcement-modal-title-size: var(--theme-font-size-xl);
+  --theme-widget-announcement-modal-title-weight: var(--theme-font-weight-semibold);
+  --theme-widget-announcement-modal-body-size: var(--theme-font-size-base);
+  --theme-widget-announcement-modal-body-color: var(--theme-color-text-light);
+  --theme-widget-announcement-modal-link-btn-bg: var(--theme-color-primary);
+  --theme-widget-announcement-modal-link-btn-color: #ffffff;
+  --theme-widget-announcement-modal-link-btn-radius: var(--theme-radius-md);
+  --theme-widget-announcement-modal-link-btn-padding-x: var(--theme-space-6);
+  --theme-widget-announcement-modal-link-btn-padding-y: var(--theme-space-3);
+
+  /* Newsletter Widget */
+  --theme-widget-newsletter-title-color: var(--theme-footer-text-color);
+  --theme-widget-newsletter-title-font-size: var(--theme-font-size-lg);
+  --theme-widget-newsletter-title-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-newsletter-title-margin-bottom: var(--theme-space-4);
+  --theme-widget-newsletter-description-color: var(--theme-footer-muted-color);
+  --theme-widget-newsletter-description-font-size: var(--theme-font-size-sm);
+  --theme-widget-newsletter-description-margin-bottom: var(--theme-space-4);
+  --theme-widget-newsletter-input-bg: rgba(255, 255, 255, 0.1);
+  --theme-widget-newsletter-input-border: rgba(217, 119, 6, 0.3);
+  --theme-widget-newsletter-input-color: var(--theme-color-text-inverse);
+  --theme-widget-newsletter-input-placeholder-color: var(--theme-color-secondary);
+  --theme-widget-newsletter-input-focus-border: var(--theme-color-accent);
+  --theme-widget-newsletter-input-focus-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2);
+  --theme-widget-newsletter-input-radius: var(--theme-radius-md);
+  --theme-widget-newsletter-input-padding-x: var(--theme-space-4);
+  --theme-widget-newsletter-input-padding-y: var(--theme-space-3);
+  --theme-widget-newsletter-button-bg: var(--theme-color-accent);
+  --theme-widget-newsletter-button-color: #ffffff;
+  --theme-widget-newsletter-button-hover-bg: var(--theme-color-accent-hover);
+  --theme-widget-newsletter-button-radius: var(--theme-radius-md);
+  --theme-widget-newsletter-button-padding-x: var(--theme-space-6);
+  --theme-widget-newsletter-button-padding-y: var(--theme-space-3);
+  --theme-widget-newsletter-button-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-newsletter-success-color: var(--theme-color-success);
+  --theme-widget-newsletter-error-color: var(--theme-color-error);
+  --theme-widget-newsletter-gap: var(--theme-space-3);
+
+  /* Social Widget */
+  --theme-widget-social-title-color: var(--theme-footer-text-color);
+  --theme-widget-social-title-font-size: var(--theme-font-size-lg);
+  --theme-widget-social-title-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-social-title-margin-bottom: var(--theme-space-4);
+  --theme-widget-social-icon-size: 1.25rem;
+  --theme-widget-social-icon-color: var(--theme-footer-link-color);
+  --theme-widget-social-icon-hover-color: var(--theme-color-accent);
+  --theme-widget-social-icon-bg: transparent;
+  --theme-widget-social-icon-hover-bg: rgba(217, 119, 6, 0.15);
+  --theme-widget-social-icon-padding: var(--theme-space-2);
+  --theme-widget-social-icon-radius: var(--theme-radius-full);
+  --theme-widget-social-gap: var(--theme-space-3);
+
+  /* Social Share Widget */
+  --theme-widget-social-share-button-bg: var(--theme-color-surface);
+  --theme-widget-social-share-button-hover-bg: var(--theme-color-surface-hover);
+  --theme-widget-social-share-button-size: 2.25rem;
+  --theme-widget-social-share-button-radius: var(--theme-radius-full);
+  --theme-widget-social-share-button-border: 1px solid var(--theme-color-border);
+  --theme-widget-social-share-button-hover-border: 1px solid var(--theme-color-accent);
+  --theme-widget-social-share-icon-size: 1rem;
+  --theme-widget-social-share-icon-color: var(--theme-color-text-muted);
+  --theme-widget-social-share-icon-hover-color: var(--theme-color-accent-dark);
+  --theme-widget-social-share-gap: var(--theme-space-3);
+  --theme-widget-social-share-title-color: var(--theme-color-text-muted);
+  --theme-widget-social-share-title-font-size: var(--theme-font-size-sm);
+  --theme-widget-social-share-title-font-weight: var(--theme-font-weight-medium);
+  --theme-widget-social-share-title-margin-bottom: var(--theme-space-3);
+
+  /* Links Widget */
+  --theme-widget-links-title-color: var(--theme-footer-text-color);
+  --theme-widget-links-title-font-size: var(--theme-font-size-lg);
+  --theme-widget-links-title-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-links-title-margin-bottom: var(--theme-space-4);
+  --theme-widget-links-link-color: var(--theme-footer-link-color);
+  --theme-widget-links-link-hover-color: var(--theme-color-accent);
+  --theme-widget-links-link-font-size: var(--theme-font-size-sm);
+  --theme-widget-links-link-padding-y: var(--theme-space-1);
+  --theme-widget-links-gap: var(--theme-space-2);
+
+  /* Text Widget */
+  --theme-widget-text-title-color: var(--theme-footer-text-color);
+  --theme-widget-text-title-font-size: var(--theme-font-size-lg);
+  --theme-widget-text-title-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-text-title-margin-bottom: var(--theme-space-4);
+  --theme-widget-text-content-color: var(--theme-footer-muted-color);
+  --theme-widget-text-content-font-size: var(--theme-font-size-sm);
+  --theme-widget-text-content-line-height: var(--theme-line-height-relaxed);
+  --theme-widget-text-link-color: var(--theme-footer-link-color);
+  --theme-widget-text-link-hover-color: var(--theme-color-accent);
+
+  /* Payment Widget */
+  --theme-widget-payment-title-color: var(--theme-footer-text-color);
+  --theme-widget-payment-title-font-size: var(--theme-font-size-lg);
+  --theme-widget-payment-title-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-payment-title-margin-bottom: var(--theme-space-4);
+  --theme-widget-payment-icon-height: 1.5rem;
+  --theme-widget-payment-icon-max-width: 2.5rem;
+  --theme-widget-payment-icon-opacity: 0.8;
+  --theme-widget-payment-icon-hover-opacity: 1;
+  --theme-widget-payment-icon-filter: none;
+  --theme-widget-payment-gap: var(--theme-space-3);
+
+  /* Trust Badges Widget */
+  --theme-widget-trust-badges-title-color: var(--theme-footer-text-color);
+  --theme-widget-trust-badges-title-font-size: var(--theme-font-size-lg);
+  --theme-widget-trust-badges-title-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-trust-badges-title-margin-bottom: var(--theme-space-4);
+  --theme-widget-trust-badges-badge-bg: rgba(255, 255, 255, 0.08);
+  --theme-widget-trust-badges-badge-border: rgba(217, 119, 6, 0.2);
+  --theme-widget-trust-badges-badge-radius: var(--theme-radius-md);
+  --theme-widget-trust-badges-badge-padding: var(--theme-space-3);
+  --theme-widget-trust-badges-badge-hover-border: var(--theme-color-accent);
+  --theme-widget-trust-badges-icon-size: 1.5rem;
+  --theme-widget-trust-badges-icon-color: var(--theme-color-accent);
+  --theme-widget-trust-badges-text-color: var(--theme-footer-text-color);
+  --theme-widget-trust-badges-text-font-size: var(--theme-font-size-xs);
+  --theme-widget-trust-badges-gap: var(--theme-space-3);
+
+  /* Contact Widget */
+  --theme-widget-contact-title-color: var(--theme-footer-text-color);
+  --theme-widget-contact-title-font-size: var(--theme-font-size-lg);
+  --theme-widget-contact-title-font-weight: var(--theme-font-weight-semibold);
+  --theme-widget-contact-title-margin-bottom: var(--theme-space-4);
+  --theme-widget-contact-icon-size: 1rem;
+  --theme-widget-contact-icon-color: var(--theme-color-accent);
+  --theme-widget-contact-label-color: var(--theme-footer-muted-color);
+  --theme-widget-contact-label-font-size: var(--theme-font-size-xs);
+  --theme-widget-contact-value-color: var(--theme-footer-text-color);
+  --theme-widget-contact-value-font-size: var(--theme-font-size-sm);
+  --theme-widget-contact-link-color: var(--theme-footer-link-color);
+  --theme-widget-contact-link-hover-color: var(--theme-color-accent);
+  --theme-widget-contact-item-gap: var(--theme-space-4);
+  --theme-widget-contact-icon-gap: var(--theme-space-2);
+
+}
+
+/* Responsive container padding */
+@media (min-width: 640px) {
+  :root {
+    --theme-container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --theme-container-padding: 2rem;
+  }
+}

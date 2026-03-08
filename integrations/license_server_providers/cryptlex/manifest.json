@@ -1,0 +1,139 @@
+{
+  "component_type": "license_server_provider",
+  "slug": "cryptlex",
+  "name": "Cryptlex",
+  "version": "1.0.0",
+  "description": "Secure license management with node-locked and floating licenses, offline activation, and comprehensive device management.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "cryptlex",
+  "class_name": "CryptlexAdapter",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://cryptlex.com",
+  "support_url": "https://cryptlex.com/support",
+  "api_docs_url": "https://docs.cryptlex.com/web-api",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "create_license": true,
+    "validate_license": true,
+    "activate_device": true,
+    "deactivate_device": true,
+    "suspend_license": true,
+    "revoke_license": true,
+    "webhooks": true,
+    "floating_licenses": true,
+    "node_locked_licenses": true,
+    "offline_activation": true,
+    "analytics": true
+  },
+  "features": [
+    "Node-locked licenses",
+    "Floating licenses",
+    "Offline activation",
+    "Device fingerprinting",
+    "License policies",
+    "Usage tracking",
+    "Webhook notifications",
+    "Multi-platform SDKs",
+    "Cloud and on-premise"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "access_token": {
+      "type": "password",
+      "label": "Access Token",
+      "help_text": "Personal Access Token from Cryptlex dashboard (Profile → Access Tokens → Create Token)",
+      "required": true,
+      "secret": true,
+      "placeholder": "••••••••••••••••"
+    },
+    "product_id": {
+      "type": "text",
+      "label": "Product ID",
+      "help_text": "Your product ID from the Cryptlex dashboard",
+      "required": true,
+      "placeholder": "e.g., 12345678-1234-1234-1234-123456789012"
+    },
+    "account_id": {
+      "type": "text",
+      "label": "Account ID",
+      "help_text": "Your account ID from the Cryptlex dashboard",
+      "required": true,
+      "placeholder": "e.g., 12345678-1234-1234-1234-123456789012"
+    }
+  },
+  "pricing": {
+    "free_tier": {
+      "licenses_per_month": 25,
+      "features": [
+        "Up to 25 licenses",
+        "Basic features",
+        "Community support"
+      ]
+    },
+    "paid_tiers": [
+      {
+        "name": "Indie",
+        "price": "$29/month",
+        "licenses_per_month": 1000,
+        "features": [
+          "Up to 1,000 licenses",
+          "All features",
+          "Email support"
+        ]
+      },
+      {
+        "name": "Business",
+        "price": "$99/month",
+        "licenses_per_month": 5000,
+        "features": [
+          "Up to 5,000 licenses",
+          "Priority support",
+          "Advanced analytics"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "$299/month",
+        "licenses_per_month": 25000,
+        "features": [
+          "Up to 25,000 licenses",
+          "Dedicated support",
+          "On-premise option",
+          "Custom SLA"
+        ]
+      }
+    ]
+  },
+  "signup_url": "https://cryptlex.com/pricing",
+  "api_info": {
+    "base_url": "https://api.cryptlex.com/v3",
+    "documentation_url": "https://docs.cryptlex.com/web-api"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-01-21",
+      "changes": [
+        "Initial release",
+        "License creation and management",
+        "Node-locked licenses",
+        "Floating licenses",
+        "Offline activation support",
+        "Device activation/deactivation",
+        "Webhook support",
+        "Product and account ID configuration"
+      ]
+    }
+  ],
+  "logo": "logo.webp"
+}

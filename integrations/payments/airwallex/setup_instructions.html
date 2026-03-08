@@ -1,0 +1,172 @@
+<div class="setup-instructions">
+    <h2>🌏 AirWallex Payment Setup</h2>
+
+    <div class="intro-section">
+        <p class="highlight">
+            <strong>Why Choose AirWallex?</strong> Process payments globally with 160+ payment methods across 130+ countries.
+            Competitive FX rates and low transaction fees make AirWallex ideal for international commerce.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>Step 1: Create Your AirWallex Account</h3>
+        <ol>
+            <li>Visit <a href="https://www.airwallex.com" target="_blank">www.airwallex.com</a></li>
+            <li>Click <strong>"Sign Up"</strong> or <strong>"Get Started"</strong></li>
+            <li>Complete the registration process with your business details</li>
+            <li>Verify your email address and complete KYC requirements</li>
+        </ol>
+        <div class="note info">
+            <strong>💡 Tip:</strong> Have your business registration documents ready for faster verification.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2: Access Your API Credentials</h3>
+        <ol>
+            <li>Log into your <a href="https://www.airwallex.com/app" target="_blank">AirWallex Dashboard</a></li>
+            <li>Navigate to <strong>Settings → Developer → API Keys</strong></li>
+            <li>You'll find your <strong>Client ID</strong> displayed on this page</li>
+            <li>Click <strong>"Create API Key"</strong> to generate a new API key</li>
+            <li>Choose the appropriate permissions:
+                <ul>
+                    <li>✅ <strong>Payments</strong> - Required for processing transactions</li>
+                    <li>✅ <strong>Refunds</strong> - Required for refund processing</li>
+                    <li>✅ <strong>Read Account</strong> - For connection testing</li>
+                </ul>
+            </li>
+            <li><strong>Important:</strong> Copy your API Key immediately - it won't be shown again!</li>
+        </ol>
+        <div class="note warning">
+            <strong>⚠️ Security:</strong> Never share your API credentials. Keep them secure and don't commit them to version control.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 2a: Understanding Demo vs Production Credentials</h3>
+        <p>You will need to provide both demo (sandbox) and production credentials:</p>
+        <ul>
+            <li><strong>Demo Credentials:</strong> For testing without real charges
+                <ul>
+                    <li>Use these to test your integration with AirWallex's test card numbers</li>
+                    <li>No real money is charged</li>
+                    <li>Available in your AirWallex demo environment</li>
+                </ul>
+            </li>
+            <li><strong>Production Credentials:</strong> For live transactions
+                <ul>
+                    <li>Use these to process real payments from customers</li>
+                    <li>Real money is charged to real payment methods</li>
+                    <li>Requires completing KYC verification</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="note info">
+            <strong>💡 Getting Started:</strong> You can initially set up with only demo credentials and add production credentials later when you're ready to go live. The wizard will collect both sets of keys, allowing you to easily switch between demo and production mode.
+        </div>
+        <div class="note warning">
+            <strong>⚠️ Never Mix Keys!</strong> Always keep demo and production credentials separate. Using the wrong credentials can result in test transactions appearing in production reports or real charges being processed in demo mode.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 3: Configure Webhook (Optional but Recommended)</h3>
+        <ol>
+            <li>In your AirWallex Dashboard, go to <strong>Developer → Webhooks</strong></li>
+            <li>Click <strong>"Add Webhook"</strong></li>
+            <li>Enter your webhook URL: <code id="webhook-url" data-webhook-path="/payment-providers/webhook/airwallex/"></code>
+                <button data-action="copy-to-clipboard" data-copy-id="webhook-url" class="btn-sm">Copy</button>
+            </li>
+            <li>Select the following events:
+                <ul>
+                    <li>✅ payment_intent.succeeded</li>
+                    <li>✅ payment_intent.failed</li>
+                    <li>✅ payment_intent.requires_capture</li>
+                    <li>✅ refund.received</li>
+                    <li>✅ refund.accepted</li>
+                    <li>✅ refund.settled</li>
+                    <li>✅ refund.failed</li>
+                </ul>
+            </li>
+            <li>Enable <strong>"Signing Secret"</strong> and copy the secret key</li>
+            <li>Click <strong>"Save"</strong></li>
+        </ol>
+        <div class="note info">
+            <strong>💡 Why Webhooks?</strong> Webhooks provide real-time payment notifications, ensuring your orders are updated immediately when payments succeed or fail.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 4: Enter Your Credentials Below</h3>
+        <ol>
+            <li><strong>Demo Credentials:</strong> Enter your demo/sandbox keys
+                <ul>
+                    <li>Demo Client ID</li>
+                    <li>Demo API Key</li>
+                    <li>Demo Webhook Secret (if configured)</li>
+                </ul>
+            </li>
+            <li><strong>Production Credentials (optional initially):</strong> Enter your live keys
+                <ul>
+                    <li>Production Client ID</li>
+                    <li>Production API Key</li>
+                    <li>Production Webhook Secret (if configured)</li>
+                </ul>
+            </li>
+            <li>Use the <strong>Test Mode toggle</strong> to switch between demo and production:
+                <ul>
+                    <li><strong>Test Mode ON:</strong> For development and testing with test payments</li>
+                    <li><strong>Test Mode OFF:</strong> For real transactions with actual money</li>
+                </ul>
+            </li>
+            <li>Configure your payment preferences (auto-capture, payment descriptor, etc.)</li>
+            <li>Click <strong>"Test Connection"</strong> to verify everything works</li>
+        </ol>
+        <div class="note info">
+            <strong>Tip:</strong> Start with Test Mode enabled. You can add production credentials and switch to production mode later when you're ready to go live.
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Step 5: Test Your Integration</h3>
+        <div class="note success">
+            <strong>✅ Testing Mode:</strong> When using Demo/Sandbox environment, you can use AirWallex's test card numbers to simulate payments without real money.
+        </div>
+        <p><strong>Test Cards:</strong></p>
+        <ul>
+            <li><strong>Success:</strong> 4012 0000 3333 0026 (any future expiry, any CVV)</li>
+            <li><strong>3D Secure:</strong> 4000 0027 6000 3184 (triggers 3D Secure flow)</li>
+            <li><strong>Declined:</strong> 4000 0000 0000 0002 (simulates declined payment)</li>
+        </ul>
+        <p>Visit <a href="https://www.airwallex.com/docs" target="_blank">AirWallex Documentation</a> for more test scenarios.</p>
+    </div>
+
+    <div class="step">
+        <h3>Step 6: Go Live</h3>
+        <ol>
+            <li>Complete all AirWallex KYC/verification requirements</li>
+            <li>Test thoroughly in Demo/Sandbox mode first</li>
+            <li>When ready, switch <strong>Environment</strong> to <strong>Production</strong></li>
+            <li>Generate new production API credentials (don't reuse sandbox credentials)</li>
+            <li>Update your configuration with production credentials</li>
+            <li>Process a small test transaction to verify</li>
+            <li>You're ready to accept live payments! 🎉</li>
+        </ol>
+    </div>
+
+    <div class="help-section">
+        <h3>📚 Additional Resources</h3>
+        <ul>
+            <li><a href="https://www.airwallex.com/docs" target="_blank">API Documentation</a></li>
+            <li><a href="https://www.airwallex.com/docs/developer-tools/api" target="_blank">Developer Tools</a></li>
+            <li><a href="https://www.airwallex.com/docs/payments__get-started-with-online-payments" target="_blank">Getting Started Guide</a></li>
+            <li><a href="https://www.airwallex.com/pricing" target="_blank">Pricing Information</a></li>
+            <li><strong>Support:</strong> Contact AirWallex support through your dashboard</li>
+        </ul>
+    </div>
+
+    <div class="note info">
+        <strong>💼 Partnership Benefits:</strong> This platform has a partnership with AirWallex, ensuring you get competitive rates and priority support.
+    </div>
+</div>
+

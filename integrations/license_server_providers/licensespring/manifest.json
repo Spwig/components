@@ -1,0 +1,134 @@
+{
+  "component_type": "license_server_provider",
+  "slug": "licensespring",
+  "name": "License Spring",
+  "version": "1.0.0",
+  "description": "Comprehensive license management with floating licenses, consumption tracking, and trial license support.",
+  "author": "Spwig",
+  "license": "Proprietary",
+  "provider_key": "licensespring",
+  "class_name": "LicenseSpringAdapter",
+  "entry_point": "provider.py",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://licensespring.com",
+  "support_url": "https://docs.licensespring.com",
+  "api_docs_url": "https://docs.licensespring.com/docs/api",
+  "min_platform_version": "1.0.0",
+  "capabilities": {
+    "create_license": true,
+    "validate_license": true,
+    "activate_device": true,
+    "deactivate_device": true,
+    "suspend_license": true,
+    "revoke_license": true,
+    "webhooks": true,
+    "floating_licenses": true,
+    "consumption_tracking": true,
+    "trial_licenses": true,
+    "analytics": true
+  },
+  "features": [
+    "Floating license support",
+    "Consumption/usage tracking",
+    "Trial license management",
+    "Device activation tracking",
+    "Offline activation",
+    "License analytics",
+    "Webhook notifications",
+    "Multi-platform SDKs",
+    "Cloud and on-premise options"
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "django": ">=4.2",
+    "requests": ">=2.28.0"
+  },
+  "credential_schema": {
+    "api_key": {
+      "type": "password",
+      "label": "Management API Key",
+      "help_text": "Management API Key from License Spring dashboard (Account Settings → API Keys)",
+      "required": true,
+      "secret": true,
+      "placeholder": "••••••••••••••••"
+    },
+    "shared_key": {
+      "type": "password",
+      "label": "Shared Key",
+      "help_text": "Shared Key for SDK license validation (Products → Your Product → SDK)",
+      "required": true,
+      "secret": true,
+      "placeholder": "••••••••••••••••"
+    },
+    "product_code": {
+      "type": "text",
+      "label": "Product Code",
+      "help_text": "Default product code in License Spring",
+      "required": true,
+      "placeholder": "e.g., PROD-ABC-123"
+    }
+  },
+  "pricing": {
+    "free_tier": null,
+    "paid_tiers": [
+      {
+        "name": "Startup",
+        "price": "$29/month",
+        "licenses_per_month": 500,
+        "features": [
+          "Up to 500 licenses",
+          "Basic features",
+          "Email support"
+        ]
+      },
+      {
+        "name": "Business",
+        "price": "$99/month",
+        "licenses_per_month": 2500,
+        "features": [
+          "Up to 2,500 licenses",
+          "Advanced features",
+          "Priority support",
+          "Floating licenses"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": "$249/month",
+        "licenses_per_month": 10000,
+        "features": [
+          "Up to 10,000 licenses",
+          "All features",
+          "Dedicated support",
+          "On-premise option"
+        ]
+      }
+    ]
+  },
+  "signup_url": "https://licensespring.com/pricing",
+  "api_info": {
+    "base_url": "https://api.licensespring.com/api/v4",
+    "documentation_url": "https://docs.licensespring.com/docs/api"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-01-21",
+      "changes": [
+        "Initial release",
+        "License creation and management",
+        "Floating license support",
+        "Consumption tracking",
+        "Trial license support",
+        "Device activation/deactivation",
+        "Webhook support",
+        "Product code configuration"
+      ]
+    }
+  ],
+  "logo": "logo.png"
+}
