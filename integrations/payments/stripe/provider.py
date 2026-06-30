@@ -10,7 +10,7 @@ import hashlib
 import logging
 from decimal import Decimal
 from typing import Dict, Any, Optional, List
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone as dt_timezone
 
 from django.utils import timezone as django_timezone
 
@@ -1230,7 +1230,8 @@ class StripeProvider(PaymentProviderBase):
         return_url: str,
         cancel_url: str,
         customer_email: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None
+        metadata: Optional[Dict[str, Any]] = None,
+        **kwargs
     ) -> Dict[str, Any]:
         """
         Create a payment intent for checkout orchestration.
@@ -1244,6 +1245,8 @@ class StripeProvider(PaymentProviderBase):
             cancel_url: URL to redirect on cancellation
             customer_email: Optional customer email
             metadata: Optional metadata (order_id, checkout_session_id, etc.)
+            **kwargs: Additional params from orchestration service including:
+                payment_method_types: List of enabled method slugs for customer's country
 
         Returns:
             Dictionary with payment intent details
@@ -1275,6 +1278,11 @@ class StripeProvider(PaymentProviderBase):
                 if customer_email:
                     session_params['customer_email'] = customer_email
 
+                # Restrict payment methods if specified by orchestration service
+                payment_method_types = kwargs.get('payment_method_types')
+                if payment_method_types:
+                    session_params['payment_method_types'] = payment_method_types
+
                 if metadata:
                     session_params['metadata'] = {
                         str(k): str(v) for k, v in metadata.items()
@@ -1304,13 +1312,17 @@ class StripeProvider(PaymentProviderBase):
 
             else:
                 # Use PaymentIntent for integrated/embedded checkout
+                # Restrict payment methods if specified by orchestration service;
+                # payment_method_types and automatic_payment_methods are mutually exclusive
+                payment_method_types = kwargs.get('payment_method_types')
                 intent_params = {
                     'amount': stripe_amount,
                     'currency': currency.lower(),
-                    'automatic_payment_methods': {
-                        'enabled': True,
-                    },
                 }
+                if payment_method_types:
+                    intent_params['payment_method_types'] = payment_method_types
+                else:
+                    intent_params['automatic_payment_methods'] = {'enabled': True}
 
                 if customer_email:
                     intent_params['receipt_email'] = customer_email
@@ -1340,7 +1352,10 @@ class StripeProvider(PaymentProviderBase):
                     'success': True,
                     'provider_intent_id': pi.id,
                     'client_secret': pi.client_secret,
-                    'checkout_url': None,
+                    # Embedded PaymentElement has no hosted URL — return an
+                    # empty string (not None) so the orchestrator's
+                    # non-nullable column accepts the row directly.
+                    'checkout_url': '',
                     'status': STATUS_MAP.get(pi.status, pi.status),
                     'requires_action': pi.status == 'requires_action',
                     'action': None,
@@ -1353,9 +1368,9 @@ class StripeProvider(PaymentProviderBase):
             logger.error("Stripe error creating payment intent for checkout: %s", str(e))
             return {
                 'success': False,
-                'provider_intent_id': None,
-                'client_secret': None,
-                'checkout_url': None,
+                'provider_intent_id': '',
+                'client_secret': '',
+                'checkout_url': '',
                 'status': 'failed',
                 'requires_action': False,
                 'action': None,
@@ -1366,9 +1381,9 @@ class StripeProvider(PaymentProviderBase):
             logger.error("Unexpected error creating payment intent for checkout: %s", str(e))
             return {
                 'success': False,
-                'provider_intent_id': None,
-                'client_secret': None,
-                'checkout_url': None,
+                'provider_intent_id': '',
+                'client_secret': '',
+                'checkout_url': '',
                 'status': 'failed',
                 'requires_action': False,
                 'action': None,
@@ -2023,11 +2038,11 @@ class StripeProvider(PaymentProviderBase):
         # Extract period from subscription data
         if data.get('current_period_start'):
             kwargs['period_start'] = datetime.fromtimestamp(
-                data['current_period_start'], tz=django_timezone.utc
+                data['current_period_start'], tz=dt_timezone.utc
             )
         if data.get('current_period_end'):
             kwargs['period_end'] = datetime.fromtimestamp(
-                data['current_period_end'], tz=django_timezone.utc
+                data['current_period_end'], tz=dt_timezone.utc
             )
 
         return SubscriptionEvent(**kwargs)
@@ -2088,11 +2103,11 @@ class StripeProvider(PaymentProviderBase):
             period = lines[0].get('period', {})
             if period.get('start'):
                 kwargs['period_start'] = datetime.fromtimestamp(
-                    period['start'], tz=django_timezone.utc
+                    period['start'], tz=dt_timezone.utc
                 )
             if period.get('end'):
                 kwargs['period_end'] = datetime.fromtimestamp(
-                    period['end'], tz=django_timezone.utc
+                    period['end'], tz=dt_timezone.utc
                 )
 
         # Extract error details for failed payments

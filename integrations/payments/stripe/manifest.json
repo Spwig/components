@@ -2,7 +2,7 @@
   "component_type": "payment_provider",
   "slug": "stripe",
   "name": "Stripe",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "Complete payment processing platform supporting cards, digital wallets, BNPL, and 135+ currencies. Industry-leading developer experience with extensive documentation and robust fraud prevention.",
   "author": "Spwig",
   "author_details": {
@@ -692,6 +692,31 @@
     "MY"
   ],
   "changelog": [
+    {
+      "version": "1.2.1",
+      "date": "2026-06-30",
+      "changes": [
+        "Embedded PaymentIntent path: return empty string instead of null for checkout_url / client_secret / provider_intent_id so the orchestrator's non-nullable columns accept the row without coalescing. Pairs with shop 1.5.6, which adds defensive coalescing for any provider that still returns None."
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "date": "2026-03-31",
+      "changes": [
+        "Accept payment_method_types from orchestration service for per-country method filtering",
+        "Hosted checkout: pass payment_method_types to Stripe Checkout Session when specified",
+        "Integrated checkout: use explicit payment_method_types instead of automatic_payment_methods when specified",
+        "Added **kwargs to create_payment_intent_for_checkout for forward-compatible parameter passing"
+      ]
+    },
+    {
+      "version": "1.1.2",
+      "date": "2026-03-11",
+      "changes": [
+        "Fixed webhook URL in setup instructions (was /payment-providers/webhook/{slug}/, corrected to /webhooks/payments/{slug}/)",
+        "Fixed timezone.utc AttributeError in subscription event timestamp parsing"
+      ]
+    },
     {
       "version": "1.1.1",
       "date": "2026-03-01",
