@@ -32,6 +32,29 @@ THREE_DECIMAL_CURRENCIES = {
 }
 
 
+# Slugs the Spwig admin allows merchants to enable that are NOT valid
+# Stripe `payment_method_types` values. Apple Pay, Google Pay, and Link
+# are wallet UIs surfaced through the `card` payment method — they must
+# NOT be passed as separate types or Stripe returns
+# `payment_intent_invalid_parameter`. The customer still sees the wallet
+# buttons on the PaymentElement because Stripe auto-surfaces them when
+# the device supports them and `card` is enabled in the dashboard.
+_STRIPE_WALLET_ALIASES = {'apple_pay', 'google_pay'}
+
+
+def _filter_stripe_payment_method_types(methods: Optional[List[str]]) -> Optional[List[str]]:
+    """
+    Drop wallet aliases from a payment_method_types list before sending
+    to Stripe. Returns None if nothing usable remains — the caller then
+    falls back to `automatic_payment_methods`, which is Stripe's
+    recommended pattern for PaymentElement.
+    """
+    if not methods:
+        return None
+    filtered = [m for m in methods if m and m not in _STRIPE_WALLET_ALIASES]
+    return filtered or None
+
+
 def _to_stripe_amount(amount: Decimal, currency: str) -> int:
     """
     Convert a Decimal amount to Stripe's integer format.
@@ -1278,8 +1301,12 @@ class StripeProvider(PaymentProviderBase):
                 if customer_email:
                     session_params['customer_email'] = customer_email
 
-                # Restrict payment methods if specified by orchestration service
-                payment_method_types = kwargs.get('payment_method_types')
+                # Restrict payment methods if specified by orchestration
+                # service. Same filter as the PaymentIntent path — Stripe
+                # Checkout Session also rejects wallet alias slugs.
+                payment_method_types = _filter_stripe_payment_method_types(
+                    kwargs.get('payment_method_types')
+                )
                 if payment_method_types:
                     session_params['payment_method_types'] = payment_method_types
 
@@ -1311,10 +1338,28 @@ class StripeProvider(PaymentProviderBase):
                 }
 
             else:
-                # Use PaymentIntent for integrated/embedded checkout
-                # Restrict payment methods if specified by orchestration service;
-                # payment_method_types and automatic_payment_methods are mutually exclusive
-                payment_method_types = kwargs.get('payment_method_types')
+                # Use PaymentIntent for integrated/embedded checkout.
+                #
+                # Stripe's recommended path for PaymentElement is
+                # `automatic_payment_methods` — the dashboard config is
+                # the source of truth for which methods appear (card,
+                # wallets, BNPL, local rails). We prefer that path.
+                #
+                # Merchants can still restrict methods per country via
+                # the orchestrator's payment_method_types list; when
+                # non-empty AND every value is a Stripe-valid slug, we
+                # honour it. Wallet aliases (`apple_pay`, `google_pay`)
+                # are stripped because they're not valid types — Stripe
+                # returns `payment_intent_invalid_parameter` if they're
+                # passed. Apple Pay / Google Pay still render on the
+                # PaymentElement when `card` is enabled and the device
+                # supports them.
+                #
+                # `payment_method_types` and `automatic_payment_methods`
+                # are mutually exclusive — only one may be set.
+                payment_method_types = _filter_stripe_payment_method_types(
+                    kwargs.get('payment_method_types')
+                )
                 intent_params = {
                     'amount': stripe_amount,
                     'currency': currency.lower(),
@@ -1322,7 +1367,10 @@ class StripeProvider(PaymentProviderBase):
                 if payment_method_types:
                     intent_params['payment_method_types'] = payment_method_types
                 else:
-                    intent_params['automatic_payment_methods'] = {'enabled': True}
+                    intent_params['automatic_payment_methods'] = {
+                        'enabled': True,
+                        'allow_redirects': 'if_required',
+                    }
 
                 if customer_email:
                     intent_params['receipt_email'] = customer_email
@@ -1365,9 +1413,18 @@ class StripeProvider(PaymentProviderBase):
                 }
 
         except stripe.error.StripeError as e:
-            logger.error("Stripe error creating payment intent for checkout: %s", str(e))
+            # Surface Stripe's user_message (safe for display) if present,
+            # otherwise the raw error. The orchestrator returns whatever
+            # is in `message` to the storefront, so this makes 400s
+            # actionable end-to-end instead of a generic "Payment intent
+            # creation failed" fallback.
+            user_msg = getattr(e, 'user_message', None) or str(e)
+            logger.error(
+                "Stripe error creating payment intent for checkout: %s", str(e)
+            )
             return {
                 'success': False,
+                'message': user_msg,
                 'provider_intent_id': '',
                 'client_secret': '',
                 'checkout_url': '',
@@ -1375,12 +1432,19 @@ class StripeProvider(PaymentProviderBase):
                 'requires_action': False,
                 'action': None,
                 'expires_at': None,
-                'raw_response': {'error': str(e)},
+                'raw_response': {
+                    'error': str(e),
+                    'error_code': getattr(e, 'code', None),
+                    'error_type': type(e).__name__,
+                },
             }
         except Exception as e:
-            logger.error("Unexpected error creating payment intent for checkout: %s", str(e))
+            logger.error(
+                "Unexpected error creating payment intent for checkout: %s", str(e)
+            )
             return {
                 'success': False,
+                'message': str(e),
                 'provider_intent_id': '',
                 'client_secret': '',
                 'checkout_url': '',

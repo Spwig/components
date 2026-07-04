@@ -2,7 +2,7 @@
   "component_type": "payment_provider",
   "slug": "stripe",
   "name": "Stripe",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Complete payment processing platform supporting cards, digital wallets, BNPL, and 135+ currencies. Industry-leading developer experience with extensive documentation and robust fraud prevention.",
   "author": "Spwig",
   "author_details": {
@@ -692,6 +692,15 @@
     "MY"
   ],
   "changelog": [
+    {
+      "version": "1.2.2",
+      "date": "2026-07-04",
+      "changes": [
+        "Fixed 400 'payment_intent_invalid_parameter' from Stripe when enabled_payment_methods contained wallet aliases (apple_pay, google_pay) — these are not valid Stripe payment_method_types values; they surface automatically on PaymentElement when card is enabled and the device supports them. New _filter_stripe_payment_method_types() strips wallet aliases before calling Stripe.",
+        "When no valid payment_method_types remain after filtering, fall back to Stripe's recommended automatic_payment_methods: {enabled: true, allow_redirects: 'if_required'}. Applies to both integrated PaymentElement and hosted Checkout Session modes.",
+        "Include the Stripe error message on failure responses so the orchestrator surfaces the real reason to the storefront instead of the generic 'Payment intent creation failed' fallback."
+      ]
+    },
     {
       "version": "1.2.1",
       "date": "2026-06-30",
