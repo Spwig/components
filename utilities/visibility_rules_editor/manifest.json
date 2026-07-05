@@ -1,0 +1,52 @@
+{
+  "component_type": "utility",
+  "slug": "visibility-rules-editor",
+  "name": "visibility-rules-editor",
+  "version": "1.0.1",
+  "display_name": "Visibility Rules Editor",
+  "description": "Visual editor for element visibility rules based on user status, device, time, and other conditions",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "advanced",
+  "assets": {
+    "css": [
+      "visibility_rules_editor.css"
+    ],
+    "js": [
+      "visibility_rules_editor.js"
+    ]
+  },
+  "supported_properties": [
+    "visibility_rules"
+  ],
+  "options": {
+    "show_rule_icons": true,
+    "allow_multiple_rules": true,
+    "rule_logic": "AND"
+  },
+  "dependencies": [
+    {
+      "slug": "base",
+      "version": ">=1.0.0"
+    }
+  ],
+  "changelog": {
+    "1.0.1": [
+      "Refactored to use utility base CSS classes (utility-header, utility-body, utility-footer)",
+      "Added dependency on base utility for consistent styling",
+      "Uses control-group from utility base for form fields",
+      "Uses btn, btn-apply, btn-clear from utility base for buttons"
+    ],
+    "1.0.0": [
+      "Initial release"
+    ]
+  },
+  "documentation_url": "https://docs.spwig.com/utilities/visibility-rules-editor",
+  "support_url": "https://support.spwig.com",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

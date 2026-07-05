@@ -1,0 +1,33 @@
+{
+  "component_type": "utility",
+  "slug": "unit-selector",
+  "name": "Unit Selector",
+  "version": "1.0.0",
+  "display_name": "Unit Selector",
+  "description": "CSS unit selector and converter supporting px, em, rem, %, vh, vw, and auto values",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "layout",
+  "assets": {
+    "css": ["static/unit_selector.css"],
+    "js": ["static/unit_selector.js"]
+  },
+  "supported_properties": [
+    "width-unit", "height-unit", "padding-unit", "margin-unit",
+    "gap-unit", "min-height-unit", "max-height-unit"
+  ],
+  "options": {
+    "units": ["px", "%", "rem", "em", "vw", "vh", "auto"],
+    "calc_support": true,
+    "conversion_helper": true
+  },
+  "dependencies": [],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "documentation_url": "https://docs.spwig.com/utilities/unit-selector",
+  "support_url": "https://support.spwig.com"
+}

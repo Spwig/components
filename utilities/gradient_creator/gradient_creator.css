@@ -1,0 +1,494 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Gradient Creator Styles
+ * Uses standard utility-base.css and admin-base.css classes
+ * Only includes gradient creator specific styles
+ */
+
+/* Gradient Preview in Trigger Button */
+.util-btn.gradient-creator-trigger .gradient-preview {
+    width: 60px;
+    height: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--primary, var(--selected-bg)) 0%, var(--primary-color, var(--selected-bg)) 100%);
+}
+
+/* Gradient Creator Specific Popup Width */
+.utility-popup.gradient-creator {
+    width: 520px;
+}
+
+/* Preview Section */
+.utility-popup.gradient-creator .gradient-preview-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px 20px;
+    padding: 16px;
+    background: var(--darkened-bg);
+    border-radius: 8px;
+}
+
+.utility-popup.gradient-creator .preview-box {
+    flex: 1;
+    text-align: center;
+}
+
+.utility-popup.gradient-creator .preview-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--muted-fg);
+    margin-bottom: 8px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+.utility-popup.gradient-creator .preview-gradient {
+    height: 80px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: transparent;
+}
+
+.utility-popup.gradient-creator .preview-arrow {
+    font-size: 16px;
+    color: var(--muted-fg);
+}
+
+/* Tab Content Panels */
+.utility-popup.gradient-creator .gradient-controls {
+    padding: 20px;
+}
+
+/* Control Groups */
+.utility-popup.gradient-creator .control-group {
+    margin-bottom: 20px;
+}
+
+.utility-popup.gradient-creator .control-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted-fg);
+    margin-bottom: 6px;
+}
+
+/* Angle Controls */
+.utility-popup.gradient-creator .angle-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.utility-popup.gradient-creator .angle-slider {
+    flex: 1;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.utility-popup.gradient-creator .angle-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color, var(--selected-bg));
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.utility-popup.gradient-creator .angle-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color, var(--selected-bg));
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.utility-popup.gradient-creator .angle-input {
+    width: 60px;
+    padding: 6px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+    background: var(--body-bg);
+    color: var(--body-fg);
+}
+
+.utility-popup.gradient-creator .angle-input:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+/* Position Select for Radial */
+.utility-popup.gradient-creator .position-select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 13px;
+    background: var(--body-bg);
+    color: var(--body-fg);
+}
+
+.utility-popup.gradient-creator .position-select:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+/* Conic Position Control */
+.utility-popup.gradient-creator .conic-position {
+    display: flex;
+    gap: 12px;
+}
+
+.utility-popup.gradient-creator .conic-angle-input,
+.utility-popup.gradient-creator .conic-position-select {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 13px;
+    background: var(--body-bg);
+    color: var(--body-fg);
+}
+
+.utility-popup.gradient-creator .conic-angle-input:focus,
+.utility-popup.gradient-creator .conic-position-select:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+/* Color Stops Section */
+.utility-popup.gradient-creator .color-stops-section {
+    margin: 0 20px 20px;
+    padding: 16px;
+    background: var(--darkened-bg);
+    border-radius: 8px;
+}
+
+.utility-popup.gradient-creator .stops-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.utility-popup.gradient-creator .stops-header h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-fg);
+    margin: 0;
+}
+
+.utility-popup.gradient-creator .add-stop-btn {
+    padding: 6px 10px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--body-fg);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.utility-popup.gradient-creator .add-stop-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--primary-color, var(--selected-bg));
+}
+
+.utility-popup.gradient-creator .add-stop-btn i {
+    margin-right: 4px;
+}
+
+/* Gradient Bar */
+.utility-popup.gradient-creator .gradient-bar {
+    height: 40px;
+    border-radius: 6px;
+    position: relative;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    cursor: crosshair;
+}
+
+.utility-popup.gradient-creator .gradient-stop {
+    position: absolute;
+    top: -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    transform: translateX(-50%);
+    transition: transform 0.1s;
+}
+
+.utility-popup.gradient-creator .gradient-stop:hover {
+    transform: translateX(-50%) scale(1.2);
+}
+
+.utility-popup.gradient-creator .gradient-stop.active {
+    box-shadow: 0 0 0 2px var(--primary-color, var(--selected-bg)), 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.utility-popup.gradient-creator .gradient-stop.dragging {
+    cursor: grabbing;
+}
+
+/* Color Stops List */
+.utility-popup.gradient-creator .color-stops-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.utility-popup.gradient-creator .color-stop-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.utility-popup.gradient-creator .color-stop-item:hover {
+    border-color: var(--primary-color, var(--selected-bg));
+}
+
+.utility-popup.gradient-creator .color-stop-item.active {
+    background: var(--selected-bg);
+    border-color: var(--primary-color, var(--selected-bg));
+}
+
+.utility-popup.gradient-creator .stop-color-preview {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+.utility-popup.gradient-creator .stop-color-preview:hover {
+    border-color: var(--primary-color, var(--selected-bg));
+    transform: scale(1.05);
+}
+
+.utility-popup.gradient-creator .stop-position {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.utility-popup.gradient-creator .stop-position-input {
+    width: 100px;
+    padding: 4px 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    background: var(--body-bg);
+    color: var(--body-fg);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.utility-popup.gradient-creator .stop-position-input:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+.utility-popup.gradient-creator .stop-position span {
+    font-size: 12px;
+    color: var(--muted-fg);
+    flex-shrink: 0;
+}
+
+.utility-popup.gradient-creator .stop-opacity-control {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.utility-popup.gradient-creator .stop-opacity-slider {
+    width: 50px;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    -webkit-appearance: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.utility-popup.gradient-creator .stop-opacity-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color, var(--selected-bg));
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.utility-popup.gradient-creator .stop-opacity-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color, var(--selected-bg));
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.utility-popup.gradient-creator .stop-opacity-value {
+    font-size: 11px;
+    color: var(--muted-fg);
+    min-width: 28px;
+    flex-shrink: 0;
+}
+
+.utility-popup.gradient-creator .delete-stop-btn {
+    padding: 4px 6px;
+    background: var(--error-bg);
+    border: 1px solid var(--error-bg);
+    border-radius: 4px;
+    color: var(--error-fg);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.utility-popup.gradient-creator .delete-stop-btn:hover {
+    background: var(--error-fg);
+    color: white;
+}
+
+/* Gradient Presets */
+.utility-popup.gradient-creator .gradient-presets-section {
+    margin: 0 20px 20px;
+    padding: 16px;
+    background: var(--darkened-bg);
+    border-radius: 8px;
+}
+
+.utility-popup.gradient-creator .gradient-presets-section h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-fg);
+    margin: 0 0 12px 0;
+}
+
+.utility-popup.gradient-creator .gradient-presets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 8px;
+}
+
+.utility-popup.gradient-creator .preset {
+    height: 40px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.utility-popup.gradient-creator .preset:hover {
+    border-color: var(--primary-color, var(--selected-bg));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.utility-popup.gradient-creator .preset:active {
+    transform: translateY(0);
+}
+
+/* Code Output */
+.utility-popup.gradient-creator .code-output {
+    margin: 0 20px 20px;
+    padding: 12px;
+    background: var(--darkened-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 12px;
+    color: var(--body-fg);
+    word-break: break-all;
+    user-select: all;
+}
+
+/* Scrollbar Styling */
+.utility-popup.gradient-creator .color-stops-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.utility-popup.gradient-creator .color-stops-list::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.utility-popup.gradient-creator .color-stops-list::-webkit-scrollbar-thumb {
+    background: var(--muted-fg);
+    border-radius: 3px;
+}
+
+.utility-popup.gradient-creator .color-stops-list::-webkit-scrollbar-thumb:hover {
+    background: var(--body-fg);
+}
+
+/* RTL Support */
+[dir="rtl"] .util-btn.gradient-creator-trigger {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+[dir="rtl"] .utility-popup.gradient-creator .admin-tab-btn i,
+[dir="rtl"] .utility-popup.gradient-creator .admin-tab-btn .icon {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+[dir="rtl"] .utility-popup.gradient-creator .add-stop-btn i {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .utility-popup.gradient-creator {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .utility-popup.gradient-creator .gradient-presets {
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    }
+
+    .utility-popup.gradient-creator .conic-position {
+        flex-direction: column;
+    }
+
+    .utility-popup.gradient-creator .stop-controls {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,663 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Shadow Editor Styles
+ * Following the design principles from color picker and typography editor
+ *
+ * Uses admin theme CSS variables for automatic light/dark mode support.
+ * No explicit dark theme overrides needed - CSS variables adapt automatically.
+ */
+
+/* Trigger Button */
+.shadow-editor-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    margin-left: 8px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--body-fg);
+}
+
+.shadow-editor-trigger:hover {
+    background: var(--darkened-bg);
+    border-color: var(--selected-bg);
+}
+
+.shadow-editor-trigger .shadow-preview {
+    width: 24px;
+    height: 24px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: inherit;
+}
+
+.shadow-editor-trigger i {
+    font-size: 14px;
+    color: inherit;
+}
+
+/* Popup Container */
+.shadow-editor-popup {
+    position: fixed;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    width: 460px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+    animation: fadeInScale 0.2s ease-out;
+}
+
+/* Theme variables automatically handle light/dark mode switching */
+/* No explicit dark theme styles needed - CSS variables adapt automatically */
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Header */
+.shadow-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.shadow-editor-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--body-fg);
+    margin: 0;
+}
+
+.shadow-editor-close {
+    background: none;
+    border: none;
+    color: var(--muted-fg);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    font-size: 18px;
+}
+
+.shadow-editor-close:hover {
+    color: var(--body-fg);
+}
+
+/* Body */
+.shadow-editor-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+}
+
+/* Preview Section */
+.shadow-preview-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px 20px;
+    padding: 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+}
+
+.preview-box {
+    flex: 1;
+    text-align: center;
+}
+
+.preview-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 12px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+.preview-shadow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+}
+
+.shadow-box {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.shadow-text {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    transition: text-shadow 0.3s ease;
+}
+
+.preview-arrow {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Tabs - Using admin-tabs from admin-base.css */
+/* Tab container styles inherited from admin-base.css */
+
+/* Tab button styles now inherited from admin-base.css */
+
+/* Shadows Section */
+.shadows-section {
+    padding: 20px;
+}
+
+.shadows-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.shadows-header h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-fg);
+    margin: 0;
+}
+
+.add-shadow-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--input-bg);
+    border: 1px solid var(--selected-bg);
+    border-radius: 6px;
+    color: var(--selected-bg);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-shadow-btn:hover {
+    background: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+/* Shadows List */
+.shadows-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Empty state when no shadows */
+.shadows-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    text-align: center;
+    color: var(--body-quiet-color);
+}
+
+.shadows-empty-state i {
+    font-size: 32px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+.shadows-empty-state p {
+    margin: 0 0 4px 0;
+    font-weight: 500;
+    color: var(--body-fg);
+}
+
+.shadows-empty-state small {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.shadow-item {
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--input-bg);
+    transition: all 0.2s;
+}
+
+.shadow-item:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+}
+
+.shadow-item.selected {
+    border-color: var(--selected-bg);
+    background: var(--darkened-bg);
+}
+
+.shadow-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.shadow-number {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--body-fg);
+}
+
+.remove-shadow-btn {
+    padding: 4px 6px;
+    background: none;
+    border: 1px solid #ef4444;
+    border-radius: 4px;
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+}
+
+.remove-shadow-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* Shadow Controls */
+.shadow-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.control-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-row label {
+    min-width: 60px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted-fg);
+}
+
+/* Position Controls */
+.position-controls {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+}
+
+.input-with-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.input-with-label label {
+    min-width: auto;
+    font-size: 11px;
+    color: var(--muted-fg);
+}
+
+.input-with-label input {
+    width: 60px;
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+    background: var(--input-bg);
+    color: var(--body-fg);
+}
+
+.input-with-label input:focus {
+    border-color: var(--selected-bg);
+    outline: none;
+}
+
+/* Slider Controls */
+.slider-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.slider-control input[type="range"] {
+    flex: 1;
+}
+
+.slider-control input[type="number"] {
+    width: 60px;
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+    background: var(--input-bg);
+    color: var(--body-fg);
+}
+
+.slider-control input[type="number"]:focus {
+    border-color: var(--selected-bg);
+    outline: none;
+}
+
+.unit {
+    font-size: 11px;
+    color: var(--muted-fg);
+}
+
+/* Color Control */
+.color-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.color-preview {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.color-input {
+    flex: 1;
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: monospace;
+    background: var(--input-bg);
+    color: var(--body-fg);
+}
+
+.color-input:focus {
+    border-color: var(--selected-bg);
+    outline: none;
+}
+
+/* Range Sliders */
+.shadow-editor-popup input[type="range"] {
+    width: 100%;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.shadow-editor-popup input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--selected-bg);
+    border: 2px solid var(--input-bg);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.shadow-editor-popup input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.shadow-editor-popup input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--selected-bg);
+    border: 2px solid var(--input-bg);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.shadow-editor-popup input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}
+
+/* Switch Control */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-color);
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--input-bg);
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .switch-slider {
+    background-color: var(--selected-bg);
+}
+
+input:checked + .switch-slider:before {
+    transform: translateX(20px);
+}
+
+/* Presets Section */
+.shadow-presets-section {
+    padding: 0 20px 20px;
+}
+
+.shadow-presets-section h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-fg);
+    margin: 0 0 12px 0;
+}
+
+.presets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.preset-btn {
+    padding: 10px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.preset-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+    transform: translateY(-2px);
+}
+
+.preset-preview {
+    width: 40px;
+    height: 40px;
+    background: var(--body-bg);
+    border-radius: 4px;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--muted-fg);
+}
+
+.preset-btn span {
+    display: block;
+    font-size: 11px;
+    color: var(--muted-fg);
+}
+
+/* Footer */
+.shadow-editor-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.shadow-editor-footer .btn {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.shadow-editor-footer .btn-clear {
+    background: var(--darkened-bg);
+    color: var(--muted-fg);
+}
+
+.shadow-editor-footer .btn-clear:hover {
+    background: var(--darkened-bg);
+    color: var(--body-fg);
+    opacity: 0.9;
+}
+
+.shadow-editor-footer .btn-apply {
+    background: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.shadow-editor-footer .btn-apply:hover {
+    background: var(--selected-bg);
+    opacity: 0.9;
+}
+
+/* Scrollbar Styling */
+.shadows-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.shadows-list::-webkit-scrollbar-track {
+    background: var(--darkened-bg);
+    border-radius: 3px;
+}
+
+.shadows-list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.shadows-list::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-fg);
+}
+
+/* RTL Support */
+[dir="rtl"] .shadow-editor-trigger {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+[dir="rtl"] .tab-btn i {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+/* Theme variables automatically handle light/dark mode switching */
+/* No explicit dark theme styles needed - CSS variables adapt automatically */
+
+/* Responsive */
+@media (max-width: 640px) {
+    .shadow-editor-popup {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+    }
+
+    /* Tab container responsive styles inherited from admin-base.css */
+
+    /* Tab button responsive styles inherited from admin-base.css */
+
+    .presets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .shadow-preview-section {
+        flex-direction: column;
+    }
+
+    .preview-arrow {
+        transform: rotate(90deg);
+    }
+}

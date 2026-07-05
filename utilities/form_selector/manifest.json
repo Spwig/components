@@ -1,0 +1,35 @@
+{
+  "component_type": "utility",
+  "slug": "form-selector",
+  "name": "form-selector",
+  "version": "1.0.0",
+  "display_name": "Form Selector",
+  "description": "Form selection dropdown that integrates with the Form Builder for selecting or creating forms",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "advanced",
+  "assets": {
+    "css": [
+      "static/form_selector.css"
+    ],
+    "js": [
+      "static/form_selector.js"
+    ]
+  },
+  "supported_properties": [
+    "form_id"
+  ],
+  "options": {
+    "allow_create": true,
+    "show_preview": true
+  },
+  "dependencies": [],
+  "documentation_url": "https://docs.spwig.com/utilities/form-selector",
+  "support_url": "https://support.spwig.com",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

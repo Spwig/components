@@ -1,0 +1,640 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Focal Point Editor Styles
+ * Version 1.0.0
+ *
+ * Requires: utilities/base/current/utility_base.css for CSS variables
+ */
+
+/* ============================================
+   Trigger Button
+   ============================================ */
+.focal-point-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    margin-left: 8px;
+    background: var(--body-bg, #ffffff);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--body-fg, #374151);
+    font-size: 13px;
+}
+
+.focal-point-trigger:hover {
+    background: var(--darkened-bg, #f3f4f6);
+    border-color: var(--selected-bg, #3b82f6);
+}
+
+.focal-point-trigger .focal-point-preview {
+    width: 32px;
+    height: 24px;
+    background: var(--darkened-bg, #f3f4f6);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.focal-point-trigger .focal-point-preview::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--primary-color, #3b82f6);
+    border: 1px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    left: var(--fp-x, 50%);
+    top: var(--fp-y, 50%);
+}
+
+.focal-point-trigger .focal-point-label {
+    font-weight: 500;
+}
+
+.focal-point-trigger .focal-point-value {
+    color: var(--text-muted, #6b7280);
+    font-size: 12px;
+}
+
+.focal-point-trigger i {
+    font-size: 14px;
+    color: inherit;
+}
+
+/* ============================================
+   Popup Container
+   ============================================ */
+.focal-point-popup {
+    position: fixed;
+    background: var(--body-bg, #ffffff);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    z-index: 100000;
+    min-width: 600px;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: focalPointFadeIn 0.2s ease-out;
+}
+
+@keyframes focalPointFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ============================================
+   Header
+   ============================================ */
+.focal-point-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color, #d1d5db);
+    cursor: move;
+    user-select: none;
+    background: var(--darkened-bg, #f9fafb);
+    border-radius: 12px 12px 0 0;
+}
+
+.focal-point-header h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--body-fg, #374151);
+}
+
+.focal-point-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--text-muted, #6b7280);
+    transition: all 0.15s ease;
+}
+
+.focal-point-close:hover {
+    background: var(--error-bg, #fee2e2);
+    color: var(--error-fg, #dc2626);
+}
+
+/* ============================================
+   Breakpoint Tabs
+   ============================================ */
+.focal-point-breakpoint-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 8px 16px;
+    background: var(--darkened-bg, #f9fafb);
+    border-bottom: 1px solid var(--border-color, #d1d5db);
+}
+
+.focal-point-breakpoint-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-muted, #6b7280);
+    transition: all 0.15s ease;
+}
+
+.focal-point-breakpoint-tab:hover {
+    background: var(--body-bg, #ffffff);
+    color: var(--body-fg, #374151);
+}
+
+.focal-point-breakpoint-tab.active {
+    background: var(--body-bg, #ffffff);
+    border-color: var(--primary-color, #3b82f6);
+    color: var(--primary-color, #3b82f6);
+    font-weight: 500;
+}
+
+.focal-point-breakpoint-tab i {
+    font-size: 14px;
+}
+
+/* ============================================
+   Body / Canvas Area
+   ============================================ */
+.focal-point-body {
+    flex: 1;
+    padding: 16px;
+    overflow: auto;
+}
+
+.focal-point-canvas-container {
+    position: relative;
+    background: var(--darkened-bg, #f3f4f6);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: crosshair;
+    margin-bottom: 16px;
+}
+
+.focal-point-canvas-container img {
+    display: block;
+    max-width: 100%;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
+/* ============================================
+   Focal Point Marker
+   ============================================ */
+.focal-point-marker {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.focal-point-marker::before,
+.focal-point-marker::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Horizontal line */
+.focal-point-marker::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+/* Vertical line */
+.focal-point-marker::after {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+.focal-point-marker-center {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--primary-color, #3b82f6);
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Draggable marker */
+.focal-point-marker.draggable {
+    pointer-events: auto;
+    cursor: grab;
+}
+
+.focal-point-marker.draggable:active {
+    cursor: grabbing;
+}
+
+/* ============================================
+   Rule of Thirds Grid
+   ============================================ */
+.focal-point-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.focal-point-grid.visible {
+    opacity: 1;
+}
+
+.focal-point-grid-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.focal-point-grid-line.horizontal {
+    width: 100%;
+    height: 1px;
+}
+
+.focal-point-grid-line.horizontal:nth-child(1) {
+    top: 33.333%;
+}
+
+.focal-point-grid-line.horizontal:nth-child(2) {
+    top: 66.666%;
+}
+
+.focal-point-grid-line.vertical {
+    height: 100%;
+    width: 1px;
+}
+
+.focal-point-grid-line.vertical:nth-child(3) {
+    left: 33.333%;
+}
+
+.focal-point-grid-line.vertical:nth-child(4) {
+    left: 66.666%;
+}
+
+/* ============================================
+   Controls Section
+   ============================================ */
+.focal-point-controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+/* Quick Position Grid */
+.focal-point-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 32px);
+    gap: 4px;
+}
+
+.focal-point-quick-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--body-bg, #ffffff);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--text-muted, #6b7280);
+    transition: all 0.15s ease;
+}
+
+.focal-point-quick-btn:hover {
+    background: var(--darkened-bg, #f3f4f6);
+    border-color: var(--primary-color, #3b82f6);
+    color: var(--primary-color, #3b82f6);
+}
+
+.focal-point-quick-btn.active {
+    background: var(--primary-color, #3b82f6);
+    border-color: var(--primary-color, #3b82f6);
+    color: white;
+}
+
+/* Info Panel */
+.focal-point-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.focal-point-coordinates {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-fg, #374151);
+}
+
+.focal-point-coordinates span {
+    color: var(--primary-color, #3b82f6);
+    font-family: monospace;
+}
+
+.focal-point-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.focal-point-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--body-fg, #374151);
+}
+
+.focal-point-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color, #3b82f6);
+}
+
+.focal-point-keyboard-hint {
+    font-size: 11px;
+    color: var(--text-muted, #9ca3af);
+    margin-top: 4px;
+}
+
+.focal-point-keyboard-hint kbd {
+    display: inline-block;
+    padding: 2px 5px;
+    background: var(--darkened-bg, #f3f4f6);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 10px;
+}
+
+/* ============================================
+   Zoom Controls
+   ============================================ */
+.focal-point-zoom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.focal-point-zoom-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--body-bg, #ffffff);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--body-fg, #374151);
+    transition: all 0.15s ease;
+}
+
+.focal-point-zoom-btn:hover {
+    background: var(--darkened-bg, #f3f4f6);
+    border-color: var(--primary-color, #3b82f6);
+}
+
+.focal-point-zoom-slider {
+    flex: 1;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--border-color, #d1d5db);
+    border-radius: 2px;
+    outline: none;
+}
+
+.focal-point-zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--primary-color, #3b82f6);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.focal-point-zoom-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: var(--primary-color, #3b82f6);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.focal-point-zoom-value {
+    font-size: 12px;
+    color: var(--text-muted, #6b7280);
+    min-width: 45px;
+    text-align: right;
+}
+
+/* ============================================
+   Aspect Ratio Previews
+   ============================================ */
+.focal-point-previews {
+    margin-top: 16px;
+}
+
+.focal-point-previews-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted, #6b7280);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.focal-point-previews-grid {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.focal-point-preview-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.focal-point-preview-item:hover {
+    opacity: 0.8;
+}
+
+.focal-point-preview-box {
+    background: var(--darkened-bg, #f3f4f6);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.focal-point-preview-box img {
+    display: block;
+    object-fit: cover;
+}
+
+.focal-point-preview-box.ratio-1-1 {
+    width: 60px;
+    height: 60px;
+}
+
+.focal-point-preview-box.ratio-16-9 {
+    width: 80px;
+    height: 45px;
+}
+
+.focal-point-preview-box.ratio-4-3 {
+    width: 60px;
+    height: 45px;
+}
+
+.focal-point-preview-box.ratio-3-2 {
+    width: 60px;
+    height: 40px;
+}
+
+.focal-point-preview-label {
+    font-size: 11px;
+    color: var(--text-muted, #9ca3af);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.focal-point-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border-color, #d1d5db);
+    background: var(--darkened-bg, #f9fafb);
+    border-radius: 0 0 12px 12px;
+}
+
+.focal-point-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+}
+
+.focal-point-btn-secondary {
+    background: var(--body-bg, #ffffff);
+    border-color: var(--border-color, #d1d5db);
+    color: var(--body-fg, #374151);
+}
+
+.focal-point-btn-secondary:hover {
+    background: var(--darkened-bg, #f3f4f6);
+}
+
+.focal-point-btn-primary {
+    background: var(--primary-color, #3b82f6);
+    color: white;
+}
+
+.focal-point-btn-primary:hover {
+    background: var(--primary-hover, #2563eb);
+}
+
+.focal-point-btn-danger {
+    background: transparent;
+    color: var(--error-fg, #dc2626);
+}
+
+.focal-point-btn-danger:hover {
+    background: var(--error-bg, #fee2e2);
+}
+
+/* ============================================
+   Dark Mode Support
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    .focal-point-popup {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Admin dark theme support */
+body.dark-theme .focal-point-popup,
+.dark-theme .focal-point-popup {
+    background: var(--body-bg, #1f2937);
+    border-color: var(--border-color, #374151);
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+@media (max-width: 768px) {
+    .focal-point-popup {
+        min-width: auto;
+        width: 95vw;
+        max-width: 95vw;
+        left: 2.5vw !important;
+        right: 2.5vw !important;
+    }
+
+    .focal-point-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .focal-point-previews-grid {
+        justify-content: center;
+    }
+}

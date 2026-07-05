@@ -1,0 +1,45 @@
+{
+  "component_type": "utility",
+  "slug": "translation-editor",
+  "name": "translation-editor",
+  "version": "1.0.2",
+  "display_name": "Translation Editor",
+  "description": "Translation management utility with AI-powered translation, manual editing, and progress tracking. Supports 100+ languages with CSS variable theming and drag-to-position interface.",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "content",
+  "assets": {
+    "css": [
+      "static/translation_editor.css"
+    ],
+    "js": [
+      "static/translation_editor.js"
+    ]
+  },
+  "supported_properties": [
+    "text",
+    "content",
+    "translatable"
+  ],
+  "options": {
+    "charThreshold": 1000,
+    "languageThreshold": 5,
+    "showProgress": true,
+    "autoDetectChanges": true,
+    "showFallbackWarning": true
+  },
+  "changelog": {
+    "1.0.2": [
+      "Replaced native browser alert() and confirm() with AdminModal for consistent admin UI"
+    ]
+  },
+  "dependencies": [],
+  "documentation_url": "https://docs.spwig.com/utilities/translation-editor",
+  "support_url": "https://support.spwig.com",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

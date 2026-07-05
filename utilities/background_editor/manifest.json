@@ -1,0 +1,47 @@
+{
+  "component_type": "utility",
+  "slug": "background-editor",
+  "name": "background-editor",
+  "version": "1.0.5",
+  "display_name": "Background Editor",
+  "description": "Comprehensive background management utility supporting solid colors, gradients, images, and videos with overlay support, normal/hover states, and live preview. Integrates with color picker, gradient creator, and media library.",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "design",
+  "assets": {
+    "css": [
+      "static/background_editor.css"
+    ],
+    "js": [
+      "static/background_editor.js"
+    ]
+  },
+  "supported_properties": [
+    "background"
+  ],
+  "options": {
+    "showHoverState": true,
+    "showOverlay": true,
+    "showPreview": true
+  },
+  "changelog": {
+    "1.0.5": [
+      "Replaced custom media browse modal with platform media library widget for image and video selection"
+    ],
+    "1.0.4": [
+      "Replaced native browser alert() with AdminModal for consistent admin UI"
+    ]
+  },
+  "dependencies": [
+    "color-picker",
+    "gradient-creator"
+  ],
+  "documentation_url": "https://docs.spwig.com/utilities/background-editor",
+  "support_url": "https://support.spwig.com",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

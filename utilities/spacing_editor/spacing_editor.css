@@ -1,0 +1,468 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Spacing Editor Utility Styles v1.0.2
+ *
+ * Follows page builder design principles:
+ * - Proper CSS scoping to .spacing-editor-popup
+ * - Dark theme support via admin theme tokens
+ * - Utility base structure integration
+ * - Consistent visual design
+ *
+ * v1.0.2 Changes:
+ * - Replaced all hard-coded colors with admin theme CSS variables
+ * - Visual editor now uses --info-color, --success-color, --warning-color
+ * - Focus states use theme-adaptive color-mix() instead of hard-coded rgba()
+ */
+
+/* ===========================
+   Trigger Button
+   =========================== */
+.spacing-editor-trigger {
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--body-fg);
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.spacing-editor-trigger:hover {
+    background: var(--darkened-bg);
+    border-color: var(--selected-bg);
+    color: var(--body-fg);
+}
+
+.spacing-editor-trigger:active {
+    background: var(--selected-bg);
+    transform: translateY(1px);
+}
+
+/* Theme variables already handle light/dark mode */
+
+/* ===========================
+   Popup Container (extends utility-popup)
+   =========================== */
+.spacing-editor-popup.utility-popup {
+    width: 400px;
+    max-height: 600px;
+}
+
+/* ===========================
+   Body Content
+   =========================== */
+.spacing-editor-popup .utility-body {
+    padding: 0;
+    overflow-y: auto;
+}
+
+/* Tabs are styled in admin-base.css using .admin-tabs class */
+
+/* ===========================
+   Content Area
+   =========================== */
+.spacing-editor-popup .spacing-content {
+    padding: 20px;
+}
+
+.spacing-editor-popup .spacing-section {
+    margin-bottom: 24px;
+}
+
+.spacing-editor-popup .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.spacing-editor-popup .section-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--body-fg);
+}
+
+/* ===========================
+   Link Button
+   =========================== */
+.spacing-editor-popup .link-btn {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--muted-fg);
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+
+.spacing-editor-popup .link-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+}
+
+.spacing-editor-popup .link-btn.linked {
+    background: var(--selected-bg);
+    border-color: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.spacing-editor-popup .link-btn.linked:hover {
+    background: var(--selected-bg);
+    border-color: var(--selected-bg);
+    opacity: 0.9;
+}
+
+/* ===========================
+   Spacing Inputs
+   =========================== */
+.spacing-editor-popup .spacing-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.spacing-editor-popup .spacing-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.spacing-editor-popup .spacing-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted-fg);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.spacing-editor-popup .input-with-unit {
+    display: flex;
+    gap: 4px;
+}
+
+.spacing-editor-popup .spacing-input {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    background: var(--input-bg);
+    color: var(--body-fg);
+    transition: all 0.2s ease;
+}
+
+.spacing-editor-popup .spacing-input:focus {
+    outline: none;
+    border-color: var(--selected-bg);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--selected-bg) 15%, transparent);
+}
+
+.spacing-editor-popup .unit-select {
+    padding: 8px 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 12px;
+    background: var(--input-bg);
+    color: var(--body-fg);
+    cursor: pointer;
+    min-width: 50px;
+}
+
+.spacing-editor-popup .unit-select:focus {
+    outline: none;
+    border-color: var(--selected-bg);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--selected-bg) 15%, transparent);
+}
+
+/* ===========================
+   Visual Editor
+   =========================== */
+.spacing-editor-popup .visual-spacing-editor {
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--darkened-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.spacing-editor-popup .visual-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.spacing-editor-popup .margin-visual {
+    position: relative;
+    background: color-mix(in srgb, var(--info-color, var(--primary-color)) 10%, transparent);
+    border: 2px dashed var(--info-color, var(--primary-color));
+    padding: 30px;
+    border-radius: 8px;
+    min-width: 200px;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spacing-editor-popup .padding-visual {
+    position: relative;
+    background: color-mix(in srgb, var(--success-color) 10%, transparent);
+    border: 2px dashed var(--success-color);
+    padding: 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spacing-editor-popup .content-area {
+    background: color-mix(in srgb, var(--warning-color) 10%, transparent);
+    border: 2px solid var(--warning-color);
+    border-radius: 4px;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--warning-color);
+    text-align: center;
+    min-width: 80px;
+}
+
+/* ===========================
+   Drag Handles
+   =========================== */
+.spacing-editor-popup .margin-handle,
+.spacing-editor-popup .padding-handle {
+    position: absolute;
+    background: var(--body-bg);
+    border: 2px solid;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    cursor: grab;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.spacing-editor-popup .margin-handle {
+    border-color: var(--info-color, var(--primary-color));
+    color: var(--info-color, var(--primary-color));
+    background: color-mix(in srgb, var(--info-color, var(--primary-color)) 10%, var(--body-bg));
+}
+
+.spacing-editor-popup .padding-handle {
+    border-color: var(--success-color);
+    color: var(--success-color);
+    background: color-mix(in srgb, var(--success-color) 10%, var(--body-bg));
+}
+
+.spacing-editor-popup .margin-handle:hover,
+.spacing-editor-popup .padding-handle:hover {
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--body-fg) 15%, transparent);
+    z-index: 10;
+}
+
+.spacing-editor-popup .margin-handle:active,
+.spacing-editor-popup .padding-handle:active {
+    cursor: grabbing;
+}
+
+/* Handle positioning */
+.spacing-editor-popup .margin-top {
+    top: -8px;
+    left: calc(50% - 8px);
+}
+
+.spacing-editor-popup .margin-right {
+    top: calc(50% - 8px);
+    right: -8px;
+}
+
+.spacing-editor-popup .margin-bottom {
+    bottom: -8px;
+    left: calc(50% - 8px);
+}
+
+.spacing-editor-popup .margin-left {
+    top: calc(50% - 8px);
+    left: -8px;
+}
+
+.spacing-editor-popup .padding-top {
+    top: -8px;
+    left: calc(50% - 8px);
+}
+
+.spacing-editor-popup .padding-right {
+    top: calc(50% - 8px);
+    right: -8px;
+}
+
+.spacing-editor-popup .padding-bottom {
+    bottom: -8px;
+    left: calc(50% - 8px);
+}
+
+.spacing-editor-popup .padding-left {
+    top: calc(50% - 8px);
+    left: -8px;
+}
+
+/* ===========================
+   Presets
+   =========================== */
+.spacing-editor-popup .spacing-presets {
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: var(--darkened-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.spacing-editor-popup .presets-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted-fg);
+    margin-bottom: 12px;
+}
+
+.spacing-editor-popup .preset-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.spacing-editor-popup .preset-btn {
+    padding: 6px 12px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--body-fg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.spacing-editor-popup .preset-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+    opacity: 0.9;
+}
+
+.spacing-editor-popup .preset-btn:active {
+    background: var(--darkened-bg);
+    transform: translateY(1px);
+}
+
+/* ===========================
+   Action Buttons
+   =========================== */
+.spacing-editor-popup .spacing-actions {
+    display: flex;
+    gap: 8px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-color);
+    background: var(--darkened-bg);
+}
+
+.spacing-editor-popup .apply-btn,
+.spacing-editor-popup .clear-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1px solid;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.spacing-editor-popup .apply-btn {
+    background: var(--selected-bg);
+    border-color: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.spacing-editor-popup .apply-btn:hover {
+    background: var(--selected-bg);
+    border-color: var(--selected-bg);
+    opacity: 0.9;
+}
+
+.spacing-editor-popup .clear-btn {
+    background: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--body-fg);
+}
+
+.spacing-editor-popup .clear-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+}
+
+/* ===========================
+   Dark Theme Support
+   =========================== */
+/* Theme variables automatically handle light/dark mode switching */
+/* No explicit dark theme styles needed - CSS variables adapt automatically */
+
+/* ===========================
+   Responsive Design
+   =========================== */
+@media (max-width: 640px) {
+    .spacing-editor-popup.utility-popup {
+        width: 95vw;
+        max-width: 350px;
+    }
+
+    .spacing-editor-popup .spacing-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .spacing-editor-popup .preset-buttons {
+        justify-content: center;
+    }
+
+    .spacing-editor-popup .visual-container {
+        min-height: 150px;
+    }
+
+    .spacing-editor-popup .margin-visual {
+        min-width: 150px;
+        min-height: 100px;
+    }
+}
+
+/* ===========================
+   Animations
+   =========================== */
+.spacing-editor-popup .spacing-section {
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

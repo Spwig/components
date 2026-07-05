@@ -1,0 +1,69 @@
+{
+  "component_type": "translation_provider",
+  "slug": "deepl",
+  "name": "DeepL",
+  "version": "1.0.0",
+  "description": "Premium quality translations with advanced neural networks, especially strong for European languages",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://www.deepl.com",
+  "support_url": "https://www.deepl.com/docs-api",
+  "license": "AGPL-3.0",
+  "min_platform_version": "1.1.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "translations": ">=1.0.0"
+  },
+  "provider_key": "deepl",
+  "entry_point": "provider",
+  "class_name": "DeepLProvider",
+  "capabilities": {
+    "batch_translate": true,
+    "language_detection": true,
+    "formality": true,
+    "glossary": false,
+    "html_support": true
+  },
+  "credential_schema": {
+    "api_key": {
+      "type": "password",
+      "label": "API Key",
+      "help_text": "Your DeepL API key from the DeepL Pro account dashboard. Free keys end with ':fx'",
+      "required": true,
+      "placeholder": "Enter your DeepL API key"
+    }
+  },
+  "provider_info": {
+    "supported_languages": 33,
+    "free_tier": "500,000 characters/month",
+    "pricing": "From $7.49/month (DeepL API Pro)",
+    "features": [
+      {"icon": "fas fa-globe", "text": "33+ languages"},
+      {"icon": "fas fa-gift", "text": "500K free chars/month"},
+      {"icon": "fas fa-dollar-sign", "text": "From $7.49/month"}
+    ]
+  },
+  "signup_url": "https://www.deepl.com/pro-api",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-16",
+      "changes": ["Initial release with translate and batch_translate support"]
+    }
+  ]
+}

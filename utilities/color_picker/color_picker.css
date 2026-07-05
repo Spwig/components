@@ -1,0 +1,356 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Color Picker Utility Styles
+ * Uses standard utility-base.css classes for popup structure
+ * Only includes color picker specific styles
+ */
+
+/* Property Renderer Integration */
+.advanced-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.advanced-input-wrapper .property-input {
+    flex: 1;
+    max-width: none;
+}
+
+/* v1.0.1: Removed color-preview swatch - now using colored icon instead */
+/* The trigger button only shows the palette icon with the selected color applied to it */
+
+/* Color Picker Specific Popup Styles */
+.utility-popup.color-picker {
+    width: 240px;
+}
+
+/* Color Preview Section */
+.color-preview-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: var(--darkened-bg);
+    border-radius: 8px;
+}
+
+.color-preview-box {
+    text-align: center;
+}
+
+.preview-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--muted-fg);
+    margin-bottom: 6px;
+}
+
+.preview-color {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-color::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(45deg, #ccc 25%, transparent 25%),
+        linear-gradient(-45deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+    z-index: -1;
+}
+
+.color-preview-arrow {
+    font-size: 20px;
+    color: var(--muted-fg);
+}
+
+/* Color Canvas */
+.color-picker-canvas-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.color-picker-canvas {
+    display: block;
+    width: 208px;
+    height: 150px;
+    cursor: crosshair;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+.color-picker-cursor {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+/* Hue Slider */
+.color-picker-hue-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.color-picker-hue {
+    display: block;
+    width: 208px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.color-picker-hue-cursor {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Opacity Slider */
+.color-picker-opacity-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.color-picker-opacity {
+    display: block;
+    width: 208px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.color-picker-opacity-cursor {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.opacity-value {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+/* Format Section */
+.color-picker-format {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.format-selector {
+    padding: 6px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--body-bg);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--body-fg);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.format-selector:hover,
+.format-selector:focus {
+    border-color: var(--muted-fg);
+    outline: none;
+}
+
+.color-value-input {
+    flex: 1;
+    max-width: 120px;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    color: var(--body-fg);
+    background: var(--body-bg);
+    transition: border-color 0.2s;
+}
+
+.color-value-input:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+/* Swatches - Keep these styles exactly as they are */
+.color-picker-swatches,
+.color-picker-recent {
+    margin-bottom: 12px;
+}
+
+.swatches-title,
+.recent-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--muted-fg);
+    margin-bottom: 8px;
+}
+
+.swatches-grid,
+.recent-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 4px;
+}
+
+/* Scoped swatch styles to prevent conflicts with other utilities */
+.utility-popup.color-picker .swatch {
+    width: 16px;
+    height: 16px;
+    padding: 0 !important;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    background-clip: padding-box;
+}
+
+.utility-popup.color-picker .swatch::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(45deg, #ccc 25%, transparent 25%),
+        linear-gradient(-45deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 6px 6px;
+    background-position: 0 0, 0 3px, 3px -3px, -3px 0px;
+    z-index: -1;
+    display: none; /* Hide by default */
+}
+
+/* Only show checkerboard for swatches with transparency */
+.utility-popup.color-picker .swatch[data-alpha="true"]::before {
+    display: block;
+}
+
+.utility-popup.color-picker .swatch:hover {
+    border-color: var(--primary-color, var(--selected-bg));
+    box-shadow: 0 0 0 2px var(--primary-color, var(--selected-bg)), 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+    z-index: 1;
+}
+
+/* Eyedropper tool button */
+.color-picker-eyedropper {
+    background: none;
+    border: none;
+    color: var(--muted-fg);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.color-picker-eyedropper:hover {
+    color: var(--body-fg);
+}
+
+/* RTL Support */
+[dir="rtl"] .util-btn.color-picker-trigger {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+[dir="rtl"] .opacity-value {
+    right: auto;
+    left: 8px;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .color-preview-section {
+        background: var(--darkened-bg);
+    }
+
+    .format-selector,
+    .color-value-input {
+        background: var(--darkened-bg);
+        border-color: var(--border-color);
+        color: var(--body-fg);
+    }
+
+    .format-selector:hover,
+    .format-selector:focus,
+    .color-value-input:focus {
+        border-color: var(--muted-fg);
+    }
+
+    /* Dark mode checkerboard pattern */
+    .preview-color::before,
+    .utility-popup.color-picker .swatch::before {
+        background-image:
+            linear-gradient(45deg, #3f3f46 25%, transparent 25%),
+            linear-gradient(-45deg, #3f3f46 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #3f3f46 75%),
+            linear-gradient(-45deg, transparent 75%, #3f3f46 75%);
+    }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .utility-popup.color-picker {
+        width: 100%;
+        max-width: 100%;
+    }
+}

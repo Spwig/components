@@ -1,0 +1,127 @@
+{
+  "component_type": "translation_provider",
+  "slug": "generic_api",
+  "name": "Generic API",
+  "version": "1.0.1",
+  "description": "Connect to any REST-based translation API. Supports configurable base URL, authentication methods, and request formats. Ideal for self-hosted translation services or custom integrations.",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://spwig.com",
+  "support_url": "https://spwig.com/docs/translations/generic-api",
+  "license": "AGPL-3.0",
+  "min_platform_version": "1.1.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "translations": ">=1.0.0"
+  },
+  "built_in": true,
+  "provider_key": "generic_api",
+  "entry_point": "provider",
+  "class_name": "GenericAPIProvider",
+  "capabilities": {
+    "batch_translate": true,
+    "language_detection": false,
+    "formality": false,
+    "glossary": false,
+    "html_support": false
+  },
+  "credential_schema": {
+    "base_url": {
+      "type": "url",
+      "label": "API Base URL",
+      "help_text": "Base URL of the translation service (e.g., https://translate.example.com:8443)",
+      "required": true,
+      "placeholder": "https://translate.example.com"
+    },
+    "api_key": {
+      "type": "password",
+      "label": "API Key",
+      "help_text": "API key for authentication (leave empty if not required)",
+      "required": false,
+      "placeholder": "Enter your API key"
+    },
+    "auth_method": {
+      "type": "select",
+      "label": "Authentication Method",
+      "help_text": "How to send the API key in requests",
+      "required": false,
+      "default": "bearer",
+      "options": [
+        {"value": "bearer", "label": "Bearer Token (Authorization header)"},
+        {"value": "x-api-key", "label": "X-API-Key Header"},
+        {"value": "query", "label": "Query Parameter (?api_key=...)"},
+        {"value": "none", "label": "No Authentication"}
+      ]
+    },
+    "request_format": {
+      "type": "select",
+      "label": "Request Format",
+      "help_text": "How the API expects translation requests",
+      "required": false,
+      "default": "standard",
+      "options": [
+        {"value": "standard", "label": "Standard (text, source_lang, target_lang)"},
+        {"value": "libretranslate", "label": "LibreTranslate (q, source, target)"}
+      ]
+    },
+    "translate_path": {
+      "type": "text",
+      "label": "Translate Path",
+      "help_text": "Path for the translate endpoint (default: /translate). Change for APIs with different paths (e.g., /v2/translate)",
+      "required": false,
+      "default": "/translate",
+      "placeholder": "/translate"
+    },
+    "response_field": {
+      "type": "text",
+      "label": "Response Field",
+      "help_text": "JSON field name in the API response containing translated text (leave empty for format default)",
+      "required": false,
+      "default": "",
+      "placeholder": "translated_text"
+    }
+  },
+  "provider_info": {
+    "supported_languages": 100,
+    "free_tier": "Depends on connected service",
+    "pricing": "Depends on connected service",
+    "features": [
+      {"icon": "fas fa-plug", "text": "Connect any REST API"},
+      {"icon": "fas fa-cogs", "text": "Configurable formats"},
+      {"icon": "fas fa-lock", "text": "Multiple auth methods"},
+      {"icon": "fas fa-server", "text": "Self-hosted compatible"}
+    ]
+  },
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "changelog": [
+    {
+      "version": "1.0.1",
+      "date": "2026-03-17",
+      "changes": [
+        "Changed API Endpoint to Base URL for better multi-endpoint support",
+        "Added batch translation support via /translate_batch endpoint",
+        "Added health check via /health endpoint during connection test",
+        "Added configurable translate path for non-standard APIs"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-03-17",
+      "changes": ["Initial release with configurable endpoint, auth methods, and request formats"]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "component_type": "translation_provider",
+  "slug": "azure_translator",
+  "name": "Azure Translator",
+  "version": "1.0.0",
+  "description": "Microsoft's cloud translation service with extensive customization options and enterprise features",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://azure.microsoft.com/en-us/products/cognitive-services/translator",
+  "support_url": "https://learn.microsoft.com/en-us/azure/cognitive-services/translator/",
+  "license": "AGPL-3.0",
+  "min_platform_version": "1.1.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "translations": ">=1.0.0"
+  },
+  "provider_key": "azure_translator",
+  "entry_point": "provider",
+  "class_name": "AzureTranslatorProvider",
+  "capabilities": {
+    "batch_translate": true,
+    "language_detection": true,
+    "formality": false,
+    "glossary": false,
+    "html_support": true
+  },
+  "credential_schema": {
+    "api_key": {
+      "type": "password",
+      "label": "Subscription Key",
+      "help_text": "Your Azure Translator subscription key from the Azure Portal",
+      "required": true,
+      "placeholder": "Enter your Azure subscription key"
+    },
+    "region": {
+      "type": "text",
+      "label": "Azure Region",
+      "help_text": "The Azure region for your Translator resource (e.g., westus2, eastus, westeurope)",
+      "required": true,
+      "placeholder": "e.g., westus2"
+    }
+  },
+  "provider_info": {
+    "supported_languages": 100,
+    "free_tier": "2,000,000 characters/month",
+    "pricing": "$10 per million characters",
+    "features": [
+      {"icon": "fas fa-globe", "text": "100+ languages"},
+      {"icon": "fas fa-gift", "text": "2M free chars/month"},
+      {"icon": "fas fa-dollar-sign", "text": "$10/million chars"}
+    ]
+  },
+  "signup_url": "https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-16",
+      "changes": ["Initial release with Azure Translator v3.0 API support"]
+    }
+  ]
+}

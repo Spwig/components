@@ -1,0 +1,849 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Background Editor Styles
+ * Uses standard utility-base.css classes for popup structure
+ * Only includes background editor specific styles
+ */
+
+/* Background Preview in Trigger Button */
+.util-btn.background-editor-trigger .background-preview {
+    width: 60px;
+    height: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+/* Background Editor Specific Popup Width */
+.utility-popup.background-editor {
+    width: 520px;
+}
+
+/* State Selector */
+.utility-popup.background-editor .state-selector {
+    display: flex;
+    gap: 8px;
+    padding: 16px 20px;
+    background: var(--darkened-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.utility-popup.background-editor .state-btn {
+    flex: 1;
+    padding: 8px 16px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--muted-fg);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.utility-popup.background-editor .state-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--muted-fg);
+}
+
+.utility-popup.background-editor .state-btn.active {
+    background: var(--primary-color, var(--selected-bg));
+    border-color: var(--primary-color, var(--selected-bg));
+    color: var(--selected-fg);
+}
+
+.utility-popup.background-editor .state-btn i {
+    font-size: 14px;
+}
+
+/* Hover Enable Section */
+.utility-popup.background-editor .hover-enable-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: var(--darkened-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.utility-popup.background-editor .hover-label {
+    font-size: 13px;
+    color: var(--body-fg);
+}
+
+/* Preview Section */
+.utility-popup.background-editor .background-preview-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--darkened-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.utility-popup.background-editor .preview-box {
+    text-align: center;
+}
+
+.utility-popup.background-editor .preview-box .preview-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--muted-fg);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.utility-popup.background-editor .preview-background {
+    width: 160px;
+    height: 90px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.utility-popup.background-editor .preview-background:hover {
+    border-color: var(--primary-color, var(--selected-bg));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.utility-popup.background-editor .preview-background.preview-normal {
+    background: var(--body-bg);
+}
+
+.utility-popup.background-editor .preview-background.preview-hover {
+    background: var(--darkened-bg);
+}
+
+.utility-popup.background-editor .preview-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-fg);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.utility-popup.background-editor .preview-arrow {
+    font-size: 20px;
+    color: var(--muted-fg);
+}
+
+/* Type Selector */
+.utility-popup.background-editor .background-type-selector {
+    display: flex;
+    gap: 4px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.utility-popup.background-editor .type-btn {
+    flex: 1;
+    padding: 12px 8px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--muted-fg);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.utility-popup.background-editor .type-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--muted-fg);
+}
+
+.utility-popup.background-editor .type-btn.active {
+    background: var(--primary-color, var(--selected-bg));
+    border-color: var(--primary-color, var(--selected-bg));
+    color: var(--selected-fg);
+}
+
+.utility-popup.background-editor .type-btn i {
+    font-size: 18px;
+}
+
+.utility-popup.background-editor .type-btn span {
+    font-size: 11px;
+}
+
+/* Content Panels */
+.utility-popup.background-editor .background-content {
+    padding: 20px;
+    min-height: 200px;
+}
+
+.utility-popup.background-editor .content-panel {
+    display: none;
+}
+
+.utility-popup.background-editor .content-panel.active {
+    display: block;
+}
+
+/* Color Panel */
+.utility-popup.background-editor .color-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.utility-popup.background-editor .color-display {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.utility-popup.background-editor .color-display::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(45deg, #ccc 25%, transparent 25%),
+        linear-gradient(-45deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+    z-index: -1;
+}
+
+.utility-popup.background-editor .color-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: monospace;
+    background: var(--body-bg);
+    color: var(--body-fg);
+}
+
+.utility-popup.background-editor .color-input:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+.utility-popup.background-editor .pick-color-btn {
+    padding: 8px 12px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--muted-fg);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.utility-popup.background-editor .pick-color-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--muted-fg);
+    color: var(--body-fg);
+}
+
+/* Color Swatches */
+.utility-popup.background-editor .color-swatches {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+}
+
+.utility-popup.background-editor .swatch {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.utility-popup.background-editor .swatch::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(45deg, #ccc 25%, transparent 25%),
+        linear-gradient(-45deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 6px 6px;
+    background-position: 0 0, 0 3px, 3px -3px, -3px 0px;
+    z-index: -1;
+}
+
+.utility-popup.background-editor .swatch:hover {
+    border-color: var(--primary-color, var(--selected-bg));
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient Panel */
+.utility-popup.background-editor .gradient-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.utility-popup.background-editor .gradient-display {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.utility-popup.background-editor .gradient-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: monospace;
+    background: var(--body-bg);
+    color: var(--body-fg);
+}
+
+.utility-popup.background-editor .gradient-input:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+.utility-popup.background-editor .edit-gradient-btn {
+    padding: 8px 12px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--muted-fg);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.utility-popup.background-editor .edit-gradient-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--muted-fg);
+    color: var(--body-fg);
+}
+
+/* Gradient Presets */
+.utility-popup.background-editor .gradient-presets {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.utility-popup.background-editor .preset {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.utility-popup.background-editor .preset:hover {
+    background: var(--darkened-bg);
+    border-color: var(--primary-color, var(--selected-bg));
+}
+
+.utility-popup.background-editor .preset-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.utility-popup.background-editor .preset span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--body-fg);
+}
+
+/* Image Panel */
+.utility-popup.background-editor .image-selector {
+    margin-bottom: 16px;
+}
+
+.utility-popup.background-editor .image-preview {
+    width: 100%;
+    height: 180px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    position: relative;
+    background: var(--darkened-bg);
+}
+
+.utility-popup.background-editor .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.utility-popup.background-editor .image-preview .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--muted-fg);
+}
+
+.utility-popup.background-editor .image-preview .empty-state i {
+    font-size: 48px;
+    margin-bottom: 8px;
+}
+
+.utility-popup.background-editor .image-preview .empty-state span {
+    font-size: 13px;
+}
+
+.utility-popup.background-editor .image-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.utility-popup.background-editor .btn {
+    flex: 1;
+    padding: 10px 16px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--body-fg);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.utility-popup.background-editor .btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--muted-fg);
+}
+
+.utility-popup.background-editor .btn i {
+    font-size: 14px;
+}
+
+/* Video Panel - Match Image Selector Style */
+.utility-popup.background-editor .video-selector {
+    margin-bottom: 16px;
+}
+
+.utility-popup.background-editor .video-preview {
+    width: 100%;
+    height: 180px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    position: relative;
+    background: var(--darkened-bg);
+}
+
+.utility-popup.background-editor .video-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.utility-popup.background-editor .video-preview .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--muted-fg);
+}
+
+.utility-popup.background-editor .video-preview .empty-state i {
+    font-size: 48px;
+    margin-bottom: 8px;
+}
+
+.utility-popup.background-editor .video-preview .empty-state span {
+    font-size: 13px;
+}
+
+.utility-popup.background-editor .video-controls {
+    display: flex;
+    gap: 8px;
+}
+
+/* Image Settings */
+.utility-popup.background-editor .image-settings,
+.utility-popup.background-editor .video-settings {
+    background: var(--darkened-bg);
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.utility-popup.background-editor .setting-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.utility-popup.background-editor .setting-row:last-child {
+    margin-bottom: 0;
+}
+
+.utility-popup.background-editor .setting-row label {
+    min-width: 80px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted-fg);
+}
+
+.utility-popup.background-editor .setting-row select {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    background: var(--body-bg);
+    color: var(--body-fg);
+}
+
+.utility-popup.background-editor .setting-row select:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+/* Position Grid */
+.utility-popup.background-editor .position-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    flex: 1;
+}
+
+.utility-popup.background-editor .pos-btn {
+    padding: 8px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--muted-fg);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.utility-popup.background-editor .pos-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--muted-fg);
+}
+
+.utility-popup.background-editor .pos-btn.active {
+    background: var(--primary-color, var(--selected-bg));
+    border-color: var(--primary-color, var(--selected-bg));
+    color: var(--selected-fg);
+}
+
+.utility-popup.background-editor .pos-btn i {
+    font-size: 12px;
+}
+
+/* Video Settings */
+.utility-popup.background-editor .poster-controls {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+}
+
+.utility-popup.background-editor .poster-input {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    background: var(--body-bg);
+    color: var(--body-fg);
+}
+
+.utility-popup.background-editor .poster-input:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+.utility-popup.background-editor .btn-select-poster {
+    padding: 6px 10px;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--muted-fg);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.utility-popup.background-editor .btn-select-poster:hover {
+    background: var(--darkened-bg);
+    border-color: var(--muted-fg);
+}
+
+.utility-popup.background-editor .video-options {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+}
+
+.utility-popup.background-editor .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.utility-popup.background-editor .checkbox-label input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.utility-popup.background-editor .checkbox-label span {
+    font-size: 12px;
+    color: var(--body-fg);
+}
+
+/* Overlay Section */
+.utility-popup.background-editor .overlay-section {
+    margin: 0 20px 20px;
+    padding: 16px;
+    background: var(--darkened-bg);
+    border-radius: 8px;
+}
+
+.utility-popup.background-editor .overlay-section h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-fg);
+    margin: 0 0 12px 0;
+}
+
+.utility-popup.background-editor .overlay-state-label {
+    font-size: 12px;
+    color: var(--muted-fg);
+    font-weight: 400;
+}
+
+.utility-popup.background-editor .overlay-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.utility-popup.background-editor .overlay-settings {
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+.utility-popup.background-editor .overlay-color-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.utility-popup.background-editor .overlay-color-display {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.utility-popup.background-editor .overlay-color-input {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: monospace;
+    background: var(--body-bg);
+    color: var(--body-fg);
+}
+
+.utility-popup.background-editor .overlay-color-input:focus {
+    border-color: var(--primary-color, var(--selected-bg));
+    outline: none;
+}
+
+.utility-popup.background-editor .overlay-opacity-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.utility-popup.background-editor .overlay-opacity-control label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted-fg);
+    min-width: 60px;
+}
+
+.utility-popup.background-editor .overlay-opacity {
+    flex: 1;
+}
+
+.utility-popup.background-editor .opacity-value {
+    font-size: 12px;
+    color: var(--body-fg);
+    min-width: 35px;
+}
+
+/* Toggle Switches */
+.utility-popup.background-editor .switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.utility-popup.background-editor .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.utility-popup.background-editor .switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-color);
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.utility-popup.background-editor .switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+.utility-popup.background-editor input:checked + .switch-slider {
+    background-color: var(--primary-color, var(--selected-bg));
+}
+
+.utility-popup.background-editor input:checked + .switch-slider:before {
+    transform: translateX(20px);
+}
+
+/* Range Sliders */
+.utility-popup.background-editor input[type="range"] {
+    width: 100%;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.utility-popup.background-editor input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color, var(--selected-bg));
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.utility-popup.background-editor input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.utility-popup.background-editor input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color, var(--selected-bg));
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.utility-popup.background-editor input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .utility-popup.background-editor .preview-color::before,
+    .utility-popup.background-editor .color-display::before,
+    .utility-popup.background-editor .swatch::before {
+        background-image:
+            linear-gradient(45deg, #3f3f46 25%, transparent 25%),
+            linear-gradient(-45deg, #3f3f46 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #3f3f46 75%),
+            linear-gradient(-45deg, transparent 75%, #3f3f46 75%);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .utility-popup.background-editor {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .utility-popup.background-editor .background-type-selector {
+        flex-wrap: wrap;
+    }
+
+    .utility-popup.background-editor .type-btn {
+        min-width: calc(50% - 2px);
+    }
+
+    .utility-popup.background-editor .gradient-presets {
+        grid-template-columns: 1fr;
+    }
+}
+

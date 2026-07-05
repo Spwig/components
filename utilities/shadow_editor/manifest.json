@@ -1,0 +1,54 @@
+{
+  "component_type": "utility",
+  "slug": "shadow-editor",
+  "name": "shadow-editor",
+  "version": "1.0.3",
+  "display_name": "Shadow Editor",
+  "description": "Advanced shadow editor for box-shadow and text-shadow with color picker integration, presets, and automatic theme adaptation",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "styling",
+  "assets": {
+    "css": [
+      "static/shadow_editor.css"
+    ],
+    "js": [
+      "static/shadow_editor.js"
+    ]
+  },
+  "supported_properties": [
+    "box-shadow",
+    "text-shadow",
+    "shadow"
+  ],
+  "options": {
+    "shadowType": "box",
+    "show_presets": true,
+    "max_shadows": 5
+  },
+  "dependencies": [],
+  "changelog": {
+    "1.0.3": [
+      "Replaced native browser alert() with AdminModal for consistent admin UI"
+    ],
+    "1.0.2": [
+      "Fixed: Shadow editor now correctly maintains 'none' state when opening with no shadow value",
+      "Fixed: Editor no longer auto-applies default shadow on initialization",
+      "Fixed: Opening the editor no longer triggers onChange or live preview updates (only user changes do)",
+      "Fixed: Editor now re-parses shadow value from input each time it opens (catches external changes)",
+      "Fixed: addAlphaToColor now properly handles rgb() colors, not just hex",
+      "Improved: Removed hardcoded dark theme overrides in favor of CSS variables for automatic theme adaptation"
+    ],
+    "1.0.1": [
+      "Initial release with box-shadow and text-shadow support"
+    ]
+  },
+  "documentation_url": "https://docs.spwig.com/utilities/shadow-editor",
+  "support_url": "https://support.spwig.com",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

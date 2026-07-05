@@ -1,0 +1,114 @@
+{% load i18n %}
+{# Setup instructions fragment for Generic API translation provider #}
+{# Injected inside .setup-instructions in the wizard template #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<div class="intro-section">
+    <p>{% trans "The Generic API provider lets you connect any REST-based translation service. This is ideal for self-hosted translation servers, custom microservices, or any API that accepts text and returns translations as JSON." %}</p>
+
+    <div class="note info">
+        <strong>{% trans "Time Required:" %}</strong> {% trans "5 minutes" %}<br>
+        <strong>{% trans "Prerequisites:" %}</strong> {% trans "A running translation API service" %}
+    </div>
+</div>
+
+<h3>{% trans "Overview" %}</h3>
+<p>{% trans "To set up the Generic API provider, you'll need to:" %}</p>
+<ol>
+    <li>{% trans "Have a translation API running and accessible from this server" %}</li>
+    <li>{% trans "Know the API base URL" %}</li>
+    <li>{% trans "Know the authentication method and credentials (if any)" %}</li>
+    <li>{% trans "Know the request/response format" %}</li>
+</ol>
+
+<h3>{% trans "Detailed Setup Steps" %}</h3>
+
+<div class="step">
+    <h4><span class="si-step-number">1</span> {% trans "Determine Your API Base URL" %}</h4>
+    <p>{% trans "Enter the base URL of your translation service (without any endpoint paths). The provider will automatically construct the correct endpoint URLs." %}</p>
+    <p>{% trans "Examples:" %}</p>
+    <ul>
+        <li><code>https://translate.yourcompany.com</code></li>
+        <li><code>https://translate.yourcompany.com:8443</code></li>
+        <li><code>http://localhost:8088</code></li>
+    </ul>
+    <div class="note info">
+        <strong>{% trans "How endpoints are constructed:" %}</strong>
+        <ul>
+            <li>{% trans "Translation:" %} <code>{base_url}/translate</code></li>
+            <li>{% trans "Batch:" %} <code>{base_url}/translate_batch</code></li>
+            <li>{% trans "Health check:" %} <code>{base_url}/health</code></li>
+        </ul>
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">2</span> {% trans "Choose the Request Format" %}</h4>
+    <p>{% trans "Select the format that matches your API:" %}</p>
+
+    <div class="note info">
+        <strong>{% trans "Standard Format" %}</strong>
+        <p>{% trans "Request:" %} <code>{"text": "Hello", "source_lang": "en", "target_lang": "es"}</code></p>
+        <p>{% trans "Response:" %} <code>{"translated_text": "Hola"}</code></p>
+    </div>
+
+    <div class="note info">
+        <strong>{% trans "LibreTranslate Format" %}</strong>
+        <p>{% trans "Request:" %} <code>{"q": "Hello", "source": "en", "target": "es"}</code></p>
+        <p>{% trans "Response:" %} <code>{"translatedText": "Hola"}</code></p>
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">3</span> {% trans "Configure Authentication" %}</h4>
+    <p>{% trans "If your API requires authentication, choose the appropriate method:" %}</p>
+    <ul>
+        <li><strong>{% trans "Bearer Token:" %}</strong> {% trans "Sends" %} <code>Authorization: Bearer &lt;key&gt;</code></li>
+        <li><strong>{% trans "X-API-Key:" %}</strong> {% trans "Sends" %} <code>X-API-Key: &lt;key&gt;</code></li>
+        <li><strong>{% trans "Query Parameter:" %}</strong> {% trans "Appends" %} <code>?api_key=&lt;key&gt;</code> {% trans "to the URL" %}</li>
+        <li><strong>{% trans "No Authentication:" %}</strong> {% trans "No credentials sent (for open APIs)" %}</li>
+    </ul>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">4</span> {% trans "Advanced Options (Optional)" %}</h4>
+    <p><strong>{% trans "Translate Path:" %}</strong> {% trans "Change this if your API uses a different path for translations. The default is" %} <code>/translate</code>.</p>
+    <ul>
+        <li><code>/translate</code> — {% trans "Default (most APIs)" %}</li>
+        <li><code>/v2/translate</code> — {% trans "DeepL-compatible APIs" %}</li>
+    </ul>
+
+    <p><strong>{% trans "Response Field:" %}</strong> {% trans "If your API returns the translated text in a non-standard field, specify the field name. You can use dot notation for nested fields:" %}</p>
+    <ul>
+        <li><code>translated_text</code> — {% trans "Top-level field" %}</li>
+        <li><code>data.translation</code> — {% trans "Nested field" %}</li>
+    </ul>
+</div>
+
+<div class="note success">
+    <strong>{% trans "Ready!" %}</strong> {% trans "Click 'Next' to enter your API base URL and configuration. You'll be able to test the connection before saving." %}
+</div>
+
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans "Error: Could not connect" %}</h4>
+    <ul>
+        <li>{% trans "Verify the API base URL is correct and accessible from this server" %}</li>
+        <li>{% trans "Check that the API server is running" %}</li>
+        <li>{% trans "Ensure there are no firewall rules blocking the connection" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: Authentication failed (401/403)" %}</h4>
+    <ul>
+        <li>{% trans "Verify your API key is correct" %}</li>
+        <li>{% trans "Check that you selected the correct authentication method" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: Response field not found" %}</h4>
+    <ul>
+        <li>{% trans "The API returned a successful response but the translated text field was not found" %}</li>
+        <li>{% trans "Check the 'Response Field' setting matches the actual JSON field name in the API response" %}</li>
+        <li>{% trans "Try sending a test request to your API manually to see the response structure" %}</li>
+    </ul>
+</div>

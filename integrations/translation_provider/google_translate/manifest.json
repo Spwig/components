@@ -1,0 +1,69 @@
+{
+  "component_type": "translation_provider",
+  "slug": "google_translate",
+  "name": "Google Translate",
+  "version": "1.0.0",
+  "description": "Industry-leading translation service with support for 100+ languages and competitive pricing",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://cloud.google.com/translate",
+  "support_url": "https://cloud.google.com/translate/docs",
+  "license": "AGPL-3.0",
+  "min_platform_version": "1.1.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "requests>=2.28.0"
+  ],
+  "platform_components": {
+    "translations": ">=1.0.0"
+  },
+  "provider_key": "google_translate",
+  "entry_point": "provider",
+  "class_name": "GoogleTranslateProvider",
+  "capabilities": {
+    "batch_translate": true,
+    "language_detection": true,
+    "formality": false,
+    "glossary": false,
+    "html_support": true
+  },
+  "credential_schema": {
+    "api_key": {
+      "type": "password",
+      "label": "API Key",
+      "help_text": "Your Google Cloud Translation API key from the Google Cloud Console",
+      "required": true,
+      "placeholder": "Enter your Google Cloud API key"
+    }
+  },
+  "provider_info": {
+    "supported_languages": 100,
+    "free_tier": "500,000 characters/month",
+    "pricing": "$20 per million characters",
+    "features": [
+      {"icon": "fas fa-globe", "text": "100+ languages"},
+      {"icon": "fas fa-gift", "text": "500K free chars/month"},
+      {"icon": "fas fa-dollar-sign", "text": "$20/million chars"}
+    ]
+  },
+  "signup_url": "https://console.cloud.google.com/apis/library/translate.googleapis.com",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-16",
+      "changes": ["Initial release with Google Cloud Translation API v2 support"]
+    }
+  ]
+}

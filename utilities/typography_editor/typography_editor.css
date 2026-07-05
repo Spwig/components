@@ -1,0 +1,441 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Typography Editor Utility - Specific Styles v1.1.0
+ * Components unique to the typography editor not covered by utility_base.css
+ * Updated to use admin theme CSS variables
+ * Enhanced font dropdown with category organization
+ */
+
+/* ===========================
+   Typography-Specific Components
+   =========================== */
+
+/* Trigger Preview Text */
+.typography-editor-trigger .trigger-preview {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-fg);
+}
+
+/* Font Family Select (custom styling) */
+.font-family-select {
+    width: 100%;
+}
+
+.font-family-select option {
+    padding: 4px;
+}
+
+.font-family-select optgroup {
+    font-weight: 600;
+    color: var(--body-fg);
+}
+
+/* Custom Font Select Dropdown */
+.custom-font-select {
+    position: relative;
+    width: 100%;
+}
+
+.font-select-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--input-bg);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    font-size: 13px;
+    color: var(--body-fg);
+}
+
+.font-select-display:hover {
+    border-color: var(--selected-bg);
+}
+
+.font-select-value {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--body-fg);
+}
+
+.font-select-arrow {
+    color: var(--muted-fg);
+    font-size: 10px;
+    transition: transform 0.2s;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+/* Enhanced Font Dropdown List - Increased height for larger font library */
+.font-dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 400px;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--body-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10001;
+    margin-top: 4px;
+}
+
+/* Custom Scrollbar Styling */
+.font-dropdown-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.font-dropdown-list::-webkit-scrollbar-track {
+    background: var(--darkened-bg);
+    border-radius: 4px;
+}
+
+.font-dropdown-list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.font-dropdown-list::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-fg);
+}
+
+/* Font Search */
+.font-search {
+    padding: 8px;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background: var(--body-bg);
+    z-index: 3;
+}
+
+.font-search-input {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    background: var(--input-bg);
+    color: var(--body-fg);
+}
+
+.font-search-input::placeholder {
+    color: var(--muted-fg);
+    opacity: 0.7;
+}
+
+.font-search-input:focus {
+    outline: none;
+    border-color: var(--selected-bg);
+}
+
+/* Font Section Headers (System Fonts / Google Fonts) */
+.font-section-header {
+    padding: 10px 12px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--body-fg);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--accent-bg, var(--darkened-bg));
+    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    position: sticky;
+    top: 48px;
+    z-index: 2;
+}
+
+.font-section-header:first-of-type {
+    border-top: none;
+}
+
+/* Font Group Labels (Sans-Serif, Serif, etc.) */
+.font-group-label {
+    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted-fg);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    background: var(--darkened-bg);
+    position: sticky;
+    top: 76px;
+    z-index: 1;
+}
+
+/* Font Options */
+.font-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--body-fg);
+}
+
+.font-option:hover {
+    background: var(--darkened-bg);
+}
+
+.font-option:active {
+    background: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.font-option-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Font Badges (Variable fonts indicator) */
+.font-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 6px;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+.font-badge.variable {
+    background: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.font-badge.google {
+    background: #4285f4;
+    color: #fff;
+}
+
+.font-badge.system {
+    background: var(--darkened-bg);
+    color: var(--muted-fg);
+}
+
+/* Quick Style Buttons (specific to typography) */
+.quick-styles {
+    display: flex;
+    gap: 8px;
+}
+
+.quick-style-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--muted-fg);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quick-style-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+    color: var(--body-fg);
+}
+
+.quick-style-btn.active {
+    background: var(--selected-bg);
+    border-color: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.quick-style-btn i {
+    font-size: 16px;
+}
+
+/* Style-specific Buttons */
+.style-btn,
+.decoration-btn,
+.variant-btn,
+.transform-btn {
+    padding: 8px 16px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--body-fg);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+}
+
+.style-btn:hover,
+.decoration-btn:hover,
+.variant-btn:hover,
+.transform-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+}
+
+.style-btn.active,
+.decoration-btn.active,
+.variant-btn.active,
+.transform-btn.active {
+    background: var(--selected-bg);
+    border-color: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+/* Align Buttons (full width) */
+.align-btn {
+    flex: 1;
+    padding: 10px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--body-fg);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.align-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+}
+
+.align-btn.active {
+    background: var(--selected-bg);
+    border-color: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.align-btn i {
+    font-size: 16px;
+}
+
+/* Direction Buttons */
+.direction-btn {
+    flex: 1;
+    gap: 4px;
+    padding: 8px 16px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--body-fg);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.direction-btn:hover {
+    background: var(--darkened-bg);
+    border-color: var(--border-color);
+}
+
+.direction-btn.active {
+    background: var(--selected-bg);
+    border-color: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.direction-btn i {
+    font-size: 14px;
+}
+
+/* Decoration Options (nested controls) */
+.decoration-options {
+    padding-left: 20px;
+    border-left: 3px solid var(--border-color);
+    margin-top: 12px;
+}
+
+/* Preview Text Customization */
+.preview-current .preview-text,
+.preview-new .preview-text {
+    word-break: break-word;
+    text-align: center;
+}
+
+/* Footer Buttons */
+.typography-btn {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.typography-btn-clear {
+    background: var(--darkened-bg);
+    color: var(--muted-fg);
+}
+
+.typography-btn-clear:hover {
+    background: var(--border-color);
+    color: var(--body-fg);
+}
+
+.typography-btn-primary {
+    background: var(--selected-bg);
+    color: var(--selected-fg);
+}
+
+.typography-btn-primary:hover {
+    opacity: 0.9;
+}
+
+/* ===========================
+   RTL Support Overrides
+   =========================== */
+[dir="rtl"] .decoration-options {
+    padding-left: 0;
+    padding-right: 20px;
+    border-left: none;
+    border-right: 3px solid var(--border-color);
+}
+
+[dir="rtl"] .tab-btn i,
+[dir="rtl"] .direction-btn i {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+[dir="rtl"] .font-select-arrow {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+[dir="rtl"] .font-badge {
+    margin-left: 0;
+    margin-right: 8px;
+}

@@ -1,0 +1,93 @@
+{% load i18n %}
+{# Setup instructions fragment for DeepL translation provider #}
+{# Injected inside .setup-instructions in the wizard template #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<div class="intro-section">
+    <p>{% trans "This guide will walk you through setting up DeepL as your translation provider. DeepL offers premium quality translations with advanced neural networks, especially strong for European languages." %}</p>
+
+    <div class="note info">
+        <strong>{% trans "Time Required:" %}</strong> {% trans "5 minutes" %}<br>
+        <strong>{% trans "Prerequisites:" %}</strong> {% trans "A DeepL account (Free or Pro)" %}
+    </div>
+</div>
+
+<h3>{% trans "Overview" %}</h3>
+<p>{% trans "To use DeepL, you'll need to:" %}</p>
+<ol>
+    <li>{% trans "Create a DeepL account" %}</li>
+    <li>{% trans "Subscribe to a DeepL API plan" %}</li>
+    <li>{% trans "Copy your API key" %}</li>
+    <li>{% trans "Enter it in the configuration step" %}</li>
+</ol>
+
+<h3>{% trans "Detailed Setup Steps" %}</h3>
+
+<div class="step">
+    <h4><span class="si-step-number">1</span> {% trans "Create a DeepL Account" %}</h4>
+    <ol>
+        <li>{% trans "Go to" %} <a href="https://www.deepl.com/pro-api" target="_blank" rel="noopener" class="si-button-link">{% trans "DeepL API Plans" %}</a></li>
+        <li>{% trans "Choose a plan:" %}
+            <ul>
+                <li><strong>{% trans "DeepL API Free:" %}</strong> {% trans "500,000 characters per month at no cost" %}</li>
+                <li><strong>{% trans "DeepL API Pro:" %}</strong> {% trans "Unlimited characters, starting at $7.49/month" %}</li>
+            </ul>
+        </li>
+        <li>{% trans "Click" %} <strong>"{% trans "Sign up" %}"</strong> {% trans "and create your account" %}</li>
+    </ol>
+    <div class="note info">
+        <strong>{% trans "Tip:" %}</strong> {% trans "The Free plan is a great way to test the integration. You can upgrade to Pro later without changing your API key." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">2</span> {% trans "Get Your API Key" %}</h4>
+    <ol>
+        <li>{% trans "Sign in to your" %} <a href="https://www.deepl.com/account" target="_blank" rel="noopener" class="si-button-link">{% trans "DeepL Account" %}</a></li>
+        <li>{% trans "Navigate to the" %} <strong>"{% trans "API" %}"</strong> {% trans "section in your account settings" %}</li>
+        <li>{% trans "Your API key will be displayed under" %} <strong>"{% trans "Authentication Key for DeepL API" %}"</strong></li>
+        <li>{% trans "Click the copy button to copy your API key" %}</li>
+    </ol>
+    <div class="note warning">
+        <strong>{% trans "Important:" %}</strong> {% trans "Keep your API key secure. Do not share it publicly or commit it to version control." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">3</span> {% trans "Identify Your API Type" %}</h4>
+    <p>{% trans "DeepL uses different API endpoints for Free and Pro plans:" %}</p>
+    <ul>
+        <li><strong>{% trans "Free API keys" %}</strong> {% trans "end with" %} <code>:fx</code></li>
+        <li><strong>{% trans "Pro API keys" %}</strong> {% trans "do not have this suffix" %}</li>
+    </ul>
+    <p>{% trans "The provider will automatically detect your plan type from your API key." %}</p>
+</div>
+
+<div class="note success">
+    <strong>{% trans "Ready!" %}</strong> {% trans "Click 'Next' to enter your API key in the configuration form. The provider will automatically detect whether you're using a Free or Pro plan." %}
+</div>
+
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans "Error: 403 Forbidden" %}</h4>
+    <ul>
+        <li>{% trans "Verify your API key is correct and has not been regenerated" %}</li>
+        <li>{% trans "Ensure you have an active API subscription (Free or Pro)" %}</li>
+        <li>{% trans "Check that you haven't exceeded your character quota" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: 456 Quota Exceeded" %}</h4>
+    <ul>
+        <li>{% trans "You have reached your monthly character limit" %}</li>
+        <li>{% trans "Free plan: 500,000 characters per month" %}</li>
+        <li>{% trans "Wait for your quota to reset or upgrade to Pro for unlimited usage" %}</li>
+    </ul>
+
+    <h4>{% trans "Slow translations" %}</h4>
+    <ul>
+        <li>{% trans "Large texts may take longer to process" %}</li>
+        <li>{% trans "Consider reducing the 'Max Characters per Request' setting" %}</li>
+        <li>{% trans "Pro plan users get priority processing" %}</li>
+    </ul>
+</div>

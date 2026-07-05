@@ -1,0 +1,43 @@
+{
+  "component_type": "utility",
+  "slug": "focal-point-editor",
+  "name": "focal-point-editor",
+  "version": "1.0.1",
+  "display_name": "Focal Point Editor",
+  "description": "Visual focal point selector for responsive image cropping with breakpoint support, aspect ratio previews, and composition guides",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "media",
+  "assets": {
+    "css": [
+      "static/focal_point_editor.css"
+    ],
+    "js": [
+      "static/focal_point_editor.js"
+    ]
+  },
+  "supported_properties": [
+    "focal_point",
+    "object-position"
+  ],
+  "options": {
+    "show_grid": true,
+    "show_aspect_ratios": true,
+    "enable_breakpoints": true,
+    "enable_keyboard": true
+  },
+  "changelog": {
+    "1.0.1": [
+      "Replaced native browser alert() with AdminModal for consistent admin UI"
+    ]
+  },
+  "dependencies": [],
+  "documentation_url": "https://docs.spwig.com/utilities/focal-point-editor",
+  "support_url": "https://support.spwig.com",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

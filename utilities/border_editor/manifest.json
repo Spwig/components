@@ -1,0 +1,56 @@
+{
+  "component_type": "utility",
+  "name": "border-editor",
+  "slug": "border-editor",
+  "version": "1.0.1",
+  "description": "Utility for editing border properties with live preview - v1.0.1 with improved UI using admin-tabs",
+  "author": "Spwig",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "utilities": [
+      "color-picker"
+    ]
+  },
+  "component": {
+    "class_name": "BorderEditorUtility",
+    "js_file": "border_editor.js",
+    "css_file": "border_editor.css",
+    "category": "design",
+    "icon": "fa-border-style",
+    "provides": [
+      "border-editor"
+    ]
+  },
+  "changelog": {
+    "1.0.1": [
+      "Added tabbed interface (Basic/Advanced) using admin-tabs",
+      "Always show 4 width inputs with link/unlink for sync behavior",
+      "Always show 4 radius inputs with link/unlink for sync behavior",
+      "Removed duplicate color picker trigger button",
+      "Fixed toggleLink to not recreate UI (eliminates flicker)",
+      "Added min-height to preview container with white background",
+      "Converted footer buttons to icon-only with tooltips",
+      "Custom SVG icons for corner shapes and radius presets",
+      "Improved CSS string parsing for page builder integration",
+      "Live preview updates and computed style detection",
+      "Auto-unlink when editing individual corners in advanced tab",
+      "Fixed corner-shape persistence when switching between shapes",
+      "Made preview rectangular (2:1 ratio) for better visual distinction",
+      "Fixed color picker closing border editor popup issue",
+      "Improved overall UI consistency with admin design patterns"
+    ],
+    "1.0.0": [
+      "Initial production release",
+      "Border style, width, color, and radius controls",
+      "Individual side and corner controls",
+      "Link/unlink functionality",
+      "Live preview",
+      "Corner shape options (experimental)",
+      "ColorPickerUtility integration"
+    ]
+  },
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1178f4" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#f411c7" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="leaf-main" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1178f4"/>
+      <stop offset="100%" stop-color="#f411c7" stop-opacity="0.84"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="20" fill="url(#bg)"/>
+  <!-- Foundation blocks -->
+  <rect x="24" y="78" width="80" height="16" rx="3" fill="#CBD5E1" stroke="#475569" stroke-width="2"/>
+  <rect x="30" y="62" width="68" height="16" rx="3" fill="#94A3B8" stroke="#475569" stroke-width="2"/>
+  <rect x="36" y="46" width="56" height="16" rx="3" fill="#64748B" stroke="#475569" stroke-width="2"/>
+  <!-- Spwig leaf as the main symbol (larger, centered, prominent) -->
+  <g transform="translate(44,10) scale(5.2)" opacity="0.9">
+    <path d="m5.66,9.94c-.08-.1-.09-.24-.14-1.56-.06-1.56-.13-1.9-.52-2.42-.24-.31-.57-.52-1.25-.76-.65-.23-1.47-.61-1.79-.83-.51-.35-1.08-1.01-1.36-1.56-.29-.58-.52-1.33-.58-1.91l-.02-.19.53.03c1.09.05 1.83.22 2.52.57.94.47 1.55 1.12 1.96 2.05.31.71.4 1.15.47 2.21.05.74.08.9.19.9.09 0 .13-.17.35-1.46.3-1.7.45-2.2.88-2.84.67-.98 1.86-1.7 3.29-2 .27-.06 1.45-.14 2.01-.15l.09,0-.1.52c-.26 1.37-.62 2.22-1.26 3.01-.49.6-1.33 1.17-2.24 1.51-.33.12-1.42.45-1.51.45-.05 0-.04-.04.04-.16.29-.48.61-.92 1.04-1.45.95-1.16.97-1.17.77-1.17-.14 0-.53.31-1.13.92-.75.76-1.65 1.99-1.65 2.26 0,.14.05.09.43-.45.4-.57 1-.13 1.03-1.28.01.01-.11.2-.26.43-.53.77-1 1.67-1.2 2.3-.16.51-.2.78-.27 1.88-.07 1.08-.08 1.19-.2 1.21-.05.01-.11-.01-.14-.05z" fill="url(#leaf-main)"/>
+  </g>
+  <!-- Small "BASE" label -->
+  <text x="64" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#475569" letter-spacing="2">CORE</text>
+</svg>

@@ -1,0 +1,272 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Color Picker Utility - Specific Styles
+ * Components unique to the color picker not covered by utility_base.css
+ */
+
+/* ===========================
+   Color-Specific Components
+   =========================== */
+
+/* Color Canvas */
+.color-picker-canvas {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    position: relative;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.color-picker-cursor {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Hue Slider */
+.hue-slider {
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(to right,
+        #ff0000 0%,
+        #ffff00 17%,
+        #00ff00 33%,
+        #00ffff 50%,
+        #0000ff 67%,
+        #ff00ff 83%,
+        #ff0000 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+.hue-cursor {
+    position: absolute;
+    width: 14px;
+    height: 18px;
+    background: white;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+/* Opacity Slider */
+.opacity-slider {
+    width: 100%;
+    height: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 12px;
+    background-image:
+        linear-gradient(45deg, #e2e8f0 25%, transparent 25%, transparent 75%, #e2e8f0 75%),
+        linear-gradient(45deg, #e2e8f0 25%, transparent 25%, transparent 75%, #e2e8f0 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+}
+
+.opacity-gradient {
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+}
+
+.opacity-cursor {
+    position: absolute;
+    width: 14px;
+    height: 18px;
+    background: white;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+/* Color Preview with Checkerboard */
+.color-preview,
+.swatch {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* Checkerboard background layer for transparency */
+.color-preview::before,
+.swatch[data-alpha="true"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(45deg, #e2e8f0 25%, transparent 25%, transparent 75%, #e2e8f0 75%),
+        linear-gradient(45deg, #e2e8f0 25%, transparent 25%, transparent 75%, #e2e8f0 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+    z-index: 0;
+}
+
+/* Actual color layer */
+.color-preview::after,
+.swatch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color, transparent);
+    z-index: 1;
+}
+
+/* Trigger Preview (specific styling) */
+.color-picker-trigger .color-preview {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+}
+
+/* Swatches Grid */
+.swatches-grid,
+.recent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+    gap: 6px;
+}
+
+.swatch {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.swatch:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Format Selector & Color Input Group */
+.color-input-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.format-selector {
+    width: 100px;
+}
+
+.color-value-input {
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+}
+
+/* Color Controls Section */
+.color-controls {
+    padding: 16px 20px;
+}
+
+/* Color Swatches Section */
+.color-swatches,
+.color-recent {
+    padding: 12px 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.swatches-title,
+.recent-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Eyedropper Button */
+.color-picker-eyedropper {
+    padding: 6px 10px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.color-picker-eyedropper:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+.color-picker-eyedropper:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ===========================
+   Dark Theme Overrides
+   =========================== */
+@media (prefers-color-scheme: dark) {
+    .color-picker-canvas,
+    .hue-slider,
+    .opacity-slider {
+        border-color: #475569;
+    }
+
+    .hue-cursor,
+    .opacity-cursor {
+        border-color: #64748b;
+    }
+
+    .swatch {
+        border-color: #475569;
+    }
+
+    .color-swatches,
+    .color-recent {
+        border-top-color: #334155;
+    }
+
+    .swatches-title,
+    .recent-title {
+        color: #94a3b8;
+    }
+
+    .color-picker-eyedropper {
+        background: #334155;
+        border-color: #475569;
+        color: #94a3b8;
+    }
+
+    .color-picker-eyedropper:hover {
+        background: #475569;
+        color: #cbd5e1;
+    }
+
+    /* Checkerboard pattern in dark mode */
+    .color-preview::before,
+    .swatch[data-alpha="true"]::before,
+    .opacity-slider {
+        background-image:
+            linear-gradient(45deg, #475569 25%, transparent 25%, transparent 75%, #475569 75%),
+            linear-gradient(45deg, #475569 25%, transparent 25%, transparent 75%, #475569 75%);
+    }
+}

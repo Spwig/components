@@ -1,0 +1,67 @@
+{
+  "component_type": "utility",
+  "name": "typography-editor",
+  "slug": "typography-editor",
+  "version": "1.1.0",
+  "description": "Typography editor with enhanced font library and CSS fallback chains for proper font degradation",
+  "author": "Spwig",
+  "license": "AGPL-3.0",
+  "dependencies": {},
+  "component": {
+    "class_name": "TypographyEditorUtility",
+    "js_file": "typography_editor.js",
+    "css_file": "typography_editor.css",
+    "category": "design",
+    "icon": "fa-font",
+    "provides": [
+      "typography-editor"
+    ]
+  },
+  "changelog": {
+    "1.1.0": [
+      "Extended font library from 20 to 65+ fonts including popular Google Fonts",
+      "Added proper CSS fallback chains for all fonts (e.g., 'Montserrat', 'Helvetica Neue', Arial, sans-serif)",
+      "New font data structure with fallbacks, subcategory, weights, and popularity fields",
+      "Reorganized font dropdown with clear category groupings (System Fonts / Google Fonts)",
+      "Added subcategory labels (Sans-Serif, Serif, Monospace, Display) within each section",
+      "Fonts sorted by popularity for better discoverability",
+      "Added variable font indicator badge for fonts like Inter and Fraunces",
+      "Smart Google Fonts loading - also loads fallback fonts from the chain if needed",
+      "Added getFontFallbackStack() helper for generating complete font stacks",
+      "Updated parseInitialValue() to extract primary font from fallback stacks for backward compatibility",
+      "Increased dropdown max-height to 400px to accommodate larger font list",
+      "Added custom scrollbar styling for the font dropdown",
+      "Improved search functionality that hides category headers during search",
+      "Added RTL support for font badges"
+    ],
+    "1.0.1": [
+      "Replaced all hard-coded colors with admin theme CSS variables",
+      "Updated popup to use utility-popup, utility-header, utility-body, utility-footer classes",
+      "Updated button backgrounds to use var(--input-bg)",
+      "Updated button borders to use var(--border-color)",
+      "Updated button text to use var(--body-fg) and var(--muted-fg)",
+      "Updated active states to use var(--selected-bg) and var(--selected-fg)",
+      "Updated hover states to use var(--darkened-bg)",
+      "Fixed font dropdown width overflow with max-width and overflow styles",
+      "Added custom typography-btn styles for footer buttons (not util-btn)",
+      "Improved font dropdown display with ellipsis and better sizing",
+      "Removed @media (prefers-color-scheme: dark) overrides - now uses theme variables",
+      "Improved consistency with admin interface design and border editor utility"
+    ],
+    "1.0.0": [
+      "Initial production release",
+      "Font family, size, weight, style controls",
+      "Line height, letter spacing, word spacing",
+      "Text alignment, decoration, transform",
+      "Text direction (LTR/RTL) support",
+      "Live preview with current/new comparison",
+      "Tabbed interface (Basic/Advanced)",
+      "Quick style buttons",
+      "Google Fonts integration"
+    ]
+  },
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

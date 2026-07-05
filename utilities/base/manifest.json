@@ -1,0 +1,30 @@
+{
+  "component_type": "utility",
+  "slug": "base",
+  "name": "Base Utility",
+  "version": "1.0.0",
+  "display_name": "Base Utility",
+  "description": "Foundation styles and shared components for all page builder utility editors",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "core",
+  "assets": {
+    "css": ["static/utility_base.css"],
+    "js": ["static/utilities-base.js"]
+  },
+  "supported_properties": [],
+  "options": {
+    "provides_common_helpers": true,
+    "event_system": true,
+    "validation_helpers": true
+  },
+  "dependencies": [],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "documentation_url": "https://docs.spwig.com/utilities/base",
+  "support_url": "https://support.spwig.com"
+}

@@ -1,0 +1,120 @@
+{% load i18n %}
+{# Setup instructions fragment for AWS Translate provider #}
+{# Injected inside .setup-instructions in the wizard template #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<div class="intro-section">
+    <p>{% trans "This guide will walk you through setting up AWS Translate as your translation provider. Amazon Translate offers scalable translation across 75+ languages with deep AWS integration." %}</p>
+
+    <div class="note info">
+        <strong>{% trans "Time Required:" %}</strong> {% trans "10-15 minutes" %}<br>
+        <strong>{% trans "Prerequisites:" %}</strong> {% trans "An AWS account" %}
+    </div>
+</div>
+
+<h3>{% trans "Overview" %}</h3>
+<p>{% trans "To use AWS Translate, you'll need to:" %}</p>
+<ol>
+    <li>{% trans "Create an AWS account (if you don't have one)" %}</li>
+    <li>{% trans "Create an IAM user with Translate permissions" %}</li>
+    <li>{% trans "Generate access keys" %}</li>
+    <li>{% trans "Enter them in the configuration step" %}</li>
+</ol>
+
+<h3>{% trans "Detailed Setup Steps" %}</h3>
+
+<div class="step">
+    <h4><span class="si-step-number">1</span> {% trans "Create an AWS Account" %}</h4>
+    <ol>
+        <li>{% trans "Go to" %} <a href="https://aws.amazon.com/" target="_blank" rel="noopener" class="si-button-link">{% trans "Amazon Web Services" %}</a></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create an AWS Account" %}"</strong></li>
+        <li>{% trans "Complete the registration process" %}</li>
+    </ol>
+    <div class="note info">
+        <strong>{% trans "Note:" %}</strong> {% trans "AWS offers a free tier that includes 2 million characters per month for the first 12 months." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">2</span> {% trans "Create an IAM User" %}</h4>
+    <p>{% trans "For security, create a dedicated IAM user with only the required permissions:" %}</p>
+    <ol>
+        <li>{% trans "Go to the" %} <a href="https://console.aws.amazon.com/iam/" target="_blank" rel="noopener" class="si-button-link">{% trans "IAM Console" %}</a></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Users" %}"</strong> {% trans "in the left sidebar" %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create user" %}"</strong></li>
+        <li>{% trans 'Enter a username (e.g., "store-translate")' %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "Next" %}"</strong></li>
+        <li>{% trans "Select" %} <strong>"{% trans "Attach policies directly" %}"</strong></li>
+        <li>{% trans "Search for and select" %} <strong>"TranslateFullAccess"</strong></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Next" %}"</strong>{% trans ", then" %} <strong>"{% trans "Create user" %}"</strong></li>
+    </ol>
+    <div class="note warning">
+        <strong>{% trans "Security:" %}</strong> {% trans "Never use your root account credentials. Always create a dedicated IAM user with the minimum permissions required." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">3</span> {% trans "Generate Access Keys" %}</h4>
+    <ol>
+        <li>{% trans "Click on the user you just created" %}</li>
+        <li>{% trans "Go to the" %} <strong>"{% trans "Security credentials" %}"</strong> {% trans "tab" %}</li>
+        <li>{% trans "Under" %} <strong>"{% trans "Access keys" %}"</strong>{% trans ", click" %} <strong>"{% trans "Create access key" %}"</strong></li>
+        <li>{% trans 'Select "Application running outside AWS"' %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "Next" %}"</strong>{% trans ", then" %} <strong>"{% trans "Create access key" %}"</strong></li>
+        <li>{% trans "You will see your" %} <strong>{% trans "Access Key ID" %}</strong> {% trans "and" %} <strong>{% trans "Secret Access Key" %}</strong></li>
+    </ol>
+    <div class="note warning">
+        <strong>{% trans "Important:" %}</strong> {% trans "Save your Secret Access Key now — it will only be shown once! You can also download the credentials as a CSV file." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">4</span> {% trans "Choose Your AWS Region" %}</h4>
+    <p>{% trans "Select a region closest to your server for best performance:" %}</p>
+    <ul>
+        <li><strong>us-east-1</strong> — {% trans "US East (N. Virginia) — default" %}</li>
+        <li><strong>us-west-2</strong> — {% trans "US West (Oregon)" %}</li>
+        <li><strong>eu-west-1</strong> — {% trans "Europe (Ireland)" %}</li>
+        <li><strong>ap-southeast-1</strong> — {% trans "Asia Pacific (Singapore)" %}</li>
+    </ul>
+    <p>{% trans "See the" %} <a href="https://docs.aws.amazon.com/translate/latest/dg/what-is.html" target="_blank" rel="noopener" class="si-button-link">{% trans "AWS Translate documentation" %}</a> {% trans "for a full list of supported regions." %}</p>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">5</span> {% trans "Pricing Information" %}</h4>
+    <p>{% trans "AWS Translate pricing:" %}</p>
+    <ul>
+        <li><strong>{% trans "Free Tier:" %}</strong> {% trans "2 million characters per month (first 12 months)" %}</li>
+        <li><strong>{% trans "Standard:" %}</strong> {% trans "$15 per million characters" %}</li>
+    </ul>
+    <p>{% trans "You can monitor usage in the AWS Console under CloudWatch metrics." %}</p>
+</div>
+
+<div class="note success">
+    <strong>{% trans "Ready!" %}</strong> {% trans "Click 'Next' to enter your Access Key ID, Secret Access Key, and region in the configuration form." %}
+</div>
+
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans "Error: InvalidSignatureException" %}</h4>
+    <ul>
+        <li>{% trans "Verify your Access Key ID and Secret Access Key are correct" %}</li>
+        <li>{% trans "Check that the region matches a supported AWS Translate region" %}</li>
+        <li>{% trans "Ensure there are no extra spaces in your credentials" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: AccessDeniedException" %}</h4>
+    <ul>
+        <li>{% trans "Ensure the IAM user has the 'TranslateFullAccess' policy attached" %}</li>
+        <li>{% trans "Check that the access keys belong to the correct IAM user" %}</li>
+        <li>{% trans "Verify the access key is active (not disabled)" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: ThrottlingException" %}</h4>
+    <ul>
+        <li>{% trans "You have exceeded the API rate limit" %}</li>
+        <li>{% trans "Reduce the 'Rate Limit' setting in Advanced Settings" %}</li>
+        <li>{% trans "Request a service limit increase via the AWS Support Center" %}</li>
+    </ul>
+</div>

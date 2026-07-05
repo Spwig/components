@@ -1,0 +1,107 @@
+{% load i18n %}
+{# Setup instructions fragment for Google Translate provider #}
+{# Injected inside .setup-instructions in the wizard template #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<div class="intro-section">
+    <p>{% trans "This guide will walk you through setting up Google Cloud Translation API as your translation provider. Google Translate supports over 100 languages with competitive pricing." %}</p>
+
+    <div class="note info">
+        <strong>{% trans "Time Required:" %}</strong> {% trans "10 minutes" %}<br>
+        <strong>{% trans "Prerequisites:" %}</strong> {% trans "A Google account and a Google Cloud project" %}
+    </div>
+</div>
+
+<h3>{% trans "Overview" %}</h3>
+<p>{% trans "To use Google Translate, you'll need to:" %}</p>
+<ol>
+    <li>{% trans "Create or select a Google Cloud project" %}</li>
+    <li>{% trans "Enable the Cloud Translation API" %}</li>
+    <li>{% trans "Create an API key" %}</li>
+    <li>{% trans "Enter it in the configuration step" %}</li>
+</ol>
+
+<h3>{% trans "Detailed Setup Steps" %}</h3>
+
+<div class="step">
+    <h4><span class="si-step-number">1</span> {% trans "Create a Google Cloud Project" %}</h4>
+    <ol>
+        <li>{% trans "Go to the" %} <a href="https://console.cloud.google.com" target="_blank" rel="noopener" class="si-button-link">{% trans "Google Cloud Console" %}</a></li>
+        <li>{% trans "Click the project dropdown in the top navigation bar" %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "New Project" %}"</strong></li>
+        <li>{% trans 'Enter a project name (e.g., "My Store Translations")' %}</li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create" %}"</strong></li>
+        <li>{% trans "Wait for the project to be created, then select it" %}</li>
+    </ol>
+    <div class="note info">
+        <strong>{% trans "Note:" %}</strong> {% trans "If you already have a Google Cloud project, you can skip this step and use your existing project." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">2</span> {% trans "Enable the Cloud Translation API" %}</h4>
+    <ol>
+        <li>{% trans "In the Google Cloud Console, make sure your project is selected" %}</li>
+        <li>{% trans "Go to" %} <a href="https://console.cloud.google.com/apis/library/translate.googleapis.com" target="_blank" rel="noopener" class="si-button-link">{% trans "Cloud Translation API" %}</a></li>
+        <li>{% trans "Click the" %} <strong>"{% trans "Enable" %}"</strong> {% trans "button" %}</li>
+        <li>{% trans "Wait for the API to be enabled" %}</li>
+    </ol>
+    <div class="note info">
+        <strong>{% trans "Note:" %}</strong> {% trans "You may need to enable billing on your Google Cloud account. Google provides a free tier of 500,000 characters per month." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">3</span> {% trans "Create an API Key" %}</h4>
+    <ol>
+        <li>{% trans "Go to" %} <strong>"{% trans "APIs & Services" %}"</strong> &rarr; <strong>"{% trans "Credentials" %}"</strong></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create Credentials" %}"</strong> &rarr; <strong>"{% trans "API key" %}"</strong></li>
+        <li>{% trans "Your new API key will be displayed" %}</li>
+        <li>{% trans "Click the copy button to copy it" %}</li>
+    </ol>
+    <div class="note warning">
+        <strong>{% trans "Important:" %}</strong> {% trans "For security, restrict your API key to only the Cloud Translation API. Click 'Edit API key' and under 'API restrictions', select 'Restrict key' and choose 'Cloud Translation API'." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">4</span> {% trans "Set Up Billing (if needed)" %}</h4>
+    <p>{% trans "Google Cloud Translation API requires a billing account, but includes a generous free tier:" %}</p>
+    <ul>
+        <li><strong>{% trans "Free Tier:" %}</strong> {% trans "500,000 characters per month" %}</li>
+        <li><strong>{% trans "Paid Usage:" %}</strong> {% trans "$20 per million characters" %}</li>
+    </ul>
+    <ol>
+        <li>{% trans "Go to" %} <strong>"{% trans "Billing" %}"</strong> {% trans "in the Google Cloud Console" %}</li>
+        <li>{% trans "Link a billing account to your project" %}</li>
+        <li>{% trans "Set up budget alerts to avoid unexpected charges" %}</li>
+    </ol>
+</div>
+
+<div class="note success">
+    <strong>{% trans "Ready!" %}</strong> {% trans "Click 'Next' to enter your API key in the configuration form." %}
+</div>
+
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans "Error: 403 Forbidden" %}</h4>
+    <ul>
+        <li>{% trans "Verify the Cloud Translation API is enabled in your project" %}</li>
+        <li>{% trans "Check that your API key is not restricted to other APIs" %}</li>
+        <li>{% trans "Ensure billing is enabled on your project" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: 400 Bad Request" %}</h4>
+    <ul>
+        <li>{% trans "Verify your API key is correct" %}</li>
+        <li>{% trans "Check that the target language code is valid" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: 429 Rate Limit Exceeded" %}</h4>
+    <ul>
+        <li>{% trans "You have exceeded the API rate limit" %}</li>
+        <li>{% trans "Reduce the 'Rate Limit' setting in Advanced Settings" %}</li>
+        <li>{% trans "Consider requesting a quota increase in Google Cloud Console" %}</li>
+    </ul>
+</div>

@@ -1,0 +1,67 @@
+{
+  "component_type": "utility",
+  "slug": "spacing-editor",
+  "name": "spacing-editor",
+  "version": "1.0.2",
+  "display_name": "Spacing Editor",
+  "description": "Visual spacing editor for margin and padding with CSS variable support and automatic theme adaptation",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "layout",
+  "assets": {
+    "css": [
+      "static/spacing_editor.css"
+    ],
+    "js": [
+      "static/spacing_editor.js"
+    ]
+  },
+  "supported_properties": [
+    "margin",
+    "padding",
+    "spacing"
+  ],
+  "options": {
+    "mode": "both",
+    "units": [
+      "px",
+      "em",
+      "rem",
+      "%",
+      "auto"
+    ],
+    "show_presets": true,
+    "show_visual_editor": true
+  },
+  "dependencies": [],
+  "documentation_url": "https://docs.spwig.com/utilities/spacing-editor",
+  "support_url": "https://support.spwig.com",
+  "changelog": {
+    "1.0.2": [
+      "Replaced all hard-coded colors with admin theme CSS variables",
+      "Visual editor margin now uses --info-color/--primary-color (blue) instead of hard-coded #3b82f6",
+      "Visual editor padding now uses --success-color (green) instead of hard-coded #22c55e",
+      "Visual editor content area now uses --warning-color (orange) instead of hard-coded #f97316",
+      "Focus states now use theme-adaptive color-mix() instead of hard-coded rgba() values",
+      "Drag handles now use theme-adaptive backgrounds and borders",
+      "Improved dark theme compatibility through consistent use of admin theme tokens"
+    ],
+    "1.0.1": [
+      "Added propertyKey option for element-specific routing",
+      "Improved LivePreviewManager integration"
+    ],
+    "1.0.0": [
+      "Initial release with visual spacing editor",
+      "Support for margin and padding editing",
+      "Drag handles for intuitive adjustments",
+      "Preset spacing values",
+      "Linked values support"
+    ]
+  },
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}

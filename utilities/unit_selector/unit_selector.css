@@ -1,0 +1,462 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/**
+ * Unit Selector Utility Styles
+ */
+
+/* Container */
+.unit-selector-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Unit Selector Dropdown */
+.unit-selector {
+    padding: 6px 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: white;
+    font-size: 12px;
+    font-weight: 500;
+    color: #475569;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    min-width: 60px;
+}
+
+.unit-selector:hover,
+.unit-selector:focus {
+    border-color: #cbd5e1;
+    outline: none;
+}
+
+/* Calc Button */
+.unit-calc-btn,
+.unit-convert-btn {
+    padding: 6px 8px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.unit-calc-btn:hover,
+.unit-convert-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #334155;
+}
+
+.unit-calc-btn i,
+.unit-convert-btn i {
+    font-size: 12px;
+}
+
+/* Calc Modal */
+.unit-calc-modal,
+.unit-convert-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.unit-calc-content,
+.unit-convert-content {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 480px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+.unit-calc-header,
+.unit-convert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.unit-calc-header h3,
+.unit-convert-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.unit-calc-close,
+.unit-convert-close {
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.unit-calc-close:hover,
+.unit-convert-close:hover {
+    color: #334155;
+}
+
+/* Modal Body */
+.unit-calc-body,
+.unit-convert-body {
+    padding: 20px;
+}
+
+.calc-help {
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.calc-expression {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 14px;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+.calc-expression:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+.calc-examples {
+    margin-top: 16px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.calc-examples strong {
+    color: #334155;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.calc-examples ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.calc-examples li {
+    margin: 4px 0;
+    color: #64748b;
+}
+
+.calc-examples code {
+    padding: 2px 4px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #0891b2;
+}
+
+/* Convert Modal Specific */
+.convert-current,
+.convert-to {
+    margin-bottom: 16px;
+}
+
+.convert-current label,
+.convert-to label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #475569;
+}
+
+.convert-value {
+    display: flex;
+    gap: 8px;
+}
+
+.convert-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.convert-input:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+.convert-unit {
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.convert-arrow {
+    text-align: center;
+    margin: 12px 0;
+    color: #94a3b8;
+}
+
+.convert-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+}
+
+.conversion-item {
+    padding: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.conversion-item:hover {
+    background: #e0f2fe;
+    border-color: #3b82f6;
+    transform: translateY(-1px);
+}
+
+.conversion-value {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.conversion-unit {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+.convert-reference {
+    margin-top: 20px;
+    padding: 12px;
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.convert-reference strong {
+    color: #92400e;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.convert-reference ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.convert-reference li {
+    margin: 4px 0;
+    color: #78350f;
+}
+
+/* Modal Footer */
+.unit-calc-footer,
+.unit-convert-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.unit-calc-footer .btn,
+.unit-convert-footer .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel,
+.btn-close {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.btn-cancel:hover,
+.btn-close:hover {
+    background: #e2e8f0;
+    color: #475569;
+}
+
+.btn-apply {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-apply:hover {
+    background: #2563eb;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .unit-selector {
+        background: #334155;
+        border-color: #475569;
+        color: #f1f5f9;
+    }
+
+    .unit-selector:hover,
+    .unit-selector:focus {
+        border-color: #64748b;
+    }
+
+    .unit-calc-btn,
+    .unit-convert-btn {
+        background: #334155;
+        border-color: #475569;
+        color: #94a3b8;
+    }
+
+    .unit-calc-btn:hover,
+    .unit-convert-btn:hover {
+        background: #475569;
+        color: #cbd5e1;
+    }
+
+    .unit-calc-modal,
+    .unit-convert-modal {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .unit-calc-content,
+    .unit-convert-content {
+        background: #1e293b;
+    }
+
+    .unit-calc-header,
+    .unit-convert-header,
+    .unit-calc-footer,
+    .unit-convert-footer {
+        border-color: #334155;
+    }
+
+    .unit-calc-header h3,
+    .unit-convert-header h3 {
+        color: #f1f5f9;
+    }
+
+    .calc-expression,
+    .convert-input,
+    .convert-unit {
+        background: #334155;
+        border-color: #475569;
+        color: #f1f5f9;
+    }
+
+    .calc-expression:focus,
+    .convert-input:focus {
+        border-color: #3b82f6;
+    }
+
+    .calc-examples {
+        background: #334155;
+    }
+
+    .calc-examples code {
+        background: #1e293b;
+        border-color: #475569;
+        color: #38bdf8;
+    }
+
+    .conversion-item {
+        background: #334155;
+        border-color: #475569;
+    }
+
+    .conversion-item:hover {
+        background: #1e3a8a;
+        border-color: #3b82f6;
+    }
+
+    .conversion-value {
+        color: #f1f5f9;
+    }
+
+    .convert-reference {
+        background: #422006;
+        border-color: #713f12;
+    }
+
+    .convert-reference strong {
+        color: #fbbf24;
+    }
+
+    .convert-reference li {
+        color: #fde68a;
+    }
+
+    .btn-cancel,
+    .btn-close {
+        background: #334155;
+        color: #94a3b8;
+    }
+
+    .btn-cancel:hover,
+    .btn-close:hover {
+        background: #475569;
+        color: #cbd5e1;
+    }
+}

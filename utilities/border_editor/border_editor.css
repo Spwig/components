@@ -1,0 +1,331 @@
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
+
+/* Border Editor Specific Styles - Inherits from utility_base.css */
+
+/* The border editor uses utility base classes from utility_base.css:
+   - .utility-popup for the main container
+   - .utility-header for the draggable header
+   - .utility-title for the title
+   - .utility-close for the close button
+   - .utility-body for the content area
+   - .utility-footer for the footer with buttons
+*/
+
+/* ===========================
+   Border-Specific Elements
+   =========================== */
+
+/* Border Preview Container and Box */
+.border-preview-container {
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    margin-bottom: 16px;
+    background: white;
+    border-radius: 4px;
+}
+
+.border-preview-box,
+#border-preview {
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-color, #4a90e2);
+    background: linear-gradient(135deg, var(--accent-color-1, #667eea) 0%, var(--accent-color-2, #764ba2) 100%);
+    transition: all 0.3s;
+}
+
+.radius-preview {
+    width: 100px;
+    height: 100px;
+    margin: 15px auto;
+    border: 2px solid var(--primary-color, #4a90e2);
+    background: linear-gradient(135deg, var(--accent-color-1, #667eea) 0%, var(--accent-color-2, #764ba2) 100%);
+    transition: border-radius 0.3s;
+}
+
+/* Color Preview Checkerboard Pattern */
+.border-color-preview {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+    background-image:
+        linear-gradient(45deg, var(--checker-color, #ddd) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--checker-color, #ddd) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--checker-color, #ddd) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--checker-color, #ddd) 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 4px;
+}
+
+.border-color-preview .color-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+}
+
+/* Corner Shape Previews */
+.corner-shape-preview {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 5px;
+    background: var(--primary-color, #4a90e2);
+}
+
+.corner-shape-preview.round {
+    border-radius: 8px;
+}
+
+.corner-shape-preview.bevel {
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+
+.corner-shape-preview.scoop {
+    border-radius: 50%;
+    clip-path: polygon(
+        0 8px, 8px 0,
+        calc(100% - 8px) 0, 100% 8px,
+        100% calc(100% - 8px), calc(100% - 8px) 100%,
+        8px 100%, 0 calc(100% - 8px)
+    );
+}
+
+.corner-shape-preview.notch {
+    clip-path: polygon(
+        8px 0, calc(100% - 8px) 0,
+        100% 8px, 100% calc(100% - 8px),
+        calc(100% - 8px) 100%, 8px 100%,
+        0 calc(100% - 8px), 0 8px
+    );
+}
+
+/* ===========================
+   Layout Grids
+   =========================== */
+
+/* Grid Layouts for Controls */
+.sides-grid,
+.corners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.corner-shape-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+/* Side/Corner Controls */
+.side-control,
+.corner-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: var(--subtle-bg, #f9f9f9);
+    border-radius: 4px;
+}
+
+.side-control label,
+.corner-control label {
+    font-size: 11px;
+    color: var(--muted-fg, #666);
+    margin: 0;
+    min-width: 40px;
+    white-space: nowrap;
+}
+
+.corner-control input {
+    min-width: 0;
+    flex: 1;
+}
+
+/* ===========================
+   Control Groups
+   =========================== */
+
+/* Width/Radius Control Groups */
+.border-width-controls,
+.border-radius-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.border-width-main,
+.border-radius-main {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.border-width-individual,
+.border-radius-individual {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* Individual width/radius inputs */
+.width-side,
+.radius-corner {
+    display: flex;
+    flex-direction: column;
+}
+
+.width-side label,
+.radius-corner label {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--muted-fg, #666);
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.width-side input,
+.radius-corner input {
+    width: 100%;
+    max-width: none;
+}
+
+/* Color Controls */
+.border-color-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Link Toggle States */
+.link-toggle.linked {
+    background: var(--primary-color, #4a90e2);
+    border-color: var(--primary-color, #4a90e2);
+    color: white;
+}
+
+/* Corner Shape Options */
+.corner-shape-option {
+    position: relative;
+    padding: 10px;
+    border: 2px solid var(--border-color, #ddd);
+    border-radius: 4px;
+    background: var(--body-bg, white);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.corner-shape-option:hover {
+    border-color: var(--hover-border-color, #999);
+    background: var(--hover-bg, #f5f5f5);
+}
+
+.corner-shape-option.active {
+    border-color: var(--primary-color, #4a90e2);
+    background: var(--primary-bg-light, #e3f2fd);
+}
+
+.corner-shape-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.corner-shape-label {
+    font-size: 11px;
+    color: var(--muted-fg, #666);
+}
+
+/* ===========================
+   Preset Buttons
+   =========================== */
+
+.preset-shapes {
+    margin-top: 20px;
+}
+
+.preset-shapes h5 {
+    font-size: 12px;
+    color: var(--muted-fg, #666);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.preset-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* ===========================
+   Animations
+   =========================== */
+
+@keyframes highlight {
+    0% { background: var(--primary-bg-light, #e3f2fd); }
+    100% { background: transparent; }
+}
+
+.border-control-group.updated {
+    animation: highlight 0.5s ease;
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+
+@media (max-width: 480px) {
+    .sides-grid,
+    .corners-grid,
+    .corner-shape-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .border-width-controls,
+    .border-radius-controls {
+        flex-direction: column;
+    }
+
+    .border-width-individual,
+    .border-radius-individual {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===========================
+   Dark Theme Variables
+   =========================== */
+
+@media (prefers-color-scheme: dark) {
+    .border-editor-popup {
+        --checker-color: #3f3f46;
+        --primary-bg-light: rgba(59, 130, 246, 0.1);
+        --accent-color-1: #8b5cf6;
+        --accent-color-2: #ec4899;
+        --subtle-bg: #27272a;
+        --hover-bg: #27272a;
+        --hover-border-color: #52525b;
+        --muted-fg: #a1a1aa;
+    }
+}
+
+.theme-dark .border-editor-popup {
+    --checker-color: #3f3f46;
+    --primary-bg-light: rgba(59, 130, 246, 0.1);
+    --accent-color-1: #8b5cf6;
+    --accent-color-2: #ec4899;
+    --subtle-bg: #27272a;
+    --hover-bg: #27272a;
+    --hover-border-color: #52525b;
+    --muted-fg: #a1a1aa;
+}

@@ -1,0 +1,109 @@
+{% load i18n %}
+{# Setup instructions fragment for Azure Translator provider #}
+{# Injected inside .setup-instructions in the wizard template #}
+{# All CSS scoped under .setup-instructions in provider-wizard.css #}
+
+<div class="intro-section">
+    <p>{% trans "This guide will walk you through setting up Azure Translator as your translation provider. Azure Translator offers extensive language support with a generous free tier of 2 million characters per month." %}</p>
+
+    <div class="note info">
+        <strong>{% trans "Time Required:" %}</strong> {% trans "10-15 minutes" %}<br>
+        <strong>{% trans "Prerequisites:" %}</strong> {% trans "A Microsoft Azure account" %}
+    </div>
+</div>
+
+<h3>{% trans "Overview" %}</h3>
+<p>{% trans "To use Azure Translator, you'll need to:" %}</p>
+<ol>
+    <li>{% trans "Create an Azure account (if you don't have one)" %}</li>
+    <li>{% trans "Create a Translator resource" %}</li>
+    <li>{% trans "Copy your subscription key and region" %}</li>
+    <li>{% trans "Enter them in the configuration step" %}</li>
+</ol>
+
+<h3>{% trans "Detailed Setup Steps" %}</h3>
+
+<div class="step">
+    <h4><span class="si-step-number">1</span> {% trans "Create an Azure Account" %}</h4>
+    <ol>
+        <li>{% trans "Go to" %} <a href="https://azure.microsoft.com/free/" target="_blank" rel="noopener" class="si-button-link">{% trans "Azure Free Account" %}</a></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Start free" %}"</strong></li>
+        <li>{% trans "Sign in with your Microsoft account or create a new one" %}</li>
+        <li>{% trans "Complete the registration process" %}</li>
+    </ol>
+    <div class="note info">
+        <strong>{% trans "Note:" %}</strong> {% trans "Azure offers a free tier that includes 2 million characters per month for the Translator service at no cost." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">2</span> {% trans "Create a Translator Resource" %}</h4>
+    <ol>
+        <li>{% trans "Go to the" %} <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation" target="_blank" rel="noopener" class="si-button-link">{% trans "Create Translator Resource" %}</a></li>
+        <li>{% trans "Fill in the required fields:" %}
+            <ul>
+                <li><strong>{% trans "Subscription:" %}</strong> {% trans "Select your Azure subscription" %}</li>
+                <li><strong>{% trans "Resource group:" %}</strong> {% trans "Create new or select existing" %}</li>
+                <li><strong>{% trans "Region:" %}</strong> {% trans "Select a region closest to your server (e.g., West US 2, West Europe)" %}</li>
+                <li><strong>{% trans "Name:" %}</strong> {% trans "Enter a unique name for your resource" %}</li>
+                <li><strong>{% trans "Pricing tier:" %}</strong> {% trans "Select 'Free F0' for the free tier or 'Standard S1' for production" %}</li>
+            </ul>
+        </li>
+        <li>{% trans "Click" %} <strong>"{% trans "Review + create" %}"</strong></li>
+        <li>{% trans "Click" %} <strong>"{% trans "Create" %}"</strong></li>
+        <li>{% trans "Wait for the deployment to complete" %}</li>
+    </ol>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">3</span> {% trans "Get Your Subscription Key and Region" %}</h4>
+    <ol>
+        <li>{% trans "Once the resource is deployed, click" %} <strong>"{% trans "Go to resource" %}"</strong></li>
+        <li>{% trans "In the left menu, click" %} <strong>"{% trans "Keys and Endpoint" %}"</strong></li>
+        <li>{% trans "You will see two keys (KEY 1 and KEY 2) — either one will work" %}</li>
+        <li>{% trans "Click the copy button next to" %} <strong>"{% trans "KEY 1" %}"</strong></li>
+        <li>{% trans "Note your" %} <strong>"{% trans "Location/Region" %}"</strong> {% trans "(e.g., westus2, eastus, westeurope)" %}</li>
+    </ol>
+    <div class="note warning">
+        <strong>{% trans "Important:" %}</strong> {% trans "Keep your subscription keys secure. You will need both the key and the region in the next step." %}
+    </div>
+</div>
+
+<div class="step">
+    <h4><span class="si-step-number">4</span> {% trans "Pricing Information" %}</h4>
+    <p>{% trans "Azure Translator pricing:" %}</p>
+    <ul>
+        <li><strong>{% trans "Free Tier (F0):" %}</strong> {% trans "2 million characters per month" %}</li>
+        <li><strong>{% trans "Standard (S1):" %}</strong> {% trans "$10 per million characters" %}</li>
+    </ul>
+    <p>{% trans "You can monitor your usage in the Azure Portal under the resource's 'Metrics' section." %}</p>
+</div>
+
+<div class="note success">
+    <strong>{% trans "Ready!" %}</strong> {% trans "Click 'Next' to enter your subscription key and region in the configuration form." %}
+</div>
+
+<div class="help-section">
+    <h3>{% trans "Troubleshooting" %}</h3>
+
+    <h4>{% trans "Error: 401 Unauthorized" %}</h4>
+    <ul>
+        <li>{% trans "Verify your subscription key is correct" %}</li>
+        <li>{% trans "Check that the region matches your Translator resource's location" %}</li>
+        <li>{% trans "Ensure your Azure subscription is active" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: 403 Forbidden / Out of quota" %}</h4>
+    <ul>
+        <li>{% trans "You have exceeded your monthly character quota" %}</li>
+        <li>{% trans "Free tier: 2 million characters per month" %}</li>
+        <li>{% trans "Upgrade to Standard (S1) for higher limits" %}</li>
+    </ul>
+
+    <h4>{% trans "Error: 404 Resource Not Found" %}</h4>
+    <ul>
+        <li>{% trans "Verify the region is correct (must match your resource's location)" %}</li>
+        <li>{% trans "Check that the Translator resource has finished deploying" %}</li>
+        <li>{% trans "Common regions: westus2, eastus, westeurope, southeastasia" %}</li>
+    </ul>
+</div>

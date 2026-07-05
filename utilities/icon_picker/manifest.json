@@ -1,0 +1,32 @@
+{
+  "component_type": "utility",
+  "slug": "icon-picker",
+  "name": "Icon Picker",
+  "version": "1.0.0",
+  "display_name": "Icon Picker",
+  "description": "Icon selection utility with Font Awesome library, search, and category filtering",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "content",
+  "assets": {
+    "css": ["static/icon_picker.css"],
+    "js": ["static/icon_picker.js"]
+  },
+  "supported_properties": [
+    "icon", "icon-class"
+  ],
+  "options": {
+    "icon_libraries": ["font-awesome"],
+    "show_search": true,
+    "show_categories": true
+  },
+  "dependencies": [],
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "documentation_url": "https://docs.spwig.com/utilities/icon-picker",
+  "support_url": "https://support.spwig.com"
+}

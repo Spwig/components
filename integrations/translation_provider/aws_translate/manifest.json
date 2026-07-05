@@ -1,0 +1,84 @@
+{
+  "component_type": "translation_provider",
+  "slug": "aws_translate",
+  "name": "AWS Translate",
+  "version": "1.0.0",
+  "description": "Amazon's scalable translation service with deep AWS integration and competitive pricing",
+  "author": "Spwig",
+  "author_details": {
+    "name": "Spwig",
+    "email": "support@spwig.com",
+    "website": "https://spwig.com"
+  },
+  "homepage_url": "https://aws.amazon.com/translate/",
+  "support_url": "https://docs.aws.amazon.com/translate/",
+  "license": "AGPL-3.0",
+  "min_platform_version": "1.1.0",
+  "requires_platform": "1.x",
+  "python_version": ">=3.10",
+  "django_version": ">=4.2,<5.0",
+  "python_packages": [
+    "boto3>=1.28.0"
+  ],
+  "platform_components": {
+    "translations": ">=1.0.0"
+  },
+  "provider_key": "aws_translate",
+  "entry_point": "provider",
+  "class_name": "AWSTranslateProvider",
+  "capabilities": {
+    "batch_translate": true,
+    "language_detection": true,
+    "formality": true,
+    "glossary": false,
+    "html_support": true
+  },
+  "credential_schema": {
+    "access_key_id": {
+      "type": "password",
+      "label": "Access Key ID",
+      "help_text": "Your AWS IAM Access Key ID",
+      "required": true,
+      "placeholder": "AKIA..."
+    },
+    "secret_access_key": {
+      "type": "password",
+      "label": "Secret Access Key",
+      "help_text": "Your AWS IAM Secret Access Key",
+      "required": true,
+      "placeholder": "Enter your AWS Secret Access Key"
+    },
+    "region": {
+      "type": "text",
+      "label": "AWS Region",
+      "help_text": "AWS region for the Translate service (e.g., us-east-1, eu-west-1)",
+      "required": false,
+      "placeholder": "us-east-1",
+      "default": "us-east-1"
+    }
+  },
+  "provider_info": {
+    "supported_languages": 75,
+    "free_tier": "2,000,000 characters/year (first 12 months)",
+    "pricing": "$15 per million characters",
+    "features": [
+      {"icon": "fas fa-globe", "text": "75+ languages"},
+      {"icon": "fas fa-gift", "text": "2M free chars/year"},
+      {"icon": "fas fa-dollar-sign", "text": "$15/million chars"}
+    ]
+  },
+  "signup_url": "https://aws.amazon.com/translate/",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  },
+  "requires_restart": false,
+  "requires_collectstatic": false,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-16",
+      "changes": ["Initial release with AWS Translate API support"]
+    }
+  ]
+}

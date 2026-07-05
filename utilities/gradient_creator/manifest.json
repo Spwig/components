@@ -1,0 +1,46 @@
+{
+  "component_type": "utility",
+  "slug": "gradient-creator",
+  "name": "gradient-creator",
+  "version": "1.0.2",
+  "display_name": "Gradient Creator",
+  "description": "Visual gradient editor with support for linear, radial, and conic gradients. Features drag-and-drop color stops, opacity controls, preset gradients, and real-time preview with CSS variable theming.",
+  "author": "Spwig",
+  "author_url": "https://spwig.com",
+  "license": "AGPL-3.0",
+  "requires_platform": "1.x",
+  "category": "design",
+  "assets": {
+    "css": [
+      "static/gradient_creator.css"
+    ],
+    "js": [
+      "static/gradient_creator.js"
+    ]
+  },
+  "supported_properties": [
+    "background",
+    "background-image"
+  ],
+  "options": {
+    "defaultType": "linear",
+    "defaultAngle": 90,
+    "maxStops": 10,
+    "showPresets": true,
+    "showCodeOutput": true
+  },
+  "changelog": {
+    "1.0.2": [
+      "Replaced native browser alert() with AdminModal for consistent admin UI"
+    ]
+  },
+  "dependencies": [
+    "color-picker"
+  ],
+  "documentation_url": "https://docs.spwig.com/utilities/gradient-creator",
+  "support_url": "https://support.spwig.com",
+  "logo": {
+    "file": "logo.svg",
+    "mime_type": "image/svg+xml"
+  }
+}
