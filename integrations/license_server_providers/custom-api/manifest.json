@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Connect your own license server via REST API. Flexible integration for merchants with existing license management systems.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "custom",
   "class_name": "CustomAPIAdapter",
   "entry_point": "provider.py",

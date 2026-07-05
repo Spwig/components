@@ -290,4 +290,4 @@ Special thanks to:
 
 **Release Date**: 2025-10-23
 **Component Version**: 1.0.0
-**License**: Proprietary - Copyright © 2025 Spwig. All rights reserved.
+**License**: AGPL-3.0

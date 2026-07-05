@@ -387,4 +387,4 @@ shipping/providers/fedex/
 
 ## License
 
-Copyright © 2025 Spwig. All rights reserved.
+Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0.

@@ -18,7 +18,7 @@
   "api_docs_url": "https://docs.spwig.com/email/smtp-provider",
   "logo": "logo.png",
   "min_platform_version": "1.0.0",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
 
   "capabilities": {
     "send": true,

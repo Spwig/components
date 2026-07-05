@@ -4,7 +4,7 @@ Native subscription support using Stripe's Billing API.
 """
 from typing import Dict, Any, Optional
 from decimal import Decimal
-from datetime import datetime
+from datetime import datetime, timezone as dt_timezone
 from django.utils import timezone
 import logging
 
@@ -215,19 +215,19 @@ class StripeSubscriptionProvider(SubscriptionProviderBase):
                 'status': subscription.status,
                 'current_period_start': datetime.fromtimestamp(
                     subscription.current_period_start,
-                    tz=timezone.utc
+                    tz=dt_timezone.utc
                 ),
                 'current_period_end': datetime.fromtimestamp(
                     subscription.current_period_end,
-                    tz=timezone.utc
+                    tz=dt_timezone.utc
                 ),
                 'next_billing_date': datetime.fromtimestamp(
                     subscription.current_period_end,
-                    tz=timezone.utc
+                    tz=dt_timezone.utc
                 ),
                 'trial_end': datetime.fromtimestamp(
                     subscription.trial_end,
-                    tz=timezone.utc
+                    tz=dt_timezone.utc
                 ) if subscription.trial_end else None,
             }
 
@@ -267,7 +267,7 @@ class StripeSubscriptionProvider(SubscriptionProviderBase):
                 'status': subscription.status,
                 'canceled_at': datetime.fromtimestamp(
                     subscription.canceled_at,
-                    tz=timezone.utc
+                    tz=dt_timezone.utc
                 ) if subscription.canceled_at else timezone.now(),
                 'cancel_at_period_end': subscription.cancel_at_period_end,
             }

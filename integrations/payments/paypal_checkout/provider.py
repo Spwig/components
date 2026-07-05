@@ -1159,7 +1159,8 @@ class PayPalProvider(PaymentProviderBase):
         return_url: str,
         cancel_url: str,
         customer_email: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None
+        metadata: Optional[Dict[str, Any]] = None,
+        **kwargs
     ) -> Dict[str, Any]:
         """
         Create a payment intent for checkout orchestration.

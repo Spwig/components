@@ -5,7 +5,7 @@
   "version": "1.1.0",
   "description": "Share blog posts to X (formerly Twitter) with images and link cards",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "twitter",
   "class_name": "TwitterConnector",
   "entry_point": "provider.py",

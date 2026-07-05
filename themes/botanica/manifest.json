@@ -1,14 +1,14 @@
 {
   "name": "Botanica",
   "slug": "botanica",
+  "component_type": "theme",
   "version": "1.0.0",
+  "display_name": "Botanica",
   "description": "Warm, botanical luxury theme with dusty rose accents and elegant serif headings. Perfect for beauty, cosmetics, skincare, wellness, and spa brands.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_email": "themes@spwig.com",
   "license": "MIT",
-  "engine": {
-    "min": "1.0.0"
-  },
   "assets": {
     "css": [
       "css/theme.css"

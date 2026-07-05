@@ -618,6 +618,7 @@ class RevolutProvider(PaymentProviderBase):
         cancel_url: str,
         customer_email: Optional[str] = None,
         metadata: Optional[Dict[str, Any]] = None,
+        **kwargs
     ) -> Dict[str, Any]:
         metadata = metadata or {}
         capture_mode = self.credentials.get('capture_mode', 'AUTOMATIC')

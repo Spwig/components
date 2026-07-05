@@ -1,11 +1,14 @@
 {
-  "name": "starter",
+  "name": "Starter Theme",
+  "slug": "starter",
+  "component_type": "theme",
   "version": "1.0.0",
   "display_name": "Starter Theme",
   "description": "A clean, fast, and responsive default theme for Spwig e-commerce stores. Performance-first design with semantic CSS and mobile-first approach.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_url": "https://spwig.com",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "min_platform_version": "1.0.0",
   "max_platform_version": "2.0.0",
   "categories": [

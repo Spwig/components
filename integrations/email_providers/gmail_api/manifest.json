@@ -5,7 +5,7 @@
   "version": "1.0.4",
   "description": "Send transactional emails via Gmail API with OAuth 2.0 authentication",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "gmail_api",
   "class_name": "GmailProvider",
   "entry_point": "provider.py",

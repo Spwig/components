@@ -10,7 +10,7 @@
         "email": "support@spwig.com",
         "website": "https://spwig.com"
     },
-    "license": "Proprietary",
+    "license": "AGPL-3.0",
     "provider_key": "semrush",
     "class_name": "SEMrushSEOProvider",
     "entry_point": "provider.py",

@@ -18,7 +18,7 @@
   "api_docs_url": "https://www.twilio.com/docs/sms",
   "logo": "logo.svg",
   "min_platform_version": "2.0.0",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
 
   "capabilities": {
     "sms": true,

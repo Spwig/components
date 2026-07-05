@@ -5,7 +5,7 @@
   "version": "1.0.2",
   "description": "Southeast Asian logistics provider with OAuth 2.0 Plugin API integration. Supports Singapore, Malaysia, Thailand, Indonesia, Vietnam, Philippines, and Myanmar.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "ninjavan",
   "class_name": "NinjaVanProvider",
   "entry_point": "provider.py",

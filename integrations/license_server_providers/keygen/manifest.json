@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Popular license management platform with policy-based licensing, device tracking, and comprehensive analytics.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "keygen",
   "class_name": "KeygenAdapter",
   "entry_point": "provider.py",

@@ -2,7 +2,7 @@
   "component_type": "payment_provider",
   "slug": "airwallex",
   "name": "Airwallex",
-  "version": "1.1.6",
+  "version": "1.2.1",
   "description": "Global payment processing with 160+ payment methods across 130+ countries. Optimized for international commerce with competitive FX rates.",
   "author": "Spwig",
   "author_details": {
@@ -12,7 +12,7 @@
   },
   "homepage_url": "https://www.airwallex.com",
   "support_url": "https://www.airwallex.com/docs",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "min_platform_version": "1.0.0",
   "requires_platform": "1.x",
   "python_version": ">=3.10",
@@ -618,6 +618,37 @@
     "mime_type": "image/svg+xml"
   },
   "changelog": [
+    {
+      "version": "1.2.1",
+      "date": "2026-03-31",
+      "changes": [
+        "Fixed empty payment_method_types list being treated as falsy — explicit 'in kwargs' check prevents fallback to legacy config when orchestration service passes an empty list"
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "date": "2026-03-31",
+      "changes": [
+        "Accept payment_method_types from orchestration service for per-country method filtering — provider hosted/embedded checkout now respects merchant-enabled methods",
+        "Deprecated legacy self.config payment_method_types read (was broken — read from settings instead of credentials)",
+        "Added **kwargs to create_payment_intent_for_checkout for forward-compatible parameter passing"
+      ]
+    },
+    {
+      "version": "1.1.8",
+      "date": "2026-03-11",
+      "changes": [
+        "Added support for linking payment intents to Airwallex customers via airwallex_customer_id metadata field",
+        "Enables recurring billing consent creation for post-payment subscription setup (e.g. license maintenance)"
+      ]
+    },
+    {
+      "version": "1.1.7",
+      "date": "2026-03-11",
+      "changes": [
+        "Fixed webhook URL in setup instructions (was /payment-providers/webhook/{slug}/, corrected to /webhooks/payments/{slug}/)"
+      ]
+    },
     {
       "version": "1.1.6",
       "date": "2026-03-01",

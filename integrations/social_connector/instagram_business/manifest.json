@@ -5,7 +5,7 @@
   "version": "1.1.0",
   "description": "Share blog posts to your Instagram Business account with images and captions",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "instagram_business",
   "class_name": "InstagramBusinessConnector",
   "entry_point": "provider.py",

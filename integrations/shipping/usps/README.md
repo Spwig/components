@@ -335,7 +335,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ## License
 
-Proprietary - Copyright © 2025 Spwig. All rights reserved.
+AGPL-3.0
 
 ## Support
 

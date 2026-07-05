@@ -5,7 +5,7 @@
   "version": "1.0.1",
   "description": "Premium exchange rate data from XE.com - trusted globally for 30+ years. Access 220+ currencies from 100+ authoritative sources with unparalleled data quality and brand recognition.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "xe",
   "class_name": "XEProvider",
   "entry_point": "provider.py",

@@ -1,14 +1,14 @@
 {
   "name": "Bold",
   "slug": "bold",
+  "component_type": "theme",
   "version": "1.0.0",
+  "display_name": "Bold",
   "description": "High-contrast, action-oriented theme with electric orange and sharp edges. Perfect for sporting goods, gym equipment, outdoor gear, fitness supplements, and activewear.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_email": "themes@spwig.com",
   "license": "MIT",
-  "engine": {
-    "min": "1.0.0"
-  },
   "assets": {
     "css": [
       "css/theme.css"

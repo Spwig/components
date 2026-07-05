@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Send affiliate commission payouts via PayPal's batch Payouts API. Supports up to 15,000 payments per batch with instant delivery to PayPal accounts worldwide.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "paypal",
   "class_name": "PayPalPayoutProvider",
   "entry_point": "provider.py",

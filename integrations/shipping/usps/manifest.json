@@ -5,7 +5,7 @@
   "version": "1.0.2",
   "description": "USPS shipping integration with rate quotes, label generation, and tracking via USPS REST API v3",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "usps",
   "class_name": "USPSProvider",
   "entry_point": "provider.py",

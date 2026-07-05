@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Real-time exchange rates for 160+ currencies with 99.99% uptime and generous free tier",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "exchangerate_api",
   "class_name": "ExchangeRateAPIProvider",
   "entry_point": "provider.py",

@@ -1,11 +1,14 @@
 {
-  "name": "modern-dark",
+  "name": "Modern Dark",
+  "slug": "modern-dark",
+  "component_type": "theme",
   "version": "1.1.0",
   "display_name": "Modern Dark",
   "description": "A sleek dark theme for contemporary stores. Features dark backgrounds with light text and subtle purple and pink accents.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_url": "https://spwig.com",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "min_platform_version": "1.0.0",
   "max_platform_version": "2.0.0",
   "categories": [

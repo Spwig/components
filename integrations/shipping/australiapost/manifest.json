@@ -5,7 +5,7 @@
   "version": "2.0.2",
   "description": "Production-ready Australia Post shipping integration meeting full lodgement validation requirements. Supports order management, basket management (10,000 items), validation services, all product features (ATL, Safe Drop, DG), and 4 account types (eParcel, StarTrack, Same Day, On Demand). Complete workflow from validation to manifest generation.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "australiapost",
   "class_name": "AustraliaPostProvider",
   "entry_point": "provider.py",

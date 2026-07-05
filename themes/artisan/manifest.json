@@ -1,14 +1,14 @@
 {
   "name": "Artisan",
   "slug": "artisan",
+  "component_type": "theme",
   "version": "1.0.0",
+  "display_name": "Artisan",
   "description": "Warm, rustic-modern theme with rich earth tones and elegant serif headings. Perfect for food, beverage, bakeries, cafes, wine shops, and artisan craft stores.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_email": "themes@spwig.com",
   "license": "MIT",
-  "engine": {
-    "min": "1.0.0"
-  },
   "assets": {
     "css": [
       "css/theme.css"

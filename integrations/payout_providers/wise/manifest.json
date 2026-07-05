@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Send affiliate commission payouts via Wise (formerly TransferWise). Low-cost international transfers to 170+ countries with real exchange rates and transparent fees.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "wise",
   "class_name": "WisePayoutProvider",
   "entry_point": "provider.py",

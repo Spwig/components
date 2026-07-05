@@ -1,8 +1,8 @@
-/* © 2025 Spwig. All rights reserved. */
+/* Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0. */
 
 /**
  * Apparel Theme Theme - Design Tokens as CSS Custom Properties
- * Generated from tokens.json on 2026-02-25 11:47:49
+ * Generated from tokens.json on 2026-04-16 02:13:03
  * DO NOT EDIT MANUALLY - Edit tokens.json instead and regenerate
  */
 
@@ -197,6 +197,72 @@
   --theme-menu-animation-duration: var(--theme-transition-duration-fast);
   --theme-menu-animation-timing: var(--theme-transition-easing-default);
   --theme-menu-slide-duration: var(--theme-transition-duration-slow);
+
+  /* ==========================================================================
+     Header
+     ========================================================================== */
+  --theme-header-background: var(--theme-color-surface);
+  --theme-header-border-color: var(--theme-color-border);
+  --theme-header-text-color: var(--theme-color-text);
+  --theme-header-icon-color: var(--theme-color-text-light);
+  --theme-header-icon-hover-color: var(--theme-color-primary);
+  --theme-header-link-color: var(--theme-color-text);
+  --theme-header-link-hover-color: var(--theme-color-primary);
+  --theme-header-logo-height: 40px;
+  --theme-header-padding-x: var(--theme-space-4);
+  --theme-header-padding-y: var(--theme-space-4);
+  --theme-header-announcement-bg: var(--theme-color-primary);
+  --theme-header-announcement-text-color: var(--theme-color-text-inverse);
+
+  /* Header Zones */
+  --theme-header-zones-top-bar-background: var(--theme-color-background-alt);
+  --theme-header-zones-top-bar-text-color: var(--theme-color-text-light);
+  --theme-header-zones-top-bar-border-color: var(--theme-color-border);
+  --theme-header-zones-top-bar-font-size: var(--theme-font-size-sm);
+  --theme-header-zones-top-bar-height: 36px;
+  --theme-header-zones-top-bar-padding-y: var(--theme-space-2);
+
+  --theme-header-zones-main-header-background: var(--theme-color-surface);
+  --theme-header-zones-main-header-text-color: var(--theme-color-text);
+  --theme-header-zones-main-header-border-color: var(--theme-color-border);
+  --theme-header-zones-main-header-height: 70px;
+  --theme-header-zones-main-header-padding-y: var(--theme-space-4);
+
+  --theme-header-zones-bottom-bar-background: var(--theme-color-background-alt);
+  --theme-header-zones-bottom-bar-text-color: var(--theme-color-text);
+  --theme-header-zones-bottom-bar-border-color: var(--theme-color-border);
+  --theme-header-zones-bottom-bar-font-size: var(--theme-font-size-sm);
+  --theme-header-zones-bottom-bar-height: 50px;
+  --theme-header-zones-bottom-bar-padding-y: var(--theme-space-3);
+
+  /* ==========================================================================
+     Footer
+     ========================================================================== */
+  --theme-footer-background: #292524;
+  --theme-footer-border-color: rgba(255, 255, 255, 0.1);
+  --theme-footer-text-color: rgba(255, 255, 255, 0.85);
+  --theme-footer-heading-color: #ffffff;
+  --theme-footer-link-color: rgba(255, 255, 255, 0.7);
+  --theme-footer-link-hover-color: var(--theme-color-primary-light);
+  --theme-footer-muted-color: rgba(255, 255, 255, 0.5);
+  --theme-footer-padding-y: var(--theme-space-12);
+  --theme-footer-column-gap: var(--theme-space-8);
+
+  /* Footer Zones */
+  --theme-footer-zones-top-background: transparent;
+  --theme-footer-zones-top-text-color: rgba(255, 255, 255, 0.85);
+  --theme-footer-zones-top-border-color: rgba(255, 255, 255, 0.1);
+  --theme-footer-zones-top-padding-y: var(--theme-space-12);
+
+  --theme-footer-zones-main-background: transparent;
+  --theme-footer-zones-main-text-color: rgba(255, 255, 255, 0.85);
+  --theme-footer-zones-main-padding-y: var(--theme-space-8);
+
+  --theme-footer-zones-bottom-background: rgba(0, 0, 0, 0.2);
+  --theme-footer-zones-bottom-text-color: rgba(255, 255, 255, 0.6);
+  --theme-footer-zones-bottom-border-color: rgba(255, 255, 255, 0.1);
+  --theme-footer-zones-bottom-padding-y: var(--theme-space-4);
+  --theme-footer-zones-bottom-font-size: var(--theme-font-size-sm);
 
   /* ==========================================================================
      Element Tokens (Page Builder)

@@ -1123,6 +1123,7 @@ class AdyenProvider(PaymentProviderBase):
         cancel_url: str,
         customer_email: Optional[str] = None,
         metadata: Optional[Dict[str, Any]] = None,
+        **kwargs
     ) -> Dict[str, Any]:
         """
         Create an Adyen payment session for Drop-in checkout.
@@ -1160,6 +1161,11 @@ class AdyenProvider(PaymentProviderBase):
             'reference': reference,
             'returnUrl': return_url,
         }
+
+        # Restrict payment methods if specified by orchestration service
+        payment_method_types = kwargs.get('payment_method_types')
+        if payment_method_types:
+            payload['allowedPaymentMethods'] = payment_method_types
 
         # Add country code if available (improves payment method availability)
         if metadata.get('country_code'):

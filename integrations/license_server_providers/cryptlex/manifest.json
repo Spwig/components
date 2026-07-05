@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Secure license management with node-locked and floating licenses, offline activation, and comprehensive device management.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "cryptlex",
   "class_name": "CryptlexAdapter",
   "entry_point": "provider.py",

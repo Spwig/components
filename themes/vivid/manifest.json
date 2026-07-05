@@ -1,14 +1,14 @@
 {
   "name": "Vivid",
   "slug": "vivid",
+  "component_type": "theme",
   "version": "1.0.0",
+  "display_name": "Vivid",
   "description": "Playful, colorful theme with vibrant purple and sunny accents. Perfect for toy stores, kids clothing, art supplies, party supplies, and creative goods.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_email": "themes@spwig.com",
   "license": "MIT",
-  "engine": {
-    "min": "1.0.0"
-  },
   "assets": {
     "css": [
       "css/theme.css"

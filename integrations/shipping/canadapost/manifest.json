@@ -5,7 +5,7 @@
   "version": "1.0.2",
   "description": "Canada Post shipping integration with XML-based REST API. Supports both Contract Shipping (commercial customers) and Non-Contract Shipping (Solutions for Small Business). Includes rate calculation, label generation, tracking, and international customs support.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "canadapost",
   "class_name": "CanadaPostProvider",
   "entry_point": "provider.py",

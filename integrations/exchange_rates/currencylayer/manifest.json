@@ -5,7 +5,7 @@
   "version": "1.0.1",
   "description": "Real-time exchange rates for 168 currencies powered by Currencylayer API",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "currencylayer",
   "class_name": "CurrencylayerProvider",
   "entry_point": "provider.py",

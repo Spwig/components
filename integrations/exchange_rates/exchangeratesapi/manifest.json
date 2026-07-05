@@ -5,7 +5,7 @@
   "version": "1.0.2",
   "description": "Real-time exchange rates for 168+ currencies including commodities (Gold, Silver) powered by ExchangeRatesAPI.io (APILayer)",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "exchangeratesapi",
   "class_name": "ExchangeRatesAPIProvider",
   "entry_point": "provider.py",

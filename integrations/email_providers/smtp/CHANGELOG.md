@@ -206,7 +206,7 @@ For issues, questions, or feature requests:
 
 ## License
 
-Proprietary - Copyright © 2025 Spwig. All rights reserved.
+AGPL-3.0
 
 This provider is distributed with the Spwig eCommerce platform and is licensed for use with the platform only.
 

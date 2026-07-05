@@ -859,7 +859,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version history and release notes.
 
 ## License
 
-Proprietary - Copyright © 2025 Spwig. All rights reserved.
+AGPL-3.0
 
 This component is licensed software. Redistribution and use in source and binary forms, with or without modification, are not permitted without express written permission.
 

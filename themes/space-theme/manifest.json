@@ -1,14 +1,14 @@
 {
   "name": "Space Theme",
   "slug": "space-theme",
+  "component_type": "theme",
   "version": "1.0.0",
+  "display_name": "Space Theme",
   "description": "Deep space void meets electric lime energy. A dark, angular theme for tech stores, gaming, and high-impact brands.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_email": "support@spwig.com",
-  "license": "Proprietary",
-  "engine": {
-    "min": "1.0.0"
-  },
+  "license": "AGPL-3.0",
   "assets": {
     "css": [
       "css/tokens.css",

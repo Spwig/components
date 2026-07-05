@@ -74,9 +74,9 @@ class AirwallexProvider(PaymentProviderBase):
         # Config options
         self.auto_capture = self.config.get('auto_capture', True)
         self.payment_descriptor = self.config.get('payment_descriptor')
-        # Payment method types (e.g., ['card', 'wechatpay', 'alipaycn', 'googlepay', 'applepay'])
-        # If not specified, AirWallex will show all available methods for the merchant
-        self.payment_method_types = self.config.get('payment_method_types')
+        # Legacy: payment_method_types from config (deprecated — now passed per-request
+        # from the orchestration service via enabled_payment_methods per country)
+        self._legacy_payment_method_types = self.config.get('payment_method_types')
 
         # Set API base URL based on test_mode
         self.api_base = (
@@ -962,7 +962,8 @@ class AirwallexProvider(PaymentProviderBase):
         customer_name: Optional[str] = None,
         customer_country: Optional[str] = None,
         saved_token: Optional[str] = None,
-        metadata: Optional[Dict] = None
+        metadata: Optional[Dict] = None,
+        **kwargs
     ) -> Dict[str, Any]:
         """
         Create a payment intent for checkout orchestration.
@@ -1006,16 +1007,24 @@ class AirwallexProvider(PaymentProviderBase):
             'descriptor': self.payment_descriptor or 'Online Payment',
         }
 
-        # Add payment method types if configured (otherwise AirWallex shows all available)
+        # Add payment method types if provided by orchestration service (per-country enabled
+        # methods), falling back to legacy config setting, otherwise AirWallex shows all.
         # Supported types: card, wechatpay, alipaycn, alipayhk, gcash, dana, kakaopay,
         # tng, truemoney, googlepay, applepay, grabpay, etc.
-        if self.payment_method_types:
-            intent_data['payment_method_types'] = self.payment_method_types
+        if 'payment_method_types' in kwargs and kwargs['payment_method_types']:
+            intent_data['payment_method_types'] = kwargs['payment_method_types']
+        elif self._legacy_payment_method_types:
+            intent_data['payment_method_types'] = self._legacy_payment_method_types
 
         # Add idempotency key — Airwallex requires request_id and merchant_order_id
         request_id = order_id or str(uuid.uuid4())
         intent_data['request_id'] = request_id
         intent_data['merchant_order_id'] = request_id
+
+        # Link to an existing AirWallex customer (for recurring billing consent)
+        airwallex_customer_id = (metadata or {}).pop('airwallex_customer_id', None)
+        if airwallex_customer_id:
+            intent_data['customer_id'] = airwallex_customer_id
 
         # Add customer information
         if customer_email or customer_name:

@@ -1,11 +1,14 @@
 {
-  "name": "apparel-theme",
-  "version": "1.1.0",
+  "name": "Apparel Theme",
+  "slug": "apparel-theme",
+  "component_type": "theme",
+  "version": "1.2.1",
   "display_name": "Apparel Theme",
   "description": "A vibrant fashion-focused theme with warm tones. Features rose and amber accents perfect for clothing and accessory stores.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_url": "https://spwig.com",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "min_platform_version": "1.0.0",
   "max_platform_version": "2.0.0",
   "categories": [
@@ -45,6 +48,15 @@
     "accessibility": "WCAG 2.1 AA"
   },
   "changelog": [
+    {
+      "version": "1.2.1",
+      "date": "2026-04-16",
+      "changes": [
+        "Added header tokens: background, text, icon, link colors, zone definitions",
+        "Added footer tokens: background, text, heading, link, muted colors, zone definitions",
+        "Footer uses warm dark charcoal (#292524) with light text for fashion-appropriate contrast"
+      ]
+    },
     {
       "version": "1.1.0",
       "date": "2026-01-26",

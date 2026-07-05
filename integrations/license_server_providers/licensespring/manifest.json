@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Comprehensive license management with floating licenses, consumption tracking, and trial license support.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "licensespring",
   "class_name": "LicenseSpringAdapter",
   "entry_point": "provider.py",

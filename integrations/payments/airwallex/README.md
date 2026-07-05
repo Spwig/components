@@ -48,7 +48,7 @@ Visit [www.airwallex.com](https://www.airwallex.com) and sign up for a business 
 ### 3. Configure Webhook (Recommended)
 
 1. Go to **Developer → Webhooks** in your dashboard
-2. Add your webhook URL: `https://yourdomain.com/payment-providers/webhook/airwallex/`
+2. Add your webhook URL: `https://yourdomain.com/webhooks/payments/airwallex/`
 3. Select events: `payment_intent.*` and `refund.*`
 4. Enable signing secret and copy the secret key
 
@@ -175,6 +175,6 @@ This platform has a partnership agreement with AirWallex, providing:
 
 ## License
 
-Copyright © 2025 Spwig. All rights reserved.
+Copyright (c) 2025-2026 Spwig. Licensed under AGPL-3.0.
 
 This component is part of the Spwig eCommerce Platform and is provided for use with the platform only.

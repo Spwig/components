@@ -769,6 +769,5 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
 ## License
 
-Proprietary - Copyright Spwig 2025
+AGPL-3.0
 
-All rights reserved. This software is proprietary and confidential.

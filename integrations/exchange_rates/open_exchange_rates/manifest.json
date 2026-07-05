@@ -5,7 +5,7 @@
   "version": "1.0.1",
   "description": "Real-time exchange rates for 200+ currencies powered by Open Exchange Rates API",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "open_exchange_rates",
   "class_name": "OpenExchangeRatesProvider",
   "entry_point": "provider.py",

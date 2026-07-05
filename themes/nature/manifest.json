@@ -1,14 +1,14 @@
 {
   "name": "Nature",
   "slug": "nature",
+  "component_type": "theme",
   "version": "1.0.0",
+  "display_name": "Nature",
   "description": "Natural, organic theme with sage greens and earthy tones. Perfect for home decor, garden, furniture, eco-friendly products, candles, and wellness brands.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_email": "themes@spwig.com",
   "license": "MIT",
-  "engine": {
-    "min": "1.0.0"
-  },
   "assets": {
     "css": [
       "css/theme.css"

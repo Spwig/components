@@ -1,11 +1,14 @@
 {
-  "name": "elegant-shop",
+  "name": "Elegant Shop",
+  "slug": "elegant-shop",
+  "component_type": "theme",
   "version": "1.1.0",
   "display_name": "Elegant Shop",
   "description": "A luxurious theme with refined aesthetics. Features gold accents and serif typography perfect for premium and luxury stores.",
   "author": "Spwig",
+  "sdk_version": "2.0",
   "author_url": "https://spwig.com",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "min_platform_version": "1.0.0",
   "max_platform_version": "2.0.0",
   "categories": [

@@ -2,7 +2,7 @@
   "component_type": "payment_provider",
   "slug": "adyen",
   "name": "Adyen",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Enterprise-grade payment processing with 250+ payment methods across 40+ countries. Industry-leading authorization rates with unified commerce capabilities.",
   "author": "Spwig",
   "author_details": {
@@ -12,7 +12,7 @@
   },
   "homepage_url": "https://www.adyen.com",
   "support_url": "https://docs.adyen.com",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "min_platform_version": "1.0.0",
   "requires_platform": "1.x",
   "python_version": ">=3.10",
@@ -953,6 +953,21 @@
     "mime_type": "image/svg+xml"
   },
   "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-03-31",
+      "changes": [
+        "Accept payment_method_types from orchestration service — maps to Adyen allowedPaymentMethods for Drop-in session filtering",
+        "Added **kwargs to create_payment_intent_for_checkout for forward-compatible parameter passing"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2026-03-11",
+      "changes": [
+        "Fixed webhook URL in setup instructions (was /payment-providers/webhook/{slug}/, corrected to /webhooks/payments/{slug}/)"
+      ]
+    },
     {
       "version": "1.0.0",
       "date": "2026-02-09",

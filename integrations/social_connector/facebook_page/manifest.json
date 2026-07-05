@@ -5,7 +5,7 @@
   "version": "1.1.0",
   "description": "Share blog posts to your Facebook Page with rich link previews and images",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "facebook_page",
   "class_name": "FacebookPageConnector",
   "entry_point": "provider.py",

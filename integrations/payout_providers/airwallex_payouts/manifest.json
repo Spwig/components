@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Send affiliate commission payouts via Airwallex's global bank transfer network. Supports LOCAL transfers for faster, lower-cost domestic payments and SWIFT for international transfers to 150+ countries.",
   "author": "Spwig",
-  "license": "Proprietary",
+  "license": "AGPL-3.0",
   "provider_key": "airwallex_payouts",
   "class_name": "AirwallexPayoutProvider",
   "entry_point": "provider.py",
